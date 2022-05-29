@@ -1,0 +1,1022 @@
+[22-May-2021 15:07:34 UTC] PHP Warning:  require(/home3/noorgame/public_html/../public/vendor/autoload.php): failed to open stream: No such file or directory in /home3/noorgame/public_html/index.php on line 34
+[22-May-2021 15:07:34 UTC] PHP Warning:  require(/home3/noorgame/public_html/../public/vendor/autoload.php): failed to open stream: No such file or directory in /home3/noorgame/public_html/index.php on line 34
+[22-May-2021 15:07:34 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/../public/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home3/noorgame/public_html/index.php on line 34
+[22-May-2021 15:07:37 UTC] PHP Warning:  require(/home3/noorgame/public_html/../public/vendor/autoload.php): failed to open stream: No such file or directory in /home3/noorgame/public_html/index.php on line 34
+[22-May-2021 15:07:37 UTC] PHP Warning:  require(/home3/noorgame/public_html/../public/vendor/autoload.php): failed to open stream: No such file or directory in /home3/noorgame/public_html/index.php on line 34
+[22-May-2021 15:07:37 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/../public/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home3/noorgame/public_html/index.php on line 34
+[27-May-2021 15:22:51 UTC] PHP Warning:  require(/home3/noorgame/public_html/vendor/autoload.php): failed to open stream: No such file or directory in /home3/noorgame/public_html/index.php on line 34
+[27-May-2021 15:22:51 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/index.php on line 34
+[12-Dec-2021 13:01:18 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 15:11:45 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 15:21:54 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 15:51:46 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 15:51:49 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:21:32 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:32:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:33:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:34:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:35:03 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:36:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:37:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:38:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:39:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:40:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:41:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:42:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:43:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:44:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:18 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:21 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:22 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:24 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:45:25 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:46:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:47:03 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:48:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:48:43 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:49:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:50:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:51:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:52:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:53:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:54:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:55:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:56:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:56:20 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:57:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:58:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:59:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 16:59:18 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:00:03 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:01:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:02:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:03:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:04:02 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:23:48 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:23:49 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:24:05 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:24:12 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:24:43 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[12-Dec-2021 17:24:51 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ']' in /home3/noorgame/public_html/app/Console/Kernel.php on line 16
+[16-Jan-2022 15:31:00 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 27860 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\L...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php(26): spl_autoload_call('Carbon\\Traits\\L...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php on line 26
+[16-Jan-2022 15:32:01 UTC] PHP Notice:  include(): read of 12645 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:32:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2336 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\I...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/CarbonInterval.php(179): spl_autoload_call('Carbon\\Traits\\I...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/CarbonInterval.php on line 179
+[16-Jan-2022 15:33:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1833 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Rout...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Routing/Route.php(22): spl_autoload_call('Illuminate\\Rout...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorga in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Routing/Route.php on line 22
+[16-Jan-2022 15:33:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 27860 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\L...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php(26): spl_autoload_call('Carbon\\Traits\\L...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php on line 26
+[16-Jan-2022 15:33:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 763 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\View...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php(15): spl_autoload_call('Illuminate\\View...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php on line 15
+[16-Jan-2022 15:34:01 UTC] PHP Notice:  include(): read of 2896 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:34:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Formatter/OutputFormatterStyle.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:34:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Console\Formatter\OutputFormatterStyle' not found in /home3/noorgame/public_html/vendor/symfony/console/Formatter/OutputFormatter.php:74
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/symfony/console/Output/Output.php(43): Symfony\Component\Console\Formatter\OutputFormatter->__construct()
+#1 /home3/noorgame/public_html/vendor/symfony/console/Output/StreamOutput.php(54): Symfony\Component\Console\Output\Output->__construct(32, false, NULL)
+#2 /home3/noorgame/public_html/vendor/symfony/console/Output/ConsoleOutput.php(42): Symfony\Component\Console\Output\StreamOutput->__construct(Resource id #100, 32, false, NULL)
+#3 /home3/noorgame/public_html/artisan(37): Symfony\Component\Console\Output\ConsoleOutput->__construct()
+#4 {main}
+  thrown in /home3/noorgame/public_html/vendor/symfony/console/Formatter/OutputFormatter.php on line 74
+[16-Jan-2022 15:35:01 UTC] PHP Notice:  require(): read of 992 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:35:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../laminas/laminas-diactoros/src/functions/parse_cookie_header.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:36:00 UTC] PHP Notice:  require(): read of 13475 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 12
+[16-Jan-2022 15:36:00 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/ClassLoader.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 12
+[16-Jan-2022 15:36:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 990 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal fu in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[16-Jan-2022 15:37:01 UTC] PHP Notice:  include(): read of 11904 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:37:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Input/ArgvInput.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:37:01 UTC] PHP Notice:  require(): read of 1551 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:37:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../laminas/laminas-diactoros/src/functions/normalize_server.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:37:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Console\Input\ArgvInput' not found in /home3/noorgame/public_html/artisan:36
+Stack trace:
+#0 {main}
+  thrown in /home3/noorgame/public_html/artisan on line 36
+[16-Jan-2022 15:38:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1576 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\I...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Rounding.php(26): spl_autoload_call('Carbon\\Traits\\I...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Rounding.php on line 26
+[16-Jan-2022 15:38:01 UTC] PHP Fatal error:  Uncaught ErrorException: include(): read of 2829 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(143): spl_autoload_call('Symfony\\Compone...')
+#5 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(130): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalErrorFromPhpError(Array, 0)
+#6 [i in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:38:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 140252 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\D...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Carbon.php(510): spl_autoload_call('Carbon\\Traits\\D...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Carbon.php on line 510
+[16-Jan-2022 15:39:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 6822 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include([16-Jan-2022 15:40:01 UTC] PHP Notice:  require(): read of 488862 bytes failed with errno=14 Bad address in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 15:40:01 UTC] PHP Notice:  include(): read of 4737 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Input/InputInterface.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Notice:  include(): read of 1764 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Notice:  include(): read of 6116 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Notice:  include(): read of 4594 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../lcobucci/jwt/src/Signature.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Output/ConsoleOutput.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:40:01 UTC] PHP Warning:  Class 'Lcobucci\JWT\Signature' not found in /home3/noorgame/public_html/vendor/lcobucci/jwt/compat/class-aliases.php on line 4
+[16-Jan-2022 15:40:01 UTC] PHP Notice:  require(): read of 128 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:40:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../lcobucci/jwt/compat/json-exception-polyfill.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:40:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Console\Output\ConsoleOutput' not found in /home3/noorgame/public_html/artisan:37
+Stack trace:
+#0 {main}
+  thrown in /home3/noorgame/public_html/artisan on line 37
+[16-Jan-2022 15:40:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Symfony\Component\Console\Input\InputInterface' not found in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php:28
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#3 /home3/noorgame/public_html/vendor/symfony/console/Input/ArgvInput.php(41): spl_autoload_call('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#7 /home3/noorgame/public_html/artisan(36): spl_autoload_call('Symfony\\Compone...')
+#8 {main}
+  thrown in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php on line 28
+[16-Jan-2022 15:41:01 UTC] PHP Notice:  require(): read of 362 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:41:01 UTC] PHP Warning:  include(): Failed opening '/[16-Jan-2022 15:41:01 UTC] PHP Notice:  include(): read of 31080 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:41:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Symfony\Component\Console\Formatter\OutputFormatterInterface' not found in /home3/noorgame/public_html/vendor/symfony/console/Formatter/WrappableOutputFormatterInterface.php:19
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#3 /home3/noorgame/public_html/vendor/symfony/console/Formatter/OutputFormatter.php(22): spl_autoload_call('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#7 /home3/noorgame/public_html/vendor/symfony/console/Output/Output.php(43): spl_ in /home3/noorgame/public_html/vendor/symfony/console/Formatter/WrappableOutputFormatterInterface.php on line 19
+[16-Jan-2022 15:42:01 UTC] PHP Notice:  include(): read of 1482 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:42:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laravel/framework/src/Illuminate/Support/Traits/ReflectsClosures.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:42:01 UTC] PHP Fatal error:  Trait 'Illuminate\Support\Traits\ReflectsClosures' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Events/Dispatcher.php on line 20
+[16-Jan-2022 15:43:00 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/autoload_static.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 15:44:01 UTC] PHP Notice:  include(): read of 1550 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:44:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Console/Kernel.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:44:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Illuminate\Contracts\Console\Kernel' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:20
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/noorgame/public_html/app/Console/Kernel.php(8): spl_autoload_call('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Console\\Ker...')
+#7 [internal function]: spl_autoload_call('App\\Console\\Ker...')
+#8 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php on line 20
+[16-Jan-2022 15:45:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Symfony\Component\Console\Input\StreamableInputInterface' not found in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php:28
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#3 /home3/noorgame/public_html/vendor/symfony/console/Input/ArgvInput.php(41): spl_autoload_call('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#7 /home3/noorgame/public_html/artisan(36): spl_autoload_call('Symfony\\Compone...')
+#8 {main}
+  thrown in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php on line 28
+[16-Jan-2022 15:46:00 UTC] PHP Fatal error:  Uncaught Error: Interface 'JsonSerializable' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Enumerable.php:11
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(13): spl_autoload_call('Illuminate\\Supp...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#7 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): spl_autoload_ca in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Enumerable.php on line 11
+[16-Jan-2022 15:46:00 UTC] PHP Fatal error:  Uncaught Error: Interface 'JsonSerializable' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Enumerable.php:11
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Collection.php(13): spl_autoload_call('Illuminate\\Supp...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#7 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php(15): spl_autoload_ca in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Enumerable.php on line 11
+[16-Jan-2022 15:47:01 UTC] PHP Fatal error:  Uncaught ReflectionException: Class config does not exist in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:836
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(836): ReflectionClass->__construct('config')
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(717): Illuminate\Container\Container->build('config')
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(655): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('config', Array)
+#5 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Containe in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 838
+[16-Jan-2022 15:48:00 UTC] PHP Notice:  include(): read of 4209 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:48:00 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:49:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Illuminate\Contracts\Foundation\Application' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:29
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/noorgame/public_html/bootstrap/app.php(14): spl_autoload_call('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/artisan(20): require_once('/home3/noorgame...')
+#5 {main}
+  thrown in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 29
+[16-Jan-2022 15:49:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Psr\Container\ContainerInterface' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Contracts/Container/Container.php:8
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cont...')
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(17): spl_autoload_call('Illuminate\\Cont...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cont...')
+#7 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.ph in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Contracts/Container/Container.php on line 8
+[16-Jan-2022 15:50:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1588 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Cache/RateLimiter.php(9): spl_autoload_call('Illuminate\\Supp...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noo in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Cache/RateLimiter.php on line 9
+[16-Jan-2022 15:50:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/autoload_static.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 15:50:01 UTC] PHP Fatal error:  Uncaught ReflectionException: Class config does not exist in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:836
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(836): ReflectionClass->__construct('config')
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(717): Illuminate\Container\Container->build('config')
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(655): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('config', Array)
+#5 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Containe in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 838
+[16-Jan-2022 15:51:00 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Arr' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:722
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(709): Illuminate\Foundation\Application->getProviders(Object(Illuminate\Events\EventServiceProvider))
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(661): Illuminate\Foundation\Application->getProvider(Object(Illuminate\Events\EventServiceProvider))
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(219): Illuminate\Foundation\Application->register(Object(Illuminate\Events\EventServiceProvider))
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(177): Illuminate\Foundation\Application->registerBaseServiceProviders()
+#4 /home3/noorgame/public_html/bootstrap/app.php(15): Illuminate\Foundation\Application in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 722
+[16-Jan-2022 15:51:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2570 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Contrac...')
+#4 [internal function]: spl_autoload_call('Symfony\\Contrac...')
+#5 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Localization.php(27): class_alias('Symfony\\Contrac...', 'Symfony\\Compone...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#7 /home3/noorgame/public_html/ve in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php on line 26
+[16-Jan-2022 15:52:01 UTC] PHP Notice:  require(): read of 472478 bytes failed with errno=14 Bad address in /home3/noorgame/public_html/vendor/composer/autoload_real.php o[16-Jan-2022 15:52:01 UTC] PHP Notice:  require(): read of 1600 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:52:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../symfony/polyfill-ctype/bootstrap.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:55:01 UTC] PHP Notice:  include(): read of 3284 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:55:01 UTC] PHP Notice:  include(): read of 641 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:55:01 UTC] PHP Notice:  include(): read of 641 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:55:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Input/InputInterface.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:55:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../symfony/console/Output/OutputInterface.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:55:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Symfony\Component\Console\Output\OutputInterface' not found in /home3/noorgame/public_html/vendor/symfony/console/Output/Output.php:30
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#3 /home3/noorgame/public_html/vendor/symfony/console/Output/StreamOutput.php(30): spl_autoload_call('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#7 /home3/noorgame/public_html/vendor/symfony/console/Output/ConsoleOutput.php(30): spl_autoload_call('Symfony\\Compone...')
+#8 / in /home3/noorgame/public_html/vendor/symfony/console/Output/Output.php on line 30
+[16-Jan-2022 15:55:01 UTC] PHP Fatal error:  Uncaught Error: Interface 'Symfony\Component\Console\Input\InputInterface' not found in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php:28
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#3 /home3/noorgame/public_html/vendor/symfony/console/Input/ArgvInput.php(41): spl_autoload_call('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#6 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#7 /home3/noorgame/public_html/artisan(36): spl_autoload_call('Symfony\\Compone...')
+#8 {main}
+  thrown in /home3/noorgame/public_html/vendor/symfony/console/Input/Input.php on line 28
+[16-Jan-2022 15:56:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Collection' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php:15
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Support/Traits/ReflectsClosures.php(24): collect(Array)
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Support/Traits/ReflectsClosures.php(44): Illuminate\Foundation\Exceptions\ReportableHandler->closureParameterTypes(Object(Closure))
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/ReportableHandler.php(62): Illuminate\Foundation\Exceptions\ReportableHandler->firstClosureParameterType(Object(Closure))
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(234): Illuminate\Foundation\Exceptions\ReportableHandler->handles(Object(Error))
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(366): Illuminate\ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/helpers.php on line 15
+[16-Jan-2022 15:57:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 5809 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(24): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/ho in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php on line 24
+[16-Jan-2022 15:57:01 UTC] PHP Notice:  include(): read of 2690 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:57:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:57:01 UTC] PHP Fatal error:  Trait 'Illuminate\Support\Traits\Macroable' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Collections/Arr.php on line 9
+[16-Jan-2022 15:57:01 UTC] PHP Fatal error:  Uncaught ErrorException: include(): read of 880 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Symfony\\Compone...')
+#4 /home3/noorgame/public_html/vendor/symfony/console/Helper/Helper.php(22): spl_autoload_call('Symfony\\Compone...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal function]: Compos in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:58:00 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home3/noorgame/public_html/bootstrap/app.php:14
+Stack trace:
+#0 /home3/noorgame/public_html/artisan(20): require_once()
+#1 {main}
+  thrown in /home3/noorgame/public_html/bootstrap/app.php on line 14
+[16-Jan-2022 15:59:01 UTC] PHP Notice:  require(): read of 128 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:59:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../lcobucci/jwt/compat/json-exception-polyfill.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 15:59:01 UTC] PHP Notice:  include(): read of 5413 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:59:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laminas/laminas-zendframework-bridge/src/Autoloader.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:59:01 UTC] PHP Notice:  include(): read of 3091 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:59:01 UTC] PHP Warning:  include(): Failed opening '/home3/noorgame/public_html/vendor/composer/../laminas/laminas-zendframework-bridge/src/RewriteRules.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/ClassLoader.php on line 444
+[16-Jan-2022 15:59:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Laminas\ZendFrameworkBridge\RewriteRules' not found in /home3/noorgame/public_html/vendor/laminas/laminas-zendframework-bridge/src/Autoloader.php:52
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laminas/laminas-zendframework-bridge/src/autoload.php(9): Laminas\ZendFrameworkBridge\Autoloader::load()
+#1 /home3/noorgame/public_html/vendor/composer/autoload_real.php(71): require('/home3/noorgame...')
+#2 /home3/noorgame/public_html/vendor/composer/autoload_real.php(61): composerRequire34fb061a807b887f8bff6cc0ca6670fd('7e9bd612cc444b3...', '/home3/noorgame...')
+#3 /home3/noorgame/public_html/vendor/autoload.php(7): ComposerAutoloaderInit34fb061a807b887f8bff6cc0ca6670fd::getLoader()
+#4 /home3/noorgame/public_html/artisan(18): require('/home3/noorgame...')
+#5 {main}
+  thrown in /home3/noorgame/public_html/vendor/laminas/laminas-zendframework-bridge/src/Autoloader.php on line 52
+[16-Jan-2022 15:59:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Laminas\ZendFrameworkBridge\Autoloader' not found in /home3/noorgame/public_html/vendor/laminas/laminas-zendframework-bridge/src/autoload.php:9
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/autoload_real.php(71): require()
+#1 /home3/noorgame/public_html/vendor/composer/autoload_real.php(61): composerRequire34fb061a807b887f8bff6cc0ca6670fd('7e9bd612cc444b3...', '/home3/noorgame...')
+#2 /home3/noorgame/public_html/vendor/autoload.php(7): ComposerAutoloaderInit34fb061a807b887f8bff6cc0ca6670fd::getLoader()
+#3 /home3/noorgame/public_html/artisan(18): require('/home3/noorgame...')
+#4 {main}
+  thrown in /home3/noorgame/public_html/vendor/laminas/laminas-zendframework-bridge/src/autoload.php on line 9
+[16-Jan-2022 16:00:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 27860 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\L...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php(26): spl_autoload_call('Carbon\\Traits\\L...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php on line 26
+[16-Jan-2022 16:01:00 UTC] PHP Notice:  require(): read of 925 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 25
+[16-Jan-2022 16:01:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/platform_check.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 25
+[16-Jan-2022 16:03:01 UTC] PHP Fatal error:  Uncaught ReflectionException: Class config does not exist in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:836
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(836): ReflectionClass->__construct('config')
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(717): Illuminate\Container\Container->build('config')
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(655): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('config', Array)
+#5 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Containe in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 838
+[16-Jan-2022 16:03:01 UTC] PHP Notice:  require(): read of 1976 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/swiftmailer/swiftmailer/lib/swift_required.php on line 11
+[16-Jan-2022 16:03:01 UTC] PHP Notice:  require(): read of 162 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 16:03:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/swiftmailer/swiftmailer/lib/classes/Swift.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/swiftmailer/swiftmailer/lib/swift_required.php on line 11
+[16-Jan-2022 16:03:01 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/../guzzlehttp/guzzle/src/functions_include.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 71
+[16-Jan-2022 16:04:00 UTC] PHP Notice:  require(): read of 427422 bytes failed with errno=14 Bad address in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 16:04:00 UTC] PHP Notice:  require(): read of 427422 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 16:04:00 UTC] PHP Fatal error:  require(): Failed opening required '/home3/noorgame/public_html/vendor/composer/autoload_static.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home3/noorgame/public_html/vendor/composer/autoload_real.php on line 33
+[16-Jan-2022 16:04:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 4530 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\S...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\S...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...') in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 16:05:01 UTC] PHP Fatal error:  Uncaught ReflectionException: Class config does not exist in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:836
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(836): ReflectionClass->__construct('config')
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(717): Illuminate\Container\Container->build('config')
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('config', Array, true)
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(655): Illuminate\Foundation\Application->resolve('config', Array)
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('config', Array)
+#5 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Containe in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 838
+[16-Jan-2022 16:06:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Events\EventServiceProvider' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:219
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(177): Illuminate\Foundation\Application->registerBaseServiceProviders()
+#1 /home3/noorgame/public_html/bootstrap/app.php(15): Illuminate\Foundation\Application->__construct('/home3/noorgame...')
+#2 /home3/noorgame/public_html/artisan(20): require_once('/home3/noorgame...')
+#3 {main}
+  thrown in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 219
+[16-Jan-2022 16:07:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 11300 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\B...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\B...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 16:07:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 15662 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\C...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\C...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 16:24:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1085 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php(25): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 25
+[16-Jan-2022 16:37:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1375 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Log\\...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(21): spl_autoload_call('Illuminate\\Log\\...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noo in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Log/LogManager.php on line 21
+[16-Jan-2022 16:37:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Log\LogManager' not found in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Log/LogServiceProvider.php:17
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(832): Illuminate\Log\LogServiceProvider->Illuminate\Log\{closure}(Object(Illuminate\Foundation\Application), Array)
+#1 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(717): Illuminate\Container\Container->build(Object(Closure))
+#2 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('log', Array, true)
+#3 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(655): Illuminate\Foundation\Application->resolve('log', Array)
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('log', Array)
+#5 /ho in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Log/LogServiceProvider.php on line 17
+[16-Jan-2022 17:35:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 823 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/app/Models/Form.php(8): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal function]: Composer in /home3/noorgame/public_html/app/Models/Form.php on line 8
+[16-Jan-2022 17:36:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2559 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(18): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php on line 18
+[16-Jan-2022 18:03:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 10943 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/ho in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 18:07:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 5356 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\View...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php(15): spl_autoload_call('Illuminate\\View...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php on line 15
+[16-Jan-2022 18:08:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 29182 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\C...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\C...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 18:10:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 4899 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\M...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Macro.php(18): spl_autoload_call('Carbon\\Traits\\M...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...') in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Macro.php on line 18
+[16-Jan-2022 18:48:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 823 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/app/Models/Form.php(8): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal function]: Composer in /home3/noorgame/public_html/app/Models/Form.php on line 8
+[16-Jan-2022 19:04:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3605 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal f in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[16-Jan-2022 19:12:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2978 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cons...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php(10): spl_autoload_call('Illuminate\\Cons...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noor in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php on line 10
+[16-Jan-2022 19:20:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 452 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 19:31:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 9083 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php(25): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 25
+[16-Jan-2022 20:08:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 10771 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cons...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php(10): spl_autoload_call('Illuminate\\Cons...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noo in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php on line 10
+[16-Jan-2022 20:16:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1243 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cons...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Console/WipeCommand.php(9): spl_autoload_call('Illuminate\\Cons...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile( in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Console/WipeCommand.php on line 9
+[16-Jan-2022 20:23:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 452 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 20:36:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 763 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\View...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php(15): spl_autoload_call('Illuminate\\View...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php on line 15
+[16-Jan-2022 20:38:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 10771 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cons...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php(10): spl_autoload_call('Illuminate\\Cons...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noo in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Console/Command.php on line 10
+[16-Jan-2022 20:58:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 5356 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\View...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php(15): spl_autoload_call('Illuminate\\View...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php on line 15
+[16-Jan-2022 21:22:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3997 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\View...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php(15): spl_autoload_call('Illuminate\\View...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Factory.php on line 15
+[16-Jan-2022 21:45:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 452 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 21:50:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2559 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(18): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php on line 18
+[16-Jan-2022 21:59:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 9083 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php(25): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 25
+[16-Jan-2022 22:05:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1085 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php(25): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 25
+[16-Jan-2022 22:06:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 6847 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/hom in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 22:21:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 51473 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\D...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\D...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 23:01:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3605 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal f in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[16-Jan-2022 23:11:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 9083 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php(25): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/ in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 25
+[16-Jan-2022 23:13:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 10943 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(27): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/ho in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 27
+[16-Jan-2022 23:27:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 399 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/vendor/laravel/ui/auth-backend/ConfirmsPasswords.php(8): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...') in /home3/noorgame/public_html/vendor/laravel/ui/auth-backend/ConfirmsPasswords.php on line 8
+[16-Jan-2022 23:37:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 1155 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Cach...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php(13): spl_autoload_call('Illuminate\\Cach...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noor in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php on line 13
+[16-Jan-2022 23:37:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3470 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Rout...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Routing/Route.php(22): spl_autoload_call('Illuminate\\Rout...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorga in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Routing/Route.php on line 22
+[16-Jan-2022 23:46:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 4926 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\T...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\T...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...') in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[16-Jan-2022 23:52:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3605 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal f in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[16-Jan-2022 23:58:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 29182 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\C...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\C...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[17-Jan-2022 00:17:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 11881 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\U...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php(526): spl_autoload_call('Carbon\\Traits\\U...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...' in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Date.php on line 526
+[17-Jan-2022 00:30:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 990 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal fu in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[17-Jan-2022 00:40:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 864 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\C...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Mutability.php(21): spl_autoload_call('Carbon\\Traits\\C...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Mutability.php on line 21
+[17-Jan-2022 00:47:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 823 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/app/Models/Form.php(8): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal function]: Composer in /home3/noorgame/public_html/app/Models/Form.php on line 8
+[17-Jan-2022 00:51:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 27860 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Carbon\\Traits\\L...')
+#4 /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php(26): spl_autoload_call('Carbon\\Traits\\L...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame.. in /home3/noorgame/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Options.php on line 26
+[17-Jan-2022 01:00:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 3605 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#4 /home3/noorgame/public_html/app/Http/Controllers/Controller.php(10): spl_autoload_call('Illuminate\\Foun...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#7 [internal f in /home3/noorgame/public_html/app/Http/Controllers/Controller.php on line 10
+[17-Jan-2022 01:09:01 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(): read of 2559 bytes failed with errno=12 Cannot allocate memory in /home3/noorgame/public_html/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'include(): read...', '/home3/noorgame...', 444, Array)
+#1 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include()
+#2 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgame...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#4 /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php(18): spl_autoload_call('Illuminate\\Data...')
+#5 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(444): include('/home3/noorgame...')
+#6 /home3/noorgame/public_html/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home3/noorgam in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php on line 18
+[07-Feb-2022 04:59:23 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 131072 bytes) in /home3/noorgame/public_html/storage/framework/views/c074b3a9d7da4e262a81353bb9649241af6a4af8.php on line 417
+[07-Feb-2022 04:59:40 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:00:00 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:00:31 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:07:43 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 131072 bytes) in /home3/noorgame/public_html/storage/framework/views/c074b3a9d7da4e262a81353bb9649241af6a4af8.php on line 417
+[07-Feb-2022 05:08:26 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:08:47 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:10:27 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:10:56 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:11:50 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[07-Feb-2022 05:12:48 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 40960 bytes) in /home3/noorgame/public_html/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesLayouts.php on line 94
+[17-Apr-2022 06:43:00 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:24 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:27 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:29 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:35 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:43 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[17-Apr-2022 06:43:50 America/New_York] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/noorgame/account/app/Http/Controllers/NewHomeController.php:418
+Stack trace:
+#0 /home/noorgame/account/app/Http/Controllers/NewHomeController.php(418): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/noorgame/...', 418, Array)
+#1 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\Http\Controllers\NewHomeController->spinner()
+#2 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\Routing\Controller->callAction('spinner', Array)
+#3 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\NewHomeController), 'spinner')
+#4 /home/noorgame/account/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\Routing\Route->runController()
+#5 /home/noorgame in /home/noorgame/account/app/Http/Controllers/NewHomeController.php on line 418
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:16:33 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:17:41 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_name' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 21
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_title' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 30
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'game_balance' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 39
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'total_transactions' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 48
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'tip' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 57
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'load' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 66
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'redeem' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 75
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'totals' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'refer' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 84
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
+[21-Apr-2022 11:51:41 America/New_York] PHP Fatal error:  Cannot use App\Mail\UserNoticMail as UserNoticMail because the name is already in use in /home/noorgame/account/app/Http/Controllers/FormController.php on line 11
