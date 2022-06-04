@@ -59,6 +59,10 @@
                         <a href="javascript:void(0);" data-id="{{$num->id}}" class="btn btn-warning image-game padding-5">
                            <i class="fa fa-image font-13"></i>
                        </a>
+                        <a href="{{route('gameImage',['id'=>$num->id])}}" data-id="{{$num->id}}" class="btn btn-success padding-5">
+                           <i class="fa fa-picture font-13"></i>
+                       </a>
+                       
                      </td>
                      <td>
                        <img style="max-width: 40%" src="{{asset('/public/uploads/'.$num->image)}}" alt="{{($num->name)}}">
