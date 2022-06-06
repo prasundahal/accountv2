@@ -128,6 +128,204 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
     <!-- banner -->
+    
+    
+     <div class="jarallax testimonial" id="reward">
+        <div class="testimonial-dot">
+            <div class="agileits-title">
+                <h3>-: Rewards :-</h3>
+                @if ($errors->any())
+                <div class="alert alert-danger danger mt-3">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <h3>
+                            <li>{{ $error }}</li>
+                        </h3>
+                        @endforeach
+                    </ul>
+                </div>
+                </br>
+                @endif
+            </div>
+            <div class="container" style=" border-radius: 5px; background-color: #f2f2f2; padding: 40px;">
+                <form action="{{ route('forms.stores') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname">First Name*</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" value="{{old('full_name')}}" autocomplete="off"
+                                placeholder="Eve Adam" name="full_name" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="lname">Phone Number*</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="number" id="phone" value="{{old('number')}}" autocomplete="off"
+                                placeholder="XXX XXX XXXX" name="number" maxlength="10" required style="width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="country">State*</label>
+                        </div>
+                        <div class="col-75">
+                            <select id="country" name="mail" required>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="refby">Ref By</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="refby" value="{{old('r_id')}}" autocomplete="off"
+                                placeholder="S_XXxXX" name="r_id" maxlength="15">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="email">Email </label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="email" value="{{old('email')}}" autocomplete="off"
+                                placeholder="name@xyz.com(optional)" name="email" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fn">Facebook Name </label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fn" value="{{old('facebook_name')}}" autocomplete="off"
+                                placeholder="Your Facebook Name" name="facebook_name" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="country">Game*</label>
+                        </div>
+                        <div class="col-75">
+                            <select id="country" class="account-select" name="account" required>
+                                <option value="" disabled selected="selected">Select Game</option>
+                                @foreach(\App\Models\Account::get() as $a => $b)
+                                  <option value="{{$b->id}}" data-title="{{$b->title}}">{{$b->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="game">Game Id* </label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="game" value="{{old('game_id')}}" autocomplete="off"
+                                placeholder="SXXXX" class=" game-id-text" name="game_id" maxlength="15" minlength="8" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:15px;">
+                        <div class="p-t-20 text-center">
+                            <img id="captcha_image"
+                                src="https://ak.picdn.net/shutterstock/videos/1020997729/thumb/10.jpg')}}"
+                                style="width:200px;border: 3px solid #ffb547;"> <text id="refresh-captcha" title="Refresh" class="button ml-2"
+                                style="border-radius:8px !important; font-size:25px; color:#ffb547;">
+                                    <i class="fa fa-undo"
+                                    aria-hidden="true"></i></text> <br><br>
+                            <div class="input-group justify-content-center border-custom" style="margin:auto;">
+                                <div class="m-auto">
+                                    <h4><b><span class="neon-text">Enter characters as shown above*</span></b></h4>
+                                </div>
+                                <input class="input--style-1 transparent-input neon-text-danger captcha-input"
+                                    type="text" value="" autocomplete="off" placeholder="XXXX" name="captcha_token"
+                                    maxlength="4" minlength="4" style="text-transform:uppercase;text-align:center">
+                            </div>
+                            <p class="alert alert-danger captcha-error hidden" style="background:red;margin-top:10px;"
+                                role="alert">Captcha Invalid</p>
+                        </div>
+                        <!--<img src="{{url('images/button.png')}}" type="submit" alt="submit" width="50" height="50">-->
+                    </div>
+                    <script>
+                        document.getElementById("captcha_image").src = "https://www.woodswoood.com/captcha_image.php?" +
+                            Math.random();
+                        var captchaImage = document.getElementById("captcha_image");
+                        var refreshButton = document.getElementById("refresh-captcha");
+                        refreshButton.onclick = function (event) {
+                            event.preventDefault();
+                            captchaImage.src = "https://www.woodswoood.com/captcha_image.php?" + Math.random();
+                        }
+                    </script>
+                    <div class="row">
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-55">
+                            <div class="text-center">
+                                <button type="submit" value="Submit" class="btn w-100 my-4 mb-2 button1" >Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="banner">
         <div class="agileinfo-dot">
             <div class="agileits-logo">
@@ -388,202 +586,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!-- //modal -->
     <!-- reward -->
-    <div class="jarallax testimonial" id="reward">
-        <div class="testimonial-dot">
-            <div class="agileits-title">
-                <h3>-: Rewards :-</h3>
-                @if ($errors->any())
-                <div class="alert alert-danger danger mt-3">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <h3>
-                            <li>{{ $error }}</li>
-                        </h3>
-                        @endforeach
-                    </ul>
-                </div>
-                </br>
-                @endif
-            </div>
-            <div class="container" style=" border-radius: 5px; background-color: #f2f2f2; padding: 40px;">
-                <form action="{{ route('forms.stores') }}" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname">First Name*</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" value="{{old('full_name')}}" autocomplete="off"
-                                placeholder="Eve Adam" name="full_name" maxlength="20" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="lname">Phone Number*</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="number" id="phone" value="{{old('number')}}" autocomplete="off"
-                                placeholder="XXX XXX XXXX" name="number" maxlength="10" required style="width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="country">State*</label>
-                        </div>
-                        <div class="col-75">
-                            <select id="country" name="mail" required>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District Of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="refby">Ref By</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="refby" value="{{old('r_id')}}" autocomplete="off"
-                                placeholder="S_XXxXX" name="r_id" maxlength="15">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="email">Email </label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="email" value="{{old('email')}}" autocomplete="off"
-                                placeholder="name@xyz.com(optional)" name="email" maxlength="30">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fn">Facebook Name </label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="fn" value="{{old('facebook_name')}}" autocomplete="off"
-                                placeholder="Your Facebook Name" name="facebook_name" maxlength="20" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="country">Game*</label>
-                        </div>
-                        <div class="col-75">
-                            <select id="country" class="account-select" name="account" required>
-                                <option value="" disabled selected="selected">Select Game</option>
-                                @foreach(\App\Models\Account::get() as $a => $b)
-                                  <option value="{{$b->id}}" data-title="{{$b->title}}">{{$b->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="game">Game Id* </label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="game" value="{{old('game_id')}}" autocomplete="off"
-                                placeholder="SXXXX" class=" game-id-text" name="game_id" maxlength="15" minlength="8" required>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top:15px;">
-                        <div class="p-t-20 text-center">
-                            <img id="captcha_image"
-                                src="https://ak.picdn.net/shutterstock/videos/1020997729/thumb/10.jpg')}}"
-                                style="width:200px;border: 3px solid #ffb547;"> <text id="refresh-captcha" title="Refresh" class="button ml-2"
-                                style="border-radius:8px !important; font-size:25px; color:#ffb547;">
-                                    <i class="fa fa-undo"
-                                    aria-hidden="true"></i></text> <br><br>
-                            <div class="input-group justify-content-center border-custom" style="margin:auto;">
-                                <div class="m-auto">
-                                    <h4><b><span class="neon-text">Enter characters as shown above*</span></b></h4>
-                                </div>
-                                <input class="input--style-1 transparent-input neon-text-danger captcha-input"
-                                    type="text" value="" autocomplete="off" placeholder="XXXX" name="captcha_token"
-                                    maxlength="4" minlength="4" style="text-transform:uppercase;text-align:center">
-                            </div>
-                            <p class="alert alert-danger captcha-error hidden" style="background:red;margin-top:10px;"
-                                role="alert">Captcha Invalid</p>
-                        </div>
-                        <!--<img src="{{url('images/button.png')}}" type="submit" alt="submit" width="50" height="50">-->
-                    </div>
-                    <script>
-                        document.getElementById("captcha_image").src = "https://www.woodswoood.com/captcha_image.php?" +
-                            Math.random();
-                        var captchaImage = document.getElementById("captcha_image");
-                        var refreshButton = document.getElementById("refresh-captcha");
-                        refreshButton.onclick = function (event) {
-                            event.preventDefault();
-                            captchaImage.src = "https://www.woodswoood.com/captcha_image.php?" + Math.random();
-                        }
-                    </script>
-                    <div class="row">
-                        <br>
-                    </div>
-                    <div class="row">
-                        <div class="col-55">
-                            <div class="text-center">
-                                <button type="submit" value="Submit" class="btn w-100 my-4 mb-2 button1" >Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+   
     <script src="{{ asset('public/anna/js/classie.js')}}"></script>
     <script>
         (function () {
