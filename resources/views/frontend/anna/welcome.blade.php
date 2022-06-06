@@ -247,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="col-75">
                             <input type="text" id="email" value="{{old('email')}}" autocomplete="off"
-                                placeholder="name@xyz.com(optional)" name="email" maxlength="30">
+                                placeholder="name@xyz.com" name="email" maxlength="30">
                         </div>
                     </div>
                     <div class="row">
