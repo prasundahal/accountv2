@@ -371,8 +371,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="rslides callbacks callbacks1" id="slider4">
                                         <li>
                                             <div class="banner_text">
-                                                <h3>WELCOME TO THE Woods GAMES</h3>
-                                                <p>Play Your Drean Games</p>
+                                                
+                                         
                                             </div>
                                         </li>
                                     </ul>
