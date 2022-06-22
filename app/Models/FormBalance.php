@@ -19,7 +19,7 @@ class FormBalance extends Model
 
     protected $fillable = [
 
-        'form_id','account_id', 'amount','created_by','deleted_at','updated_at'
+        'form_id','account_id', 'amount','created_by','deleted_at','updated_at','created_at'
 
     ];
 

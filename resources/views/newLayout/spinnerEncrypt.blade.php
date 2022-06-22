@@ -273,9 +273,10 @@ $final_encoded = json_encode($final);
                                     @if (!empty($old_list))
                                         @foreach ($old_list as $a => $b)
                                             <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
-                                                <span style="font-size:25px">1</span><span class="neon-text">
+                                                <span style="font-size:25px">{{$a+1}}</span><span class="neon-text2">
                                                     {{$b['full_name']}}
                                                 </span>
+                                                
                                             </li>
                                         @endforeach                                        
                                     @endif

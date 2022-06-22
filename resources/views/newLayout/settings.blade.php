@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <form action="{{ route('settingStore') }}" method="POST">
+                <form action="{{ route('settingStore') }}" method="POST" enctype="multipart/form-data">
                     <div class="card">
                         {{-- <div class="card-header">{{ __('Edit Noorgamers') }}</div> --}}
                         <div class="card-body">
@@ -61,6 +61,10 @@
                                             <option {{($settings['registration_sms']==1)?'selected':''}} value="1">On</option>
                                             <option {{($settings['registration_sms']==0)?'selected':''}} value="0">Off</option>
                                         </select>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12">
+                                        <span>Spinner Day (Choose between 1 to 31)</span>
+                                        <input type="number" class="form-control" name="spinner_date" value="{{$settings['spinner_date']}}" >   
                                     </div>
                                 </div>
                                 </br>
@@ -191,6 +195,15 @@
                                         <option {{($settings['theme']=='default')?'selected':''}} value="default">Default</option>
                                         <option {{($settings['theme']=='anna')?'selected':''}} value="anna">Anna</option>
                                     </select>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <span>Logo</span>
+                                    <input type="file" name="file" class="form-control" id="image">
+                                    @php
+                                        $settings = \App\Models\GeneralSetting::first();
+                                        $active_theme = \App\Models\Theme::where('name',$settings->theme)->first();
+                                    @endphp                                    
+                                    <img style="max-width: 100%;" src="{{asset('images/'.$settings->theme.'/'.$active_theme->logo)}}"> 
                                 </div>
                                 <div class="col-lg-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary mt-2">Confirm</button>

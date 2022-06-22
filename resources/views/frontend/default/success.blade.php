@@ -76,7 +76,7 @@
                                 <span class="neon-text font-weight-bold blink">Registration completed <br> Stay connected with Noor Games for much exciting bonus</span><span class="just-neon"> & </span><span class="neon-text font-weight-bold">reward</span>.
                         </h3>
                         <h4 class="mt-4">
-                            <span class="neon-text neon-text-danger font-weight-bold blink-danger">You should be receiving the confirmation text on the number that you registered</span>.
+                            <span class="neon-text neon-text-danger font-weight-bold blink-danger">You should be receiving the confirmation text on the E-mail that you registered</span>.
                         </h4>
                         <h3 class="mt-4">
                             <span class="neon-text font-weight-bold blink">Happy Playing</span>

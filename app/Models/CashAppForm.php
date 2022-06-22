@@ -16,7 +16,7 @@ class CashAppForm extends Model
 
     protected $fillable = [
 
-        'cash_app_id','account_id', 'amount','form_id','deleted_at','updated_at'
+        'cash_app_id','account_id', 'amount','form_id','deleted_at','updated_at','created_at'
 
     ];
 }

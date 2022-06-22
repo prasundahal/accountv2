@@ -13,13 +13,14 @@
        <tr style="text-align: center;">
            <td>
            <?php 
-               if($details1['theme'] == 'default'){
-                   $image = 'dragonnn.gif';
-               }else{
-                   $image = 'logo.jpg';
-               }
+                $active_theme = \App\Models\Theme::where('name',$details1['theme'])->first();
+            //    if($details1['theme'] == 'default'){
+            //        $image = 'dragonnn.gif';
+            //    }else{
+            //        $image = 'logo.jpg';
+            //    }
            ?>
-           <img style="max-width: 20%;" src="<?php echo URL::to('/images/'.$details1['theme'].'/'.$image) ?>" alt="Game"> 
+           <img style="max-width: 20%;" src="<?php echo URL::to('/images/'.$details1['theme'].'/'.$active_theme->logo) ?>" alt="Game"> 
            </td>
        </tr>
        <tr>

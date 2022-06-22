@@ -29,9 +29,10 @@ class spinnerBulkMail extends Mailable {
     public function build() {
         $settings = GeneralSetting::first();
         $details1 = [
-            'text' => $this->details,
+            'text' => json_decode($this->details,true),
             'theme' => ($settings->theme)
         ];
+        // dd('123',$this->details,$details1);
         // $details = json_decode($this->details, true);
         $subject = isset($this->details['subject'])?$this->details['subject']:'Noor Games';
 

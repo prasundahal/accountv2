@@ -29,6 +29,7 @@ use App\Models\LoginLog;
 use App\Models\ActivityStatus;
 use App\Models\GeneralSetting;
 use App\Models\SpinnerWinner;
+use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -567,7 +568,7 @@ public function tableop()
         //     }
         // }
         
-        if (($historys->count()) > 1)
+        if (($historys->count()) > 0)
         {
             $historys = $historys->toArray();
             foreach ($historys as $a => $b)
@@ -862,6 +863,7 @@ public function tableop()
         }
         return Response::json('true');
     }
+    
     public function tableUpdate(Request $request)
     {
         try
@@ -886,15 +888,19 @@ public function tableop()
         // return $amount;
         $cashAppBalance = $cashApp->balance;
         $updateCashApp = CashApp::where('id', $cashAppId)->update(['balance' => ($cashAppBalance + $amount) ]);
-
-        $cash_app_form = CashAppForm::create(['form_id' => $userId, 'cash_app_id' => $cashAppId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
+        if(session()->has('tableDate')){
+            $created_at = session()->get('tableDate');
+        }else{
+            $created_at = Carbon::now();
+        }
+        $cash_app_form = CashAppForm::create(['created_at' => $created_at,'form_id' => $userId, 'cash_app_id' => $cashAppId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         $account = Account::where('id', $gameId)->update(['balance' => ($accountBalance - $amount) ]);
         // $user = Form::where('id', $userId)->update(['balance' => ($userBalance + $amount)]);
-        $user_balance = FormBalance::create(['form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
+        $user_balance = FormBalance::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         //update History
-        $history = History::create(['form_id' => $userId, 'account_id' => $gameId, 'amount_loaded' => $amount, 'relation_id' => $user_balance->id, 'previous_balance' => $userBalance, 'final_balance' => $userBalance + $amount, 'type' => 'load', 'created_by' => Auth::user()->id]);
+        $history = History::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount_loaded' => $amount, 'relation_id' => $user_balance->id, 'previous_balance' => $userBalance, 'final_balance' => $userBalance + $amount, 'type' => 'load', 'created_by' => Auth::user()->id]);
         // Log::channel('cronLog')->info('This is testing for ItSolutionStuff.com!'
         // $accountBalance = $account->balance;
         // $userBalance = $user->balance;
@@ -903,31 +909,31 @@ public function tableop()
             $currentMonth = date('m');
             $data = DB::table("histories")->where('form_id', $user->id)
                 ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->sum('amount_loaded');
-            if ($data >= 600)
+            if ($data >= $this->limit_amount)
             {
                 // dd($data >= 600);
-                $token_id = Str::random(32);
-                $form = Form::where('id', $user->id)
-                    ->update(['balance' => 1, 'token' => $token_id]);
+                // $token_id = Str::random(32);
+                // $form = Form::where('id', $user->id)
+                //     ->update(['balance' => 1, 'token' => $token_id]);
                 $form = Form::where('id', $user->id)
                     ->first()
                     ->toArray();
-                // try
-                // {
+                try
+                {
                     // return Response::json($form);
-                    // if (!empty($form['email']))
-                    // {
+                    if (!empty($form['email']))
+                    {
                         // Mail::to($form['email'])->send(new crossedPlayers(json_encode($form)));
                         
-                    // }
+                    }
                     // if(!empty($form['phone'])){
-                    // $boyname = $form['full_name'];
+                    $boyname = $form['full_name'];
 
                     // $number  =  $form['full_name'];
-                    // $basic = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
-                    // $client = new \Vonage\Client($basic);
+                    $basic = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
+                    $client = new \Vonage\Client($basic);
 
-                    // $sendtextuser = 'Congratulation ' . $boyname . '!!! ' . ' You are now eligible for spinner';
+                    $sendtextuser = 'Congratulation ' . $boyname . '!!! ' . ' You are now eligible for spinner';
 
                     // $message = $client->message()
                     //     ->send(['to' => '+9779813815279', 'from' => '18337222376', 'text' => $sendtextuser]);
@@ -935,12 +941,12 @@ public function tableop()
                     // }
                     // Mail::to('riteshnoor69@gmail.com')->send(new crossedPlayers(json_encode($form)));
                     // Mail::to('prasundahal@gmail.com')->send(new crossedPlayers(json_encode($form)));
-                    // Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
-                // }
-                // catch(\Exception $e)
-                // {
-                //     return Response::json($e->getMessage());
-                // }
+                    Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
+                }
+                catch(\Exception $e)
+                {
+                    return Response::json($e->getMessage());
+                }
             }
         }
         return Response::json(Account::get()
@@ -971,10 +977,15 @@ public function tableop()
 
         // $user = Form::where('id', $userId)->update(['balance' => ($userBalance + $amount)]);
         //create refer entry
-        $refer = FormRefer::create(['form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
+        if(session()->has('tableDate')){
+            $created_at = session()->get('tableDate');
+        }else{
+            $created_at = Carbon::now();
+        }
+        $refer = FormRefer::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         //update History
-        $history = History::create(['form_id' => $userId, 'account_id' => $gameId, 'relation_id' => $refer->id, 'amount_loaded' => $amount, 'previous_balance' => 0, 'final_balance' => 0, 'type' => 'refer', 'created_by' => Auth::user()->id]);
+        $history = History::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'relation_id' => $refer->id, 'amount_loaded' => $amount, 'previous_balance' => 0, 'final_balance' => 0, 'type' => 'refer', 'created_by' => Auth::user()->id]);
         // Log::channel('cronLog')->info('This is testing for ItSolutionStuff.com!'
         // $accountBalance = $account->balance;
         // $userBalance = $user->balance;
@@ -1047,10 +1058,16 @@ public function tableop()
         // $user = Form::where('id', $userId)->update(['balance' => ($userBalance - $amount)]);
         $cashApp = CashApp::where('id', $cashAppId)->update(['balance' => ($cashAppBalance - $amount) ]);
 
-        $form_redeem = FormRedeem::create(['form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
+        if(session()->has('tableDate')){
+            $created_at = session()->get('tableDate');
+        }else{
+            $created_at = Carbon::now();
+        }
+
+        $form_redeem = FormRedeem::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         //update History
-        $history = History::create(['form_id' => $userId, 'account_id' => $gameId, 'cash_apps_id' => $cashAppId, 'amount_loaded' => $amount, 'relation_id' => $form_redeem->id, 'previous_balance' => $userBalance, 'final_balance' => $userBalance - $amount, 'type' => 'redeem', 'created_by' => Auth::user()->id]);
+        $history = History::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'cash_apps_id' => $cashAppId, 'amount_loaded' => $amount, 'relation_id' => $form_redeem->id, 'previous_balance' => $userBalance, 'final_balance' => $userBalance - $amount, 'type' => 'redeem', 'created_by' => Auth::user()->id]);
 
         // $accountBalance = $account->balance;
         // $userBalance = $user->balance;
@@ -1079,10 +1096,16 @@ public function tableop()
         $account = Account::where('id', $gameId)->update(['balance' => ($accountBalance + $amount) ]);
         // $user = Form::where('id', $userId)->update(['balance' => ($userBalance - $amount)]);
         // $cashApp = CashApp::where('id', $cashAppId)->update(['balance' => ($cashAppBalance - $amount)]);
-        $form_redeem = FormTip::create(['form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
+
+        if(session()->has('tableDate')){
+            $created_at = session()->get('tableDate');
+        }else{
+            $created_at = Carbon::now();
+        }
+        $form_redeem = FormTip::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         //update History
-        $history = History::create(['form_id' => $userId, 'account_id' => $gameId, 'relation_id' => $form_redeem->id, 'amount_loaded' => $amount, 'type' => 'tip', 'created_by' => Auth::user()->id]);
+        $history = History::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'relation_id' => $form_redeem->id, 'amount_loaded' => $amount, 'type' => 'tip', 'created_by' => Auth::user()->id]);
 
         // $accountBalance = $account->balance;
         // $userBalance = $user->balance;
@@ -2916,8 +2939,9 @@ public function tableop()
         $settings = GeneralSetting::first()->toArray();
         return view('newLayout.settings',compact('settings'));
     }
-    public function settingStore(Request $request){
-         try
+   public function settingStore(Request $request){
+        // dd($request->emails);
+        try
         {
             $settings = GeneralSetting::where('id',1)->update([
                 'bonus_report_emails' => ($request->bonus_report_emails[0] != null)?$request->bonus_report_emails[0]:null,
@@ -2937,8 +2961,21 @@ public function tableop()
                 'registration_email' => $request->registration_email,
                 'registration_sms' => $request->registration_sms,
                 'mail_text' => $request->mail_text,
+                'spinner_date' => $request->spinner_date,
                 'sms_text' => $request->sms_text
             ]);
+            $settings = GeneralSetting::first();
+            // $path = asset('public/images/'.$settings->theme.'/logo.jpg');
+            if ($request->hasFile('file'))
+            {
+                $img = $request->file('file');
+                $name = time() . '.' . $img->extension();
+                $img->move(base_path() . '/images/'.$request->theme.'/', $name);
+                Theme::where('name',$request->theme)->first()->update(['logo' => $name]);
+            }
+
+            // dd($img);
+            // $game->image = $name;
             // $settings = GeneralSetting::first()->toArray();
             return redirect()->back()->withInput()->with('success', 'Settings Updated');
         }

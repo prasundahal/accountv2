@@ -47,6 +47,15 @@
     </head>
 
     <body class="g-sidenav-show  bg-gray-100">
+      @php
+        if(!(request()->segment(1) == 'table')){
+          session()->forget('tableDate');
+        }else{
+          if(!(isset($_GET['date']))){
+          session()->forget('tableDate');
+          }
+        }
+      @endphp
       <div class="min-height-300  position-absolute w-100 back-image-game"></div>
         {{-- <div class="min-height-300  position-absolute w-100" style="background-color:#ffb342;"></div> --}}
         <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 d-block opac"

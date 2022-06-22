@@ -107,6 +107,8 @@ class DailyReport extends Command
                     Mail::to($a)->send(new reportMail(json_encode($details)));
                     Log::channel('dailyReport')->info("Daily Report Mail sent successfully to ".$a);
                 }
+            }else{
+                Log::channel('dailyReport')->info("Empty Today");
             }
             //         Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
             //         Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));

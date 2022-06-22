@@ -81,6 +81,10 @@
     width: 70%;
   }
 }
+.copy-link:hover{
+    cursor:pointer;
+}
+
 
 
 </style>
@@ -205,6 +209,7 @@
                  
                     <td class="td-load-{{$num['form_id']}}">{{($num['totals']['load'])}}</td>
                     <td class="td-load-{{$num['form_id']}}">
+                      <i class="fa fa-copy copy-link" data-link="{{URL::to('/spinner/form/'.$num['spinner_key']);}}"></i>
                       {{$num['spinner_key']}}
                     </td>
 
@@ -225,6 +230,14 @@
         window.location.replace('/gamers-games/'+$(this).val());
     });
 
+    $('.copy-link').on('click',function(){
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(this).data('link')).select();
+      document.execCommand("copy");
+      $temp.remove();
+      toastr.success('Success',"Link Copied");
+    });
     $('.send-message-single').on('click',function(){
       var id = $(this).data('id');
       $('.form-id').val(id);
