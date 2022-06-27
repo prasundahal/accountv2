@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- head -->
-
 <head>
     <link href="{{ URL::to('/images/logochangecolor.gif') }}" rel="icon">
     <link href="{{ URL::to('/images/logochangecolor.gif') }}" rel="apple-touch-icon">
     <title>Woods Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gaming Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Anna" />
     <script type="application/x-javascript">
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
     </script>
     <!-- bootstrap-css -->
-    <link href="{{ asset('public/anna/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+    <!-- <link href="{{ asset('public/anna/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!--// bootstrap-css -->
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('public/anna/css/style.css')}}" type="text/css" media="all" />
@@ -38,7 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         rel='stylesheet' type='text/css'>
     <!-- //font -->
     <script src="{{ asset('public/anna/js/jquery-1.11.1.min.js')}}"></script>
-    <script src="{{ asset('public/anna/js/bootstrap.js')}}"></script>
+    <!-- <script src="{{ asset('public/anna/js/bootstrap.js')}}"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -55,12 +54,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             color: black;
             border: 2px solid #FFB547;
         }
-
         .button1:hover {
             background-color: #FFB547;
             color: white;
         }
-
         input[type=text],
         select,
         textarea {
@@ -70,12 +67,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             border-radius: 4px;
             resize: vertical;
         }
-
         label {
             padding: 12px 12px 12px 0;
             display: inline-block;
         }
-
         input[type=submit] {
             background-color: #04AA6D;
             color: white;
@@ -85,35 +80,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             cursor: pointer;
             float: right;
         }
-
         input[type=submit]:hover {
             background-color: #45a049;
         }
-
-        .col-25 {
+        . {
             float: left;
             width: 25%;
             margin-top: 6px;
         }
-
-        .col-75 {
+        . {
             float: left;
             width: 75%;
             margin-top: 6px;
         }
-
         /* Clear floats after the columns */
-        .row:after {
+        /* .row:after {
             content: "";
             display: table;
             clear: both;
-        }
-
+        } */
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
-
-            .col-25,
-            .col-75,
+            .,
+            .,
             input[type=submit] {
                 width: 100%;
                 margin-top: 0;
@@ -125,11 +114,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <![endif]-->
 </head>
 <!-- headend -->
-
 <body>
     <!-- banner -->
-    
-    
      <div class="jarallax testimonial" id="reward">
         <div class="testimonial-dot">
             <div class="agileits-title">
@@ -147,36 +133,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </br>
                 @endif
             </div>
-            <div class="container" style=" border-radius: 5px; background-color: #f2f2f2; padding: 40px;">
-                <form action="{{ route('forms.stores') }}" method="POST">
+            <div class="container">
+                 <div class="row">
+                   <div class="col-8 mx-auto">
+                       <form action="{{ route('forms.stores') }}" method="POST" class="reward-form"  style=" border-radius: 5px; background-color: #00000073; padding: 40px;">
                     @csrf
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="fname">First Name*</label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <input type="text" id="fname" value="{{old('full_name')}}" autocomplete="off"
                                 placeholder="Eve Adam" name="full_name" maxlength="20" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="lname">Phone Number*</label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <input type="number" id="phone" value="{{old('number')}}" autocomplete="off"
-                                placeholder="XXX XXX XXXX" name="number" maxlength="10" required style="width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;">
+                                placeholder="XXX XXX XXXX" name="number" maxlength="10" required style="width: 100%;padding: 12px;border: 1px solid #ccc;border-radius: 4px;resize: vertical;">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="country">State*</label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <select id="country" name="mail" required>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -233,37 +217,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="refby">Ref By</label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <input type="text" id="refby" value="{{old('r_id')}}" autocomplete="off"
                                 placeholder="S_XXxXX" name="r_id" maxlength="15">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="email">Email </label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <input type="text" id="email" value="{{old('email')}}" autocomplete="off"
                                 placeholder="name@xyz.com" name="email" maxlength="30">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+                        <div class="label-wrap">
                             <label for="fn">Facebook Name </label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap">
                             <input type="text" id="fn" value="{{old('facebook_name')}}" autocomplete="off"
                                 placeholder="Your Facebook Name" name="facebook_name" maxlength="20" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
+               <div class="col-5 p-0">
+               <div class="label-wrap w-100">
                             <label for="country">Game*</label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap w-100">
                             <select id="country" class="account-select" name="account" required>
                                 <option value="" disabled selected="selected">Select Game</option>
                                 @foreach(\App\Models\Account::get() as $a => $b)
@@ -271,18 +256,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
+               </div>
+                    <div class="col-5 p-0">
+                        <div class="label-wrap w-100">
                             <label for="game">Game Id* </label>
                         </div>
-                        <div class="col-75">
+                        <div class="input-wrap w-100">
                             <input type="text" id="game" value="{{old('game_id')}}" autocomplete="off"
                                 placeholder="SXXXX" class=" game-id-text" name="game_id" maxlength="15" minlength="8" required>
                         </div>
-                    </div>
+                    </div>  </div>
                     <div class="row" style="margin-top:15px;">
-                        <div class="p-t-20 text-center">
+                        <div class="p-t-20 text-center mx-auto">
                             <img id="captcha_image"
                                 src="https://ak.picdn.net/shutterstock/videos/1020997729/thumb/10.jpg')}}"
                                 style="width:200px;border: 3px solid #ffb547;"> <text id="refresh-captcha" title="Refresh" class="button ml-2"
@@ -293,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="m-auto">
                                     <h4><b><span class="neon-text">Enter characters as shown above*</span></b></h4>
                                 </div>
-                                <input class="input--style-1 transparent-input neon-text-danger captcha-input"
+                                <input class="input--style-1 transparent-input neon-text-danger captcha-input w-50"
                                     type="text" value="" autocomplete="off" placeholder="XXXX" name="captcha_token"
                                     maxlength="4" minlength="4" style="text-transform:uppercase;text-align:center">
                             </div>
@@ -316,102 +301,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <br>
                     </div>
                     <div class="row">
-                        <div class="col-55">
-                            <div class="text-center">
+                            <div class="text-center mx-auto">
                                 <button type="submit" value="Submit" class="btn w-100 my-4 mb-2 button1" >Submit</button>
                             </div>
-                        </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="banner">
-        <div class="agileinfo-dot">
-            <div class="agileits-logo">
-                <h1><a href="index.html">Woods <span>Games</span></a></h1>
-            </div>
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-top-info">
-                        <nav class="navbar navbar-default">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-                                <nav>
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="index.html">Home</a></li>
-                                        <li><a href="#about" class="scroll">About</a></li>
-                                        <li><a href="#gallery" class="scroll">Our Games</a></li>
-                                        <li><a href="#reward" class="scroll">Rewards</a></li>
-                                        <!-- <li><a href="#mail" class="scroll">Mail Us</a></li> -->
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!-- /.navbar-collapse -->
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="w3layouts-banner-info">
-                <div class="container">
-                    <div class="w3layouts-banner-slider">
-                        <div class="w3layouts-banner-top-slider">
-                            <div class="slider">
-                                <div class="callbacks_container">
-                                    <ul class="rslides callbacks callbacks1" id="slider4">
-                                        <li>
-                                            <div class="banner_text">
-                                                
-                                         
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                                <!--banner Slider starts Here-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    <!-- //banner -->
-    <!-- about -->
-    <div class="about" id="about">
-        <div class="container">
-            <div class="welcome">
-                <div class="agileits-title">
-                    <h2 class="w3l-subtitle">- -</h2>
-                </div>
-            </div>
-            <div class="about-w3lsrow">
-                <div class="col-md-7 col-sm-7 w3about-img">
-                    <div class="w3about-text">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <style>
-        .w3layouts img{
-            min-height: 200px;
-            max-height: 200px;
-            object-fit: cover;
-        }
-    </style>
     <div class="portfolio" id="gallery">
         <div class="container">
             <div class="agileits-title">
@@ -461,7 +360,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         @endforeach
                     @endif               
                 @endforeach
-
                 {{-- <div class="filtr-item w3layouts agileits portfolio-t" data-category="1, 5" data-sort="Busy streets">
                     <a href="{{ asset('public/anna/images/p1.jpg')}}" class="b-link-stripe w3layouts agileits b-animate-go thickbox">
                         <figure>
@@ -586,7 +484,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!-- //modal -->
     <!-- reward -->
-   
     <script src="{{ asset('public/anna/js/classie.js')}}"></script>
     <script>
         (function () {
@@ -608,11 +505,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 inputEl.addEventListener('focus', onInputFocus);
                 inputEl.addEventListener('blur', onInputBlur);
             });
-
             function onInputFocus(ev) {
                 classie.add(ev.target.parentNode, 'input--filled');
             }
-
             function onInputBlur(ev) {
                 if (ev.target.value.trim() === '') {
                     classie.remove(ev.target.parentNode, 'input--filled');
@@ -633,7 +528,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript">
         /* init Jarallax */
         // setTimeout(() => {
-            
         // $('.active').trigger('click');
         // }, 2000);
         $('.jarallax').jarallax({
@@ -649,7 +543,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript">
         $(document).ready(function () {
             setTimeout(() => {
-            
         $('.active').trigger('click');
         }, 2000);
         $('.account-select').on('change',function(){
@@ -674,8 +567,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Tabs-JavaScript -->
     <script src="{{ asset('public/anna/js/jquery.filterizr.js')}}"></script>
     <script src="{{ asset('public/anna/js/controls.js')}}"></script>
-
-
     <script type="text/javascript">
         $(function () {
             $('.filtr-container').filterizr();
@@ -807,7 +698,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 this.classList.toggle("select-arrow-active");
             });
         }
-
         function closeAllSelect(elmnt) {
             /* A function that will close all select boxes in the document,
             except the current select box: */
@@ -834,7 +724,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         document.addEventListener("click", closeAllSelect);
     </script>
     <!-- //PopUp-Box-JavaScript -->
-
 </body>
-
 </html>
