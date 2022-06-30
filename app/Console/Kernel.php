@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\ColabUpdate::class,
         Commands\DailyReport::class,
-        Commands\SpinnerResetForm::class
+        Commands\SpinnerResetForm::class,
+        Commands\MonthlyTasks::class
     ];
 
     /**
@@ -32,6 +33,8 @@ class Kernel extends ConsoleKernel
          $schedule->command('DailyReport:cron')
          ->everyMinute();
          $schedule->command('SpinnerResetForm:cron')
+         ->monthlyOn(1, '00:00');
+         $schedule->command('MonthlyTasks:cron')
          ->everyMinute();
         //  daily
         //  ->appendOutputTo($filePath)

@@ -142,8 +142,8 @@
                                 </div> 
                                 <div class="custom-select-neon my-2 w-100">
                                     <select class="w-100" name="mail" id="state" required>
-                                          <option value="" selected="selected">Select a State</option>
-                                          <option value="AL">Alabama</option>
+                                          <option value="AL" selected="selected">Alabama</option>
+                                          <!--<option value="AL">Alabama</option>-->
                                           <option value="AK">Alaska</option>
                                           <option value="AZ">Arizona</option>
                                           <option value="AR">Arkansas</option>
@@ -214,9 +214,9 @@
                             <div class="col-md-6 col-sm-12 mt-4">
                                 <div class="input-group">
                                      <div>
-                                   <h4><b><span class="neon-text">Email <span style="color:red">*</span></span></b></h4>
+                                   <h4><b><span class="neon-text">Email (Required)</span></b></h4>
                                 </div> 
-                                    <input required class="input--style-1 transparent-input neon-text-danger" type="email" value="{{old('email')}}" autocomplete="off" placeholder="name@xyz.com" name="email">
+                                    <input required class="input--style-1 transparent-input neon-text-danger" type="email" value="{{old('email')}}" autocomplete="off" placeholder="name@xyz.com" name="email" >
                                 </div>
                             </div>
                             

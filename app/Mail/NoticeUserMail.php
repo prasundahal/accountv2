@@ -37,7 +37,9 @@ class NoticeUserMail extends Mailable
         ];
         // $details= $subject;
        
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+        $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
+
+        return $this->from('noorgames@gmail.com', $title.' Games')
                     ->subject($subject)
                     ->markdown('mails.noticeuser')
                     ->with([

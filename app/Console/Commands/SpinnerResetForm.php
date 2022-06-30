@@ -14,7 +14,7 @@ class SpinnerResetForm extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'SpinnerResetForm:cron';
 
     /**
      * The console command description.

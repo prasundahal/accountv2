@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\GeneralSetting;
 
 class customMail extends Mailable {
     use Queueable, SerializesModels;
@@ -28,7 +29,12 @@ class customMail extends Mailable {
     public function build() {
         $details = json_decode($this->details, true);
         $subject = 'Users Updated List';
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+        
+        $settings = GeneralSetting::first();
+
+        $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
+
+        return $this->from('noorgames@gmail.com', $title.' Games')
                     ->subject($subject)
                     ->markdown('mails.exmpl')
                     ->with([

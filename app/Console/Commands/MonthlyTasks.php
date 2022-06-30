@@ -15,7 +15,7 @@ class MonthlyTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'MonthlyTasks:cron';
 
     /**
      * The console command description.

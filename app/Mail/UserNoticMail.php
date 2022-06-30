@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\GeneralSetting;
 
 class UserNoticMail extends Mailable
 {
@@ -30,8 +31,12 @@ class UserNoticMail extends Mailable
        $details = $this->details;
         $subject = $this->details;
         $details= $subject;
-       
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+        
+        $settings = GeneralSetting::first();
+       $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
+
+        // return $this->from('noorgames@gmail.com', 'Noor Games')
+        return $this->from('noorgames@gmail.com', $title.' Games')
                     ->subject($subject)
                     ->markdown('mails.usernotic')
                     ->with([

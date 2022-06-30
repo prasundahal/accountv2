@@ -29,6 +29,8 @@ class GeneralSetting extends Model
         'registration_email',
         'registration_sms',
         'mail_text',
+        'spinner_date',
+        'spinner_time',
         'sms_text'
     ];
 }

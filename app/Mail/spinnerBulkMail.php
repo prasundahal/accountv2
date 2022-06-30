@@ -36,7 +36,9 @@ class spinnerBulkMail extends Mailable {
         // $details = json_decode($this->details, true);
         $subject = isset($this->details['subject'])?$this->details['subject']:'Noor Games';
 
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+        $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
+
+        return $this->from('noorgames@gmail.com', $title.' Games')
                     ->subject($subject)
                     ->markdown('mails.spinnerBulkMessage')
                     ->with([

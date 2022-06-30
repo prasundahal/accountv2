@@ -66,6 +66,10 @@
                                         <span>Spinner Day (Choose between 1 to 31)</span>
                                         <input type="number" class="form-control" name="spinner_date" value="{{$settings['spinner_date']}}" >   
                                     </div>
+                                    <div class="col-lg-4 col-sm-12">
+                                        <span>Spinner Time</span>
+                                        <input type="time" class="form-control" name="spinner_time" value="{{$settings['spinner_time']}}" >   
+                                    </div>
                                 </div>
                                 </br>
                                 <div class="row">

@@ -12,4 +12,8 @@ class SpinnerWinner extends Model
         'full_name', 'form_id'
 
     ];
+    
+    public function form(){
+        return $this->belongsTo(Form::class,'id','form_id');
+    }
 }

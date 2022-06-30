@@ -164,12 +164,173 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
         .mCSB_container_wrapper{
             margin: 0px;
         }
+        .neon-text2{
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;
+        }
+
+        #countdown{
+            background: red;
+            color: white;
+            font-size: 30px;
+        }
+        
+
+.outer-curtain {
+display: table;
+height: 100%;
+margin: 0;
+width: 100% !important;
+background: #000000;
+}
+
+.tcell {
+display: table-cell;
+vertical-align: middle;
+}
+
+.curtain-wrapper {
+/* min-width: 40%;
+max-width: 640px;
+*/
+width: 100%;
+margin: auto;
+}
+
+
+.curtain {
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+width: 100%;
+height: 100%;
+box-sizing: border-box;
+overflow: hidden;
+background: transparent;
+}
+
+.panel-left,
+.panel-right {
+position: absolute;
+height: 100vh !important;
+width: 50%;
+top: 0%;
+transition: all 8s ease;
+/*transition-delay: 300ms;* fade is in place/
+/*background-image: url("https://picsum.photos/600");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;*/
+overflow: hidden;
+z-index: 100000;
+}
+
+.panel-left {
+left: 0;
+/*background-color: rgb(91, 96, 106);*/
+}
+
+.panel-right {
+right: 0;
+/*background-color: rgb(229, 211, 211);*/
+}
+
+.panel-left::before,
+.panel-right::before {
+content: "";
+position: absolute;
+height: 100%;
+width: 200%;
+top: 0;
+left: 0;
+background-image: url("{{asset('public/img/curtain.png')}}");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: 0 0;
+pointer-events: none;
+}
+
+.panel-right::before {
+left: -100%;
+}
+
+.curtain.slide .panel-left {
+/* transform: translateX(-100%);*/
+transform: translateX(calc(-100% - 1px));
+}
+
+/*.panel-left::before {
+background: rgba(0, 0, 0, 0.5);
+}*/
+
+.curtain.slide .panel-right {
+/*transform: translateX(100%);*/
+transform: translateX(calc(100% + 1px));
+}
+
+
+.hide {
+display: none;
+}
+
+.curtain .panel-left {
+/* transform: translateX(-100%);*/
+/*transform: translateX(calc(-100% - 1px));*/
+animation: slideLeft 8s forwards;
+animation-delay: 300ms;
+}
+
+@keyframes slideLeft {
+to {
+transform: translateX(calc(-100% - 1px))
+}
+}
+
+/*.panel-left::before {
+background: rgba(0, 0, 0, 0.5);
+}*/
+
+.curtain .panel-right {
+/*transform: translateX(100%);*/
+/*transform: translateX(calc(100% + 1px));*/
+animation: slideRight 8s forwards;
+animation-delay: 300ms;
+
+}
+
+@keyframes slideRight {
+to {
+transform: translateX(calc(100% + 1px))
+}
+}
+
+@media (max-width: 768px) {
+    body {
+        height:100vh;
+    }
+}
+html, body {margin: 0; height: 100%; overflow: hidden}
     </style>
 </head>
 
 <body>
+        <div class="outer-curtain">
+            <div class="tcell">
+                <div class="curtain-wrapper">
+                    <div class="curtain-ratio-keeper">
+                        <div class="curtain">
+                            <div class="panel-left"></div>
+                            <div class="panel-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="page-wrapper font-robo">
-        <video autoplay muted loop id="myVideo">
+        <video autoplay muted loop id="myVideo" style="display:none">
             <source src="{{url('images/fin.mp4')}}" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
@@ -236,10 +397,86 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             </div>
             <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
                 <table style="position:relative;top:10%">
+                    @php
+                        $settings = \App\Models\GeneralSetting::first();
+                        $spinner_date = $settings->spinner_date;
+                        $spinner_time = $settings->spinner_time;
+    
+                        $date_today = date('d');
+                        $time = date('H:i:s');
+    
+                        if($spinner_date < 10){
+                            $spinner_date = '0'.$spinner_date;
+                        }         
+    
+                        $year = date('Y');
+                        $month = date('m');
+                        if($month < 10){
+                            $month = '0'.$month;
+                        }
+                        // $spinner_date = 23;
+                        $day = $spinner_date;
+    
+                        $full_date = $year.'-'.$month.'-'.$day.' '.$spinner_time;    
+                        $full_date_now = date('Y-m-d H:i:s');
+
+                        if($month == 12){
+                            $month = 0;
+                        }
+                        $new_month = $month + 1;
+                        if($new_month < 10){
+                            $new_month = '0'.$new_month;
+                        }
+                        $next_full_date = $year.'-'.($new_month).'-'.$day.' '.$spinner_time;  
+                    @endphp
+                    
+                    <script>    
+                        var countDownDate = '{{$full_date}}';
+                        var nextfullDate = '{{$next_full_date}}';
+                        var fullDateNow = '{{$full_date_now}}';
+                    </script>
                     <tr>
                         <td style="text-align: center;">
-                            <button id="bigButton" class="bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">Spin the Wheel</button>
-                            <div id="winnerinfo"></div>
+                            @if($date_today == $spinner_date)
+                                @php  
+                                    $spinner_time_count = strtotime($spinner_time);      
+                                    $actual_time_count = strtotime($time);                            
+                                @endphp
+    
+                                @if($spinner_time_count < $actual_time_count)  
+                                    <p id="countdown" class="neon-text2"></p>               
+                                    <button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                        Spin the Wheel
+                                    </button>
+                                @else                       
+                                    <p id="countdown" class="neon-text2"></p>
+                                    {{-- hidden --}}
+                                    <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                        Spin the Wheel
+                                    </button>
+                                @endif
+                            @else
+                            
+                                    @if($date_today > $spinner_date)
+                                        @php
+                                            $full_date = $year.'-'.($month + 1).'-'.$day.' '.$spinner_time; 
+                                        @endphp
+                                        <script>
+                                            countDownDate = '{{$full_date}}';
+                                        </script>
+                                        <p id="countdown" class="neon-text2"></p>
+                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                            Spin the Wheel
+                                        </button>
+                                    @else
+                                        <p id="countdown" class="neon-text2"></p>
+                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                            Spin the Wheel
+                                        </button>
+                                    @endif
+                            @endif  
+
+                            {{-- <div id="winnerinfo"></div> --}}
                         </td>
                     </tr>
                     <tr>
@@ -491,8 +728,65 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{asset('public/js/table.js')}}"></script><script src="{{asset('public/js/jquery.mCustomScrollbar.js')}}"></script>
     <script>
+    
+    var img1 = new Image();
+    var img2 = new Image();
+    img1.src = "{{asset('/public/img/casino ring 2.png')}}";
+    img2.src = "{{asset('/public/img/casinoring0.png')}}";
 
+    var countDownDate = new Date(countDownDate).getTime();
+    // console.log(fullDateNow);
+    // console.log((new Date()));
+    
+    function checkTime(i) {
+        if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+    var today=new Date('<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>');
+    var time = '';
     $(document).ready( function () {
+        // Set the date we're counting down to
+        function setTime() {
+            today.setSeconds(today.getSeconds()+1);
+            var year=today.getFullYear();
+            var month=today.getMonth() + 1;
+            var day=today.getDate();
+            var hour=today.getHours();
+            var minute=today.getMinutes();
+            var second=today.getSeconds();
+            console.log(month);
+            minute = checkTime(minute);
+            second = checkTime(second);
+            month = checkTime(month);
+            time = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+        }
+        setInterval(setTime, 1000);
+
+        var x = setInterval(function() {
+          // Get today's date and time
+          var now = new Date(time).getTime();
+        
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+        
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+          // Display the result in the element with id="countdown"
+          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+        
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "Next Spinner will be on";
+            $('.spinnerClickBtn').trigger('click');
+            countDownDate = new Date(nextfullDate).getTime();
+          }
+        }, 1000);
+
         $('.captcha-input').on('keypress',function(e) {
             if(!($('.captcha-error').hasClass('hidden'))){
                 $('.captcha-error').addClass('hidden');
@@ -695,7 +989,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     //get id from winner info and compare with player info
     var winner_info_id = jsonData.winner_info.player_id;
 
-    document.getElementById("winnerinfo").innerHTML = "<br>winner will be "+jsonData.winner_info.player_name;
+    // document.getElementById("winnerinfo").innerHTML = "<br>winner will be "+jsonData.winner_info.player_name;
 
     //get the index of winner info id
     var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
@@ -804,12 +1098,28 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     drawTriangle();
 
     function drawTriangle() {
+        var canvas = document.getElementById('canvas'),
+            ctxcanvas = canvas.getContext('2d');
+        img1.onload = function(){
+            ctxcanvas.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
+        }
+        img2.onload = function(){
+            ctxcanvas.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
+        }
+
+        $('.captcha-input').on('keypress',function(e) {
+            if(!($('.captcha-error').hasClass('hidden'))){
+                $('.captcha-error').addClass('hidden');
+            }
+        });
         // Get the canvas context the wheel uses.
         let ctx = theWheel.ctx;
 
         ctx.strokeStyle = 'navy';     // Set line colour.
         ctx.fillStyle   = 'aqua';     // Set fill colour.
         ctx.lineWidth   = 2;
+        ctx.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
+        ctx.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
         ctx.beginPath();              // Begin path.
         ctx.moveTo(290, 5);           // Move to initial position.
         ctx.lineTo(290, 5);           // Draw lines to make the shape.
@@ -1126,4 +1436,9 @@ else
         }
         document.getElementById("datebox").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
     }, 1000);
+    
+    setTimeout(function() {
+      $('.outer-curtain').remove();
+      $('video').show();
+    }, 8000);
 </script>

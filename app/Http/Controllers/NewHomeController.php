@@ -32,7 +32,7 @@ use App\Models\SpinnerWinner;
 use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Mail\sendMailToWinner;
 class NewHomeController extends Controller
 {
     public $color = 'purple';
@@ -524,7 +524,136 @@ public function tableop()
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }
+    public function userSpinnerLatest($token)
+    {
+        $form_token = Form::where('token',$token)->count();
 
+        if($form_token > 0 ){
+            $form_token = Form::where('token',$token)->first('id')->toArray();
+        }
+        $compare_amount = $this->limit_amount;
+
+        $month = date('m');
+        if($month >10){
+            $month = '0'.$month;
+        }
+        $filter_start = '2022-'.$month.'-01';
+        $filter_end = date("Y-m-t", strtotime(Carbon::now()));
+
+        // $historys = History::where('type', 'load')
+        //                     ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+        //                     ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id'])
+        //                     ->groupBy('form_id')
+        //                     ->with('form')
+        //                     ->whereHas('form')
+        //                     ->get();
+
+        $historys = Form::where('balance',1)->get();
+                            
+        $winners_list = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->count();
+
+        // $final = [];
+        $final = [
+            'players_list' => [],
+            'winner_info' => []
+        ];
+        if (($historys->count()) > 0)
+        {
+            $historys = $historys->toArray();
+            foreach ($historys as $a => $b)
+            {
+                $explode_name = explode(' ',$b['full_name']);
+                $full_name_encrypt = '';
+                foreach($explode_name as $z){
+                    $string = substr($z,0,2);
+                    $string .= '**** ';
+                    $full_name_encrypt .= $string;
+                }
+                // if ($b['total'] >= $compare_amount)
+                // {
+                    if($form_token > 0){
+                        if($b['id'] == $form_token['id']){
+                            $z =[
+                                'player_name' => $b['full_name'],
+                                'player_id' => $b['id']
+                            ];
+                        }else{
+                            $z =[
+                                'player_name' => $full_name_encrypt,
+                                'player_id' => $b['id']
+                            ];
+                        }
+                    }else{
+                        $z =[
+                            'player_name' => $full_name_encrypt,
+                            'player_id' => $b['id']
+                        ];
+                    }
+                    array_push($final['players_list'], $z);
+                // }
+            }
+            if(!empty($final['players_list'])){
+                    
+                $shuffle = array_rand($final['players_list']);
+
+                if($winners_list <= 0){
+                    $f1 = Form::where('id',$final['players_list'][$shuffle]['player_id'])->first();
+                    $winner = SpinnerWinner::create([
+                        'form_id' => $final['players_list'][$shuffle]['player_id'],
+                        'full_name' => $f1->full_name
+                    ]);
+                }
+                // else{
+                    $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->first();
+                // }
+                $final['winner_info'] =[
+                    'player_name' => $winner->full_name,
+                    'player_id' =>  $winner->form_id
+                ];
+            }
+            //prasun dahal
+            $year = date('Y');
+            $month = 4;
+            $day = 16;
+            // if(strtotime(date('Y-m-d')) == strtotime(date($year . '-' . $month . '-'.$day))){
+            //     $prasun_count = Form::where('full_name','Prasun Dahal')->count();
+            //     if($prasun_count > 0){
+            //         $prasun = Form::where('full_name','Prasun Dahal')->first()->toArray();
+            //         $z =[
+            //             'player_name' => $prasun['full_name'],
+            //             'player_id' => $prasun['id']
+            //         ];
+            //         array_push($final['players_list'], $z);
+
+            //         $final['winner_info'] =[
+            //             'player_name' => $prasun['full_name'],
+            //             'player_id' =>  $prasun['id']
+            //         ];
+            //     }
+                
+            // }
+            //prasun dahal
+        }
+        // dd($final);
+        $old_winners = SpinnerWinner::count();
+        if($old_winners > 0){
+            $old_winners = SpinnerWinner::limit(5)->get()->toArray();
+            $final_old = [];
+            $month = intval(date('m'));
+            foreach($old_winners as $a => $b){
+                $date = explode('-',date('Y-m-d',strtotime($b['created_at'])));
+                if(intval($date[1]) != $month){
+                    array_push($final_old,$b);
+                }else{
+                }
+            }
+            // $old_winners = $final_old;
+            $old_list = $final_old;
+        }else{
+            $old_winners = [];
+        }
+        return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list'));
+    }
     public function userSpinner($token)
     {
         $form_token = Form::where('token',$token)->count();
@@ -672,7 +801,50 @@ public function tableop()
 
         // return Response::json($final);
     }
-
+ public function sendMailToWinner(){
+        try
+        {
+            $month = date('m');
+            if($month >10){
+                $month = '0'.$month;
+            }
+            $filter_start = '2022-'.$month.'-01';
+            $filter_end = Carbon::now();
+            $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])
+                                ->count();
+            if($winner > 0){
+                $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->first();
+                if($winner->mail == 0){
+                    $settings = GeneralSetting::first();
+                    $form = Form::where('id',$winner->form_id)->first();
+                    $details = [
+                        'link' => 'asdf',
+                        'text' => 'congrats ...',
+                        'theme' => ($settings->theme)
+                    ];
+                    try
+                        {
+                            Mail::to($form->email)->send(new sendMailToWinner(($details)));
+                            $winner->mail = 1;
+                            $winner->save();
+                            Log::channel('spinnerBulk')->info("Mail sent successfully to ".$form->email);
+                            return Response::json(['success' => $winner], 200);
+                        }
+                    catch(\Exception $e)
+                        {
+                            $bug = $e->getMessage();
+                            Log::channel('spinnerBulk')->info($bug);
+                        }
+                }
+            }
+        }
+        catch(\Exception $e)
+        {
+            $bug = $e->getMessage();
+            dd($bug);
+            return Response::json(['error' => $bug], 404);
+        }
+    }
     public function spinnerForm()
     {
         return 'Coming Soon :-)';
@@ -912,9 +1084,9 @@ public function tableop()
             if ($data >= $this->limit_amount)
             {
                 // dd($data >= 600);
-                // $token_id = Str::random(32);
-                // $form = Form::where('id', $user->id)
-                //     ->update(['balance' => 1, 'token' => $token_id]);
+                $token_id = Str::random(32);
+                $form = Form::where('id', $user->id)
+                    ->update(['balance' => 1, 'token' => $token_id]);
                 $form = Form::where('id', $user->id)
                     ->first()
                     ->toArray();
@@ -941,7 +1113,7 @@ public function tableop()
                     // }
                     // Mail::to('riteshnoor69@gmail.com')->send(new crossedPlayers(json_encode($form)));
                     // Mail::to('prasundahal@gmail.com')->send(new crossedPlayers(json_encode($form)));
-                    Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
+                    // Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
                 }
                 catch(\Exception $e)
                 {
@@ -2565,9 +2737,11 @@ public function tableop()
                     
                     foreach($input2 as $a => $input){
                         
-                    $token_id = Str::random(32);
-                    $form = Form::where('id', $input['form_id'])
-                        ->update(['balance' => 1, 'token' => $token_id]);
+                    // $token_id = Str::random(32);
+                    // $form = Form::where('id', $input['form_id'])
+                    //     ->update(['balance' => 1, 'token' => $token_id]);
+                    $form = Form::where('id', $input['form_id'])->first()->toArray();
+                    $token_id = $form['token'];
                     $form = [
                         'name' => $input['full_name'],
                         'message' => $message,
@@ -2962,6 +3136,7 @@ public function tableop()
                 'registration_sms' => $request->registration_sms,
                 'mail_text' => $request->mail_text,
                 'spinner_date' => $request->spinner_date,
+                'spinner_time' => $request->spinner_time,
                 'sms_text' => $request->sms_text
             ]);
             $settings = GeneralSetting::first();

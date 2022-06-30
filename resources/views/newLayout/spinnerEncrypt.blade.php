@@ -1,12 +1,16 @@
 <?php
 $final_encoded = json_encode($final);
-
 ?>
+@php
+    $setting = \App\Models\GeneralSetting::first();
+     //dd($setting);
+    
+@endphp 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
+    
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="https://noorgames.net/images/logochangecolor.gif">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -166,11 +170,168 @@ $final_encoded = json_encode($final);
             letter-spacing: 2px;
             text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;
         }
+        
+        #countdown{
+            background: red;
+            color: white;
+            font-size: 30px;
+        }
+        
+        
+
+.outer-curtain {
+display: table;
+height: 100%;
+margin: 0;
+width: 100% !important;
+background: #000000;
+}
+
+.tcell {
+display: table-cell;
+vertical-align: middle;
+}
+
+.curtain-wrapper {
+/* min-width: 40%;
+max-width: 640px;
+*/
+width: 100%;
+margin: auto;
+}
+
+
+.curtain {
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+width: 100%;
+height: 100%;
+box-sizing: border-box;
+overflow: hidden;
+background: transparent;
+}
+
+.panel-left,
+.panel-right {
+position: absolute;
+height: 100vh !important;
+width: 50%;
+top: 0%;
+transition: all 8s ease;
+/*transition-delay: 300ms;* fade is in place/
+/*background-image: url("https://picsum.photos/600");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;*/
+overflow: hidden;
+z-index: 100000;
+}
+
+.panel-left {
+left: 0;
+/*background-color: rgb(91, 96, 106);*/
+}
+
+.panel-right {
+right: 0;
+/*background-color: rgb(229, 211, 211);*/
+}
+
+.panel-left::before,
+.panel-right::before {
+content: "";
+position: absolute;
+height: 100%;
+width: 200%;
+top: 0;
+left: 0;
+background-image: url("{{asset('public/img/curtain.png')}}");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: 0 0;
+pointer-events: none;
+}
+
+.panel-right::before {
+left: -100%;
+}
+
+.curtain.slide .panel-left {
+/* transform: translateX(-100%);*/
+transform: translateX(calc(-100% - 1px));
+}
+
+/*.panel-left::before {
+background: rgba(0, 0, 0, 0.5);
+}*/
+
+.curtain.slide .panel-right {
+/*transform: translateX(100%);*/
+transform: translateX(calc(100% + 1px));
+}
+
+
+.hide {
+display: none;
+}
+
+.curtain .panel-left {
+/* transform: translateX(-100%);*/
+/*transform: translateX(calc(-100% - 1px));*/
+animation: slideLeft 8s forwards;
+animation-delay: 300ms;
+}
+
+@keyframes slideLeft {
+to {
+transform: translateX(calc(-100% - 1px))
+}
+}
+
+/*.panel-left::before {
+background: rgba(0, 0, 0, 0.5);
+}*/
+
+.curtain .panel-right {
+/*transform: translateX(100%);*/
+/*transform: translateX(calc(100% + 1px));*/
+animation: slideRight 8s forwards;
+animation-delay: 300ms;
+
+}
+
+@keyframes slideRight {
+to {
+transform: translateX(calc(100% + 1px))
+}
+}
+
+@media (max-width: 768px) {
+    body {
+        height:100vh;
+    }
+}
+html, body {margin: 0; height: 100%; overflow: hidden}
     </style>
 </head>
 
 <body>
-    <div class="page-wrapper font-robo">
+        <div class="outer-curtain">
+            <div class="tcell">
+                <div class="curtain-wrapper">
+                    <div class="curtain-ratio-keeper">
+                        <div class="curtain">
+                            <div class="panel-left"></div>
+                            <div class="panel-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="page-wrapper font-robo" style="display:none">
         <video autoplay muted loop id="myVideo">
             <source src="{{url('images/fin.mp4')}}" type="video/mp4">
             Your browser does not support HTML5 video.
@@ -238,11 +399,87 @@ $final_encoded = json_encode($final);
                 </div>
             </div>
             <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
-                <table style="position:relative;top:10%">
+                 <table style="position:relative;top:10%">
+                    @php                            
+                        $settings = \App\Models\GeneralSetting::first();
+                        $spinner_date = $settings->spinner_date;
+                        $spinner_time = $settings->spinner_time;
+    
+                        $date_today = date('d');
+                        $time = date('H:i:s');
+    
+                        if($spinner_date < 10){
+                            $spinner_date = '0'.$spinner_date;
+                        }         
+    
+                        $year = date('Y');
+                        $month = date('m');
+                        if($month < 10){
+                            $month = '0'.$month;
+                        }
+                        // $spinner_date = 23;
+                        $day = $spinner_date;
+    
+                        $full_date = $year.'-'.$month.'-'.$day.' '.$spinner_time;    
+                        $full_date_now = date('Y-m-d H:i:s');
+
+                        if($month == 12){
+                            $month = 0;
+                        }
+                        $new_month = $month + 1;
+                        if($new_month < 10){
+                            $new_month = '0'.$new_month;
+                        }
+                        $next_full_date = $year.'-'.($new_month).'-'.$day.' '.$spinner_time;  
+                    @endphp
+                    
+                    <script>    
+                        var countDownDate = '{{$full_date}}';
+                        var nextfullDate = '{{$next_full_date}}';
+                        var fullDateNow = '{{$full_date_now}}';
+                    </script>
                     <tr>
                         <td style="text-align: center;">
-                            <button id="bigButton" class="bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">Spin the Wheel</button>
-                            <div id="winnerinfo"></div>
+                            @if($date_today == $spinner_date)
+                                @php  
+                                    $spinner_time_count = strtotime($spinner_time);      
+                                    $actual_time_count = strtotime($time);                            
+                                @endphp
+    
+                                @if($spinner_time_count < $actual_time_count)  
+                                    <p id="countdown" class="neon-text2"></p>               
+                                    <button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                        Spin the Wheel
+                                    </button>
+                                @else                       
+                                    <p id="countdown" class="neon-text2"></p>
+                                    {{-- hidden --}}
+                                    <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                        Spin the Wheel
+                                    </button>
+                                @endif
+                            @else
+                            
+                                    @if($date_today > $spinner_date)
+                                        @php
+                                            $full_date = $year.'-'.($month + 1).'-'.$day.' '.$spinner_time; 
+                                        @endphp
+                                        <script>
+                                            countDownDate = '{{$full_date}}';
+                                        </script>
+                                        <p id="countdown" class="neon-text2"></p>
+                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                            Spin the Wheel
+                                        </button>
+                                    @else
+                                        <p id="countdown" class="neon-text2"></p>
+                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
+                                            Spin the Wheel
+                                        </button>
+                                    @endif
+                            @endif  
+
+                            {{-- <div id="winnerinfo"></div> --}}
                         </td>
                     </tr>
                     <tr>
@@ -504,6 +741,65 @@ $final_encoded = json_encode($final);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{asset('public/js/table.js')}}"></script><script src="{{asset('public/js/jquery.mCustomScrollbar.js')}}"></script>
     <script>
+    var img1 = new Image();
+    var img2 = new Image();
+    img1.src = "{{asset('/public/img/casino ring 2.png')}}";
+    img2.src = "{{asset('/public/img/casinoring0.png')}}";
+        var countDownDate = new Date(countDownDate).getTime();
+        // console.log(fullDateNow);
+        // console.log((new Date()));
+        
+        function checkTime(i) {
+            if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+        var today=new Date('<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>');
+        var time = '';
+        $(document).ready( function () {
+        // Set the date we're counting down to
+        function setTime() {
+            today.setSeconds(today.getSeconds()+1);
+            var year=today.getFullYear();
+            var month=today.getMonth() + 1;
+            var day=today.getDate();
+            var hour=today.getHours();
+            var minute=today.getMinutes();
+            var second=today.getSeconds();
+            console.log(month);
+            minute = checkTime(minute);
+            second = checkTime(second);
+            month = checkTime(month);
+            time = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+        }
+        setInterval(setTime, 1000);
+
+        var x = setInterval(function() {
+          // Get today's date and time
+          var now = new Date(time).getTime();
+        
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+        
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+          // Display the result in the element with id="countdown"
+          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+        
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "Next Spinner will be on";
+            $('.spinnerClickBtn').trigger('click');
+            countDownDate = new Date(nextfullDate).getTime();
+          }
+        }, 1000);
+    });
+    </script>
+    <script>
 
     $(document).ready( function () {
         $('.captcha-input').on('keypress',function(e) {
@@ -694,13 +990,16 @@ $final_encoded = json_encode($final);
 
 
     //console.log(res);
+    noCount=1;
     jsonData.players_list.forEach(element => {
-    //console.log(element);
+    console.log(element);
     segments.push({
         fillStyle: generateRandomColor(),
-        text: element.player_name
+        text: ""+noCount++
         });
+    
     });
+    
 
     //get the array length of player_info
     var player_info_length = jsonData.players_list.length;
@@ -708,7 +1007,7 @@ $final_encoded = json_encode($final);
     //get id from winner info and compare with player info
     var winner_info_id = jsonData.winner_info.player_id;
 
-    document.getElementById("winnerinfo").innerHTML = "<br>winner will be "+jsonData.winner_info.player_name;
+    // document.getElementById("winnerinfo").innerHTML = "<br>winner will be "+jsonData.winner_info.player_name;
 
     //get the index of winner info id
     var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
@@ -726,10 +1025,11 @@ $final_encoded = json_encode($final);
     //170 default radi
 
     textSize=10
-
-    if(player_info_length<20) textFontSize= 20
-    else if(player_info_length<80) textFontSize=15
-    else textFontSize=10
+    
+    if (player_info_length>10) textFontSize=30
+    else if(player_info_length>20) textFontSize= 20
+    else if(player_info_length>80) textFontSize=15
+    else textFontSize=35
 
     spin_duration=randomIntFromInterval(10,20); //make spin time random
     spin_times=randomIntFromInterval(3,6);
@@ -739,7 +1039,7 @@ $final_encoded = json_encode($final);
         'outerRadius'    : 270,
         'innerRadius'   : 50,
         'segments'       : segments,
-        'textFontSize' : 10,
+        'textFontSize' : textFontSize,
         'textAlignment'  : 'outer',
         'clearTheCanvas' : false,
         'animation' : {
@@ -778,11 +1078,11 @@ $final_encoded = json_encode($final);
     }
 
     function generateRandomColor(){
-        // let color = "#";
-        // for (let i = 0; i < 3; i++){
-        //     color += ("0" + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)).slice(-2);
-        // }
-        let color = "#"+Math.floor(Math.random()*16777215).toString(16);
+        let color = "#";
+        for (let i = 0; i < 3; i++){
+            color += ("0" + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)).slice(-2);
+        }
+        // let color = "#"+Math.floor(Math.random()*16777215).toString(16);
         return color;
     }
 
@@ -811,18 +1111,52 @@ $final_encoded = json_encode($final);
 
         // Start the spin animation here.
         theWheel.startAnimation();
+        
+        setTimeout(function(){
+            $.ajax({
+                    type: 'get',
+                    url: "{{route('sendMailToWinner')}}",
+                    data: {
+                        // "cid": $(this).data('id'),
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        // console.log(data);
+                        // $('.tr-'+cid).remove();
+                        // $( ".count-row" ).each(function( index ) {
+                        //     $(this).text((index+1));
+                        //         // console.log( index + ": " + $( this ).text() );
+                        //     })
+                        // toastr.success('Success',"Deleted"); 
+                    },
+                    error: function (data) {
+                        // console.log(data);
+                        toastr.error('Error',data.responseText);
+                    }
+                });
+         }, 10000);
     }
 
     // Usual pointer drawing code.
     drawTriangle();
 
     function drawTriangle() {
+        var canvas = document.getElementById('canvas'),
+            ctxcanvas = canvas.getContext('2d');
+        img1.onload = function(){
+            ctxcanvas.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
+        }
+        img2.onload = function(){
+            ctxcanvas.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
+        }
         // Get the canvas context the wheel uses.
         let ctx = theWheel.ctx;
 
         ctx.strokeStyle = 'navy';     // Set line colour.
         ctx.fillStyle   = 'aqua';     // Set fill colour.
         ctx.lineWidth   = 2;
+        ctx.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
+        ctx.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
         ctx.beginPath();              // Begin path.
         ctx.moveTo(290, 5);           // Move to initial position.
         ctx.lineTo(290, 5);           // Draw lines to make the shape.
@@ -831,6 +1165,11 @@ $final_encoded = json_encode($final);
         ctx.stroke();                 // Complete the path by stroking (draw lines).
         ctx.fill();                   // Then fill.
     }
+    
+    setTimeout(function() {
+      $('.outer-curtain').remove();
+      $('video').show();
+    }, 8000);
 
     // $(document).ready( function () {
     //     $('.datatable').DataTable({
@@ -1042,6 +1381,8 @@ $final_encoded = json_encode($final);
         }
         timefunction();
         setInterval("timefunction()", 1000);
+        
+        
     </script>
 
     @if (isset($activeGame) && ($activeGame['image'] != ''))

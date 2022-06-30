@@ -144,7 +144,9 @@ Route::post('/gamers/update-balance', [App\Http\Controllers\NewHomeController::c
 
 
 Route::get('/spinner', [App\Http\Controllers\NewHomeController::class, 'spinner'])->name('spinner');
-Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'userSpinner'])->name('spinnerForm');
+Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'userSpinnerLatest'])->name('spinnerForm');
+Route::get('/send-mail-to-winner', [App\Http\Controllers\NewHomeController::class, 'sendMailToWinner'])->name('sendMailToWinner');
+
 
 //updated Route by Ameer Bajracharya
 Route::get('/table', [SearchTableController::class, 'table'])->name('table')->middleware('auth');
