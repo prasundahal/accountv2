@@ -59,6 +59,9 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" >
 <link href="{{asset('public/css/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
     <style>
+        #preload{
+            display:none;
+        }
         .hidden{
             display:none;
         }
@@ -317,11 +320,15 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 </head>
 
 <body>
+    <div id="preload">
+        <img src="{{asset('public/img/curtain.png')}}"/>
+    </div>
         <div class="outer-curtain">
             <div class="tcell">
                 <div class="curtain-wrapper">
                     <div class="curtain-ratio-keeper">
                         <div class="curtain">
+                            <p id="countdown" class="neon-text2" style="position:relative;top:10%;z-index:1000;text-align:center"></p>  
                             <div class="panel-left"></div>
                             <div class="panel-right"></div>
                         </div>
@@ -330,10 +337,6 @@ html, body {margin: 0; height: 100%; overflow: hidden}
             </div>
         </div>
     <div class="page-wrapper font-robo">
-        <video autoplay muted loop id="myVideo" style="display:none">
-            <source src="{{url('images/fin.mp4')}}" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
         <div id="main-container">
             <div class="aside gradient-border">
                 <div class="text-center mt-4" style="height:100vh">
@@ -396,7 +399,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                 </div>
             </div>
             <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
-                <table style="position:relative;top:10%">
+                <table style="position:relative;top:10%;">
                     @php
                         $settings = \App\Models\GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;

@@ -60,6 +60,9 @@ $final_encoded = json_encode($final);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" >
 <link href="{{asset('public/css/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
     <style>
+        #preload{
+            display:none;
+        }
         .hidden{
             display:none;
         }
@@ -319,6 +322,9 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 </head>
 
 <body>
+    <div id="preload">
+        <img src="{{asset('public/img/curtain.png')}}"/>
+    </div>
         <div class="outer-curtain">
             <div class="tcell">
                 <div class="curtain-wrapper">

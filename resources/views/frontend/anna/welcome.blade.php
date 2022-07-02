@@ -326,85 +326,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
-    <div class="banner">
-        <div class="agileinfo-dot">
-            <div class="agileits-logo">
-                <h1><a href="index.html">Woods <span>Games</span></a></h1>
-            </div>
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-top-info">
-                        <nav class="navbar navbar-default">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-                                <nav>
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="index.html">Home</a></li>
-                                        <li><a href="#about" class="scroll">About</a></li>
-                                        <li><a href="#gallery" class="scroll">Our Games</a></li>
-                                        <li><a href="#reward" class="scroll">Rewards</a></li>
-                                        <!-- <li><a href="#mail" class="scroll">Mail Us</a></li> -->
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!-- /.navbar-collapse -->
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="w3layouts-banner-info">
-                <div class="container">
-                    <div class="w3layouts-banner-slider">
-                        <div class="w3layouts-banner-top-slider">
-                            <div class="slider">
-                                <div class="callbacks_container">
-                                    <ul class="rslides callbacks callbacks1" id="slider4">
-                                        <li>
-                                            <div class="banner_text">
-                                                
-                                         
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                                <!--banner Slider starts Here-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //banner -->
-    <!-- about -->
-    <div class="about" id="about">
-        <div class="container">
-            <div class="welcome">
-                <div class="agileits-title">
-                    <h2 class="w3l-subtitle">- -</h2>
-                </div>
-            </div>
-            <div class="about-w3lsrow">
-                <div class="col-md-7 col-sm-7 w3about-img">
-                    <div class="w3about-text">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
+
+  
     <style>
         .w3layouts img{
             min-height: 200px;

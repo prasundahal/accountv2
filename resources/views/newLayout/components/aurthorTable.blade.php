@@ -4,33 +4,34 @@
         session()->put('tableDate',$_GET['date']);
     }
 @endphp
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  cursor: pointer;
+}
+</style>
+<div id="overlay" onclick="off()"></div>
 <div class="row">
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
                 <div class="">
 
-                    <h6>Authors table</h6>
+                    <h6>Just Search The Player Name </h6>
                     
-                    <button  class="btn  btn-primary mb-0" style="background-color:#00ff00;"> 
-                        <a href="#popup3" style="color:white;">
-                            <span>[ Selected Date : {{((isset($_GET['date']) && !empty($_GET['date']))?session()->get('tableDate'):'')}} ]</span> 
-                        </a>
+                    <button  class="btn  btn-primary mb-0 datepickeTrigger" style="background-color:#00ff00;"> 
+                        <span>[ Selected Date : {{((isset($_GET['date']) && !empty($_GET['date']))?session()->get('tableDate'):'')}} ]</span> 
+                        <input name="tableDate" id="tableDate" style="position: absolute;clip: rect(0,0,0,0);">
                     </button>
-                    <div id="popup3" class="overlay" style="z-index: 9;">
-                        <div class="popup">
-                            <h2>Select Date</h2>
-                            <a class="close" href="#">&times;</a>
-                            <div class="content ">
-                                <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="tableDate">Select Date</label>
-                                    <input type="date" name="tableDate" id="tableDate">
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row pb-3">
                     <div class="col-8">
@@ -121,9 +122,29 @@
 </div>
 @section('script')
 <script>
+$('#tableDate').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: 'mm/dd/yy',
+    beforeShow: function (input, inst) {
+        var wWidth = $(window).width();
+        var wHeight = $(window).height();
+        setTimeout(function () {
+	        inst.dpDiv.css({ top: (wHeight/2) - ($('#ui-datepicker-div').height()/2), left: (wWidth/2) - ($('#ui-datepicker-div').width()/2), backgroundColor: "#00ff00", padding: "10px", position:"fixed", borderRadius: "5px", zIndex: 1001 });
+        }, 0);
+    }
+})
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+$('.datepickeTrigger').click(function() {
+    document.getElementById("overlay").style.display = "block";
+    $('#tableDate').datepicker('show');
+});
     $(document).on('change','#tableDate',function(){
-        // console.log($(this).val());
-        window.location.replace('/account/table?date='+$(this).val());
+        window.location.replace('/table?date='+$(this).val());
     });
 </script>
 @endsection
