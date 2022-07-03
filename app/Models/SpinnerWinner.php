@@ -9,7 +9,7 @@ class SpinnerWinner extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'full_name', 'form_id'
+        'full_name', 'form_id', 'mail', 'token','details'
 
     ];
     

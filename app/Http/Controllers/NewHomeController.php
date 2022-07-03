@@ -801,7 +801,7 @@ public function tableop()
 
         // return Response::json($final);
     }
- public function sendMailToWinner(){
+     public function sendMailToWinner(){
         try
         {
             $month = date('m');
@@ -815,11 +815,17 @@ public function tableop()
             if($winner > 0){
                 $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->first();
                 if($winner->mail == 0){
+                    
+                    
                     $settings = GeneralSetting::first();
                     $form = Form::where('id',$winner->form_id)->first();
+
+                    $token_id = Str::random(32);
+                    $winner->token = $token_id.'---'.$form->id;
                     $details = [
-                        'link' => 'asdf',
-                        'text' => 'congrats ...',
+                        'name' => $form->full_name,
+                        'token_id' => $token_id.'---'.$form->id,
+                        'message' => 'Congratulations !! You have won this months spinner contest. Please verify yourself by filling a short form.',
                         'theme' => ($settings->theme)
                     ];
                     try
@@ -845,10 +851,41 @@ public function tableop()
             return Response::json(['error' => $bug], 404);
         }
     }
-    public function spinnerForm()
+    public function spinnerForm($token)
     {
-        return 'Coming Soon :-)';
+        $token_explode = explode('---',$token);
+        
+        if(SpinnerWinner::where(['form_id' => isset($token_explode[1])?$token_explode[1]:'','token' => $token])->count() > 0){
+            return view('newLayout.spinnerForm',compact('token'));
+        }else{            
+            return abort(404);
+        }
     }
+    public function spinnerFormSave(Request $request){
+        //captcha check
+        session_start();
+        $entered_captcha=strtoupper($request->captcha_token);
+        $generated_captcha=strtoupper($_SESSION['captcha_token']);
+        if($entered_captcha!=$generated_captcha) {
+            return redirect()->back()->withInput()->with('error','Entered Captcha is wrong.');
+        }else{
+            // abort(500, 'Something went wrongasf');
+            $details = [
+                'Full Name' => $request->full_name,
+                'Phone' => $request->number,
+                'Email' => $request->email,
+            ];
+            $settings = GeneralSetting::first();
+            //send mail
+            $mail = [
+                'subject' => 'Spinner Winner has filled up Form.',
+                'message' => 'This months spinner winner has filled up his/her form.',
+                'details' => json_encode($details),
+                'theme' => ($settings->theme)
+            ];
+            Mail::to('joshibipin2052@gmail.com')->send(new CustomTextMail(json_encode($mail)));
+        }
+    }   
 
      public function spinner()
     {
