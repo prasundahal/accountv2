@@ -37,7 +37,10 @@ class NoticeUserMail extends Mailable
         ];
         // $details= $subject;
        
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+      $site_email=$settings->site_email;
+          $sitename=$settings->sitename;
+        
+        return $this->from($site_email, $sitename)
                     ->subject($subject)
                     ->markdown('mails.noticeuser')
                     ->with([

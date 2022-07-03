@@ -1020,3 +1020,4 @@ Stack trace:
 [21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Illegal string offset 'histories' in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
 [21-Apr-2022 11:18:20 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/noorgame/account/storage/framework/views/d57671fb181dfee5e46bb8c466ea9a2b346da380.php on line 112
 [21-Apr-2022 11:51:41 America/New_York] PHP Fatal error:  Cannot use App\Mail\UserNoticMail as UserNoticMail because the name is already in use in /home/noorgame/account/app/Http/Controllers/FormController.php on line 11
+[16-Jun-2022 23:47:36 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 7.3.33. in /home3/woodswoo/public_html/vendor/composer/platform_check.php on line 24

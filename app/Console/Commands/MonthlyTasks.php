@@ -15,7 +15,7 @@ class MonthlyTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'MonthlyTasks:cron';
 
     /**
      * The console command description.
@@ -47,8 +47,9 @@ class MonthlyTasks extends Command
                 'balance' => 0,
                 'token' => null
             ]);
+        Log::channel('dailyReport')->info("Monthly Task : Reset balance Successful");
         } catch (Exception $ex) {
-                    Log::channel('dailyReport')->info($ex->getMessage());
+                Log::channel('dailyReport')->info($ex->getMessage());
         }
         // return 0;
     }

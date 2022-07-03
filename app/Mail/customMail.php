@@ -28,7 +28,11 @@ class customMail extends Mailable {
     public function build() {
         $details = json_decode($this->details, true);
         $subject = 'Users Updated List';
-        return $this->from('noorgames@gmail.com', 'Noor Games')
+        $settings = GeneralSetting::first();
+        $site_email=$settings->site_email;
+          $sitename=$settings->sitename;
+        
+        return $this->from($site_email, $sitename)
                     ->subject($subject)
                     ->markdown('mails.exmpl')
                     ->with([

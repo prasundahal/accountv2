@@ -45,5 +45,5 @@
        
         
         Sincerely,
-        Noor Games.
+        
 @endcomponent

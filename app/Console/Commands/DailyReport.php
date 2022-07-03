@@ -9,7 +9,7 @@ use App\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\customMail;
-use App\Mail\reportMail;
+use App\Mail\ReportMail;
 
 use App\Models\FormGame;
 use App\Models\FormNumber;
@@ -21,6 +21,7 @@ use App\Models\FormTip;
 use App\Models\FormRefer;
 use App\Models\FormBalance;
 use App\Models\FormRedeem;
+use App\Models\GeneralSetting;
 
 class DailyReport extends Command
 {
@@ -55,16 +56,15 @@ class DailyReport extends Command
      */
     public function handle()
     {
-        Log::channel('dailyReport')->info("M");
+        Log::channel('dailyReport')->info("Reached command in DailyReport");
 
         $history = History::with('form')->whereHas('form')
-            ->with('account')
-            ->whereHas('account')
-            ->whereBetween('created_at', [Carbon::now()->subMinutes(1440), now()])
-            // ->with('created_by')
-            ->orderBy('id', 'desc')
-            ->get()
-            ->toArray();
+                ->with('account')
+                ->whereHas('account')
+                ->whereBetween('created_at', [Carbon::now()->subMinutes(1440), now()])
+                ->orderBy('id', 'desc')
+                ->get()
+                ->toArray();
 
         $final = [];
         $forms = [];
@@ -96,7 +96,10 @@ class DailyReport extends Command
                 array_push($final[$b['account_id']]['histories'], $b);
             }
         }
-        Log::channel('dailyReport')->info("Reached Command");
+        else{
+            Log::channel('dailyReport')->info("History is empty today.");
+        }
+        // Log::channel('dailyReport')->info("Reached Command");
         $details = $final;
         try {
              $settings = GeneralSetting::first()->toArray();
@@ -104,7 +107,7 @@ class DailyReport extends Command
                 $emails = explode(',',$settings['emails']);
 
                 foreach($emails as $a){
-                    Mail::to($a)->send(new reportMail(json_encode($details)));
+                    Mail::to($a)->send(new ReportMail(json_encode($details)));
                     Log::channel('dailyReport')->info("Daily Report Mail sent successfully to ".$a);
                 }
             }else{
@@ -113,7 +116,7 @@ class DailyReport extends Command
             //         Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
             //         Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));
             //         Mail::to('slimnoor96@gmail.com')->send(new customMail(json_encode($formData)));
-            // Mail::to('joshibipin2052@gmail.com')->send(new reportMail(json_encode($details)));
+            // Mail::to('joshibipin2052@gmail.com')->send(new ReportMail(json_encode($details)));
             // Log::channel('dailyReport')->info("Mail sent successfully to russelcraigspencer@gmail.com, slimnoor96@gmail.com");
         } catch (Exception $ex) {
             Log::channel('dailyReport')->info($ex->getMessage());

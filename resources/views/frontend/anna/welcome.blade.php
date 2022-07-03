@@ -3,13 +3,12 @@
 <!-- head -->
 
 <head>
-    <link href="{{ URL::to('/images/logochangecolor.gif') }}" rel="icon">
-    <link href="{{ URL::to('/images/logochangecolor.gif') }}" rel="apple-touch-icon">
+    <link href="{{ URL::to('/images/anna/1656261534.gif') }}" rel="icon">
+    <link href="{{ URL::to('/images/anna/1656261534.gif') }}" rel="apple-touch-icon">
     <title>Woods Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gaming Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Anna " />
     <script type="application/x-javascript">
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -133,7 +132,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      <div class="jarallax testimonial" id="reward">
         <div class="testimonial-dot">
             <div class="agileits-title">
-                <h3>-: Rewards :-</h3>
+                <h3>Complete the registration process and start getting your bonus and rewards.</h3>
+                
                 @if ($errors->any())
                 <div class="alert alert-danger danger mt-3">
                     <ul>
@@ -147,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </br>
                 @endif
             </div>
-            <div class="container" style=" border-radius: 5px; background-color: #f2f2f2; padding: 40px;">
+            <div class="container" style=" border-radius: 5px; background-color: #f2f2f2; padding: 40px;opacity: 0.78;">
                 <form action="{{ route('forms.stores') }}" method="POST">
                     @csrf
                     <div class="row">
@@ -243,7 +243,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="email">Email </label>
+                            <label for="email">Email [Required *]</label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="email" value="{{old('email')}}" autocomplete="off"
@@ -326,85 +326,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
-    <div class="banner">
-        <div class="agileinfo-dot">
-            <div class="agileits-logo">
-                <h1><a href="index.html">Woods <span>Games</span></a></h1>
-            </div>
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-top-info">
-                        <nav class="navbar navbar-default">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-                                <nav>
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="index.html">Home</a></li>
-                                        <li><a href="#about" class="scroll">About</a></li>
-                                        <li><a href="#gallery" class="scroll">Our Games</a></li>
-                                        <li><a href="#reward" class="scroll">Rewards</a></li>
-                                        <!-- <li><a href="#mail" class="scroll">Mail Us</a></li> -->
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!-- /.navbar-collapse -->
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="w3layouts-banner-info">
-                <div class="container">
-                    <div class="w3layouts-banner-slider">
-                        <div class="w3layouts-banner-top-slider">
-                            <div class="slider">
-                                <div class="callbacks_container">
-                                    <ul class="rslides callbacks callbacks1" id="slider4">
-                                        <li>
-                                            <div class="banner_text">
-                                                
-                                         
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                                <!--banner Slider starts Here-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //banner -->
-    <!-- about -->
-    <div class="about" id="about">
-        <div class="container">
-            <div class="welcome">
-                <div class="agileits-title">
-                    <h2 class="w3l-subtitle">- -</h2>
-                </div>
-            </div>
-            <div class="about-w3lsrow">
-                <div class="col-md-7 col-sm-7 w3about-img">
-                    <div class="w3about-text">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
+   
     <style>
         .w3layouts img{
             min-height: 200px;

@@ -56,12 +56,14 @@ class ColabUpdate extends Command
      */
     public function handle()
     {
-         $myfile = fopen("/home3/noorgame/mail_log.txt", "a");
-        $contents=date("Y-m-d H:i:sa")." triggered from function \n -------------------------------- \n";
-         $txt = $contents;
-          fwrite($myfile, $txt);
-         fclose($myfile);
-        Log::channel('cronLog')->info("Reached to command.");
+        // $myfile = fopen("/home3/woodswoo/mail_log.txt", "a");
+        // $contents=date("Y-m-d H:i:sa")." triggered from function \n -------------------------------- \n";
+        // $txt = $contents;
+        // fwrite($myfile, $txt);
+        // fclose($myfile);
+        
+        Log::channel('cronLog')->info("Reached to command in ColabUpdate.");
+        
         $forms = Form::whereDate('intervals', Carbon::today())->get();
         $formData = $forms;
         if(count($forms)>0){
@@ -83,25 +85,17 @@ class ColabUpdate extends Command
                 
                 $form->count = $count;
                 $form->intervals = $interval;
-                $form->save();
-                Log::channel('cronLog')->info('Month increased for :'.$form['full_name'].' to '.$interval);
-                // Log::info('Month increased for :'.$form['full_name'].' to '.$interval);
+                if($form->save()){
+                    Log::channel('cronLog')->info('Month increased for :'.$form['full_name'].' to '.$interval.' in ColabUpdate');    
+                }else{
+                    Log::channel('cronLog')->info('Could not save form in colabUpdate.');
+                }
+                
     
             }
-            //write lo
-
-            //Storage::prepend('cron_log.txt', $contents);
-            
            
             
             try {
-                // Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($formData)));
-                //       Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
-                //     Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));
-                //     Mail::to('slimnoor96@gmail.com')->send(new customMail(json_encode($formData)));
-                // $date = date();
-                // $date->setTimezone(new DateTimeZone('America/New_York'));
-                // $datecurrent=$date->format('H');
                 $settings = GeneralSetting::first()->toArray();
                 if(!empty($settings['bonus_report_emails'])){
                     $emails = explode(',',$settings['bonus_report_emails']);
@@ -111,20 +105,29 @@ class ColabUpdate extends Command
                         Log::channel('cronLog')->info("Colab Report Mail sent successfully to ".$a);
                     }
                 }
+                // Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('slimnoor96@gmail.com')->send(new customMail(json_encode($formData)));
+                // $date = date();
+                // $date->setTimezone(new DateTimeZone('America/New_York'));
+                // $datecurrent=$date->format('H');
                 // if ($datecurrent=='00') {
-                    // echo $date->format('Y-m-d H:i:s'); 
-                    // 2012-07-15 05:00:00 
-                    // Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($formData)));
-                    // Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
-                    // Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));
-                    // Mail::to('slimnoor96@gmail.com')->send(new customMail(json_encode($formData)));
-                    // Log::channel('cronLog')->info("Mail sent successfully to russelcraigspencer@gmail.com, slimnoor96@gmail.com");
+                // echo $date->format('Y-m-d H:i:s'); 
+                // 2012-07-15 05:00:00 
+                // Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('russelcraigspencer@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('prasundahal@gmail.com')->send(new customMail(json_encode($formData)));
+                // Mail::to('slimnoor96@gmail.com')->send(new customMail(json_encode($formData)));
+                // Log::channel('cronLog')->info("Mail sent successfully to russelcraigspencer@gmail.com, slimnoor96@gmail.com");
                 // }
             } catch (\Exception $ex) {
                 Log::channel('cronLog')->info($ex->getMessage());
             }
             
             //   Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($formData)));
+        }else{
+            Log::channel('cronLog')->info("Form is empty in ColabUpdate.");
         }
             
     }
