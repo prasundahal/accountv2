@@ -358,7 +358,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                                 <ul>
                                     @foreach($final['players_list'] as $key=>$row)
                                     <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">{{$key+1}}</span>
-                                        <span class="neon-text2">{{$row['player_name']}}</span></li>
+                                        <!--<span class="neon-text2">{{$row['player_name']}}</span></li>-->
                                     @endforeach
                                 </ul>
                             </div>
@@ -523,9 +523,6 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                                             </li>
                                         @endforeach                                        
                                     @endif
-                                    <!-- <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
-                                        <span style="font-size:25px">1</span><span class="neon-text">{{$final['winner_info']['player_name']}}</span>
-                                    </li> -->
                                 </ul>
                             </div>
                         </div>

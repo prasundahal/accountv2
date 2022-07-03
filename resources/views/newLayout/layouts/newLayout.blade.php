@@ -387,7 +387,7 @@
         });
         $('#summernote').summernote();
  $('.select2').select2({
-        // dropdownParent: $('#popup3')
+         dropdownParent: $('#popup33')
     });
     });
 </script>
@@ -644,7 +644,7 @@ monthNames[11]="December";
      
      
      function initSelect2(){
-         console.log('hey');
+         console.log('initSelect2');
          $(".select2").select2();
      }
 

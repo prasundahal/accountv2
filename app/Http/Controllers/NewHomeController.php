@@ -47,7 +47,7 @@ class NewHomeController extends Controller
         $this->spinner_message_monthly = $settings['spinner_message_monthly'];
         $this->spinner_message = $settings['spinner_message'];
         
-        $this->middleware('auth', ['except' => ['userSpinner']]);
+        $this->middleware('auth', ['except' => ['userSpinner','userSpinnerLatest']]);
         $color = DB::table('sidebar')->where('id', 1)
             ->first('color');
         view()->share('color', $color);
@@ -1073,7 +1073,7 @@ public function tableop()
 
         //update History
         $history = History::create(['created_at' => $created_at,'form_id' => $userId, 'account_id' => $gameId, 'amount_loaded' => $amount, 'relation_id' => $user_balance->id, 'previous_balance' => $userBalance, 'final_balance' => $userBalance + $amount, 'type' => 'load', 'created_by' => Auth::user()->id]);
-        // Log::channel('cronLog')->info('This is testing for ItSolutionStuff.com!'
+        // Log::channel('cronLog')->info('This is testing for sharewarenepal.com!'
         // $accountBalance = $account->balance;
         // $userBalance = $user->balance;
         if ($user->balance != 1)
@@ -3161,6 +3161,7 @@ public function tableop()
         }
     }
     public function userDetails($id){
+        dd('hi');
         $form_id = $id;
         $form_games = FormGame::where('form_id',$form_id)->with('account')->get()->toArray();   
         $form = Form::where('id',$form_id)->first()->toArray();   

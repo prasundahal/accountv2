@@ -13,7 +13,7 @@ class Form extends Model
     use SoftDeletes;
     protected $fillable = [
 
-        'full_name', 'number','email','intervals','mail','count','note','r_id','game_id','facebook_name','token','status_id'
+        'full_name', 'number','email','intervals','mail','count','note','r_id','game_id','facebook_name','token','status_id','balance'
 
     ];
 

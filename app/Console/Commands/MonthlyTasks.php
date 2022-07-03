@@ -47,6 +47,7 @@ class MonthlyTasks extends Command
                 'balance' => 0,
                 'token' => null
             ]);
+            Log::channel('dailyReport')->info("Monthly Task : Balance and Token updated of all forms.");
         } catch (Exception $ex) {
                     Log::channel('dailyReport')->info($ex->getMessage());
         }

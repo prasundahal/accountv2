@@ -212,102 +212,8 @@ width: 100%;
 height: 100%;
 box-sizing: border-box;
 overflow: hidden;
-background: transparent;
-}
-
-.panel-left,
-.panel-right {
-position: absolute;
-height: 100vh !important;
-width: 50%;
-top: 0%;
-transition: all 8s ease;
-/*transition-delay: 300ms;* fade is in place/
-/*background-image: url("https://picsum.photos/600");
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;*/
-overflow: hidden;
-z-index: 100000;
-}
-
-.panel-left {
-left: 0;
-/*background-color: rgb(91, 96, 106);*/
-}
-
-.panel-right {
-right: 0;
-/*background-color: rgb(229, 211, 211);*/
-}
-
-.panel-left::before,
-.panel-right::before {
-content: "";
-position: absolute;
-height: 100%;
-width: 200%;
-top: 0;
-left: 0;
-background-image: url("{{asset('public/img/curtain.png')}}");
-background-size: cover;
-background-repeat: no-repeat;
-background-position: 0 0;
-pointer-events: none;
-}
-
-.panel-right::before {
-left: -100%;
-}
-
-.curtain.slide .panel-left {
-/* transform: translateX(-100%);*/
-transform: translateX(calc(-100% - 1px));
-}
-
-/*.panel-left::before {
-background: rgba(0, 0, 0, 0.5);
-}*/
-
-.curtain.slide .panel-right {
-/*transform: translateX(100%);*/
-transform: translateX(calc(100% + 1px));
-}
-
-
-.hide {
-display: none;
-}
-
-.curtain .panel-left {
-/* transform: translateX(-100%);*/
-/*transform: translateX(calc(-100% - 1px));*/
-animation: slideLeft 8s forwards;
-animation-delay: 300ms;
-}
-
-@keyframes slideLeft {
-to {
-transform: translateX(calc(-100% - 1px))
-}
-}
-
-/*.panel-left::before {
-background: rgba(0, 0, 0, 0.5);
-}*/
-
-.curtain .panel-right {
-/*transform: translateX(100%);*/
-/*transform: translateX(calc(100% + 1px));*/
-animation: slideRight 8s forwards;
-animation-delay: 300ms;
-
-}
-
-@keyframes slideRight {
-to {
-transform: translateX(calc(100% + 1px))
-}
+background-image: url("{{asset('public/img/curt_1.gif')}}");
+background-size:cover;
 }
 
 @media (max-width: 768px) {
@@ -321,22 +227,22 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
 <body>
     <div id="preload">
-        <img src="{{asset('public/img/curtain.png')}}"/>
+        <img src="{{asset('public/img/curt_1.gif')}}"/>
     </div>
         <div class="outer-curtain">
             <div class="tcell">
                 <div class="curtain-wrapper">
-                    <div class="curtain-ratio-keeper">
                         <div class="curtain">
-                            <p id="countdown" class="neon-text2" style="position:relative;top:10%;z-index:1000;text-align:center"></p>  
-                            <div class="panel-left"></div>
-                            <div class="panel-right"></div>
+                            <p id="countdown" class="neon-text2" style="position:relative;top:10%;z-index:1000;text-align:center"></p>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
     <div class="page-wrapper font-robo">
+        <video autoplay muted loop id="myVideo" style="display:none">
+            <source src="{{url('images/fin.mp4')}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
         <div id="main-container">
             <div class="aside gradient-border">
                 <div class="text-center mt-4" style="height:100vh">
@@ -1443,5 +1349,5 @@ else
     setTimeout(function() {
       $('.outer-curtain').remove();
       $('video').show();
-    }, 8000);
+    }, 4000);
 </script>

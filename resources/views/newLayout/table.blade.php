@@ -655,14 +655,14 @@ Table
                                                                         <script>
                                                                        // start Muniraj
                                                                         $(function(){
-                                                                          $("#popup3").find(".select2").select2({
-                                                                                   dropdownParent: $('#popup3')
+                                                                          $("#popup33").find(".select2").select2({
+                                                                                   dropdownParent: $('#popup33')
                                                                                });
                                                                         });
                                                                         
                                                                         function add_class(class_name){
-                                                                            $("#popup3").addClass(class_name);
-                                                                            $("#popup3 .my_select2").select2();
+                                                                            $("#popup33").addClass(class_name);
+                                                                            $("#popup33 .my_select2").select2();
                                                                            
                                                                         }
                                                                         // End Muniraj

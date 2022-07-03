@@ -5,7 +5,6 @@
     }
 @endphp
 <style>
-#overlay {
   position: fixed;
   display: none;
   width: 100%;
@@ -122,6 +121,20 @@
 </div>
 @section('script')
 <script>
+
+   // start Muniraj
+    $(function(){
+      $("#popup33").find(".select2").select2({
+               dropdownParent: $('#popup33')
+           });
+    });
+    
+    function add_class(class_name){
+        $("#popup33").addClass(class_name);
+        $("#popup33 .my_select2").select2();
+       
+    }
+    // End Muniraj
 $('#tableDate').datepicker({
     changeMonth: true,
     changeYear: true,

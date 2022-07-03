@@ -29,8 +29,8 @@ use App\Models\GeneralSetting;
 Route::get('clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
-    // Artisan::call('config:cache');
-    // Artisan::call('route:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:clear');
     Artisan::call('view:clear');
     Artisan::call('optimize:clear');
    return '<h1>Cache Cleared</h1>';
@@ -234,10 +234,10 @@ Route::get('send-email-notification/{id}', [HomeController::class, 'sendemail'])
 
 
 Route::get('/admin/dashboard',[AdminController::class,'index'])->name('admin.index')->middleware('admin');
-Route::get('cashier/dashboard',[CashierController::class,'index'])->name('cashier.index')->middleware('cashier');
+// Route::get('cashier/dashboard',[CashierController::class,'index'])->name('cashier.index')->middleware('cashier');
 Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
-Route::get('/cashier/login',[CashierController::class,'login'])->name('cashier.login');
+// Route::get('/cashier/login',[CashierController::class,'login'])->name('cashier.login');
 Route::get('/admin/credential',[AdminController::class,'getCredential'])->name('admin.credential')->middleware('admin');
 Route::get('/admin/frontend',[AdminController::class,'getFrontend'])->name('admin.frontend')->middleware('admin');
 Route::post('/admin/frontsetting',[FrontendSettingController::class,'storeGeneralSetting'])->name('admin.store.frontsetting')->middleware('admin');
@@ -254,7 +254,7 @@ Route::get('/admin/all_players', [App\Http\Controllers\HomeController::class, 'i
 Route::get('/admin/show-image',[ImageController::class,'showImages'])->name('show.images')->middleware('admin');
 Route::post('/add-user', [App\Http\Controllers\NewHomeController::class, 'addUser'])->name('addUser');
 
-Route::get('cashier/show_today',[CashierController::class,'showToday'])->name('cashier.showtoday');
+// Route::get('cashier/show_today',[CashierController::class,'showToday'])->name('cashier.showtoday');
 
 Route::get('admin/games',[AdminController::class,'showGames'])->name('admin.games')->middleware('admin');
 Route::get('admin/store-games',[AdminController::class,'storeAccount'])->name('store.games')->middleware('admin');
@@ -271,7 +271,7 @@ Route::get('admin/trash-cashapp',[CashAppController::class,'trashCashapp'])->nam
 Route::get('admin/restore-cashapp/{id}',[CashAppController::class,'restoreCashapp'])->name('cashapp.restore')->middleware('admin');
 Route::get('admin/force-del-cashapp/{id}',[CashAppController::class,'forceDelCashapp'])->name('cashapp.fdelete')->middleware('admin');
 Route::get('admin/cashier-front',[AdminController::class,'showCashierFrontSetting'])->name('cashier.frontend');
-Route::get('cashier/cashapp',[CashierController::class,'showCashApp'])->name('cashier.showcashapp');
-Route::post('updateBalance',[CashierController::class,'updateCashAppBalance'])->name('cashier.updatebalance');
+// Route::get('cashier/cashapp',[CashierController::class,'showCashApp'])->name('cashier.showcashapp');
+// Route::post('updateBalance',[CashierController::class,'updateCashAppBalance'])->name('cashier.updatebalance');
 Route::post('admin/store-cashier-front',[AdminController::class,'storeCashierFront'])->name('cashier.store.frontsetting');
 
