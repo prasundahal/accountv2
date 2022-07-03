@@ -21,13 +21,13 @@ class Admin
         {
             return redirect()->route('admin.index');
         }
-        if(Auth::user()->role=="admin")
+        if(Auth::user()->role=="admin" || Auth::user()->role=="cashier")
         {
             return $next($request);
         }
-        if(Auth::user()->role=="cashier")
-        {
-            return redirect()->route('cashier.index');
-        }
+        // if(Auth::user()->role=="cashier")
+        // {
+        //     return redirect()->route('cashier.index');
+        // }
     }
 }

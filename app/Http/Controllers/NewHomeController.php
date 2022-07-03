@@ -3161,7 +3161,7 @@ public function tableop()
         }
     }
     public function userDetails($id){
-        dd('hi');
+        // dd('hi');
         $form_id = $id;
         $form_games = FormGame::where('form_id',$form_id)->with('account')->get()->toArray();   
         $form = Form::where('id',$form_id)->first()->toArray();   
