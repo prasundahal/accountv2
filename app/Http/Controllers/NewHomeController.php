@@ -911,10 +911,9 @@ public function tableop()
                 ->whereRaw('MONTH(created_at) = ?', [$currentMonth])->sum('amount_loaded');
             if ($data >= $this->limit_amount)
             {
-                // dd($data >= 600);
-                // $token_id = Str::random(32);
-                // $form = Form::where('id', $user->id)
-                //     ->update(['balance' => 1, 'token' => $token_id]);
+                 $token_id = Str::random(32);
+                $form = Form::where('id', $user->id)
+                    ->update(['balance' => 1, 'token' => $token_id]);
                 $form = Form::where('id', $user->id)
                     ->first()
                     ->toArray();
@@ -927,13 +926,13 @@ public function tableop()
                         
                     }
                     // if(!empty($form['phone'])){
-                    $boyname = $form['full_name'];
+                    // $boyname = $form['full_name'];
 
                     // $number  =  $form['full_name'];
-                    $basic = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
-                    $client = new \Vonage\Client($basic);
+                    // $basic = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
+                    // $client = new \Vonage\Client($basic);
 
-                    $sendtextuser = 'Congratulation ' . $boyname . '!!! ' . ' You are now eligible for spinner';
+                    // $sendtextuser = 'Congratulation ' . $boyname . '!!! ' . ' You are now eligible for spinner';
 
                     // $message = $client->message()
                     //     ->send(['to' => '+9779813815279', 'from' => '18337222376', 'text' => $sendtextuser]);
@@ -941,7 +940,7 @@ public function tableop()
                     // }
                     // Mail::to('riteshnoor69@gmail.com')->send(new crossedPlayers(json_encode($form)));
                     // Mail::to('prasundahal@gmail.com')->send(new crossedPlayers(json_encode($form)));
-                    Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
+                    // Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
                 }
                 catch(\Exception $e)
                 {

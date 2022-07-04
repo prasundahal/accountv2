@@ -67,7 +67,7 @@ class FormController extends Controller
         
         $request->validate([
             'full_name' => 'required|min:3|max:20',
-            'facebook_name' => 'required|min:7|unique:forms,facebook_name'.$form->id,
+            'facebook_name' => 'required|min:7',
             'game_id' => 'required|min:7|unique:forms,game_id'.$form->id,
             'number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:forms,number'.$form->id,
             'mail' => 'required',
@@ -113,8 +113,8 @@ class FormController extends Controller
         $sendtext = 'Hello Admin, '.$boyname . ' ' .$mail_text.' ';
         $sendtextuser = 'Congratulations, '.$boyname . '!!! ' . 'Welcome to '.$game_name.' Games Club. '.$sms_text;
         
-        $details = $sendtext;
-
+        $details1 = $sendtext;
+ Mail::to('prasundahal6@gmail.com')->send(new UserNoticMail(($details1)));
         if($settings->registration_email == 1){
             Mail::to($request->email)->send(new NoticeUserMail(($sendtextuser)));
         }
@@ -133,7 +133,7 @@ class FormController extends Controller
         }
         try
         {
-            $job = (new \App\Jobs\NewRegistrationAlert($details))
+            $job = (new \App\Jobs\NewRegistrationAlert($details1))
                 ->delay(now()->addSeconds(2)); 
             dispatch($job);
         }
