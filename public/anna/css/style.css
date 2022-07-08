@@ -423,9 +423,11 @@ body {
 .agileits-title h2,
 .agileits-title h3 {
     font-size: 4em;
-    color: #ff9800;
+    /* color: #ff9800; */
+    color: white;
     margin: 0;
     text-align: center;
+    background-color: #000000b3;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -576,7 +578,7 @@ body {
 .simplefilter li,
 .multifilter li,
 .sortandshuffle li {
-    color: #212121;
+    color: white;
     cursor: pointer;
     display: inline-block;
     padding: 10px 20px;
@@ -591,7 +593,7 @@ body {
 }
 
 .simplefilter li {
-    border: 2px solid #212121;
+    border: 2px solid white;
 }
 
 .simplefilter li.active {
@@ -730,7 +732,8 @@ ul.simplefilter {
     height: 100%;
     width: 100%;
     top: -100%;
-    background: rgba(0, 0, 0, .5);
+    /* background: rgba(0, 0, 0, .5); */
+    background: #6f817b8a;
     color: #fff;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
@@ -2089,7 +2092,6 @@ ul.simplefilter {
 }
 
 /*-- //responsive --*/
-
 /*Martin Css*/
 #refresh-captcha {
     margin-left: 5px;
@@ -2097,7 +2099,6 @@ ul.simplefilter {
 
 #refresh-captcha:hover {
     cursor: pointer;
-
 }
 
 .alert.alert-danger {
@@ -2106,23 +2107,25 @@ ul.simplefilter {
     right: 0;
     background: #a94442;
     coloe: white;
-
 }
 
 .alert.alert-danger h3 {
     font-size: 20px;
-
 }
 
 #reward .reward-form .row input,
 select,
 textarea {
-
     /* background-color: #70341cc9; */
     /* background-color: #502b5ac9; */
-    background-color: #502b5a8c;
+    /* background-color: #502b5a8c; */
+    background-color: #6f817b8a;
     border: 0;
     color: white;
+}
+
+.portfolio {
+    background-color: #000000b3;
 }
 
 input::placeholder {
@@ -2132,10 +2135,8 @@ input::placeholder {
 input,
 select,
 textarea:focus {
-
     outline: unset;
     border: 0 !important;
-
 }
 
 #reward .reward-form .row {
@@ -2148,7 +2149,6 @@ textarea:focus {
 #reward .reward-form label {
     margin: 0 !important;
     color: white;
-
 }
 
 .label-wrap {
@@ -2163,15 +2163,40 @@ textarea:focus {
     width: 75%;
 }
 
-
 .w3layouts img {
     min-height: 200px;
     max-height: 200px;
     object-fit: cover;
     width: 100%;
-
 }
 
 .neon-text {
     color: white;
 }
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Martin Responsive Css  */
+@media(max-width:376px) {
+    #reward .reward-form .row {
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    .label-wrap {
+        width: 100%;
+    }
+
+    .input-wrap {
+        width: 100%;
+    }
+}
+
+/* Martin Responsive Css Ends */

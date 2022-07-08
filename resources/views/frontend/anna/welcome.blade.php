@@ -116,10 +116,14 @@
 <!-- headend -->
 <body>
     <!-- banner -->
-     <div class="jarallax testimonial" id="reward">
+     <div class="" id="reward">
+     <video autoplay="" muted="" loop="" id="myVideo" class="w-100" __idm_id__="155649">
+      <source src="https://noorgames.net/images/fin.mp4" type="video/mp4">
+             Your browser does not support HTML5 video.
+         </video>
         <div class="testimonial-dot">
-            <div class="agileits-title">
-                <h3>-: Rewards :-</h3>
+            <div class="agileits-title mb-3 position-relative">
+                <h3 class="">-: Rewards :-</h3>
                 @if ($errors->any())
                 <div class="alert alert-danger danger mt-3">
                     <ul>
@@ -135,8 +139,8 @@
             </div>
             <div class="container">
                  <div class="row">
-                   <div class="col-8 mx-auto">
-                       <form action="{{ route('forms.stores') }}" method="POST" class="reward-form"  style=" border-radius: 5px; background-color: #00000073; padding: 40px;">
+                   <div class="col-lg-8 col-12 mx-auto">
+                       <form action="{{ route('forms.stores') }}" method="POST" class="reward-form"  style=" border-radius: 5px; background-color: #000000b3; padding: 40px;">
                     @csrf
                     <div class="row">
                         <div class="label-wrap">
@@ -244,7 +248,7 @@
                         </div>
                     </div>
                     <div class="row">
-               <div class="col-5 p-0">
+               <div class="col-lg-5 col-12 p-0">
                <div class="label-wrap w-100">
                             <label for="country">Game*</label>
                         </div>
@@ -257,7 +261,7 @@
                             </select>
                         </div>
                </div>
-                    <div class="col-5 p-0">
+                    <div class="col-lg-5 col-12 p-0">
                         <div class="label-wrap w-100">
                             <label for="game">Game Id* </label>
                         </div>
@@ -311,10 +315,10 @@
             </div>
         </div>
     </div>
-    <div class="portfolio" id="gallery">
+    <div class="portfolio position-relative" id="gallery">
         <div class="container">
             <div class="agileits-title">
-                <h3>Our Games</h3>
+                <h3 class="bg-transparent">Our Games</h3>
             </div>
             <ul class="simplefilter w3layouts agileits">
                 <li class="active w3layouts agileits" data-filter="1111">All</li>
@@ -516,7 +520,7 @@
         })();
     </script>
     <!-- copyright -->
-    <div class="copyright">
+    <div class="copyright position-relative">
         <div class="container">
             <p class="footer-class">© 2020 Woods Gaming . All Rights Reserved | Design by <a href="#"
                     target="_blank">Woods Games Team</a> </p>
