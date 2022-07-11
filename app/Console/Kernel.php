@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('colabUpdate:cron')
          ->everyMinute();
          $schedule->command('DailyReport:cron')
-         ->everyMinute();
+         ->daily();
          $schedule->command('SpinnerResetForm:cron')
          ->monthlyOn(1, '00:00');
          $schedule->command('MonthlyTasks:cron')

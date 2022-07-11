@@ -198,6 +198,7 @@
                                     <select name="theme" class="form-control">
                                         <option {{($settings['theme']=='default')?'selected':''}} value="default">Default</option>
                                         <option {{($settings['theme']=='anna')?'selected':''}} value="anna">Anna</option>
+                                        <option {{($settings['theme']=='anna2')?'selected':''}} value="anna2">Anna2</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">

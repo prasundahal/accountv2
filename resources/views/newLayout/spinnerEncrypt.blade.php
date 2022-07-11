@@ -3,7 +3,7 @@ $final_encoded = json_encode($final);
 ?>
 @php
     $setting = \App\Models\GeneralSetting::first();
-    <!--dd($setting);-->
+     //dd($setting);
     
 @endphp 
 <!DOCTYPE html>
@@ -322,26 +322,26 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 </head>
 
 <body>
-    <!--<div id="preload">-->
-    <!--    <img src="{{asset('public/img/curtain.png')}}"/>-->
-    <!--</div>-->
-        <!--<div class="outer-curtain">-->
-        <!--    <div class="tcell">-->
-        <!--        <div class="curtain-wrapper">-->
-        <!--            <div class="curtain-ratio-keeper">-->
-        <!--                <div class="curtain">-->
-        <!--                    <div class="panel-left"></div>-->
-        <!--                    <div class="panel-right"></div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
+    <div id="preload">
+        <img src="{{asset('public/img/curtain.png')}}"/>
+    </div>
+        <div class="outer-curtain">
+            <div class="tcell">
+                <div class="curtain-wrapper">
+                    <div class="curtain-ratio-keeper">
+                        <div class="curtain">
+                            <div class="panel-left"></div>
+                            <div class="panel-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="page-wrapper font-robo" style="display:none">
-        <!--<video autoplay muted loop id="myVideo">-->
-        <!--    <source src="{{url('images/fin.mp4')}}" type="video/mp4">-->
-        <!--    Your browser does not support HTML5 video.-->
-        <!--</video>-->
+        <video autoplay muted loop id="myVideo">
+            <source src="{{url('images/fin.mp4')}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
         <div id="main-container">
             <div class="aside gradient-border">
                 <div class="text-center mt-4" style="height:100vh">
@@ -1169,10 +1169,10 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         ctx.fill();                   // Then fill.
     }
     
-    // setTimeout(function() {
-    //   $('.outer-curtain').remove();
-    //   $('video').show();
-    // }, 8000);
+    setTimeout(function() {
+      $('.outer-curtain').remove();
+      $('video').show();
+    }, 8000);
 
     // $(document).ready( function () {
     //     $('.datatable').DataTable({
@@ -1409,22 +1409,22 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         });
     </script>
     @if (session('success'))
-        <script>
-            toastr.success('{{ session('success') }}');
-        </script>
+    <script>
+        toastr.success('{{ session('success') }}');
+    </script>
     @endif
     @if (session('error'))
-        @if(is_array(session('error')))
-        @foreach(session('error') as $error)
-            <script>
-                toastr.error(' {{ $error }}');
-            </script>
-        @endforeach
-        @else    
-            <script>
-                toastr.error(' {{session('error') }}');
-            </script>
-        @endif
+    @if(is_array(session('error')))
+    @foreach(session('error') as $error)
+    <script>
+        toastr.error(' {{ $error }}');
+    </script>
+    @endforeach
+    @else    
+    <script>
+        toastr.error(' {{session('error') }}');
+    </script>
+    @endif
     @endif
 
 

@@ -72,8 +72,16 @@ $(document).ready(function() {
         window.location.replace('/table?game=' + gameTitle);
     });
     $(function() {
+        $(".search-undo").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tbody > tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    $(function() {
         $(".search-user").on("keyup", function() {
-            var url  = window.location.origin + '/table';
+            var url  = window.location.origin + '/table-search';
             var value = $(this).val().toLowerCase();
             var activeGameId = $('.activeGameId').val();
             $.ajax({
@@ -186,6 +194,83 @@ $(document).ready(function() {
     });
     $('.history-btn').on('click', function(e) {
         $('#exampleModalCenter').modal('show');
+    });
+    
+    $('.filter-undo').on('click', function(e) {
+        e.stopImmediatePropagation();
+        console.log('a');
+        var historyType = '';
+        
+        var filter_type = $('.filter-type12').val();
+        var filter_start = $('.filter-start12').val();
+        var filter_end = $('.filter-end12').val();
+        var game = $('.filter-game12').val();
+        var userId = $('.filter-user12').val();
+        var optionLoop = '';
+
+        // var userId = $(this).attr("data-userId");
+        // var game = $(this).attr("data-game");
+        // console.log(userId,game)
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var actionType = "POST";
+        var ajaxurl = '/filter-undo-history';
+        $.ajax({
+            type: actionType,
+            url: ajaxurl,
+            data: {
+                "filter_type": filter_type,
+                "userId": userId,
+                "game": game,
+                "filter_start": filter_start,
+                "filter_end": filter_end,
+                "historyType": historyType,
+            },
+            dataType: 'json',
+            beforeSend: function() {
+                $(".undo-history-body123").html('Loading...');
+            },
+            success: function(data) {
+                if(data.status == 0){
+                    
+                    optionLoop = '<tr><td>No Transaction</td></tr>';
+
+                }else{
+                    (data.data).forEach(function(index) {
+                        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                        
+                        var date_format = new Date(index.created_at);
+                        // FB NAME	GAME	GAME ID	AMOOUNT	TYPE	CREATED BY	ACTION BY
+                        var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                        optionLoop +=
+                            '<tr><td class="text-center">' + a + 
+                            '</td><td class="text-center">' + index.form.facebook_name + 
+                            '</td><td class="text-center">' + index.account.name + 
+                            '</td><td class="text-center">' + index.form_games.game_id + 
+                            '</td><td class="text-center">' + index.amount_loaded + 
+                            '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + 
+                            '</td><td class="text-center">' + index.created_by.name + 
+                            '</td><td class="text-center"><a href="/undo-table/' + index.id + 
+                            '" class="btn btn-primary">Undo</a></td></tr>';
+                    });
+                }
+                // if (typeof data !== 'undefined' && data.length > 0) {
+                    
+                // }else{
+                // }
+           $(".undo-history-body123").html(optionLoop);
+
+            },
+            error: function(data) {
+                toastr.error('Error', data.responseText);
+            }
+        });
+        console.log(filter_type);
+        console.log(filter_start);
+        console.log(filter_end);
     });
     $('.filter-history').on('click', function(e) {
         e.stopImmediatePropagation();

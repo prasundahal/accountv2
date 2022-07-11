@@ -120,4 +120,101 @@ class SearchTableController extends Controller
             return Response::json(['error' => $bug], 404);
         }
     }
+    
+    public function tableSearch(Request $request)
+    {
+        //return 'asdf';
+        try
+        {
+            $activeGame = isset($_GET['game']) ? $_GET['game'] : '';
+            $activeCashApp = isset($_GET['cash_app']) ? $_GET['cash_app'] : '';
+
+            if (empty($activeGame))
+            {
+                // if ($request->ajax()) {                    
+                    $activeGame = Account::where(['id' => $request->activeGameId, 'status' => 'active'])
+                                        ->with('formGames')
+                                        ->first()
+                                        ->toArray();
+                    // $activeGame = $activeGameDefault['title'];
+                // }
+                // else{
+                //     $forms = Form::orderBy('full_name', 'asc')->get()->toArray();
+                //     $games = Account::where('status', 'active')->get()->toArray();
+
+                //     $activeGameDefault = Account::first()->toArray();
+                //     $activeGame = $activeGameDefault['title'];
+                // }
+            }
+            if (empty($activeCashApp))
+            {
+                $cash_app_default = CashApp::first()->toArray();
+                $activeCashApp = $cash_app_default['title'];
+            }
+
+            // $activeGame = Account::where([['title', $activeGame], ['status', 'active']])
+            //                         ->with('formGames')
+            //                         ->first()
+            //                         ->toArray();
+            // dd($activeGame);
+            $formGames = FormGame::where('account_id', $activeGame['id'])->whereHas('form')->with('form')->orderBy('game_id','asc');
+
+            $cashApp = CashApp::where([['status', 'active']])->get()
+            ->toArray();
+
+            $activeCashApp = CashApp::where([['title', $activeCashApp], ['status', 'active']])->first()
+            ->toArray();
+
+            $final = [];
+            // if (!empty($activeGame['form_games']))
+            // {
+            //     foreach ($activeGame['form_games'] as $a => $b)
+            //     {
+            //         $tip = FormTip::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
+            //         $refer = FormRefer::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
+            //         $cash = CashAppForm::where('form_id', $b['form']['id'])->where('cash_app_id', $activeCashApp['id'])->where('account_id', $activeGame['id'])->sum('amount');
+            //         $balance = FormBalance::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
+            //         $redeem = FormRedeem::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
+            //         $b['cash_app'] = $cash;
+            //         $b['tip'] = $tip;
+            //         $b['refer'] = $refer;
+            //         $b['balance'] = $balance;
+            //         $b['redeem'] = $redeem;
+            //         array_push($final, $b);
+            //     }
+            //     $activeGame['form_games'] = $final;
+            // }
+            
+
+            $indicator = null;
+            $formGames = FormGame::where('account_id', $request->activeGameId)->whereHas('form')->with('form')->orderBy('game_id','asc');
+            if(strlen($request->value) > 3){
+                $formGames = $formGames->keywordSearch($request->value)->paginate(10)->setPath('');
+                $pagination = $formGames->appends(array(
+                    
+                ));
+                if($formGames->isEmpty()){
+                    $indicator = 'Data Not Found';
+                }
+            }else{
+                $formGames = $formGames->paginate(10)->setPath('');
+                $pagination = $formGames->appends(array(
+                    'game' => request()->get('game')    
+                ));
+            }
+            return view('newLayout.components.listTable', [
+                'activeGame' => $activeGame, 
+                'activeCashApp' => $activeCashApp,
+                'formGames' => $formGames, 
+                'indicator' => $indicator
+            ]);
+            
+        }
+        catch(\Exception $e)
+        {
+            $bug = $e->getMessage();
+            // dd($bug);
+            return Response::json(['error' => $bug], 404);
+        }
+    }
 }

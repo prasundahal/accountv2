@@ -361,3 +361,96 @@ animation: glowing 1300ms infinite;
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+
+    #timer {
+        position: fixed;
+        /* add to center of screen */
+        left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+        /* bring to front */
+        z-index: 9999;
+        width: 400px;
+        height: 120px;
+        /* background-color: #237f6a; */
+        z-index: 1000;
+        opacity: 0.8;
+        color: #fff;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Open Sans', sans-serif;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 10px;
+    }
+    
+    #mainlogo {
+        position: fixed;
+        /* add to center of screen */
+        left: 50%;
+    top: 200%;
+    transform: translate(-50%, -50%);
+        /* bring to front */
+        width: 200px;
+        z-index: 1000;
+        /* opacity: 0.8; */
+        color: #fff;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Open Sans', sans-serif;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 10px;
+    }
+
+    #closed_left{ 
+        /*height covers the whole screen*/
+        height: 100%;
+        /*width is fixed*/
+        width: 50%;
+        /*position is fixed*/
+        position: fixed;
+        /*left is 0*/
+        left: 0;
+        /*top is 0*/
+        top: 0;
+        /*background is black*/
+        background: black;
+        z-index: 100; 
+
+    }
+
+    #closed_right{ 
+        /*height covers the whole screen*/
+        height: 100%;
+        /*width is fixed*/
+        width: 50%;
+        /*position is fixed*/
+        position: fixed;
+        /*left is 0*/
+        right: 50%;
+        /*top is 0*/
+        top: 0;
+        right:0;
+        /*background is black*/
+        background: black;
+        z-index: 100; 
+    }
+
+    #welcome_container {
+        /* background: url(closed.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;  
+    }

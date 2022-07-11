@@ -1,9 +1,17 @@
 <?php
 $final_encoded = json_encode($final);
 
+$settings = \App\Models\GeneralSetting::first();
+                        $spinner_date_new = $settings->spinner_date;
+                        $spinner_time_new =$settings->spinner_time;
+                        
+                        
+                        
+
 if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
     die("Players list empty. Send data to see the spinner. ");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,11 +181,11 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;
         }
 
-        #countdown{
-            background: red;
-            color: white;
-            font-size: 30px;
-        }
+        /*#countdown{*/
+        /*    background: red;*/
+        /*    color: white;*/
+        /*    font-size: 30px;*/
+        /*}*/
         
 
 .outer-curtain {
@@ -229,15 +237,140 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     <div id="preload">
         <img src="{{asset('public/img/curt_1.gif')}}"/>
     </div>
-        <div class="outer-curtain">
-            <div class="tcell">
-                <div class="curtain-wrapper">
-                        <div class="curtain">
-                            <p id="countdown" class="neon-text2" style="position:relative;top:10%;z-index:1000;text-align:center"></p>
-                        </div>
-                </div>
-            </div>
-        </div>
+        <!--<div class="outer-curtain">-->
+        <!--    <div class="tcell">-->
+        <!--        <div class="curtain-wrapper">-->
+        <!--                <div class="curtain">-->
+        <!--                    <p id="countdown" class="neon-text2" style="position:relative;top:10%;z-index:1000;text-align:center"></p>-->
+        <!--                </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
+    
+        
+         <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" />
+        <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" />
+    <div id="welcome_container">
+        
+    <div id="timer">NEXT SPIN IN<hr>
+        <text id="countdown"> Loading..</text>
+        <img src="https://noorgames.net/images/dragonnn.gif" id="mainlogo">
+       </div>
+    </div>
+    
+    <script>
+    
+    // let formatter = new Intl.DateTimeFormat('en-US', { timeZone: "America/New_York" });
+    
+    function secondsToDhms(seconds) {
+seconds = Number(seconds);
+var d = Math.floor(seconds / (3600*24));
+var h = Math.floor(seconds % (3600*24) / 3600);
+var m = Math.floor(seconds % 3600 / 60);
+var s = Math.floor(seconds % 60);
+
+var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+return dDisplay + hDisplay + mDisplay + sDisplay;
+}
+    
+        var spinner_date = "{{$spinner_date_new}}";
+        var spinner_time = "{{$spinner_time_new}}";
+        
+        const spinner_time_array= spinner_time.split(":");
+
+        
+        let d=new Date();
+        // d = formatter.format(d);
+        // console.log(d);
+       var current_datetimems=d.getTime();
+       
+       //get the next month date_time
+       next = new Date(d.getFullYear(), d.getMonth()+1, 1);
+       next= next.setDate(spinner_date);
+       
+       next_date=new Date(next);
+       
+       next_date= next_date.setHours(spinner_time_array[0]);
+        next_date=new Date(next_date);
+       next_date= next_date.setMinutes(spinner_time_array[1]);
+        next_date=new Date(next_date);
+       next_date= next_date.setSeconds(spinner_time_array[2]);
+        // next_date=new Date(next_date);
+       
+       difference=next_date-current_datetimems;
+       
+    //   difference_date=new Date(difference);
+        difference_seconds=difference/1000;
+        
+    
+       to_show=secondsToDhms(difference_seconds);
+       
+        
+        
+            
+        
+        
+            var timeleft = difference_seconds;
+            var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("countdown").textContent = secondsToDhms(timeleft);
+            if(timeleft <= 0)
+            clearInterval(downloadTimer);
+      
+            //if timeleft is 0, then show welcome in countdown div
+            if(timeleft == 0){
+              document.getElementById("timer").innerHTML = "Welcome Players!<br><br>Setting up..";
+      
+              //remove canvas div
+            setTimeout(function() {
+              document.getElementById("timer").innerHTML = "";
+              // document.getElementById("canvas").innerHTML = "";
+              // document.getElementById("canvas2").innerHTML = "";
+      
+              //remove canvas_main div
+                document.getElementById("welcome_container").remove();
+
+                //make closed left skewed
+                TweenMax.to("#closed_left", 1, {
+                  transform: "skewX(-20deg)",
+                  ease: Power2.easeInOut
+                });
+
+                //make closed right skewed
+                TweenMax.to("#closed_right", 1, {
+                  transform: "skewX(20deg)",
+                  ease: Power2.easeInOut
+                });
+
+                //move closed left to the left
+                var closed_left = document.getElementById("closed_left");
+                var closed_left_pos = closed_left.offsetLeft;
+                var closed_left_pos_new = closed_left_pos - 1000;
+                TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
+
+                //move closed right to the right
+                var closed_right = document.getElementById("closed_right");
+                var closed_right_pos = closed_right.offsetLeft;
+                var closed_right_pos_new = closed_right_pos + 1000;
+                TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
+
+                
+
+                // document.getElementById("closed_image").remove();
+                // //remove plane class from doby
+                // document.getElementsByClassName("plane")[0].classList.remove("plane");
+      
+            }, 1500);
+            }
+      
+            
+          },1000);
+           </script>    
+
+        
     <div class="page-wrapper font-robo">
         <video autoplay muted loop id="myVideo" style="display:none">
             <source src="{{url('images/fin.mp4')}}" type="video/mp4">
@@ -353,12 +486,12 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                                 @endphp
     
                                 @if($spinner_time_count < $actual_time_count)  
-                                    <p id="countdown" class="neon-text2"></p>               
+                                    <!--<p id="countdown" class="neon-text2"></p>               -->
                                     <button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
                                         Spin the Wheel
                                     </button>
                                 @else                       
-                                    <p id="countdown" class="neon-text2"></p>
+                                    <!--<p id="countdown" class="neon-text2"></p>-->
                                     {{-- hidden --}}
                                     <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
                                         Spin the Wheel
@@ -373,12 +506,12 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                                         <script>
                                             countDownDate = '{{$full_date}}';
                                         </script>
-                                        <p id="countdown" class="neon-text2"></p>
+                                        <!--<p id="countdown" class="neon-text2"></p>-->
                                         <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
                                             Spin the Wheel
                                         </button>
                                     @else
-                                        <p id="countdown" class="neon-text2"></p>
+                                        <!--<p id="countdown" class="neon-text2"></p>-->
                                         <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
                                             Spin the Wheel
                                         </button>
@@ -390,9 +523,13 @@ html, body {margin: 0; height: 100%; overflow: hidden}
                     </tr>
                     <tr>
                         <td style="text-align: center;">
-                            <div class="canvas-wrap">
-                                <canvas id="canvas" width="600" height="600">
-                                </canvas>
+                             <div id="wheelContainer">
+                                    <div id="wheel">
+                                    <!--<div class="canvas">-->
+                                        <canvas id="canvas" width="500" height="500">
+                                        </canvas>
+                                    <!--</div>-->
+                                </div>
                             </div>
                             <div class="text-center pt-3">
                                 <h4>
@@ -685,12 +822,12 @@ html, body {margin: 0; height: 100%; overflow: hidden}
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
           // Display the result in the element with id="countdown"
-          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-          + minutes + "m " + seconds + "s ";
+        //   document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+        //   + minutes + "m " + seconds + "s ";
         
           // If the count down is finished, write some text
           if (distance < 0) {
-            document.getElementById("countdown").innerHTML = "Next Spinner will be on";
+            // document.getElementById("countdown").innerHTML = "Next Spinner will be on";
             $('.spinnerClickBtn').trigger('click');
             countDownDate = new Date(nextfullDate).getTime();
           }
@@ -867,6 +1004,8 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         name:"Prasil",
         }
     ]
+    
+    
 
     var jsonData = JSON.parse('<?= $final_encoded; ?>');
     var jsonArray=<?= $final_encoded; ?>;
@@ -881,14 +1020,42 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
     //build array for segments for wheel
     var segments = [];
+    index=0;
+    counter=1;
 
 
     //console.log(res);
     jsonData.players_list.forEach(element => {
     //console.log(element);
+    //create an array of random fill colors
+    var fillColor = ['#000000','#005f2d','#cc2828'];
+                
+    if (index>=fillColor.length) {
+        index=0;
+    }
+    
+    canvasCenter=250;
+    
+    let canvas = document.getElementById('canvas');
+                let ctx = canvas.getContext('2d');
+                let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 50, canvasCenter, canvasCenter, 250);
+                
+      radGradient.addColorStop(0, "#ccbe00");
+                radGradient.addColorStop(0.5, fillColor[index]);
+                index++;
+    
     segments.push({
-        fillStyle: generateRandomColor(),
-        text: element.player_name
+        fillStyle:radGradient,
+        offset: 1.0,
+        text: ""+counter++,
+        lineWidth: 4,
+        'strokeStyle' : '#ccbe00',
+        'textFontFamily' : 'Georgia',
+        'textAlignment' : 'outer',
+        'textOrientation' : 'curved',
+        'textFontSize'    : '38',
+        'textFillStyle'   : '#ffee00'
+        // text: element.player_name
         });
     });
 
@@ -925,44 +1092,57 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     spin_times=randomIntFromInterval(3,6);
 
     let theWheel = new Winwheel({
-        'numSegments'    : player_info_length,
-        'outerRadius'    : 270,
-        'innerRadius'   : 50,
+       'numSegments'    : player_info_length,
+        'innerRadius'   : 80,   
+        'outerRadius'    : 200,
         'segments'       : segments,
-        'textFontSize' : 10,
-        'textAlignment'  : 'outer',
-        'clearTheCanvas' : false,
-        'animation' : {
+        'textFontSize' : 50,
+        'animation' :
+        {
             'type'          : 'spinToStop',
-            'duration'      : spin_duration,
-            'spins'         : spin_times,
+            'duration'      : 30,
+            'spins'         : 20,
             'callbackAfter' : 'drawTriangle()',
             'callbackSound' : playSound,
             'callbackFinished' : 'winAnimation()',
-            }
+            'soundTrigger'  : 'pin'
+        },
+        'pins' : true,
+        'pins' :    // Specify pin parameters.
+        {
+            'number'      : player_info_length*2,
+            'outerRadius' : 5,
+            'margin'      : 10,
+            'fillStyle'   : '#c28942',
+            'strokeStyle' : '#c28942'
+        }
     });
 
     let audio = new Audio('assets/tick.mp3');  // Create audio object and load desired file.
 
     function winAnimation() {
-        // // Get the audio with the sound it in, then play.
-        // let winsound = document.getElementById('winsound');
-        // winsound.play();
-
         // Get the number of the winning segment.
         let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
-
+ 
         // Loop and set fillStyle of all segments to gray.
         for (let x = 1; x < theWheel.segments.length; x ++) {
-            theWheel.segments[x].fillStyle = 'gray';
+            theWheel.segments[x].fillStyle = '#171717';
+            //remove stroke
+            theWheel.segments[x].strokeStyle = '#171717';
+            //change font color
+            theWheel.segments[x].textFillStyle = '#3b3b3b';
         }
-
+ 
         // Make the winning one yellow.
-        theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
-
+        theWheel.segments[winningSegmentNumber].fillStyle = '#00ab51';
+        //change font color to black 
+        theWheel.segments[winningSegmentNumber].textFillStyle = '#ffee00';
+        //change stroke color to black
+        theWheel.segments[winningSegmentNumber].strokeStyle = '#00ab51';
+ 
         // Call draw function to render changes.
         theWheel.draw();
-
+ 
         // Also re-draw the pointer, otherwise it disappears.
         drawTriangle();
     }
@@ -1007,35 +1187,19 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     drawTriangle();
 
     function drawTriangle() {
-        var canvas = document.getElementById('canvas'),
-            ctxcanvas = canvas.getContext('2d');
-        img1.onload = function(){
-            ctxcanvas.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
-        }
-        img2.onload = function(){
-            ctxcanvas.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
-        }
-
-        $('.captcha-input').on('keypress',function(e) {
-            if(!($('.captcha-error').hasClass('hidden'))){
-                $('.captcha-error').addClass('hidden');
-            }
-        });
         // Get the canvas context the wheel uses.
         let ctx = theWheel.ctx;
-
-        ctx.strokeStyle = 'navy';     // Set line colour.
-        ctx.fillStyle   = 'aqua';     // Set fill colour.
-        ctx.lineWidth   = 2;
-        ctx.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
-        ctx.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
+ 
+        ctx.strokeStyle = '#ccbe00';     // Set line colour.
+        ctx.fillStyle   = '#ccbe00';     // Set fill colour.
+        ctx.lineWidth   = 3;
         ctx.beginPath();              // Begin path.
-        ctx.moveTo(290, 5);           // Move to initial position.
-        ctx.lineTo(290, 5);           // Draw lines to make the shape.
-        ctx.lineTo(300, 40);
-        ctx.lineTo(310, 5);
+        ctx.moveTo(250, 15);           // Move to initial position.
+        ctx.lineTo(250, 0);           // Draw lines to make the shape.
+        ctx.lineTo(250, 50);
+        ctx.lineTo(250, 15);
         ctx.stroke();                 // Complete the path by stroking (draw lines).
-        ctx.fill();                   // Then fill.
+        ctx.fill();                   // Then fill
     }
 
     // $(document).ready( function () {

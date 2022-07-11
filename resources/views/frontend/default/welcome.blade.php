@@ -214,7 +214,7 @@
                             <div class="col-md-6 col-sm-12 mt-4">
                                 <div class="input-group">
                                      <div>
-                                   <h4><b><span class="neon-text">Email (Required)</span></b></h4>
+                                   <h4><b><span class="neon-text">Email</span> *</b></h4>
                                 </div> 
                                     <input required class="input--style-1 transparent-input neon-text-danger" type="email" value="{{old('email')}}" autocomplete="off" placeholder="name@xyz.com" name="email" >
                                 </div>

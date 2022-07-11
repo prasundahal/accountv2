@@ -100,13 +100,15 @@
                    @php
                     $count = 1;
                    @endphp
-                  @foreach($form_games as $num)
-                  <tr class="tr-{{$num['form_id']}}">
-                    <td class="count-row">{{$count++}}</td>
-                    <td class="text-center td-full_name-{{$num['form_id']}}">{{ucwords($num['account']['name'])}}</td>
-                    <td class="text-center class td-full_name-{{$num['form_id']}}" data-game="{{$num['account_id']}}" data-id="{{$num['form_id']}}">{{ucwords($num['game_id'])}}</td>
-                  </tr>
-                  @endforeach
+                   @if(isset($form_games) && !empty($form_games))
+                      @foreach($form_games as $num)
+                      <tr class="tr-{{$num['form_id']}}">
+                        <td class="count-row">{{$count++}}</td>
+                        <td class="text-center td-full_name-{{$num['form_id']}}">{{(isset($num['account']) && !empty($num['account']))?ucwords($num['account']['name']):''}}</td>
+                        <td class="text-center class td-full_name-{{$num['form_id']}}" data-game="{{$num['account_id']}}" data-id="{{$num['form_id']}}">{{ucwords($num['game_id'])}}</td>
+                      </tr>
+                      @endforeach
+                  @endif
                </tbody>
                     </table>
                 </div>

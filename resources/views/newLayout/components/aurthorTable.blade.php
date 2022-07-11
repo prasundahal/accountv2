@@ -53,8 +53,46 @@
                                 <div class="content ">
                                     <div class="row" style="padding-top:20px;">
                                         <div class="col-12">
+                                                <label for="filter-type12">TYPE:</label>
+                                                <select id="filter-type12" name="type" id="" class="filter-type12">
+                                                    <option value="all">All</option>
+                                                    <option value="load">Load</option>
+                                                    <option value="redeem">Redeem</option>
+                                                    <option value="refer">Bonus</option>
+                                                    <option value="tip">Tip</option>
+                                                </select>
+
+                                                <label for="filter-game12">Game:</label>
+                                                <select id="filter-game12" name="game" id="filter-game12" class="filter-game12">
+                                                    <option value="all">All</option>                         --}}
+                                                      @foreach (\App\Models\Account::get()->toArray() as $key => $item)    
+                                                      <option value="{{$item['id']}}">{{$item['name']}}</option>
+                                                      @endforeach
+                                                   </select>
+
+                                                <label for="cars">User:</label>
+                                                <!--select2 -->
+                                                <select id="filter-user12" name="user" id="filter-user12" class="filter-user12">
+                                                    <option value="all">All</option>
+                                                    {{-- @if (isset($forms) && !empty($forms))                              --}}
+                                                    @foreach (\App\Models\Form::get()->toArray() as $key => $item)      
+                                                    <option value="{{$item['id']}}">{{(empty($item['facebook_name']))?'Empty':$item['facebook_name']}}</option>
+                                                    @endforeach
+                                                    {{-- @endif --}}
+                                                </select>
+
+                                                <label for="filter-start12">Start Date:</label>
+                                                <input id="filter-start12" type="date" name="start" class="filter-start12">
+
+                                                <label for="filter-end12">End Date:</label>
+                                                <input id="filter-end12" type="date" name="end" class="filter-end12">
+                                                
+                                                <button class="btn btn-primary filter-undo">Filter</button>
+                                        </div>
+                                        <div class="col-12">
                                             <div class="card mb-4">
                                                 <div class="card-body px-0 pt-0 pb-2">
+                                                    <input type="text" class="search-undo" placeholder="Search Here..">
                                                     <div class="table-responsive p-0">
                                                         <table class="table table-responsive align-items-center mb-0">
                                                             <thead class="sticky" >
@@ -69,7 +107,7 @@
                                                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action by</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody  style="text-align: center!important;" class="undo-history-body">
+                                                            <tbody  style="text-align: center!important;" class="undo-history-body undo-history-body123">
                                                             </tbody>
                                                         </table>
                                                     </div>

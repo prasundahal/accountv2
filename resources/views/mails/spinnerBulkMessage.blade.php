@@ -1,7 +1,7 @@
 @component('mail::message')
   @if(isset($details1) && !empty($details1))
       @php
-         $name = $details1['text']['name'];
+         $name = isset($details1['text']['name'])?$details1['text']['name']:'';
          $message = $details1['text']['message'];
          $load = $details1['text']['load'];
          $token_id = $details1['text']['token_id'];

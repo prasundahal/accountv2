@@ -1638,6 +1638,112 @@ public function tableop()
         // return Response::json($data);
         return Response::json($data);
     }
+     public function filterUndoHistory(Request $request)
+    {
+        $filter_type = $request->filter_type;
+        $userId = $request->userId;
+        $game = $request->game;
+        $filter_start = $request->filter_start;
+        $filter_end = $request->filter_end;
+        $historyType = $request->historyType;
+
+        $history = History::query();
+
+        $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+
+        if ($filter_type != 'all')
+        {
+            $history->where('type', $request->filter_type);
+        }
+        if ($userId != 'all')
+        {
+            $history->where('form_id', $userId);
+        }
+
+        // $history->when(request('filter_type', '!=','all'), function ($q, $filter_type) {
+        //     return $q->where('type',$filter_type);
+        // });
+        // return Response::json($historys);
+        if ($filter_start != '')
+        {
+            $history->whereDate('created_at', '>=', $filter_start);
+        }
+        if ($filter_end != '')
+        {
+            $history->whereDate('created_at', '<=', $filter_end);
+        }
+        if ($game != 'all')
+        // if ($game == 'all')
+        {
+            $history->where('account_id', $game);
+        }
+
+        $history->with('account')->with('form')->with('formGames')->whereHas('formGames')
+        
+        // ->with(['formGames' => function ($query) use ($game) {
+        //     return $query->where('id', 'relation_id');
+        // }])
+        // if($game && $game != 'all')
+        // $query->where('account_id', $activeGame['id']);
+        
+        // ->whereHas('account', function ($query) use ($category) {
+        //     if($category && $category != 'all')
+        //     return $query->where('name', 'like', $category);
+        // })
+            ->with('created_by')
+            ->orderBy('id', 'desc');
+        // if($filter_end != ''){
+        //     $history->where('type',$request->filter_type);
+        // }
+        // $history->whereBetween('created_at',[date($filter_start),date($filter_end)]);
+        // $history->whereDate('created_at','<=', $filter_start)->whereDate('created_at','>=', $filter_end);
+        // if($filter_start != ''){
+        //     $history->where('type',$request->filter_type);
+        // }
+        // if($filter_end != ''){
+        //     $history->where('type',$request->filter_type);
+        // }
+        $final = [];
+        $historys = $history->get()
+            ->toArray();
+        //         ->orderBy('id','desc')
+        //         ->get()
+        //         ->toArray();
+        // if (!empty($historys))
+        // {
+        //     foreach ($historys as $a => $b)
+        //     {
+        //         $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first()
+        //             ->toArray();
+        //         $b['form_game'] = $form_game;
+        //         ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+        //         ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+        //         ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
+        //         ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+        //         ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+        //         array_push($final, $b);
+        //     }
+        //     $totals['profit'] = $totals['load'] - $totals['redeem'];
+        // }
+
+        // return Response::json([$final,$totals]);
+        $data = [
+            'filter_type' => $filter_type,
+            'userId' => $userId,
+            'game' => $game,
+            'filter_start' => $filter_start,
+            'filter_end' => $filter_end,
+            'history' => $historys,
+        ];
+        // return Response::json([$final, $totals]);
+
+        $return_array = [
+            'status' => (count($historys) > 0)?1:0,
+            'data' => $historys
+        ];
+        return Response::json($return_array);
+    }
     public function filterUserHistoryAllData(Request $request)
     {
         $type = isset($request->filter_type) ? $request->filter_type : '';
@@ -2084,7 +2190,7 @@ public function tableop()
             //     case('cashAppLoad'):
             // }
             $history->delete();
-            return redirect(route('table'))
+            return back()
                 ->with('success', "Transaction undo successful");
         }
         catch(\Exception $e)

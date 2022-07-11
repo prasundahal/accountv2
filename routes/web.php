@@ -153,6 +153,8 @@ Route::post('/spinner-form-save', [App\Http\Controllers\NewHomeController::class
 //updated Route by Ameer Bajracharya
 Route::get('/table', [SearchTableController::class, 'table'])->name('table')->middleware('auth');
 Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
+Route::post('/table-search', [SearchTableController::class, 'tableSearch'])->name('tableSearch')->middleware('auth');
+
 
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
 Route::post('/table-loadCashBalance', [App\Http\Controllers\NewHomeController::class, 'loadCashBalance'])->name('loadCashBalance');
@@ -164,6 +166,7 @@ Route::post('/user-history', [App\Http\Controllers\NewHomeController::class, 'us
 Route::get('/all-history', [App\Http\Controllers\NewHomeController::class, 'allHistory1'])->name('all-history');
 Route::get('/all-history1', [App\Http\Controllers\NewHomeController::class, 'allHistory'])->name('all-history1');
 Route::get('/todays-history', [App\Http\Controllers\NewHomeController::class, 'todaysHistory'])->name('todays-history');
+Route::post('/filter-undo-history', [App\Http\Controllers\NewHomeController::class, 'filterUndoHistory'])->name('filter-undo-history');
 Route::post('/filter-user-history', [App\Http\Controllers\NewHomeController::class, 'filterUzserHistory'])->name('filter-user-history');
 Route::post('/filter-all-history', [App\Http\Controllers\NewHomeController::class, 'filterAllHistory'])->name('filter-all-history');
 Route::get('/gamers/restore/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerRestore'])->name('gamerRestore');

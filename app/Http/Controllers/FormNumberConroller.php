@@ -45,11 +45,11 @@ class FormNumberConroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,FormNumber $formnumbers)
     {
         
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:forms,number',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:formnumbers,phone_number',
             'name' => 'required'
         ]);
         // $request->validate([

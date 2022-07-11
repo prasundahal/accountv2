@@ -134,9 +134,14 @@ class FormController extends Controller
         }
         try
         {
-            $job = (new \App\Jobs\NewRegistrationAlert($details))
-                ->delay(now()->addSeconds(2)); 
-            dispatch($job);
+             $details1 = [
+                'text' => $details,
+                'theme' => ($settings->theme)
+            ];
+            Mail::to('riteshnoor69@gmail.com')->send(new UserNoticMail(($details1)));
+            // $job = (new \App\Jobs\NewRegistrationAlert($details))
+            //     ->delay(now()->addSeconds(2)); 
+            // dispatch($job);
         }
         catch(\Exception $e)
         {

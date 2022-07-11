@@ -29,9 +29,9 @@ class UserNoticMail extends Mailable
      */
     public function build() {
        $details = $this->details;
-        $subject = $this->details;
-        $details= $subject;
-        
+        $subject = 'New Registration';
+        //$details= $subject;
+        //dd($details,$subject);
         $settings = GeneralSetting::first();
        $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
 
