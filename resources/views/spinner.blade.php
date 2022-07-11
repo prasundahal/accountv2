@@ -641,7 +641,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     var img1 = new Image();
     var img2 = new Image();
     img1.src = "{{asset('/public/img/casino ring 2.png')}}";
-    img2.src = "{{asset('/public/img/casinoring0.png')}}";
+    img2.src = "{{asset('/public/img/logofin.png')}}";
 
     var countDownDate = new Date(countDownDate).getTime();
     // console.log(fullDateNow);
@@ -1027,7 +1027,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         ctx.strokeStyle = 'navy';     // Set line colour.
         ctx.fillStyle   = 'aqua';     // Set fill colour.
         ctx.lineWidth   = 2;
-        ctx.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
+        // ctx.drawImage(img1, 0, 0, 2700, 2700, 251, 251, 600, 600);
         ctx.drawImage(img2, 0, 0, 450, 450, 0, 0, 600, 600);
         ctx.beginPath();              // Begin path.
         ctx.moveTo(290, 5);           // Move to initial position.
