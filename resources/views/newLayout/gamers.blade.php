@@ -32,10 +32,12 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Full Name</th>
                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Date Joined</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Note</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Number</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Email</th>
+                        @if (Auth::user()->role == 'admin')
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Number</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Email</th>
+                        @endif
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Fb ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Game ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Fb ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">State</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Ref Id</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Months</th>
@@ -88,6 +90,7 @@
                             </div>
                           </div>
                        </td>
+                       @if (Auth::user()->role == 'admin')
                        <td class="td-game_id-{{$num->id}} align-middle text-center ">
                           <div class="d-flex px-2 py-1">
                             <div class="d-flex flex-column justify-content-center">
@@ -102,6 +105,14 @@
                             </div>
                           </div>
                        </td>
+                        @endif
+                       <td class="td-facebook_name-{{$num->id}} align-middle text-center ">
+                          <div class="d-flex px-2 py-1">
+                             <div class="d-flex flex-column justify-content-center">
+                                <h6 class=" mb-0 text-sm">{{($num->facebook_name)}}</h6>
+                             </div>
+                          </div>
+                       </td>
                        {{-- <td class="td-game_id-{{$num->id}}" align-middle text-center ">
                           <span class="badge  bg-gradient-success">{{($num->email)}}</span>
                        </td> --}}
@@ -110,13 +121,6 @@
                             <div class="d-flex flex-column justify-content-center">
                                 <h6 class=" mb-0 text-sm">{{($num->game_id)}}</h6>
                             </div>
-                          </div>
-                       </td>
-                       <td class="td-facebook_name-{{$num->id}} align-middle text-center ">
-                          <div class="d-flex px-2 py-1">
-                             <div class="d-flex flex-column justify-content-center">
-                                <h6 class=" mb-0 text-sm">{{($num->facebook_name)}}</h6>
-                             </div>
                           </div>
                        </td>
                        <td class="td-mail-{{$num->id}} align-middle text-center ">

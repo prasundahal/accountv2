@@ -10,6 +10,7 @@ use App\Models\FormBalance;
 use App\Models\FormGame;
 use App\Models\FormRedeem;
 use App\Models\FormRefer;
+use App\Models\LanguageText;
 use App\Models\FormTip;
 use App\Models\History;
 use Illuminate\Http\Request;
@@ -110,7 +111,36 @@ class SearchTableController extends Controller
                 $pagination = $formGames->appends(array(
                     'game' => request()->get('game')
                 ));
-                return view('newLayout.table', compact('forms', 'games', 'activeGame', 'history', 'activeCashApp', 'cashApp', 'formGames','form_games'));
+                
+                //languages
+                $role = 'cashier';
+                if(Auth::user()->role == $role){
+                    $texts = LanguageText::get()->toArray();
+                    $arranged_texts = [];
+                    foreach($texts as $def => $fgh){
+                        $arranged_texts[$fgh['input']] = $fgh['output'];
+                    }
+                    $language_texts = $arranged_texts;
+                }else{
+                    $language_texts = [
+                        'total-players' => 'TOTAL PLAYERS',
+                        'games' => 'Games',
+                        'authors-table' => 'Just Search The Player Name',
+                        'selected-date' => 'Selected Date',
+                        'add-user' => 'ADD USER',
+                        'sn' => 'SN',
+                        'game-id' => 'GAME ID',
+                        'fb-name' => 'FB NAME',
+                        'balance' => 'BALANCE',
+                        'bonus' => 'BONUS',
+                        'redeem' => 'REDEEM',
+                        'tips' => 'TIPS',
+                        'action' => 'ACTION',
+                        'amount' => 'Amount'
+                    ];
+
+                }
+                return view('newLayout.table', compact('forms','language_texts', 'games', 'activeGame', 'history', 'activeCashApp', 'cashApp', 'formGames','form_games'));
             }
         }
         catch(\Exception $e)

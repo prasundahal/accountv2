@@ -1,14 +1,14 @@
 <table class="table align-items-center mb-0">
     <thead class="sticky" >
         <tr >
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SN</th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game Id </th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fb Name</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Balance</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bonus</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redeem</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tips</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['sn']}}</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['game-id']}}</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{$language_texts['fb-name']}}</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['balance']}}</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['bonus']}}</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['redeem']}}</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['tips']}}</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{$language_texts['action']}}</th>
             {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th> --}}
         </tr>
     </thead>
@@ -32,8 +32,8 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -75px!important;">
                             {{-- <a class="dropdown-item user-history" href="javascript:void(0);" data-type="cash" data-userId="{{$num['form']['id']}}" data-game="{{$num['form']['id']}}">Cash App</a> --}}
                             <a class="dropdown-item remove-form-game" href="javascript:void(0);" data-tr="{{$a+1}}" data-type="load" data-userId="{{$num['form']['id']}}" data-game="{{$activeGame['id']}}"> Remove</a>
-                            <a href="#popup4" class="dropdown-item user-history" data-type="load" data-userId="{{$num['form']['id']}}" data-game="{{$activeGame['id']}}">Balance Load</a>
-                            <a href="#popup4" class="dropdown-item user-history" data-type="redeem" data-userId="{{$num['form']['id']}}" data-game="{{$activeGame['id']}}">Redeems</a>
+                            <a href="#popup4" class="dropdown-item user-history" data-type="load" data-userId="{{$num['form']['id']}}" data-game="{{$activeGame['id']}}">{{$language_texts['balance']}}</a>
+                            <a href="#popup4" class="dropdown-item user-history" data-type="redeem" data-userId="{{$num['form']['id']}}" data-game="{{$activeGame['id']}}">{{$language_texts['redeem']}}</a>
                             <!--<a href="#popup6" class="dropdown-item user-gameids" data-userId="{{$num['form']['id']}}">View Game Ids</a>-->
                             <a href="{{route('userDetails',['id' => $num['form']['id']])}}" class="dropdown-item user-gameids">View Details</a>
 
@@ -221,7 +221,7 @@
                 <div class="collapse-{{$a+1}} collapse" id="collapseExampleCashApp-{{$a+1}}">
                     <div class="card card-body">
                         <input required type="hidden" class="form-control cashApp-from" name="cashApp-from" value="{{$activeGame['id']}}" data-title="{{str_replace(' ','-',$activeGame['title'])}}">
-                        <input required type="text" class="form-control amount" name="amount" data-user="{{$num['game_id']}}" data-cashApp="{{$activeCashApp['id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                        <input required type="text" class="form-control amount" name="amount" data-user="{{$num['game_id']}}" data-cashApp="{{$activeCashApp['id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                         <button type="button" class="btn btn-success text-center cashApp-btn" data-user="{{$num['game_id']}}" data-cashApp="{{$activeCashApp['id']}}" data-userId="{{$num['form']['id']}}">
                             Load
                         </button>
@@ -429,9 +429,9 @@
                 <div class="card card-body">
                     <input required type="hidden" class="form-control load-from loadFrom{{$num['form']['id']}}" name="load-from" value="{{$activeGame['id']}}" data-title="{{str_replace(' ','-',$activeGame['title'])}}">
                     @if(request()->ajax())
-                    <input required type="text" class="form-control loadInput loadInput{{$num['form']['id']}}" onkeydown="loadNewBalance(event,$(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" data-balance="0" placeholder="Amount">
+                    <input required type="text" class="form-control loadInput loadInput{{$num['form']['id']}}" onkeydown="loadNewBalance(event,$(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" data-balance="0" placeholder="{{$language_texts['amount']}}">
                     @else
-                    <input required type="text" class="form-control loadInput loadInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" data-balance="0" placeholder="Amount">
+                    <input required type="text" class="form-control loadInput loadInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" data-balance="0" placeholder="{{$language_texts['amount']}}">
                     @endif
                     <button type="button" class="btn btn-success text-center hidden load-btn" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}">Load</button>
                 </div>
@@ -441,9 +441,9 @@
                 <div class="card card-body">
                     <input required type="hidden" class="form-control refer-from" name="refer-from" value="{{$activeGame['id']}}" data-title="{{str_replace(' ','-',$activeGame['title'])}}">
                     @if(request()->ajax())
-                    <input required type="text" class="form-control referInput referInput{{$num['form']['id']}}" onkeydown="loadNewRefer(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control referInput referInput{{$num['form']['id']}}" onkeydown="loadNewRefer(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @else
-                    <input required type="text" class="form-control referInput referInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control referInput referInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @endif
                     <button type="button" class="btn btn-success text-center refer-btn hidden" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}">Load</button>
                 </div>
@@ -453,9 +453,9 @@
                 <div class="card card-body">
                     <input required type="hidden" class="form-control redeem-from redeemFrom{{$num['form']['id']}}" name="redeem-from" value="{{$activeGame['id']}}" data-title="{{str_replace(' ','-',$activeGame['title'])}}">
                     @if(request()->ajax())
-                    <input required type="text" class="form-control redeemInput redeemInput{{$num['form']['id']}}" onkeydown="loadNewRedeem(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control redeemInput redeemInput{{$num['form']['id']}}" onkeydown="loadNewRedeem(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @else
-                    <input required type="text" class="form-control redeemInput redeemInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control redeemInput redeemInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @endif
                     <button type="button" class="btn btn-success text-center redeem-btn hidden" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}">Redeem</button>
                 </div>
@@ -465,9 +465,9 @@
                 <div class="card card-body">
                     <input required type="hidden" class="form-control tip-from" name="tip-from" value="{{$activeGame['id']}}" data-title="{{str_replace(' ','-',$activeGame['title'])}}">
                     @if(request()->ajax())
-                    <input required type="text" class="form-control tipInput tipInput{{$num['form']['id']}}" onkeydown="loadNewTip(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control tipInput tipInput{{$num['form']['id']}}" onkeydown="loadNewTip(event, $(this));" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @else
-                    <input required type="text" class="form-control tipInput tipInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="Amount">
+                    <input required type="text" class="form-control tipInput tipInput{{$num['form']['id']}}" name="amount" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}" value="" placeholder="{{$language_texts['amount']}}">
                     @endif
                     <button type="button" class="btn btn-success text-center tip-btn hidden" data-user="{{$num['game_id']}}" data-userId="{{$num['form']['id']}}">Tip</button>
                 </div>

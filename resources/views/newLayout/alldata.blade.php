@@ -201,6 +201,7 @@ tr:nth-child(odd) {
        background: #feb343 !important;
    }
 </style>
+@if (Auth::user()->role == 'admin')
 <div class="row">
   <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
      <div class="card">
@@ -265,7 +266,32 @@ tr:nth-child(odd) {
         </div>
      </div>
   </div>
-  <div class="col-xl-3 col-sm-6">
+    <div class="col-xl-3 col-sm-6">
+        <div class="card">
+            <div class="card-body p-3">
+           <div class="row">
+              <div class="col-8">
+                 <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Refer </p>
+                    <h5 class="font-weight-bolder total-refer">
+                      ${{$total['refer']}}
+                    </h5>
+                 </div>
+              </div>
+              <div class="col-4 text-end">
+                 <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                 </div>
+              </div>
+           </div>
+        </div>
+        </div>
+  </div>
+</div>
+   
+
+    <div class="row" style="padding-top:40px;">
+  <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
      <div class="card">
         <div class="card-body p-3">
            <div class="row">
@@ -285,31 +311,10 @@ tr:nth-child(odd) {
            </div>
         </div>
      </div>
+     
   </div>
 </div>
-<div class="row" style="padding-top:40px;">
-  <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-     <div class="card">
-        <div class="card-body p-3">
-           <div class="row">
-              <div class="col-8">
-                 <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Refer </p>
-                    <h5 class="font-weight-bolder total-refer">
-                      ${{$total['refer']}}
-                    </h5>
-                 </div>
-              </div>
-              <div class="col-4 text-end">
-                 <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-</div>
+    @endif
 <div class="row justify-content-center mt-5">
    <div class="col-md-12 card upCard">
       <div class="card-body">

@@ -33,9 +33,9 @@ class Kernel extends ConsoleKernel
          $schedule->command('DailyReport:cron')
          ->daily();
          $schedule->command('SpinnerResetForm:cron')
-         ->monthlyOn(1, '00:00');
+         ->monthlyOn(26, '00:00');
          $schedule->command('MonthlyTasks:cron')
-         ->everyMinute();
+         ->monthlyOn(26, '00:00');
         //  daily
         //  ->appendOutputTo($filePath)
         //  ->withoutOverlapping();

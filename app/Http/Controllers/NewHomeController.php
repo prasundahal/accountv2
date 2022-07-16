@@ -3185,6 +3185,14 @@ public function tableop()
                         $form = Form::where('id', $b['form_id'])->first();
                         if (!empty($form))
                         {
+                            // if(($form->token == '')){
+                                
+                                 
+                                // $form->token = $token_id;
+                                // $form->balance = 1;
+                                // $form->save();
+                            // $form = Form::where('id', $b['form_id'])->first();
+                            // }
                             $form_game->toArray();
                             $form->toArray();
                             if (!(isset($final[$b['form_id']])))
@@ -3222,7 +3230,6 @@ public function tableop()
                     }
                 }
             }
-            // dd($type);
             $limit = 0;
             $final_2 = [];
             if(!empty($final)){
@@ -3247,6 +3254,12 @@ public function tableop()
                 }
             }
             $forms = $final_2;
+            // foreach($forms as $a => $b){
+                
+            //                 $token_id = Str::random(32);
+            //                      Form::where('id', $b['form_id'])->update(['balance' => 1, 'token' => $token_id]);
+            // }
+            // dd('h',$forms);
             $limit_amount = $this->limit_amount;
 
         }

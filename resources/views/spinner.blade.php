@@ -2,12 +2,10 @@
 $final_encoded = json_encode($final);
 
 $settings = \App\Models\GeneralSetting::first();
-                        $spinner_date_new = $settings->spinner_date;
-                        $spinner_time_new =$settings->spinner_time;
+$spinner_date_new = $settings->spinner_date;
+$spinner_time_new =$settings->spinner_time;
                         
-                        
-                        
-
+echo date('Y-m-d H:i:s');
 if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
     die("Players list empty. Send data to see the spinner. ");
 }
@@ -181,11 +179,13 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;
         }
 
-        /*#countdown{*/
-        /*    background: red;*/
-        /*    color: white;*/
-        /*    font-size: 30px;*/
-        /*}*/
+        #countdown{
+            background: red;
+            border-radius:10px;
+            padding:8px 20px;
+            color: white;
+            font-size: 30px;
+        }
         
 
 .outer-curtain {
@@ -253,7 +253,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     <div id="welcome_container">
         
     <div id="timer">NEXT SPIN IN<hr>
-        <text id="countdown"> Loading..</text>
+        <text id="countdown" class="neon-text2" style="font-size:35px"> Loading..</text>
         <img src="https://noorgames.net/images/dragonnn.gif" id="mainlogo">
        </div>
     </div>
@@ -261,6 +261,9 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     <script>
     
     // let formatter = new Intl.DateTimeFormat('en-US', { timeZone: "America/New_York" });
+function getlength(number) {
+    return number.toString().length;
+}
     
     function secondsToDhms(seconds) {
 seconds = Number(seconds);
@@ -269,26 +272,62 @@ var h = Math.floor(seconds % (3600*24) / 3600);
 var m = Math.floor(seconds % 3600 / 60);
 var s = Math.floor(seconds % 60);
 
-var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
-var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+var dDisplay = d > 0 ? d + (d == 1 ? "d, " : "d, ") : "";
+var hDisplay = h > 0 ? h + (h == 1 ? "h, " : "h, ") : "";
+// var mDisplay = m > 0 ? m + (m == 1 ? "m, " : "m, ") : "";
+var mDisplay = m < 10 ? "0"+m+"m, " : m+"m, ";
+var sDisplay = s > 0 ? s + (s == 1 ? "s" : "s") : "";
+var sDisplay = s < 10 ? "0"+s+"s" : s+"s";
+
+
 return dDisplay + hDisplay + mDisplay + sDisplay;
 }
+
+function convertTZ(date, tzString) {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+}
+
+
     
         var spinner_date = "{{$spinner_date_new}}";
         var spinner_time = "{{$spinner_time_new}}";
+        
+        console.log("Date : "+spinner_date);
+        console.log("Time : "+spinner_time);
         
         const spinner_time_array= spinner_time.split(":");
 
         
         let d=new Date();
-        // d = formatter.format(d);
-        // console.log(d);
+        
+        d=convertTZ(d, "America/New_York");
+        
        var current_datetimems=d.getTime();
+       console.log(d.getTime());
        
-       //get the next month date_time
-       next = new Date(d.getFullYear(), d.getMonth()+1, 1);
+    //   if(d.getTime()>=)
+    flag_done=false;
+
+      if((d.getDate()>=spinner_date)) {
+          console.log("current date greater");
+          if(d.getDate()==spinner_date) {
+              current_total_seconds=((d.getHours()*3600)+(d.getMinutes()*60)+(d.getSeconds()));
+              console.log("Current : "+current_total_seconds);
+              spinner_total_seconds=((spinner_time_array[0]*3600)+parseInt((spinner_time_array[1]*60))+parseInt((spinner_time_array[2])));
+              console.log("Spinner : "+spinner_total_seconds);
+              if(current_total_seconds>=spinner_total_seconds) {
+                  next = new Date(d.getFullYear(), d.getMonth()+1, 1);
+                  flag_done=true;
+              }
+          }else{
+              next = new Date(d.getFullYear(), d.getMonth()+1, 1);
+                  flag_done=true;
+          }
+      }
+       
+       if(flag_done==false) {
+            next=new Date(d.getFullYear(), d.getMonth(), 1);
+       }
        next= next.setDate(spinner_date);
        
        next_date=new Date(next);
@@ -298,18 +337,30 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
        next_date= next_date.setMinutes(spinner_time_array[1]);
         next_date=new Date(next_date);
        next_date= next_date.setSeconds(spinner_time_array[2]);
-        // next_date=new Date(next_date);
        
        difference=next_date-current_datetimems;
        
-    //   difference_date=new Date(difference);
         difference_seconds=difference/1000;
         
     
        to_show=secondsToDhms(difference_seconds);
        
         
-        
+        function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
             
         
         
@@ -317,55 +368,39 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
             var downloadTimer = setInterval(function(){
             timeleft--;
             document.getElementById("countdown").textContent = secondsToDhms(timeleft);
-            if(timeleft <= 0)
-            clearInterval(downloadTimer);
-      
-            //if timeleft is 0, then show welcome in countdown div
-            if(timeleft == 0){
-              document.getElementById("timer").innerHTML = "Welcome Players!<br><br>Setting up..";
-      
-              //remove canvas div
-            setTimeout(function() {
-              document.getElementById("timer").innerHTML = "";
-              // document.getElementById("canvas").innerHTML = "";
-              // document.getElementById("canvas2").innerHTML = "";
-      
-              //remove canvas_main div
-                document.getElementById("welcome_container").remove();
-
-                //make closed left skewed
-                TweenMax.to("#closed_left", 1, {
-                  transform: "skewX(-20deg)",
-                  ease: Power2.easeInOut
-                });
-
-                //make closed right skewed
-                TweenMax.to("#closed_right", 1, {
-                  transform: "skewX(20deg)",
-                  ease: Power2.easeInOut
-                });
-
-                //move closed left to the left
-                var closed_left = document.getElementById("closed_left");
-                var closed_left_pos = closed_left.offsetLeft;
-                var closed_left_pos_new = closed_left_pos - 1000;
-                TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
-
-                //move closed right to the right
-                var closed_right = document.getElementById("closed_right");
-                var closed_right_pos = closed_right.offsetLeft;
-                var closed_right_pos_new = closed_right_pos + 1000;
-                TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
-
+            if(timeleft == 10){
+                setTimeout(function() {
+          
+                  //remove canvas_main div
+                    // document.getElementById("welcome_container").remove();
+    
+                    //move closed left to the left
+                    var closed_left = document.getElementById("closed_left");
+                    var closed_left_pos = closed_left.offsetLeft;
+                    var closed_left_pos_new = closed_left_pos - 1000;
+                    TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
+    
+                    //move closed right to the right
+                    var closed_right = document.getElementById("closed_right");
+                    var closed_right_pos = closed_right.offsetLeft;
+                    var closed_right_pos_new = closed_right_pos + 1000;
+                    TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
+          
+                }, 1500);
                 
-
-                // document.getElementById("closed_image").remove();
-                // //remove plane class from doby
-                // document.getElementsByClassName("plane")[0].classList.remove("plane");
-      
-            }, 1500);
+                document.getElementById("welcome_container").innerHTML=`
+                <div id="welcome_container">
+        
+    <div id="timer">
+        <text id="countdown" class="neon-text2" style="font-size:35px">Get ready..</text>
+       </div>
+    </div>
+    `;
             }
-      
+            
+            if(timeleft == 0){
+                document.getElementById("welcome_container").innerHTML='';
+            }
             
           },1000);
            </script>    
@@ -800,7 +835,7 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
             var hour=today.getHours();
             var minute=today.getMinutes();
             var second=today.getSeconds();
-            console.log(month);
+            // console.log(month);
             minute = checkTime(minute);
             second = checkTime(second);
             month = checkTime(month);
@@ -1044,6 +1079,12 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
                 radGradient.addColorStop(0.5, fillColor[index]);
                 index++;
     
+     if(player_info_length<10) textFontSize= 50;
+    else if(player_info_length<30) textFontSize=15;
+    else if(player_info_length<80) textFontSize=10;
+    else textFontSize=10;
+    textFontSize=15;
+    
     segments.push({
         fillStyle:radGradient,
         offset: 1.0,
@@ -1053,7 +1094,7 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
         'textFontFamily' : 'Georgia',
         'textAlignment' : 'outer',
         'textOrientation' : 'curved',
-        'textFontSize'    : '38',
+        'textFontSize'    : textFontSize,
         'textFillStyle'   : '#ffee00'
         // text: element.player_name
         });
@@ -1082,11 +1123,13 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
 
     //170 default radi
 
-    textSize=10
+    textSize=10;
+    textFontSize=10;
 
-    if(player_info_length<20) textFontSize= 20
-    else if(player_info_length<80) textFontSize=15
-    else textFontSize=10
+    if(player_info_length<10) textFontSize= 50;
+    else if(player_info_length<30) textFontSize=10;
+    else if(player_info_length<80) textFontSize=10;
+    else textFontSize=10;
 
     spin_duration=randomIntFromInterval(10,20); //make spin time random
     spin_times=randomIntFromInterval(3,6);
@@ -1096,7 +1139,8 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
         'innerRadius'   : 80,   
         'outerRadius'    : 200,
         'segments'       : segments,
-        'textFontSize' : 50,
+        'textFontSize' : textFontSize,
+        'textMargin'     : 30, 
         'animation' :
         {
             'type'          : 'spinToStop',
@@ -1145,6 +1189,25 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
  
         // Also re-draw the pointer, otherwise it disappears.
         drawTriangle();
+        
+        document.getElementById("welcome_container").innerHTML='Concluded. Contratulations ..';
+
+                //move closed left to the left
+                var closed_left = document.getElementById("closed_left");
+                var closed_left_pos = closed_left.offsetLeft;
+                var closed_left_pos_new = closed_left_pos + 1000;
+                TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
+
+                //move closed right to the right
+                var closed_right = document.getElementById("closed_right");
+                var closed_right_pos = closed_right.offsetLeft;
+                var closed_right_pos_new = closed_right_pos - 1000;
+                TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
+                
+                
+                setTimeout(function(){
+                    window.location.reload();
+                }, 5000);
     }
 
     function generateRandomColor(){
@@ -1477,6 +1540,7 @@ else
 ?>
 
 <script>
+      $('.outer-curtain').remove();
     //countown from sample date to current date
     var sample_date = new Date("<?php echo $sample_date; ?>");
     var current_date = new Date("<?php echo $current_date; ?>");

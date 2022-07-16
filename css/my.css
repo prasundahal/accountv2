@@ -371,14 +371,14 @@ animation: glowing 1300ms infinite;
     transform: translate(-50%, -50%);
         /* bring to front */
         z-index: 9999;
-        width: 400px;
+        width: 600px;
         height: 120px;
         /* background-color: #237f6a; */
         z-index: 1000;
-        opacity: 0.8;
+        opacity: 1;
         color: #fff;
         text-align: center;
-        font-size: 30px;
+        font-size: 24px;
         font-family: 'Open Sans', sans-serif;
         padding-top: 20px;
         padding-bottom: 20px;

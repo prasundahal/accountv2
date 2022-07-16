@@ -148,10 +148,11 @@
                                       @endif
                                     @endif
                                     <th class="cus-width">Full Name</th>
-                                    <th class="cus-width">Number</th>
-                                    <th class="cus-width">Email</th>
-                                    <th class="cus-width">Fb ID</th>
-                                  
+                                    @if (Auth::user()->role == 'admin')
+                                        <th class="cus-width">Number</th>
+                                        <th class="cus-width">Email</th>
+                                    @endif
+                                        <th class="cus-width">Fb ID</th>
                                     <th class="cus-width">Balance Load</th>
                                     <th class="cus-width">Spiner key</th>
                                     
@@ -203,9 +204,11 @@
                     @endif
 
                     <td class="td-full_name-{{$num['form_id']}}">{{ucwords($num['full_name'])}}</td>
-                    <td class="class td-game_id-{{$num['form_id']}}" data-id="{{$num['form_id']}}" data-type="number">{{($num['number'])}}</td>
-                    <td class="class td-game_id-{{$num['form_id']}}" data-id="{{$num['form_id']}}" data-type="email">{{($num['email'])}}</td>
-                    <td class="td-facebook_name-{{$num['form_id']}}">{{($num['facebook_name'])}}</td>
+                    @if (Auth::user()->role == 'admin')
+                        <td class="class td-game_id-{{$num['form_id']}}" data-id="{{$num['form_id']}}" data-type="number">{{($num['number'])}}</td>
+                        <td class="class td-game_id-{{$num['form_id']}}" data-id="{{$num['form_id']}}" data-type="email">{{($num['email'])}}</td>
+                    @endif
+                        <td class="td-facebook_name-{{$num['form_id']}}">{{($num['facebook_name'])}}</td>
                  
                     <td class="td-load-{{$num['form_id']}}">{{($num['totals']['load'])}}</td>
                     <td class="td-load-{{$num['form_id']}}">

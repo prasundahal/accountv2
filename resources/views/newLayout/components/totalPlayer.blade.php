@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Players </p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">{{$language_texts['total-players']}}</p>
                             <h5 class="font-weight-bolder">
                                 {{count($activeGame['form_games'])}}
                             </h5>

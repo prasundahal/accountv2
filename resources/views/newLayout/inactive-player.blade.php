@@ -43,10 +43,12 @@ use Carbon\Carbon;
                         <th class="cus-width">Full Name</th>
                         <th class="cus-width">Status</th>
                         <th class="cus-width">Note</th>
-                        <th class="cus-width">Number</th>
-                        <th class="cus-width">Email</th>
+                        @if (Auth::user()->role == 'admin')
+                            <th class="cus-width">Number</th>
+                            <th class="cus-width">Email</th>
+                        @endif
+                            <th class="cus-width">Fb ID</th>
                         {{-- <th class="cus-width">Game ID</th> --}}
-                        <th class="cus-width">Fb ID</th>
                         <th style="width: 56.3125px!important;text-align:center;!important">State</th>
                         {{-- <th class="cus-width">Ref Id</th> --}}
                         <th class="cus-width" style="width: 56.3125px!important;text-align:center;!important">Months</th>
@@ -72,10 +74,12 @@ use Carbon\Carbon;
                             </select>
                         </td>
                         <td class="class td-note-{{$num->id}}" data-id="{{$num->id}}">{{($num->note)}}</td>
-                        <td class="td-game_id-{{$num->id}}">{{($num->number)}}</td>
-                        <td class="td-game_id-{{$num->id}}">{{($num->email)}}</td>
+                        @if (Auth::user()->role == 'admin')
+                            <td class="td-game_id-{{$num->id}}">{{($num->number)}}</td>
+                            <td class="td-game_id-{{$num->id}}">{{($num->email)}}</td>
+                        @endif
+                            <td class="td-facebook_name-{{$num->id}}">{{($num->facebook_name)}}</td>
                         {{-- <td class="td-game_id-{{$num->id}}">{{($num->game_id)}}</td> --}}
-                        <td class="td-facebook_name-{{$num->id}}">{{($num->facebook_name)}}</td>
                         <td class="td-mail-{{$num->id}}" style="width: 56.3125px!important;text-align:center;!important">{{ucwords($num->mail)}}</td>
                         {{-- <td class="td-r_id-{{$num->id}}">{{($num->r_id)}}</td> --}}
                         <td class="td-count-{{$num->id}}" style="width: 56.3125px!important;text-align:center;!important">{{($num->count)}}</td>

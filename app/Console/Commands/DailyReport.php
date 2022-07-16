@@ -107,11 +107,11 @@ class DailyReport extends Command
              $settings = GeneralSetting::first()->toArray();
             if(!empty($settings['emails'])){
                 $emails = explode(',',$settings['emails']);
-                Mail::to('joshibipin2052@gmail.com')->send(new ReportMail(json_encode($details)));
-                // foreach($emails as $a){
-                //     Mail::to($a)->send(new reportMail(json_encode($details)));
-                //     Log::channel('dailyReport')->info("Daily Report Mail sent successfully to ".$a);
-                // }
+                // Mail::to('joshibipin2052@gmail.com')->send(new ReportMail(json_encode($details)));
+                foreach($emails as $a){
+                    Mail::to($a)->send(new reportMail(json_encode($details)));
+                    Log::channel('dailyReport')->info("Daily Report Mail sent successfully to ".$a);
+                }
             }else{
                 Log::channel('dailyReport')->info("Empty Today");
             }
