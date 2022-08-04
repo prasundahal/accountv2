@@ -266,14 +266,15 @@ class FormController extends Controller
 
         // Mail::to('prasundahal@gmail.com')->send(new UserNoticMail(json_encode($details)));
 
-        switch($settings->theme) {
-            case('anna'):
-                return view('frontend.'.$settings->theme.'.success')->with('success', 'You should be receiving the confirmation text on the number that you registered. Stay connected with Noor Games for much exciting Bonus & Reward.Happy Playing');;
-                break;
+        return redirect(route('success'));
+        // switch($settings->theme) {
+        //     case('anna'):
+        //         return view('frontend.'.$settings->theme.'.success')->with('success', 'You should be receiving the confirmation text on the number that you registered. Stay connected with Noor Games for much exciting Bonus & Reward.Happy Playing');;
+        //         break;
     
-            default:
-                return view('frontend.'.$settings->theme.'.success')->with('success', 'You should be receiving the confirmation text on the number that you registered. Stay connected with Noor Games for much exciting Bonus & Reward.Happy Playing');;
-        }
+        //     default:
+        //         return view('frontend.'.$settings->theme.'.success')->with('success', 'You should be receiving the confirmation text on the number that you registered. Stay connected with Noor Games for much exciting Bonus & Reward.Happy Playing');;
+        // }
         // Form::create($formdata);      
         // $number  =  '1'.$request->number;
         // $basic  = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
