@@ -119,7 +119,7 @@ class FormController extends Controller
                         'subject' => 'Total Players this month who redeemed more than '.$limit_amount,
                         'type' => 'redeem',
                         'data' => $final_redeem
-                    // ];                    
+                    ];                    
                     // Mail::to('joshibipin2052@gmail.com')->send(new monthlyMail(json_encode($details)));
                 }
                 
