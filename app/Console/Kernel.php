@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ColabUpdate::class,
-        Commands\DailyReport::class,
-        Commands\SpinnerResetForm::class,
+        // Commands\ColabUpdate::class,
+        // Commands\DailyReport::class,
+        // Commands\SpinnerResetForm::class,
         Commands\MonthlyTasks::class
     ];
 
@@ -36,6 +36,9 @@ class Kernel extends ConsoleKernel
          ->monthlyOn(26, '00:00');
          $schedule->command('MonthlyTasks:cron')
          ->monthlyOn(26, '00:00');
+        
+        // $schedule->command('MonthlyTasks:cron')
+        // ->everyMinute();
         //  daily
         //  ->appendOutputTo($filePath)
         //  ->withoutOverlapping();

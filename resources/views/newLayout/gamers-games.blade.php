@@ -94,14 +94,19 @@
             <select class="form-control" name="" id="inactive-players-select">
                 <option value="all" {{((request()->segment(2) == 'all'))?'selected':''}}>All</option>
                 <option value="above-{{$limit_amount}}" {{((request()->segment(2) == 'above-'.$limit_amount))?'selected':''}}>Balance Loaded Over {{$limit_amount}}</option>
-                <option value="between" {{((request()->segment(2) == 'between'))?'selected':''}}>Balance Loaded Between {{($limit_amount - 50)}} && {{($limit_amount)}}</option>
+                <option value="between" {{((request()->segment(2) == 'between'))?'selected':''}}>Balance Loaded Between {{($limit_amount - 200)}} && {{($limit_amount)}}</option>
                 <option value="below-{{($limit_amount)}}" {{((request()->segment(2) == 'below-'.$limit_amount))?'selected':''}}>Balance Loaded Below {{($limit_amount)}}</option>
             </select>
-            
+                        <a class="btn  btn-primary mb-0" href="{{url()->current().'/?month=previous'}}" style="color:white;">Previous Month</a>
+
+            @if (Auth::user()->role == 'admin')
+              <a  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  href="{{route('generateSpinnerKey')}}" style="color:white;">Generate Spinner Key</a>
+            @endif
             @if ($spinner_message == 1)
               @if ($filter_start != 'all')
-                  <button  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  > 
-                    <a href="#popup3" style="color:white;">Send Mail</a></button>
+               <a  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  href="#popup3" style="color:white;">Send Mail</a>
+                  <!--<button > -->
+                  <!-- </button>-->
                   <div id="popup3" class="overlay" style="z-index: 9;">
                     <div class="popup">
                         <h2>Send Mail</h2>
@@ -162,7 +167,7 @@
                    @php
                     $count = 1;
                    @endphp
-                  @foreach($forms as $num)
+                  @foreach($forms as $abc => $num)
                   <tr class="tr-{{$num['form_id']}}">
                     <td class="count-row">{{$count++}}</th>
                     @if ($filter_start != 'all')

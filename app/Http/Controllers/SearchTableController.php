@@ -232,11 +232,41 @@ class SearchTableController extends Controller
                     'game' => request()->get('game')    
                 ));
             }
+            
+            //languages
+            $role = 'cashier';
+            if(Auth::user()->role == $role){
+                $texts = LanguageText::get()->toArray();
+                $arranged_texts = [];
+                foreach($texts as $def => $fgh){
+                    $arranged_texts[$fgh['input']] = $fgh['output'];
+                }
+                $language_texts = $arranged_texts;
+            }else{
+                $language_texts = [
+                    'total-players' => 'TOTAL PLAYERS',
+                    'games' => 'Games',
+                    'authors-table' => 'Just Search The Player Name',
+                    'selected-date' => 'Selected Date',
+                    'add-user' => 'ADD USER',
+                    'sn' => 'SN',
+                    'game-id' => 'GAME ID',
+                    'fb-name' => 'FB NAME',
+                    'balance' => 'BALANCE',
+                    'bonus' => 'BONUS',
+                    'redeem' => 'REDEEM',
+                    'tips' => 'TIPS',
+                    'action' => 'ACTION',
+                    'amount' => 'Amount'
+                ];
+
+            }
             return view('newLayout.components.listTable', [
                 'activeGame' => $activeGame, 
                 'activeCashApp' => $activeCashApp,
                 'formGames' => $formGames, 
-                'indicator' => $indicator
+                'indicator' => $indicator,
+                'language_texts' => $language_texts
             ]);
             
         }

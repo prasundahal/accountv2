@@ -5,7 +5,7 @@ $settings = \App\Models\GeneralSetting::first();
 $spinner_date_new = $settings->spinner_date;
 $spinner_time_new =$settings->spinner_time;
                         
-echo date('Y-m-d H:i:s');
+
 if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
     die("Players list empty. Send data to see the spinner. ");
 }
@@ -71,7 +71,8 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
         .hidden{
             display:none;
         }
-        @media screen and (max-width: 576px) {
+        
+         @media screen and (max-width: 576px) {
             #myVideo {
                 position: fixed;
                 right: -5%;
@@ -79,6 +80,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
                 height: 100vh;
             }
         }
+    
         .input-group.border-custom {
             border:0;
         }
@@ -98,12 +100,13 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             justify-content:center;
             /*position:relative;*/
             position:fixed;
-            width:100vw !important;
+            width:95vw !important;
         }
  
         .aside{
             width:100%;
             background:rgba(0,0,0,0.6) ;
+            z-index:105;
         }
 
         .canvas-wrap{
@@ -116,6 +119,10 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
         #canvas{
             position: relative;
             width: 32vw;
+    /*        -webkit-transition: width 1s ease-in-out;*/
+    /*-moz-transition: width 0.5s ease-in-out;*/
+    /*-o-transition: width 0.5s ease-in-out;*/
+    /*transition: width 0.5s ease-in-out;*/
         }
 
         .player-list{
@@ -131,8 +138,8 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             /*background:rgba(0,0,0,0.6) !important;*/
             width:100%;
         }
-
-        @media screen and (max-width: 750px) {
+        
+          @media screen and (max-width: 750px) {
             #main-container{
                 display:flex;
                 flex-direction:column;
@@ -143,7 +150,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             #main-container :nth-child(3) { order: 3; }
 
             #canvas{
-                width:50vw;
+                width:100vw;
             }
 
             .player-list,.player-list2,.player-list>table,.player-list2>table{
@@ -151,6 +158,8 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
                 left:70px;
             }
         }
+
+    
         .player-list2{
             position: absolute;
             right: 11%;
@@ -234,9 +243,9 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 </head>
 
 <body>
-    <div id="preload">
-        <img src="{{asset('public/img/curt_1.gif')}}"/>
-    </div>
+    <!--<div id="preload">-->
+    <!--    <img src="{{asset('public/img/curt_1.gif')}}"/>-->
+    <!--</div>-->
         <!--<div class="outer-curtain">-->
         <!--    <div class="tcell">-->
         <!--        <div class="curtain-wrapper">-->
@@ -246,7 +255,334 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         <!--        </div>-->
         <!--    </div>-->
         <!--</div>-->
+        
+                <script>
+            var confetti = {
+	maxCount: 150,		//set max confetti count
+	speed: 2,			//set the particle animation speed
+	frameInterval: 15,	//the confetti animation frame interval in milliseconds
+	alpha: 1.0,			//the alpha opacity of the confetti (between 0 and 1, where 1 is opaque and 0 is invisible)
+	gradient: false,	//whether to use gradients for the confetti particles
+	start: null,		//call to start confetti animation (with optional timeout in milliseconds, and optional min and max random confetti count)
+	stop: null,			//call to stop adding confetti
+	toggle: null,		//call to start or stop the confetti animation depending on whether it's already running
+	pause: null,		//call to freeze confetti animation
+	resume: null,		//call to unfreeze confetti animation
+	togglePause: null,	//call to toggle whether the confetti animation is paused
+	remove: null,		//call to stop the confetti animation and remove all confetti immediately
+	isPaused: null,		//call and returns true or false depending on whether the confetti animation is paused
+	isRunning: null		//call and returns true or false depending on whether the animation is running
+};
+
+(function() {
+	confetti.start = startConfetti;
+	confetti.stop = stopConfetti;
+	confetti.toggle = toggleConfetti;
+	confetti.pause = pauseConfetti;
+	confetti.resume = resumeConfetti;
+	confetti.togglePause = toggleConfettiPause;
+	confetti.isPaused = isConfettiPaused;
+	confetti.remove = removeConfetti;
+	confetti.isRunning = isConfettiRunning;
+	var supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
+	var colors = ["rgba(30,144,255,", "rgba(107,142,35,", "rgba(255,215,0,", "rgba(255,192,203,", "rgba(106,90,205,", "rgba(173,216,230,", "rgba(238,130,238,", "rgba(152,251,152,", "rgba(70,130,180,", "rgba(244,164,96,", "rgba(210,105,30,", "rgba(220,20,60,"];
+	var streamingConfetti = false;
+	var animationTimer = null;
+	var pause = false;
+	var lastFrameTime = Date.now();
+	var particles = [];
+	var waveAngle = 0;
+	var context = null;
+
+	function resetParticle(particle, width, height) {
+		particle.color = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
+		particle.color2 = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
+		particle.x = Math.random() * width;
+		particle.y = Math.random() * height - height;
+		particle.diameter = Math.random() * 10 + 5;
+		particle.tilt = Math.random() * 10 - 10;
+		particle.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
+		particle.tiltAngle = Math.random() * Math.PI;
+		return particle;
+	}
+
+	function toggleConfettiPause() {
+		if (pause)
+			resumeConfetti();
+		else
+			pauseConfetti();
+	}
+
+	function isConfettiPaused() {
+		return pause;
+	}
+
+	function pauseConfetti() {
+		pause = true;
+	}
+
+	function resumeConfetti() {
+		pause = false;
+		runAnimation();
+	}
+
+	function runAnimation() {
+		if (pause)
+			return;
+		else if (particles.length === 0) {
+			context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+			animationTimer = null;
+		} else {
+			var now = Date.now();
+			var delta = now - lastFrameTime;
+			if (!supportsAnimationFrame || delta > confetti.frameInterval) {
+				context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+				updateParticles();
+				drawParticles(context);
+				lastFrameTime = now - (delta % confetti.frameInterval);
+			}
+			animationTimer = requestAnimationFrame(runAnimation);
+		}
+	}
+
+	function startConfetti(timeout, min, max) {
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+		window.requestAnimationFrame = (function() {
+			return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame ||
+				window.msRequestAnimationFrame ||
+				function (callback) {
+					return window.setTimeout(callback, confetti.frameInterval);
+				};
+		})();
+		var canvas = document.getElementById("confetti-canvas");
+		if (canvas === null) {
+			canvas = document.createElement("canvas");
+			canvas.setAttribute("id", "confetti-canvas");
+			canvas.setAttribute("style", "display:block;z-index:11;pointer-events:none;position:fixed;top:0");
+			document.body.prepend(canvas);
+			canvas.width = width;
+			canvas.height = height;
+			window.addEventListener("resize", function() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}, true);
+			context = canvas.getContext("2d");
+		} else if (context === null)
+			context = canvas.getContext("2d");
+		var count = confetti.maxCount;
+		if (min) {
+			if (max) {
+				if (min == max)
+					count = particles.length + max;
+				else {
+					if (min > max) {
+						var temp = min;
+						min = max;
+						max = temp;
+					}
+					count = particles.length + ((Math.random() * (max - min) + min) | 0);
+				}
+			} else
+				count = particles.length + min;
+		} else if (max)
+			count = particles.length + max;
+		while (particles.length < count)
+			particles.push(resetParticle({}, width, height));
+		streamingConfetti = true;
+		pause = false;
+		runAnimation();
+		if (timeout) {
+			window.setTimeout(stopConfetti, timeout);
+		}
+	}
+
+	function stopConfetti() {
+		streamingConfetti = false;
+	}
+
+	function removeConfetti() {
+		stop();
+		pause = false;
+		particles = [];
+	}
+
+	function toggleConfetti() {
+		if (streamingConfetti)
+			stopConfetti();
+		else
+			startConfetti();
+	}
+	
+	function isConfettiRunning() {
+		return streamingConfetti;
+	}
+
+	function drawParticles(context) {
+		var particle;
+		var x, y, x2, y2;
+		for (var i = 0; i < particles.length; i++) {
+			particle = particles[i];
+			context.beginPath();
+			context.lineWidth = particle.diameter;
+			x2 = particle.x + particle.tilt;
+			x = x2 + particle.diameter / 2;
+			y2 = particle.y + particle.tilt + particle.diameter / 2;
+			if (confetti.gradient) {
+				var gradient = context.createLinearGradient(x, particle.y, x2, y2);
+				gradient.addColorStop("0", particle.color);
+				gradient.addColorStop("1.0", particle.color2);
+				context.strokeStyle = gradient;
+			} else
+				context.strokeStyle = particle.color;
+			context.moveTo(x, particle.y);
+			context.lineTo(x2, y2);
+			context.stroke();
+		}
+	}
+
+	function updateParticles() {
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+		var particle;
+		waveAngle += 0.01;
+		for (var i = 0; i < particles.length; i++) {
+			particle = particles[i];
+			if (!streamingConfetti && particle.y < -15)
+				particle.y = height + 100;
+			else {
+				particle.tiltAngle += particle.tiltAngleIncrement;
+				particle.x += Math.sin(waveAngle) - 0.5;
+				particle.y += (Math.cos(waveAngle) + particle.diameter + confetti.speed) * 0.5;
+				particle.tilt = Math.sin(particle.tiltAngle) * 15;
+			}
+			if (particle.x > width + 20 || particle.x < -20 || particle.y > height) {
+				if (streamingConfetti && particles.length <= confetti.maxCount)
+					resetParticle(particle, width, height);
+				else {
+					particles.splice(i, 1);
+					i--;
+				}
+			}
+		}
+	}
+})();
+
+const start = () => {
+            setTimeout(function() {
+                confetti.start()
+            }, 1000); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
+        };
+
+        //  for stopping the confetti 
+
+        const stop = () => {
+            setTimeout(function() {
+                confetti.stop()
+            }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+        };
+// after this here we are calling both the function so it works
+        // start();
+        // stop();
+        </script>
     
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal_main_content" style="font-size:18px">
+        <center>
+            <img src="https://noorgames.net/images/dragonnn.gif" style="width:100px"> <br><br>🎉 Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text>, you have won the first monthly spinner of noor games 🎉<br><br>
+Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.  <br><br>Sincerely,<br>Noor Games<br>
+        </center>
+      </div>
+    </div>
+
+</div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    //show modal window 
+    document.getElementById("myModal").style.display = "none";
+    
+    //close the modal window when the user clicks outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    
+    </script>
+    
+    <style>
+        
+    
+  /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgb(0 0 0 / 30%); /* Black w/ opacity */
+  }
+
+  
+
+/* Modal Content */
+.modal-content {
+    background-color:#ffffff;
+    margin: auto;
+    padding: 20px;
+    border: none;
+    max-width: 400px;
+    font-size:14px;
+    color:black;
+    margin-bottom: 100px;
+      padding-bottom: 30px;
+      border-radius: 0px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    margin-top:-10px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color:#2a2a2a;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+    </style>
         
          <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" />
         <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" />
@@ -256,6 +592,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         <text id="countdown" class="neon-text2" style="font-size:35px"> Loading..</text>
         <img src="https://noorgames.net/images/dragonnn.gif" id="mainlogo">
        </div>
+    </div>
     </div>
     
     <script>
@@ -369,6 +706,7 @@ function convertTZ(date, tzString) {
             timeleft--;
             document.getElementById("countdown").textContent = secondsToDhms(timeleft);
             if(timeleft == 10){
+               
                 setTimeout(function() {
           
                   //remove canvas_main div
@@ -396,10 +734,13 @@ function convertTZ(date, tzString) {
        </div>
     </div>
     `;
+    
+    TweenMax.to("#timer", 0.5, {top:"50px"});
             }
             
             if(timeleft == 0){
                 document.getElementById("welcome_container").innerHTML='';
+                calculatePrize();
             }
             
           },1000);
@@ -407,15 +748,15 @@ function convertTZ(date, tzString) {
 
         
     <div class="page-wrapper font-robo">
-        <video autoplay muted loop id="myVideo" style="display:none">
-            <source src="{{url('images/fin.mp4')}}" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
+        <!--<video autoplay muted loop id="myVideo" style="display:none">-->
+            <!--<source src="{{url('images/fin.mp4')}}" type="video/mp4">-->
+        <!--    Your browser does not support HTML5 video.-->
+        <!--</video>-->
         <div id="main-container">
             <div class="aside gradient-border">
                 <div class="text-center mt-4" style="height:100vh">
-                    <div id="image-carousel" class="carousel slide" data-ride="carousel" style="margin-left:85px">
-                        <div class="player-list neon-text" style="height:100vh !important;font-family:cursive;background:rgba(0,0,0,0.6) ">
+                    <div id="image-carouseld" class="carousel slided" data-ride="carouseld" style="margin-left:85px">
+                         <div class="player-list neon-text" style="height:100vh !important;font-family:cursive;background:rgba(0,0,0,0.6) ">
                             <div style="width:22vw;">
                                 <strong>
                                     <h3 style="margin-left:25px">
@@ -439,26 +780,26 @@ function convertTZ(date, tzString) {
                     <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
                     <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
                     <!--</ol>-->
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">
-                            </div>
-                        </div>
+                        <!--<div class="carousel-inner">-->
+                        <!--    <div class="carousel-item active">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">-->
+                        <!--    </div>-->
+                        <!--</div>-->
                         <!--<a class="carousel-control-prev" href="#image-carousel" role="button" data-slide="prev">-->
                         <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
                         <!--    <span class="sr-only">Previous</span>-->
@@ -473,7 +814,7 @@ function convertTZ(date, tzString) {
                 </div>
             </div>
             <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
-                <table style="position:relative;top:10%;">
+                <table style="position:relative;top:12%;">
                     @php
                         $settings = \App\Models\GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;
@@ -570,7 +911,7 @@ function convertTZ(date, tzString) {
                                 <h4>
                                     <b>
                                         <span class="neon-text font-weight-bold">Copyright Noorgames</span>
-                                        <span class="just-neon">© 2021</span> <span class="neon-text"> All Rights Reserved</span>
+                                        <span class="just-neon">© 2022</span> <span class="neon-text"> All Rights Reserved</span>
                                     </b>
                                 </h4>
                             </div>
@@ -599,26 +940,26 @@ function convertTZ(date, tzString) {
                         <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
                         <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
                         <!--</ol>-->
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">
-                            </div>
-                        </div>
+                        <!--<div class="carousel-inner">-->
+                        <!--    <div class="carousel-item active">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">-->
+                        <!--    </div>-->
+                        <!--</div>-->
                         <!--<a class="carousel-control-prev" href="#image-carousel" role="button" data-slide="prev">-->
                         <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
                         <!--    <span class="sr-only">Previous</span>-->
@@ -693,7 +1034,7 @@ function convertTZ(date, tzString) {
             <h4>
                 <b>
                     <span class="neon-text font-weight-bold">Copyright Noorgames</span>
-                    <span class="just-neon">© 2021</span> <span class="neon-text"> All Rights Reserved</span>
+                    <span class="just-neon">© 2022</span> <span class="neon-text"> All Rights Reserved</span>
                 </b>
             </h4>
         </div>
@@ -1083,17 +1424,17 @@ function convertTZ(date, tzString) {
     else if(player_info_length<30) textFontSize=15;
     else if(player_info_length<80) textFontSize=10;
     else textFontSize=10;
-    textFontSize=15;
+    textFontSize=12;
     
     segments.push({
         fillStyle:radGradient,
         offset: 1.0,
         text: ""+counter++,
-        lineWidth: 4,
+        lineWidth: 1,
         'strokeStyle' : '#ccbe00',
-        'textFontFamily' : 'Georgia',
+        // 'textFontFamily' : 'Georgia',
         'textAlignment' : 'outer',
-        'textOrientation' : 'curved',
+        // 'textOrientation' : 'curved',
         'textFontSize'    : textFontSize,
         'textFillStyle'   : '#ffee00'
         // text: element.player_name
@@ -1107,6 +1448,7 @@ function convertTZ(date, tzString) {
     var winner_info_id = jsonData.winner_info.player_id;
 
     // document.getElementById("winnerinfo").innerHTML = "<br>winner will be "+jsonData.winner_info.player_name;
+    document.getElementById("winnerinfolaters").innerHTML = jsonData.winner_info.player_name;
 
     //get the index of winner info id
     var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
@@ -1137,34 +1479,40 @@ function convertTZ(date, tzString) {
     let theWheel = new Winwheel({
        'numSegments'    : player_info_length,
         'innerRadius'   : 80,   
-        'outerRadius'    : 200,
+        'outerRadius'    : 240,
         'segments'       : segments,
         'textFontSize' : textFontSize,
-        'textMargin'     : 30, 
+        'textMargin'     : 10, 
         'animation' :
         {
             'type'          : 'spinToStop',
-            'duration'      : 30,
-            'spins'         : 20,
+            'duration'      : 10,
+            'spins'         : 5,
             'callbackAfter' : 'drawTriangle()',
             'callbackSound' : playSound,
-            'callbackFinished' : 'winAnimation()',
-            'soundTrigger'  : 'pin'
-        },
-        'pins' : true,
-        'pins' :    // Specify pin parameters.
-        {
-            'number'      : player_info_length*2,
-            'outerRadius' : 5,
-            'margin'      : 10,
-            'fillStyle'   : '#c28942',
-            'strokeStyle' : '#c28942'
+            'callbackFinished' : 'winAnimation()'
         }
+        // 'pins' :    // Specify pin parameters.
+        // {
+        //     'number'      : player_info_length*2,
+        //     'outerRadius' : 5,
+        //     'margin'      : 10,
+        //     'fillStyle'   : '#c28942',
+        //     'strokeStyle' : '#c28942'
+        // }
     });
 
     let audio = new Audio('assets/tick.mp3');  // Create audio object and load desired file.
+    
+    function showWinnerInfo() {
+    document.getElementById("myModal").style.display = "block";
+}
 
     function winAnimation() {
+        start();
+        document.getElementById('canvas').style.width = '500px';
+            document.getElementById('canvas').style.height = '500px';
+            
         // Get the number of the winning segment.
         let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
  
@@ -1190,24 +1538,31 @@ function convertTZ(date, tzString) {
         // Also re-draw the pointer, otherwise it disappears.
         drawTriangle();
         
-        document.getElementById("welcome_container").innerHTML='Concluded. Contratulations ..';
-
-                //move closed left to the left
-                var closed_left = document.getElementById("closed_left");
-                var closed_left_pos = closed_left.offsetLeft;
-                var closed_left_pos_new = closed_left_pos + 1000;
-                TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
-
-                //move closed right to the right
-                var closed_right = document.getElementById("closed_right");
-                var closed_right_pos = closed_right.offsetLeft;
-                var closed_right_pos_new = closed_right_pos - 1000;
-                TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
-                
-                
-                setTimeout(function(){
-                    window.location.reload();
-                }, 5000);
+        showWinnerInfo();
+        
+        setTimeout(function(){
+            document.getElementById("welcome_container").innerHTML='Concluded. Contratulations ..';
+            
+            
+            
+    
+                    //move closed left to the left
+                    var closed_left = document.getElementById("closed_left");
+                    var closed_left_pos = closed_left.offsetLeft;
+                    var closed_left_pos_new = closed_left_pos + 1000;
+                    TweenMax.to(closed_left, 3, {left:closed_left_pos_new});
+    
+                    //move closed right to the right
+                    var closed_right = document.getElementById("closed_right");
+                    var closed_right_pos = closed_right.offsetLeft;
+                    var closed_right_pos_new = closed_right_pos - 1000;
+                    TweenMax.to(closed_right, 3, {left:closed_right_pos_new});
+                    
+                    
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 5000);
+        },10000);
     }
 
     function generateRandomColor(){
@@ -1241,6 +1596,13 @@ function convertTZ(date, tzString) {
 
         // Important thing is to set the stopAngle of the animation before stating the spin.
         theWheel.animation.stopAngle = stopAt;
+        
+        setTimeout(function(){
+            document.getElementById('canvas').style.width = '1000px';
+            document.getElementById('canvas').style.height = '1000px';
+        }, 6000);
+        
+        theWheel.draw();
 
         // Start the spin animation here.
         theWheel.startAnimation();
@@ -1257,10 +1619,10 @@ function convertTZ(date, tzString) {
         ctx.fillStyle   = '#ccbe00';     // Set fill colour.
         ctx.lineWidth   = 3;
         ctx.beginPath();              // Begin path.
-        ctx.moveTo(250, 15);           // Move to initial position.
+        ctx.moveTo(250, 10);           // Move to initial position.
         ctx.lineTo(250, 0);           // Draw lines to make the shape.
-        ctx.lineTo(250, 50);
-        ctx.lineTo(250, 15);
+        ctx.lineTo(250, 20);
+        ctx.lineTo(250, 10);
         ctx.stroke();                 // Complete the path by stroking (draw lines).
         ctx.fill();                   // Then fill
     }
@@ -1540,7 +1902,6 @@ else
 ?>
 
 <script>
-      $('.outer-curtain').remove();
     //countown from sample date to current date
     var sample_date = new Date("<?php echo $sample_date; ?>");
     var current_date = new Date("<?php echo $current_date; ?>");

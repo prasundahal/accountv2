@@ -95,7 +95,8 @@ $(document).ready(function() {
                     activeGameId: activeGameId,
                 },
                 success:function(data){
-                    $('.authorTable').html(data)
+                    $('.authorTable').html(data);
+                    removeButton();
                 }
             })
             // $("tbody > tr").filter(function() {
@@ -2135,8 +2136,8 @@ $(document).ready(function() {
             });
         });
     }
-
-        $(function() {
+        function removeButton(){
+            $(function() {
             $('.remove-form-game').on('click', function(e) {
                 var gameTitle = $(".tip-from").attr("data-title");
                 var gameId = $(this).attr("data-game");
@@ -2204,6 +2205,8 @@ $(document).ready(function() {
                 });
             });
         });
+        }
+        removeButton();
         $(function() {
             $('.edit-game-table').on('click', function(e) {
                 $('.game_id').val($(this).data('id'));

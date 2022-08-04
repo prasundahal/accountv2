@@ -62,6 +62,7 @@ Route::get('/test1',function()
 });
 
 
+Route::get('test', [FormController::class, 'test'])->name('test');
 Route::post('add/form', [FormController::class, 'store'])->name('forms.stores');
 Route::post('saveForm', [FormNumberConroller::class, 'store'])->name('forms.saveForm');
 Route::post('saveNote', [FormNumberConroller::class, 'saveNote'])->name('forms.saveNote');
@@ -144,7 +145,7 @@ Route::post('/gamers/update-balance', [App\Http\Controllers\NewHomeController::c
 
 
 Route::get('/spinner', [App\Http\Controllers\NewHomeController::class, 'spinner'])->name('spinner');
-Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'userSpinnerLatest'])->name('spinnerForm');
+Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'userSpinner'])->name('spinnerForm');
 Route::get('/send-mail-to-winner', [App\Http\Controllers\NewHomeController::class, 'sendMailToWinner'])->name('sendMailToWinner');
 Route::get('/winner-form/{token}', [App\Http\Controllers\NewHomeController::class, 'spinnerForm'])->name('winnerForm');
 Route::post('/spinner-form-save', [App\Http\Controllers\NewHomeController::class, 'spinnerFormSave'])->name('spinnerFormSave');
@@ -189,6 +190,9 @@ Route::post('/games/images/store/', [App\Http\Controllers\NewHomeController::cla
 
 Route::get('/gamers-games/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerGames'])->name('gamerGames');
 Route::post('/send-message', [App\Http\Controllers\NewHomeController::class, 'sendMessage'])->name('send-message');
+Route::post('/send-message-inactive', [App\Http\Controllers\NewHomeController::class, 'sendMessageInactive'])->name('send-message-inactive');
+Route::get('/remove-from-game/{id}', [App\Http\Controllers\NewHomeController::class, 'removePlayer'])->name('remove-from-game');
+
 Route::post('/send-sms', [App\Http\Controllers\NewHomeController::class, 'sendSMS'])->name('send-sms');
 Route::post('/updateForm', [App\Http\Controllers\NewHomeController::class, 'updateForm'])->name('updateForm');
 Route::get('/settings',[App\Http\Controllers\NewHomeController::class,'settings'])->name('settings')->middleware('admin');
@@ -196,6 +200,11 @@ Route::post('/settings-update',[App\Http\Controllers\NewHomeController::class,'s
 Route::post('/gameids',[App\Http\Controllers\NewHomeController::class,'gameids'])->name('gameids')->middleware('admin');
 Route::get('/user-details/{id}',[App\Http\Controllers\NewHomeController::class,'userDetails'])->name('userDetails')->middleware('admin');
 Route::post('/updateGameId',[App\Http\Controllers\NewHomeController::class,'updateGameId'])->name('updateGameId')->middleware('admin');
+Route::get('/generateSpinnerKey/', [App\Http\Controllers\NewHomeController::class, 'generateSpinnerKey'])->name('generateSpinnerKey');
+Route::get('/spinner-winner', [App\Http\Controllers\NewHomeController::class, 'spinnerWinner'])->name('spinner-winner');
+Route::get('/get-players-list', [App\Http\Controllers\NewHomeController::class, 'getPlayersList'])->name('get-players-list');
+Route::post('/set-winner', [App\Http\Controllers\NewHomeController::class, 'setWinner'])->name('set-winner');
+
 
 
 Route::get('/user-spinner', [App\Http\Controllers\NewHomeController::class, 'userSpinner'])->name('userSpinner');

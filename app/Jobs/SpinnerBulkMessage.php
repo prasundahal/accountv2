@@ -164,7 +164,7 @@ class SpinnerBulkMessage implements ShouldQueue
                     }
                 }
             }else{
-                $limit_1 = $limit_amount - 50;
+                $limit_1 = $limit_amount - 200;
                 $limit_2 = $limit_amount;
                 if($b['totals']['load']  >= $limit_1){
                     if($b['totals']['load']  < $limit_2){  

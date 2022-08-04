@@ -15,6 +15,72 @@ use Carbon\Carbon;
     .select2{
         width: 100% !important;
     }
+    
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 9999;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50% ;
+  position: relative;
+  transition: all 5s ease-in-out;
+ 
+  
+
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+
+}
+.popup .close:hover {
+  color: #FF9800;
+}
+.popup .content {
+  max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
 </style>
 <div class="row justify-content-center">
     <div class="col-12 card">
@@ -25,6 +91,33 @@ use Carbon\Carbon;
                 <option value="20" {{(isset($days) && ($days == 20))?'selected':''}}>Inactive since 20 days</option>
             </select>
         </div>
+        <button  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  > 
+            <a href="#popup3" style="color:white;">Send Mail</a></button>
+          <div id="popup3" class="overlay" style="z-index: 9;">
+            <div class="popup">
+                <h2>Send Mail</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content ">
+                  <form action="{{route('send-message-inactive')}}" method="post">
+                      @csrf
+                      <input name="id" type="hidden" value="0" class="form-id">
+                      <input name="days" type="hidden" value="{{$days}}">
+                  <div class="row">
+                      <div class="form-group">
+                        <label for="cars">Message</label>
+                            <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>              
+                          
+                      </div>
+                      <button type="submit"  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  >Send</button>
+                
+                  </div>
+                </form>
+                  </div>
+            </div>
+          </div>
+          <p>
+            This Data is of {{$days}} days prior.
+        </p>  
     </div>
     <div class="col-md-12 card">
         <div class="card-body">

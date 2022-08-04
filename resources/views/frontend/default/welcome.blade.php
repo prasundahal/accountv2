@@ -296,7 +296,7 @@
                     </br>
             
             <script>
-                document.getElementById("captcha_image").src="https://test.noorgames.net/captcha_image.php?"+Math.random();
+                document.getElementById("captcha_image").src="https://noorgames.net/captcha_image.php?"+Math.random();
                 var captchaImage = document.getElementById("captcha_image");
                 
                 var refreshButton = document.getElementById("refresh-captcha");
@@ -308,7 +308,7 @@
 
 
                     <div class="text-center pt-3">
-                        <h4><b><span class="neon-text font-weight-bold">Copyright Noorgames</span> <span class="just-neon">© 2021</span> <span class="neon-text"> All Rights Reserved</span><b></h4>
+                        <h4><b><span class="neon-text font-weight-bold">Copyright Noorgames</span> <span class="just-neon">© 2022</span> <span class="neon-text"> All Rights Reserved</span><b></h4>
                     </div>
                    </div>
                 </div>
