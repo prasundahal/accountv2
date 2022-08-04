@@ -80,10 +80,10 @@ Route::get('success', function () {
             return view('frontend.'.$theme->theme.'.success');
     }
     // return view('success');
-});
+})->name('success');
 Route::get('formsuccess', function () {
     return view('formsuccess');
-})->name('success');
+});
 
 
 //admin route
