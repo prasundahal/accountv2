@@ -83,7 +83,7 @@ Route::get('success', function () {
 });
 Route::get('formsuccess', function () {
     return view('formsuccess');
-});
+})->name('success');
 
 
 //admin route
