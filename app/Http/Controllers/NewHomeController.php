@@ -3581,6 +3581,7 @@ public function tableop()
                 }
             }
             $forms = $final_2;
+            // dd($final_2);
             
             // foreach($forms as $a => $b){
                 
