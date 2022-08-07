@@ -134,7 +134,7 @@ class SpinnerBulkMessage implements ShouldQueue
         // $second = array_slice($final, 1, 1, true);
         // $second_key = key($second);
         foreach ($final as $a => $b){
-            if($a == 1024 || $a == 455 || $a == 784|| $a == 679|| $a == 866|| $a == 11|| $a == 732|| $a == 69|| $a == 226|| $a == 327|| $a == 415|| $a == 391|| $a == 403|| $a == 935|| $a == 43|| $a == 269|| $a == 1003|| $a == 982|| $a == 668|| $a == 756|| $a == 863|| $a == 547){
+            // if($a == 1024 || $a == 455 || $a == 784|| $a == 679|| $a == 866|| $a == 11|| $a == 732|| $a == 69|| $a == 226|| $a == 327|| $a == 415|| $a == 391|| $a == 403|| $a == 935|| $a == 43|| $a == 269|| $a == 1003|| $a == 982|| $a == 668|| $a == 756|| $a == 863|| $a == 547){
                 // if($b['email'] == ''){
 
                 // }else{
@@ -212,7 +212,7 @@ class SpinnerBulkMessage implements ShouldQueue
                         }
                     }
                 }
-            }
+            // }
         }
     }
 }
