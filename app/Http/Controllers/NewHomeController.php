@@ -3162,7 +3162,7 @@ public function tableop()
         $type = $request->type;
         $message = $request->message;
         $limit_amount = $this->limit_amount;
-
+        dd($request->id > 0);
         if($request->id > 0){
             try
                 {
