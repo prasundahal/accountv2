@@ -43,7 +43,8 @@ class NewHomeController extends Controller
     public function __construct()
     {
         $settings = GeneralSetting::first()->toArray();
-        $this->limit_amount = $settings['limit_amount'];
+        // $this->limit_amount = $settings['limit_amount'];
+        $this->limit_amount = 1000;
         $this->spinner_message_monthly = $settings['spinner_message_monthly'];
         $this->spinner_message = $settings['spinner_message'];
         
@@ -3371,8 +3372,10 @@ public function tableop()
     }
     public function gamerGames($id)
     {
+        $limit_amount = $this->limit_amount;
         $type = $id;
- $prev = isset($_GET['month'])?$_GET['month']:'';
+        // $limit_amount = 3000;
+        $prev = isset($_GET['month'])?$_GET['month']:'';
         if($type == 'all'){
 
             $history = History::with('account')->with('form')
@@ -3544,18 +3547,18 @@ public function tableop()
             $limit = 0;
             $final_2 = [];
             if(!empty($final)){
-                $key = key($final);
-                $second = array_slice($final, 1, 1, true);
-                $second_key = key($second);
+                // $key = key($final);
+                // $second = array_slice($final, 1, 1, true);
+                // $second_key = key($second);
                 foreach ($final as $a => $b){
-                    if($a == $key || $a == $second_key){
-                        if($type == 'above-'.$this->limit_amount){
+                    // if($a == $key || $a == $second_key){
+                        if($type == 'above-'.$limit_amount){
                             
-                            // if($b['totals']['load']  >= $this->limit_amount){
+                            if($b['totals']['load']  >= $limit_amount){
                                 array_push($final_2,$b);
-                            // }
-                        }elseif($type == 'below-'.$this->limit_amount){
-                            if($b['totals']['load']  <  $this->limit_amount){
+                            }
+                        }elseif($type == 'below-'.$limit_amount){
+                            if($b['totals']['load']  <  $limit_amount){
                                 array_push($final_2,$b);
                             }
                         }else{
@@ -3567,7 +3570,7 @@ public function tableop()
                                 }
                             }
                         }
-                    }
+                    // }
                 }
             }
             $forms = $final_2;

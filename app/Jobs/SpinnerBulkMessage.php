@@ -67,8 +67,8 @@ class SpinnerBulkMessage implements ShouldQueue
         $filter_start = $year.'-'.$month.'-01';
         // $filter_end = Carbon::now();
         $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
-        Log::info('filter_start: '.json_encode($filter_start));
-        Log::info('filter_end: '.json_encode($filter_end));
+        // Log::info('filter_start: '.json_encode($filter_start));
+        // Log::info('filter_end: '.json_encode($filter_end));
 
         // $month = date('m');
         // if($month >10){
@@ -133,7 +133,6 @@ class SpinnerBulkMessage implements ShouldQueue
         $key = key($final);
         $second = array_slice($final, 1, 1, true);
         $second_key = key($second);
-        Log::info('Showing the user profile for user: '.json_encode($final));
         foreach ($final as $a => $b){
             if($a == $key || $a == $second_key){
                 $input['email'] = $b['email'];
@@ -141,13 +140,6 @@ class SpinnerBulkMessage implements ShouldQueue
                 $input['load'] = $b['totals']['load'];
 
                 $token_id = $b['spinner_key'];
-
-                
-               
-                //
-                // $form = Form::where('id', $b['form_id'])->update(['balance' => 1]);
-                
-                    // , 'token' => $token_id
                 $form = [
                     'name' => $input['name'],
                     'message' => $message,
