@@ -3552,12 +3552,17 @@ public function tableop()
                 // $key = key($final);
                 // $second = array_slice($final, 1, 1, true);
                 // $second_key = key($second);
+                $count = 0;
                 foreach ($final as $a => $b){
+                    $count++;
                     // if($a == $key || $a == $second_key){
                         if($type == 'above-'.$limit_amount){
                             
                             if($b['totals']['load']  >= $limit_amount){
+                                // if($count > 101){
+                                    
                                 array_push($final_2,$b);
+                                // }
                             }
                         }elseif($type == 'below-'.$limit_amount){
                             if($b['totals']['load']  <  $limit_amount){
@@ -3576,6 +3581,8 @@ public function tableop()
                 }
             }
             $forms = $final_2;
+            dd($final_2);
+            
             // foreach($forms as $a => $b){
                 
             //                 $token_id = Str::random(32);
