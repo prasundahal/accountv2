@@ -3095,12 +3095,20 @@ public function tableop()
         return Response::json('true');
     }
     public function getHistory($id){
+        $year = date('Y');
         $month = date('m');
+        if($month != 1){
+            $month = $month - 1;
+        }else{
+            $month = 12;
+
+        }
         if($month >10){
             $month = '0'.$month;
         }
-        $filter_start = '2022-'.$month.'-01';
-        $filter_end = Carbon::now();
+        $filter_start = $year.'-'.$month.'-01';
+        
+        $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
         $history = History::with('account')
                             ->where('form_id',$id)
                             ->with('form')
@@ -3162,13 +3170,13 @@ public function tableop()
         $type = $request->type;
         $message = $request->message;
         $limit_amount = $this->limit_amount;
-        dd($request->id > 0);
         if($request->id > 0){
             try
                 {
                     $input2 = self::getHistory($request->id);
                     // $input = Form::where('id',$request->id)->first()->toArray();
                     
+        // dd($request->id,$input2);
                     foreach($input2 as $a => $input){
                         
                     // $token_id = Str::random(32);
