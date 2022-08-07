@@ -3193,7 +3193,7 @@ public function tableop()
                              try
                                  {
                                      Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
+                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].' individual');
                                      return redirect()->back()->withInput()->with('success', 'Mail Sent');
                                  }
                              catch(\Exception $e)
@@ -3212,7 +3212,7 @@ public function tableop()
                              try
                              {
                                  Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
+                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].' individual');
                                  return redirect()->back()->withInput()->with('success', 'Mail Sent');
                              }
                              catch(\Exception $e)
@@ -3233,7 +3233,7 @@ public function tableop()
                                  try
                                  {
                                      Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
+                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].' individual');
                                      return redirect()->back()->withInput()->with('success', 'Mail Sent');
                                  }
                                  catch(\Exception $e)
