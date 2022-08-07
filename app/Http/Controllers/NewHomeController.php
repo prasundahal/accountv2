@@ -3554,9 +3554,9 @@ public function tableop()
                     if($a == $key || $a == $second_key){
                         if($type == 'above-'.$limit_amount){
                             
-                            if($b['totals']['load']  >= $limit_amount){
+                            // if($b['totals']['load']  >= $limit_amount){
                                 array_push($final_2,$b);
-                            }
+                            // }
                         }elseif($type == 'below-'.$limit_amount){
                             if($b['totals']['load']  <  $limit_amount){
                                 array_push($final_2,$b);
