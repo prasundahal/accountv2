@@ -1045,21 +1045,23 @@ public function tableop()
 
             $year = date('Y');
             $month = date('m');
-            $month = $month-1;
-            // if($month < 10){
-            //     $month = '0'.$month;
-            // }
+            if($month != 1){
+                $month = $month - 1;
+            }
+        if($month >10){
+            $month = '0'.$month;
+        }
             $filter_start = $year.'-'.$month.'-01';
             $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
             // $filter_end = date("Y-m-t", strtotime(Carbon::now()));
             $compare_amount = $this->limit_amount;
             $historys = History::where('type', 'load')
-                ->whereBetween('created_at',[date($filter_start),date($filter_end)])
-                ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id'])
-                ->groupBy('form_id')
-                ->with('form')
-                ->whereHas('form')
-                ->get();
+                                ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+                                ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id'])
+                                ->groupBy('form_id')
+                                ->with('form')
+                                ->whereHas('form')
+                                ->get();
             // dd($filter_start,$filter_end,$historys);
     
             $winners_list = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->count();
