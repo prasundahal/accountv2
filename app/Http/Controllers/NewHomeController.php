@@ -3119,6 +3119,7 @@ public function tableop()
                             ->get()
                             ->toArray();
 
+                            dd($history);
         $final = [];
         $forms = [];
         if (!empty($history))
