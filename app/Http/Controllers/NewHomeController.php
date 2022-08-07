@@ -44,7 +44,7 @@ class NewHomeController extends Controller
     {
         $settings = GeneralSetting::first()->toArray();
         // $this->limit_amount = $settings['limit_amount'];
-        $this->limit_amount = 1000;
+        $this->limit_amount = $settings['limit_amount'];
         $this->spinner_message_monthly = $settings['spinner_message_monthly'];
         $this->spinner_message = $settings['spinner_message'];
         
