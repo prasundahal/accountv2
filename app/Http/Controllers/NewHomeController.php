@@ -3119,7 +3119,6 @@ public function tableop()
                             ->get()
                             ->toArray();
 
-                            dd($history);
         $final = [];
         $forms = [];
         if (!empty($history))
@@ -3164,6 +3163,7 @@ public function tableop()
                 }
             }
         }
+        dd($final);
         return $final;
     }
       public function sendMessage(Request $request){
