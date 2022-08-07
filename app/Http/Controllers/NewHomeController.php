@@ -3462,10 +3462,9 @@ public function tableop()
             else{
                 $filter_end = Carbon::now();
             }
-            $history = History::with('account')->with('form')
+            $history = History::with('form')
             ->whereHas('form')
             ->whereBetween('created_at',[date($filter_start),date($filter_end)])
-            ->with('created_by')
             ->orderBy('id', 'desc')
             ->get()
             ->toArray();
@@ -3476,87 +3475,100 @@ public function tableop()
             // $data = [
             //     ['SN', 'Date', 'FB Name','Game','Game ID','Amount','Type','Creator']
             // ];
+            // dd($history);
             if (!empty($history))
             {
                 foreach ($history as $a => $b)
                 {
                     $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
-                    $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
-                    if (!empty($form_game))
-                    {
-                        $form = Form::where('id', $b['form_id'])->first();
-                        if (!empty($form))
-                        {
+                    // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+                    // if (!empty($form_game))
+                    // {
+                        // $form = Form::where('id', $b['form_id'])->first();
+                        // if (!empty($form))
+                        // {
                             // if(($form->token == '')){
                                 
-                                 
+                            $token_id = $b['form']['token'];
+                        
+                            $form_update = Form::find($b['form_id']);
+                            if(empty($token_id)){
+                                $token_id = Str::random(32);
+                                $form_update->token = $token_id;
+                            }
+                            // $form_update->balance = 1;
+                            $form_update->save();
+    
                                 // $form->token = $token_id;
                                 // $form->balance = 1;
                                 // $form->save();
                             // $form = Form::where('id', $b['form_id'])->first();
                             // }
-                            $form_game->toArray();
-                            $form->toArray();
+                            // $form_game->toArray();
+                            // $form->toArray();
                             if (!(isset($final[$b['form_id']])))
                             {
                                 $final[$b['form_id']] = [];
                             }
                             $final[$b['form_id']]['form_id'] = $b['form_id'];
-                            $final[$b['form_id']]['spinner_key'] = $form['token'];
-                            $final[$b['form_id']]['full_name'] = $form['full_name'];
-                            $final[$b['form_id']]['number'] = $form['number'];
-                            $final[$b['form_id']]['email'] = $form['email'];
-                            $final[$b['form_id']]['facebook_name'] = $form['facebook_name'];
-                        }
+                            $final[$b['form_id']]['spinner_key'] = $token_id;
+                            $final[$b['form_id']]['full_name'] = $b['form']['full_name'];
+                            $final[$b['form_id']]['number'] = $b['form']['number'];
+                            $final[$b['form_id']]['email'] = $b['form']['email'];
+                            $final[$b['form_id']]['facebook_name'] = $b['form']['facebook_name'];
+                        // }
 
                         // $b['form_game'] = $form_game;
                         if (isset($final[$b['form_id']]['totals']))
                         {
-                            $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
+                            // $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
                             $totals['load'] = $final[$b['form_id']]['totals']['load'];
-                            $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
-                            $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
-                            $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
+                            // $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
+                            // $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
+                            // $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
                         }
 
-                        ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                        // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
                         ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-                        ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
-                        ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                        ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+                        // ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
+                        // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                        // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
                         $final[$b['form_id']]['totals'] = $totals;
                         // dd($totals);
                         // array_push($final,$b);
                         // array_push($forms,$b['form']);
                         
-                    }
+                    // }
                 }
             }
             $limit = 0;
             $final_2 = [];
             if(!empty($final)){
+                $key = key($final);
                 foreach ($final as $a => $b){
-                    if($type == 'above-'.$this->limit_amount){
-                        if($b['totals']['load']  >= $this->limit_amount){
-                            array_push($final_2,$b);
-                        }
-                    }elseif($type == 'below-'.$this->limit_amount){
-                        if($b['totals']['load']  <  $this->limit_amount){
-                            array_push($final_2,$b);
-                        }
-                    }else{
-                        $limit_1 = $this->limit_amount - 200;
-                        $limit_2 = $this->limit_amount;
-                        if($b['totals']['load']  >= $limit_1){
-                            if($b['totals']['load']  < $limit_2){
-                                array_push($final_2,$b);    
+                    if($a == $key){
+                        if($type == 'above-'.$this->limit_amount){
+                            
+                            // if($b['totals']['load']  >= $this->limit_amount){
+                                array_push($final_2,$b);
+                            // }
+                        }elseif($type == 'below-'.$this->limit_amount){
+                            if($b['totals']['load']  <  $this->limit_amount){
+                                array_push($final_2,$b);
+                            }
+                        }else{
+                            $limit_1 = $this->limit_amount - 200;
+                            $limit_2 = $this->limit_amount;
+                            if($b['totals']['load']  >= $limit_1){
+                                if($b['totals']['load']  < $limit_2){
+                                    array_push($final_2,$b);    
+                                }
                             }
                         }
                     }
                 }
             }
             $forms = $final_2;
-            // dd($forms);
             // foreach($forms as $a => $b){
                 
             //                 $token_id = Str::random(32);

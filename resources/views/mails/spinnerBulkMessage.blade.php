@@ -30,7 +30,11 @@
                @if($details1['text']['load-remaining'] > 0)
                   Only {{$details1['text']['load-remaining']}} left to be eligible for the spinner.
                @else
-                  Please visit {{$token}} to access your spinner link.
+                  <b>Please visit</b><br>
+                    <a href="{{$token}}">
+                        {{$token}}
+                    </a>
+                    <br>to access your spinner link.
                   <br><br>Or<br><br>
                   <a target="_blank" href="{{$token}}" style="color: #fbfcff;text-decoration: none;background: #59ed29;padding: 5px 5px 5px 5px;border-radius: 5px;text-align: center;">
                      Click Here
@@ -38,7 +42,9 @@
                @endif
                <br><br>
                Sincerely,<br>
-               <b><?php echo ($details1['theme'] == 'default')?'Noor':ucfirst($details1['theme']) ?> Games </b>
+               <b><?php echo ($details1['theme'] == 'default')?'Noor':ucfirst($details1['theme']) ?> Games </b><br>
+               <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')'  ?>
+
            </td>
        </tr>
    </tbody>
