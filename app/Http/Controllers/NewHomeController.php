@@ -3126,41 +3126,32 @@ public function tableop()
             foreach ($history as $a => $b)
             {
                 $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
-                $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
-                if (!empty($form_game))
+
+                if (!(isset($final[$b['form_id']])))
                 {
-                    $form = Form::where('id', $b['form_id'])->first();
-                    if (!empty($form))
-                    {
-                        $form_game->toArray();
-                        $form->toArray();
-                        if (!(isset($final[$b['form_id']])))
-                        {
-                            $final[$b['form_id']] = [];
-                        }
-                        $final[$b['form_id']]['form_id'] = $b['form_id'];
-                        $final[$b['form_id']]['full_name'] = $form['full_name'];
-                        $final[$b['form_id']]['number'] = $form['number'];
-                        $final[$b['form_id']]['email'] = $form['email'];
-                        $final[$b['form_id']]['facebook_name'] = $form['facebook_name'];
-                    }
-
-                    if (isset($final[$b['form_id']]['totals']))
-                    {
-                        $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
-                        $totals['load'] = $final[$b['form_id']]['totals']['load'];
-                        $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
-                        $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
-                        $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
-                    }
-
-                    ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
-                    ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-                    ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
-                    ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                    ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
-                    $final[$b['form_id']]['totals'] = $totals;                    
+                    $final[$b['form_id']] = [];
                 }
+                $final[$b['form_id']]['form_id'] = $b['form_id'];
+                $final[$b['form_id']]['full_name'] = $b['form']['full_name'];
+                $final[$b['form_id']]['number'] = $b['form']['number'];
+                $final[$b['form_id']]['email'] = $b['form']['email'];
+                $final[$b['form_id']]['facebook_name'] = $b['form']['facebook_name'];
+
+                if (isset($final[$b['form_id']]['totals']))
+                {
+                    $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
+                    $totals['load'] = $final[$b['form_id']]['totals']['load'];
+                    $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
+                    $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
+                    $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
+                }
+
+                ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
+                ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+                $final[$b['form_id']]['totals'] = $totals;  
             }
         }
         dd($final);
