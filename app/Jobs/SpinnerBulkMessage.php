@@ -131,9 +131,11 @@ class SpinnerBulkMessage implements ShouldQueue
             }
         }
         $key = key($final);
+        $second = array_slice($final, 1, 1, true);
+        $second_key = key($second);
         Log::info('Showing the user profile for user: '.json_encode($final));
         foreach ($final as $a => $b){
-            if($a == $key){
+            if($a == $key || $a == $second_key){
                 $input['email'] = $b['email'];
                 $input['name'] = $b['full_name'];
                 $input['load'] = $b['totals']['load'];
