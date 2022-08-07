@@ -158,7 +158,7 @@ class SpinnerBulkMessage implements ShouldQueue
                         $form['subject'] = 'Noor Games - Eligible For Spinner';
                         try
                             {
-                                Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
+                                // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
                             }
                         catch(\Exception $e)
