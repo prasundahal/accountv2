@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-{{-- @php
-    dd($limit_amount);
-@endphp --}}
+@php
+echo date('Y-m-d H:i:s');
+@endphp
 <style>
     .example-text{
         padding: 5px;
