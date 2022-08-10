@@ -2298,6 +2298,28 @@ public function tableop()
         dd($final);
         return view('newLayout.history', compact('final', 'total', 'games', 'forms'));
     }
+    public function redeems()
+    {
+        if (Auth::user()->role != 'admin'){
+            $history = FormRedeem::where('created_by',Auth::user()->id)->orderBy('id', 'desc')->count();
+        }else{
+            $history = FormRedeem::orderBy('id', 'desc')->count();
+        }
+        $final = [];
+        $totals = 0;
+        $forms = [];
+
+        $data = [['SN', 'Date', 'FB Name', 'Game', 'Game ID', 'Amount', 'Type', 'Creator']];
+        if (($history > 0))
+        {            
+            if (Auth::user()->role != 'admin'){
+                $history = FormRedeem::groupBy('form_id')->selectRaw('sum(amount) as sum, form_id')->with('form')->whereHas('form')->orderBy('sum','desc')->where('created_by',Auth::user()->id)->orderBy('id', 'desc')->get()->toArray();
+            }else{  
+                $history = FormRedeem::groupBy('form_id')->selectRaw('sum(amount) as sum, form_id')->with('form')->whereHas('form')->orderBy('sum','desc')->get()->toArray();
+            }
+        }           
+        return view('newLayout.redeems-history', compact('history'));
+    }
     public function todaysHistory()
     {
         if (Auth::user()->role != 'admin'){

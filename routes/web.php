@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FrontendSettingController;
 
 use App\Http\Controllers\Admin\ActivityStatusController;
+use App\Http\Controllers\NewHomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchTableController;
 
@@ -156,6 +157,7 @@ Route::get('/table', [SearchTableController::class, 'table'])->name('table')->mi
 Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
 Route::post('/table-search', [SearchTableController::class, 'tableSearch'])->name('tableSearch')->middleware('auth');
 
+Route::get('/redeems', [NewHomeController::class, 'redeems'])->name('redeems')->middleware('auth');
 
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
 Route::post('/table-loadCashBalance', [App\Http\Controllers\NewHomeController::class, 'loadCashBalance'])->name('loadCashBalance');

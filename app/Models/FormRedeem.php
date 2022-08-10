@@ -30,4 +30,7 @@ class FormRedeem extends Model
     public function created_by(){
         return $this->hasOne(User::class,'id','created_by');
     }
+    public function account(){
+        return $this->hasOne(Account::class,'id','account_id');
+    }
 }
