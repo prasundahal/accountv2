@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
-
+    var balanceLimit = 400;
+    var redimLimit = 30;
+    var bonusLimit = 300;
+    var tipsLimit = 300;
 
     if ($('.datatable').length > 0) {
         $('.datatable').DataTable({
@@ -883,6 +886,11 @@ $(document).ready(function() {
                     toastr.error('Please enter a valid amount.');
                     return;
                 }
+                if ($(this).val() > bonusLimit) {
+                    $(this).removeAttr('disabled');
+                    toastr.error('Please enter a value less than '+bonusLimit);
+                    return;
+                }
                 var gameTitle = $(this).parent().find(".refer-from").attr("data-title");
                 var gameId = $(this).parent().find('.refer-from').val();
 
@@ -1421,6 +1429,12 @@ $(document).ready(function() {
                     toastr.error('Please enter a valid amount.');
                     return;
                 }
+                if ($(this).val() > balanceLimit) {
+                    $(this).removeAttr('disabled');
+                    toastr.error('Please enter a value less than '+balanceLimit);
+                    return;
+                }
+                
                 var gameTitle = $(".load-from").attr("data-title");
                 var gameId = $(this).parent().find('.load-from').val();
         
@@ -1684,6 +1698,11 @@ $(document).ready(function() {
                     toastr.error('Please enter a valid amount.');
                     return;
                 }
+                if ($(this).val() > redimLimit) {
+                    $(this).removeAttr('disabled');
+                    toastr.error('Please enter a value less than '+redimLimit);
+                    return;
+                }
                 var gameTitle = $(".redeem-from").attr("data-title");
                 var gameId = $(this).parent().find('.redeem-from').val();
 
@@ -1712,7 +1731,7 @@ $(document).ready(function() {
                     }
                 });
                 var type = "POST";
-                var ajaxurl = '/table-redeemBalance';
+                var ajaxurl = '/accountv2/table-redeemBalance';
                 var interval = null;
                 $.ajax({
                     type: type,
@@ -1911,6 +1930,11 @@ $(document).ready(function() {
                 if (($(this).val()) == '' || $(this).val() <= 0) {
                     $(this).removeAttr('disabled');
                     toastr.error('Please enter a valid amount.');
+                    return;
+                }
+                if ($(this).val() > tipsLimit) {
+                    $(this).removeAttr('disabled');
+                    toastr.error('Please enter a value less than '+tipsLimit);
                     return;
                 }
                 var gameTitle = $(".tip-from").attr("data-title");
