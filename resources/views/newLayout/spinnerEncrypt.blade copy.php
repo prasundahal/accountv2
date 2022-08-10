@@ -18,7 +18,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="https://noorgames.net/images/logochangecolor.gif">
-    <meta name="viewport" content="width=device-width" content="initial-scale-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta name="description" content="Noor-games">
     <meta name="author" content="Noor-games">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -31,10 +31,9 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Icons font CSS-->
     <!-- Font special for pages-->
-    
-    <link rel="stylesheet" href="../../assets/main.css" type="text/css" />
-    <script type="text/javascript" src="../../assets/winwheel.js"></script>
-    <script src="assets/tweenmax.js"></script>
+      <link rel="stylesheet" href="{{ URL::to('/assets/main.css') }}" type="text/css" />
+      <script type="text/javascript" src="{{ URL::to('/assets/winwheel.js') }}"></script>
+      <script src="{{ URL::to('/assets/tweenmax.js') }}"></script>
 
     <!-- Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -43,7 +42,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <!-- Main CSS-->
     <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
 
-    {{-- <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all"> --}}
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('css/my.css') }}" rel="stylesheet" media="all">
     
     <!---->
@@ -72,7 +71,14 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             display:none;
         }
         
-        
+         @media screen and (max-width: 576px) {
+            #myVideo {
+                position: fixed;
+                right: -5%;
+                top: 0;
+                height: 100vh;
+            }
+        }
     
         .input-group.border-custom {
             border:0;
@@ -86,6 +92,20 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
         #captcha_image {
             border: 2px solid #d36d77;
             animation: glowing 1300ms infinite;
+        }
+
+        #main-container{
+            display:flex ;
+            justify-content:center;
+            /*position:relative;*/
+            position:fixed;
+            width:95vw !important;
+        }
+ 
+        .aside{
+            width:100%;
+            background:rgba(0,0,0,0.6) ;
+            z-index:105;
         }
 
         .canvas-wrap{
@@ -118,6 +138,25 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             width:100%;
         }
         
+          @media screen and (max-width: 750px) {
+            #main-container{
+                display:flex;
+                flex-direction:column;
+                width:100vw;
+            }
+            #main-container :nth-child(1) { order: 2; }
+            #main-container :nth-child(2) { order: 1; }
+            #main-container :nth-child(3) { order: 3; }
+
+            #canvas{
+                width:100vw;
+            }
+
+            .player-list,.player-list2,.player-list>table,.player-list2>table{
+                width:100% !important;
+                left:70px;
+            }
+        }
 
     
         .player-list2{
@@ -153,7 +192,7 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
             border-radius:10px;
             padding:8px 20px;
             color: white;
-            font-size: 25px;
+            font-size: 30px;
         }
         
 
@@ -195,14 +234,14 @@ background-size:cover;
 
 @media (max-width: 768px) {
     body {
-        height:auto;
+        height:100vh;
     }
 }
+html, body {margin: 0; height: 100%; overflow: hidden}
     </style>
 </head>
 
 <body>
-    <div id='background_static'></div>
     <!--<div id="preload">-->
     <!--    <img src="{{asset('public/img/curt_1.gif')}}"/>-->
     <!--</div>-->
@@ -501,7 +540,7 @@ Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 10; /* Sit on top */
-    padding-top: 50px; /* Location of the box */
+    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -544,8 +583,8 @@ Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.
   
     </style>
         
-         {{-- <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" /> --}}
-        {{-- <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" /> --}}
+         <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" />
+        <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" />
     <div id="welcome_container">
         
     <div id="timer">NEXT SPIN IN<hr>
@@ -659,15 +698,14 @@ function convertTZ(date, tzString) {
 			return "";
 		}
             
-        raised_curtains=false;
+        
         
             var timeleft = difference_seconds;
             var downloadTimer = setInterval(function(){
             timeleft--;
             document.getElementById("countdown").textContent = secondsToDhms(timeleft);
-            
-            if(timeleft == 10 && raised_curtains==false){
-               raised_curtains=true;
+            if(timeleft == 10){
+               
                 setTimeout(function() {
           
                   //remove canvas_main div
@@ -701,250 +739,106 @@ function convertTZ(date, tzString) {
             
             if(timeleft == 0){
                 document.getElementById("welcome_container").innerHTML='';
-                document.getElementById("background_static").style.animation = 'none';
                 calculatePrize();
             }
             
           },1000);
            </script>    
-           
-           
-           <style>
-            * {
-                margin:0; padding: 0; box-sizing: border-box; border: 0;
-            }
-
-            .container {
-                /*padding:0;*/
-                /*margin:20;*/
-                display:flex;
-                 justify-content: center
-                flex-flow: row wrap;
-            }
-            
-            .aside_playing {
-                    background: rgba(0,0,0,0.6);
-                    height:100vh;
-                    flex:0 0 300px;
-            }
-            
-            .aside_winners {
-                    background: rgba(0,0,0,0.6);
-                    height:100vh;
-                    flex:0 0 300px;
-            }
-
-            .center {
-                flex:1 0 auto;
-                /*background-color: skyblue;*/
-                 background: rgba(0,0,0,0.6);
-                 /*height:100vh;*/
-                 padding-top:20px;
-            }
-            
-            .container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-
-             
-         
-
-            
-    #wheelContainer {
-        margin: 0 auto;
-        background:red;
-        position: relative;
-        width: 32vw;
-        height: 32vw;
-        background: url('https://test.noorgames.net/assets/background.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        box-shadow: 0 0 40px #000;
-        border-radius: 450px;
-        -webkit-transition: 1s ease-in-out;
-        -moz-transition: 1s ease-in-out;
-        -o-transition: 1s ease-in-out;
-        transition: 1s ease-in-out;
-    }
-
-    #wheel {
-        position: absolute;
-        top: 0;
-        left: 0;
-        /*width: 450px;*/
-        /*height: 450px;*/
-    }
-    #canvas {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 32vw;
-    }
-
-    #playing_players_list {
-        box-sizing: border-box;  
-        padding: 10px 10px 0 10px;
-        overflow-y:auto;
-        height:100vh;
-    }
-    
-    #past_winners_list {
-        box-sizing: border-box; 
-         padding: 10px 10px 0 10px;
-        overflow-y:auto;
-        height:100vh;
-    }
-    
-    ::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgb(20, 20, 20,0)
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #787878;
-  border-radius:20px;
-}
-
-   @media screen and (max-width: 600px) {
-                .container {
-                    flex-flow: column wrap;
-                }
-                
-                #wheelContainer {
-                    position:relative;
-                    width:80vw;
-                    height:80vw;
-                }
-                
-                #canvas {
-                    position:relative;
-                    width:80vw;
-                }
-                
-                .center {
-                    margin-top:20px;
-                   order:1;
-                    background:rgba(0,0,0,0.4) ;
-                    /*border:2px solid #de0000;*/
-                    padding:10px;
-                    border-radius:5px;
-                }
-                
-                .aside_playing {
-                    margin-top:50px;
-                    order:2;
-                    background:background:rgba(0,0,0,0.6) ;
-                    height:initial;
-                }
-                    
-                #playing_players_list {
-                    height:initial;
-                }
-                
-                .aside_winners {
-                    order:3;
-                    background:background:rgba(0,0,0,0.6) ;;
-                }
-                
-                body {
-                    background:#0d0d0d;
-                    animation:none;
-                }
-            
-            }
-
-             
-            @media screen and (min-width: 601px) and (max-width: 900px) {
-                body {
-                    /* background:#0d0d0d; */
-                    animation:none;
-                }
-                
-                .container {
-                    flex-flow: column wrap;
-                }
-                
-                #wheelContainer {
-                    position:relative;
-                    width:80vw;
-                    height:80vw;
-                }
-                
-                #canvas {
-                    position:relative;
-                    width:80vw;
-                }
-                
-               .center {
-                   margin-top:20px;
-                    order:1;
-                    background:rgba(0,0,0,0.4) ;
-                    /*border:2px solid #de0000;*/
-                    padding:10px;
-                    border-radius:5px;
-                }
-                
-                .aside_playing {
-                    margin-top:20px;
-                    order:2;
-                    background:background:rgba(0,0,0,0.6) ;;
-                }
-                .aside_winners {
-                    order:3;
-                    background:background:rgba(0,0,0,0.6) ;;
-                }
-                
-
-            }
-
-        </style>
 
         
+    <div class="page-wrapper font-robo">
         <!--<video autoplay muted loop id="myVideo" style="display:none">-->
             <!--<source src="{{url('images/fin.mp4')}}" type="video/mp4">-->
         <!--    Your browser does not support HTML5 video.-->
         <!--</video>-->
-       <div class="container">
-           <div class="aside_playing"><div id="playing_players_list">
-<strong>
-                                    <h3 style="margin-left:0px">
+        <div id="main-container">
+            <div class="aside gradient-border">
+                <div class="text-center mt-4" style="height:100vh">
+                    <div id="image-carouseld" class="carousel slided" data-ride="carouseld" style="margin-left:85px">
+                         <div class="player-list neon-text" style="height:100vh !important;font-family:cursive;background:rgba(0,0,0,0.6) ">
+                            <div style="width:22vw;">
+                                <strong>
+                                    <h3 style="margin-left:25px">
                                         <b>
-                                            <span class="neon-text font-weight-bold">Playing players</span>
+                                            <span class="neon-text font-weight-bold">Playing Players</span>
                                         </b>
                                     </h3>
                                 </strong>
-                <ul>
-                    @if (isset($currentPlayer) && !empty($currentPlayer))
-                        <li id="demo" style="background:rgb(162 153 153 / 60%);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
-                            <span style="text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;letter-spacing: 2px;color: #fff;font-family: NeonPlanetDisplay!important;font-size:25px" class="current-player"></span>
-                            <span class="neon-text">
-                                {{$currentPlayer['player_name']}}
-                            </span>
-                        </li>                                        
-                    @endif
-                    @if (isset($row['bool']) && $row['bool'] == 1)
-                        <script>
-                            var currentKey = '';
-                        </script>
-                    @endif
-                    @foreach($final['players_list'] as $key=>$row)
-                    <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:20px">{{$key+1}}</span><span class="neon-text">{{$row['player_name']}}</span></li>
+                                <ul>
+                                    @if (isset($currentPlayer) && !empty($currentPlayer))
+                                        <li id="demo" style="background:rgb(162 153 153 / 60%);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
+                                            <span style="font-size:25px" class="current-player"></span>
+                                            <span class="neon-text">
+                                                {{$currentPlayer['player_name']}}
+                                            </span>
+                                        </li>                                        
+                                    @endif
+                                    @if (isset($row['bool']) && $row['bool'] == 1)
+                                        <script>
+                                            var currentKey = '';
+                                        </script>
+                                    @endif
+                                    @foreach($final['players_list'] as $key => $row)
+                                    <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
+                                        <span style="font-size:25px">
+                                            {{$key+1}}
+                                        </span>
+                                        <span class="neon-text">
+                                            {{$row['player_name']}}
+                                        </span>
+                                    </li>
+                                        @if (isset($row['bool']) && $row['bool'] == 1)
+                                            <script>
+                                                currentKey = '{{$key+1}}';
+                                            </script>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    <!--<ol class="carousel-indicators">-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="1"></li>-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="2"></li>-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="3"></li>-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
+                    <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
+                    <!--</ol>-->
+                        <!--<div class="carousel-inner">-->
+                        <!--    <div class="carousel-item active">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                        <!--<a class="carousel-control-prev" href="#image-carousel" role="button" data-slide="prev">-->
+                        <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                        <!--    <span class="sr-only">Previous</span>-->
+                        <!--</a>-->
+                        <!--<a class="carousel-control-next" href="#image-carousel" role="button" data-slide="next">-->
+                        <!--    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+                        <!--    <span class="sr-only">Next</span>-->
+                        <!--</a>-->
+                    </div>
                     
-                        @if (isset($row['bool']) && $row['bool'] == 1)
-                            <script>
-                                currentKey = '{{$key+1}}';
-                            </script>
-                        @endif
-                    @endforeach
-                </ul>
-            </div></div>
-             
+                    <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
+                </div>
+            </div>
+            <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
+                <table style="position:relative;top:12%;">
                     @php
                         $settings = \App\Models\GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;
@@ -983,7 +877,8 @@ function convertTZ(date, tzString) {
                         var nextfullDate = '{{$next_full_date}}';
                         var fullDateNow = '{{$full_date_now}}';
                     </script>
-                    <div class="center">
+                    <tr>
+                        <td style="text-align: center;">
                             @if($date_today == $spinner_date)
                                 @php  
                                     $spinner_time_count = strtotime($spinner_time);      
@@ -1024,7 +919,10 @@ function convertTZ(date, tzString) {
                             @endif  
 
                             {{-- <div id="winnerinfo"></div> --}}
-                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
                              <div id="wheelContainer">
                                     <div id="wheel">
                                     <!--<div class="canvas">-->
@@ -1034,32 +932,150 @@ function convertTZ(date, tzString) {
                                 </div>
                             </div>
                             <div class="text-center pt-3">
-                                <h6>
+                                <h4>
                                     <b>
                                         <span class="neon-text font-weight-bold">Copyright Noorgames</span>
-                                        <span class="just-neon">Â© 2022</span><br> <span class="neon-text"> All Rights Reserved</span>
+                                        <span class="just-neon">Â© 2022</span> <span class="neon-text"> All Rights Reserved</span>
                                     </b>
-                                </h6>
+                                </h4>
                             </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="aside gradient-border">
+               <div class="text-center mt-4" style="height:100vh">
+                    <div id="image-carousel" class="carousel slide" data-ride="carousel">
+                       <div class="player-list2 neon-text" style="height:-webkit-fill-available;background:rgba(0,0,0,0.6) !important;font-family:cursive;left:0px !important; width:30vw ">
+                            <div style="width:22vw">
+                                <strong><h3 style="margin-left:25px"><b><span class="neon-text font-weight-bold">Past Winners</span></b></h3></strong>
+                                <ul>
+                                    <!-- <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between">
+                                        <span style="font-size:25px">1</span><span class="neon-text">{{$final['winner_info']['player_name']}}</span>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<ol class="carousel-indicators">-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="1"></li>-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="2"></li>-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="3"></li>-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
+                        <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
+                        <!--</ol>-->
+                        <!--<div class="carousel-inner">-->
+                        <!--    <div class="carousel-item active">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon2.gif') }}" width="400" height="500" alt="Second slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/iconss3.gif') }}" width="400" height="500" alt="Third slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/icon4.gif') }}" width="400" height="500" alt="Fourth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/mainicons.gif') }}" width="400" height="500" alt="Fifth slide">-->
+                        <!--    </div>-->
+                        <!--    <div class="carousel-item">-->
+                        <!--        <img class="d-block m-auto" src="{{ URL::to('/images/pureicons.gif') }}" width="400" height="500" alt="Sixth slide">-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                        <!--<a class="carousel-control-prev" href="#image-carousel" role="button" data-slide="prev">-->
+                        <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                        <!--    <span class="sr-only">Previous</span>-->
+                        <!--</a>-->
+                        <!--<a class="carousel-control-next" href="#image-carousel" role="button" data-slide="next">-->
+                        <!--    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+                        <!--    <span class="sr-only">Next</span>-->
+                        <!--</a>-->
                     </div>
-             <div class="aside_winners"><div id="past_winners_list"><strong>
-                                    <h3 style="margin-left:0px">
-                                        <b>
-                                            <span class="neon-text font-weight-bold">Past winners</span>
-                                        </b>
-                                    </h3>
-                                </strong>
-                <!-- <ul>-->
-                <!--    @foreach($final['players_list'] as $key=>$row)-->
-                <!--    <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">{{$key+1}}</span><span class="neon-text">{{$row['player_name']}}</span></li>-->
-                <!--    @endforeach-->
-                <!--</ul>-->
+                        
+                    <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
                 </div>
             </div>
+        </div>
+            <!--<div class="page-wrapper font-robo">-->
+                <!--    <div class="wrapper wrapper--w680" style="max-width:100%">-->
+                    <!--        <div class="card card-1 py-5">-->
+                        <!--<div class="card-heading">-->
+                            
+                            <!--</div>-->
+                            <!--            <div>-->
+                                <!--                <h2 class="font-weight-bold text-center main-header-text">-->
+                                    <!--                    WELCOME TO THE NOOR GAMES-->
+                                    <!--                </h2>-->
+                                    <!--            </div>-->
+                                    <!--            <div class="mt-5 mx-5 text-center">-->
+                                        <!--                <h3 style="line-height:2rem;">-->
+                                            <!--                    <span class="neon-text font-weight-bold blink">Complete the registration process and start getting your bonus and rewards</span>. -->
+                                            <!--                </h3>-->
+                                            <!--                <h4 class="mt-4">-->
+                                                <!--                    <span class="font-weight-bold neon-text neon-text-danger blink-danger">You are only a few steps away</span>. -->
+                                                <!--                </h4>-->
+                                                <!--                <h3 class="mt-4">    -->
+                                                    <!--                    <span class="font-weight-bold neon-text blink">Be the owner of your luck</span>.-->
+                                                    <!--                </h3>-->
+                                                    
+                                                    <!--            </div> -->
+                                                    <!--            <div><h1>-->
+                                                        <!--            </div>-->
+                                                        <!--       <div class="count-div p-3 text-center neon-text" style="font-family:s!important">-->
+                                                            <!--        <p class="date-div" style="height:7%;font-size:40px;"></p>-->
+                                                            <!--        <p class="date-countdown " style="height:7%;font-size:59px;font-family:s!important"></p>-->
+                                                            <!--      </div>-->
+                                                            
+                                                            <!--            <div class = "text-center logo">-->
+                                                                <!--                  <img src="{{ URL::to('/images/dragonnn.gif') }}" width="220" height="250" class="w-auto">-->
+                                                                <!--            </div>-->
+                                                                
+
+                                                                <!--            <div class="card-body p-5">-->
+                                                                    <!--<h1 style="color:yellow; text-align:center" class="title">Welcome to Noor Games! :-D </br>Fill out the following form to get registered into our room. We will send you the <b>Monthly Match</b> based on the date you joined us as a loyal customer. </br> All the best!!!</h1>-->
+                                                                    
+                                                                    
+                                                                    <!--                    @if ($errors->any())-->
+                                                                    <!--                    <div class="alert alert-danger neon-text-danger mt-3">-->
+                                                                        <!--                        <ul>-->
+                                                                            <!--                            @foreach ($errors->all() as $error)-->
+                                                                            
+                                                                            <!--                                <h3><li>{{ $error }}</li></h3>-->
+                                                                            <!--                            @endforeach-->
+                                                                            <!--                        </ul>-->
+                                                                            <!--                    </div>-->
+                                                                            <!--                    </br>-->
+                                                                            <!--                    @endif-->
+
+                                                                            <!--                </br>-->
+                                                                            <!-- </div> -->
+                        
+
+
+        <div class="text-center pt-3">
+            <h4>
+                <b>
+                    <span class="neon-text font-weight-bold">Copyright Noorgames</span>
+                    <span class="just-neon">Â© 2022</span> <span class="neon-text"> All Rights Reserved</span>
+                </b>
+            </h4>
+        </div>
     </div>
-                  
+                    <!-- </div>
+                </div>
+            </div>
+        </div> -->
     <script>
+        // document.getElementById("captcha_image").src="https://test.noorgames.net/captcha_image.php?"+Math.random();
+        // var captchaImage = document.getElementById("captcha_image");
         
+        // var refreshButton = document.getElementById("refresh-captcha");
+        // refreshButton.onclick = function(event) {
+        //     event.preventDefault();
+        //     captchaImage.src = "https://noorgames.net/captcha_image.php?"+Math.random();
+        // }
     </script>
 
     <!-- Jquery JS-->
@@ -1521,10 +1537,8 @@ function convertTZ(date, tzString) {
 
     function winAnimation() {
         start();
-            
-        document.getElementById('wheelContainer').style.transform = 'scale(1)';
-            document.getElementById('wheelContainer').style.top = '20px';
-            
+        document.getElementById('canvas').style.width = '500px';
+            document.getElementById('canvas').style.height = '500px';
             
         // Get the number of the winning segment.
         let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
@@ -1554,7 +1568,7 @@ function convertTZ(date, tzString) {
         showWinnerInfo();
         
         setTimeout(function(){
-            document.getElementById("welcome_container").innerHTML='Concluded. Congratulations ..';
+            document.getElementById("welcome_container").innerHTML='Concluded. Contratulations ..';
             
             
             
@@ -1611,8 +1625,8 @@ function convertTZ(date, tzString) {
         theWheel.animation.stopAngle = stopAt;
         
         setTimeout(function(){
-            document.getElementById('wheelContainer').style.transform = 'scale(1.5)';
-            document.getElementById('wheelContainer').style.top = '200px';
+            document.getElementById('canvas').style.width = '1000px';
+            document.getElementById('canvas').style.height = '1000px';
         }, 6000);
         
         theWheel.draw();
@@ -1910,7 +1924,7 @@ if($current_date==$sample_date)
 else
 {
    //show javascript countdown
-    echo "<div id='datebox' style='display:none'></div>";
+    echo "<div id='datebox'></div>";
 }
 ?>
 

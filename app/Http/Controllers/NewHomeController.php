@@ -1077,6 +1077,7 @@ public function tableop()
             
             if (($historys->count()) > 0)
             {
+                $currentPlayer = [];
                 $historys = $historys->toArray();
                 foreach ($historys as $a => $b)
                 {
@@ -1092,9 +1093,14 @@ public function tableop()
                     {
                         if($form_token > 0){
                             if($b['form_id'] == $form_token['id']){
-                                $z =[
+                                $currentPlayer = [
                                     'player_name' => $b['form']['full_name'],
                                     'player_id' => $b['form_id']
+                                ];
+                                $z =[
+                                    'player_name' => $b['form']['full_name'],
+                                    'player_id' => $b['form_id'],
+                                    'bool' => 1
                                 ];
                             }else{
                                 $z =[
@@ -1176,7 +1182,7 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
-            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list'));
+            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer'));
         }
         else{
             abort(404);
