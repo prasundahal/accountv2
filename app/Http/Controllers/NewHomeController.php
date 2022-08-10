@@ -188,6 +188,7 @@ class NewHomeController extends Controller
     }
     public function dashboard()
     {
+        $time_start = microtime(true);
         // $form = Form::where('id',5)->update(['balance' => 1,'token' => $token_id]);
         // Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form)));
         // $form = Form::where('id',343)->first()->toArray();
@@ -197,6 +198,9 @@ class NewHomeController extends Controller
         $games = Account::where('status', 'active')->get()
             ->toArray();
         // dd($total);
+        $time_end = microtime(true);
+        $time = $time_end - $time_start;
+        // dd($time);
         return view('newLayout.dashboard', compact('total', 'formCount', 'games'));
         // return view('new.dashboard',compact('total'));
         
@@ -1706,26 +1710,29 @@ public function tableop()
     }
     function totals()
     {
-        $history = History::with('account')->with('form')
-            ->whereHas('form')
-            ->with('created_by')
-            ->orderBy('id', 'desc')
+        $history = History::orderBy('id', 'desc')
             ->get()
             ->toArray();
-        $final = [];
+        // $history = History::with('account')->with('form')
+        //     ->whereHas('form')
+        //     ->with('created_by')
+        //     ->orderBy('id', 'desc')
+        //     ->get()
+        //     ->toArray();
+        // $final = [];
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
-        $forms = [];
+        // $forms = [];
 
         if (!empty($history))
         {
             foreach ($history as $a => $b)
             {
-                $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
-                if (!empty($form_game))
-                {
-                    $form_game->toArray();
+                // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+                // if (!empty($form_game))
+                // {
+                    // $form_game->toArray();
 
-                    $b['form_game'] = $form_game;
+                    // $b['form_game'] = $form_game;
 
                     ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
                     ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
@@ -1733,9 +1740,9 @@ public function tableop()
                     ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
                     ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
 
-                    array_push($final, $b);
-                    array_push($forms, $b['form']);
-                }
+                    // array_push($final, $b);
+                    // array_push($forms, $b['form']);
+                // }
             }
         }
 
