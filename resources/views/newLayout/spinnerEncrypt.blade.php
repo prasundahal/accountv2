@@ -544,8 +544,8 @@ Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.
   
     </style>
         
-         {{-- <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" /> --}}
-        {{-- <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" /> --}}
+         <img src="https://test.noorgames.net/assets/closed_left.jpg" id="closed_left" />
+        <img src="https://test.noorgames.net/assets/closed_right.jpg" id="closed_right" />
     <div id="welcome_container">
         
     <div id="timer">NEXT SPIN IN<hr>
