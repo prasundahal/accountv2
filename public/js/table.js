@@ -1731,7 +1731,7 @@ $(document).ready(function() {
                     }
                 });
                 var type = "POST";
-                var ajaxurl = '/accountv2/table-redeemBalance';
+                var ajaxurl = '/table-redeemBalance';
                 var interval = null;
                 $.ajax({
                     type: type,
