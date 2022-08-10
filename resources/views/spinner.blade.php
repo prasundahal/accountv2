@@ -32,8 +32,8 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     <!-- Icons font CSS-->
     <!-- Font special for pages-->
     
-    <link rel="stylesheet" href="assets/main.css" type="text/css" />
-    <script type="text/javascript" src="assets/winwheel.js"></script>
+    <link rel="stylesheet" href="../../assets/main.css" type="text/css" />
+    <script type="text/javascript" src="../../assets/winwheel.js"></script>
     <script src="assets/tweenmax.js"></script>
 
     <!-- Vendor CSS-->
