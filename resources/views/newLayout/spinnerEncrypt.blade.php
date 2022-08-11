@@ -853,7 +853,7 @@ function convertTZ(date, tzString) {
                 }
                 
                 body {
-                    background:#0d0d0d;
+                    /* background:#0d0d0d; */
                     animation:none;
                 }
             
