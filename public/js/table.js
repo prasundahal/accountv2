@@ -202,7 +202,7 @@ $(document).ready(function() {
     
     $('.filter-undo').on('click', function(e) {
         e.stopImmediatePropagation();
-        console.log('a');
+        // console.log('a');
         var historyType = '';
         
         var filter_type = $('.filter-type12').val();
@@ -221,7 +221,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "POST";
-        var ajaxurl = '/filter-undo-history';
+        var ajaxurl = '/accountv2/filter-undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,
@@ -238,11 +238,10 @@ $(document).ready(function() {
                 $(".undo-history-body123").html('Loading...');
             },
             success: function(data) {
-                if(data.status == 0){
-                    
+                if(data.status == 0){                    
                     optionLoop = '<tr><td>No Transaction</td></tr>';
-
                 }else{
+                    // console.log('here');
                     (data.data).forEach(function(index) {
                         var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                         
@@ -260,6 +259,7 @@ $(document).ready(function() {
                             '</td><td class="text-center"><a href="/undo-table/' + index.id + 
                             '" class="btn btn-primary">Undo</a></td></tr>';
                     });
+                    // console.log(optionLoop);
                 }
                 // if (typeof data !== 'undefined' && data.length > 0) {
                     
@@ -272,9 +272,9 @@ $(document).ready(function() {
                 toastr.error('Error', data.responseText);
             }
         });
-        console.log(filter_type);
-        console.log(filter_start);
-        console.log(filter_end);
+        // console.log(filter_type);
+        // console.log(filter_start);
+        // console.log(filter_end);
     });
     $('.filter-history').on('click', function(e) {
         e.stopImmediatePropagation();
@@ -820,7 +820,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "GET";
-        var ajaxurl = '/undo-history';
+        var ajaxurl = '/accountv2/undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,

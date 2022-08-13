@@ -1942,7 +1942,59 @@ public function tableop()
         // return Response::json($data);
         return Response::json($data);
     }
-     public function filterUndoHistory(Request $request)
+    public function filterUndoHistory(Request $request)
+   {
+       $filter_type = $request->filter_type;
+       $userId = $request->userId;
+       $game = $request->game;
+       $filter_start = $request->filter_start;
+       $filter_end = $request->filter_end;
+       $historyType = $request->historyType;
+
+       $history = History::query();
+
+       $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+
+       if ($filter_type != 'all')
+       {
+           $history->where('type', $request->filter_type);
+       }
+       if ($userId != 'all')
+       {
+           $history->where('form_id', $userId);
+       }
+       if ($filter_start != '')
+       {
+           $history->whereDate('created_at', '>=', $filter_start);
+       }
+       if ($filter_end != '')
+       {
+           $history->whereDate('created_at', '<=', $filter_end);
+       }
+       if ($game != 'all')
+       {
+           $history->where('account_id', $game);
+       }
+
+       $history->with('account')
+                ->with('form')
+                ->whereHas('form') 
+                ->with('formGames')
+                ->whereHas('formGames') 
+                ->with('created_by')
+                ->orderBy('id', 'desc');
+       
+       $final = [];
+
+       $historys = $history->get();
+
+       $return_array = [
+           'status' => (count($historys) > 0)?1:0,
+           'data' => $historys
+       ];
+       return Response::json($return_array);
+   }
+     public function filterUndoHistory2(Request $request)
     {
         $filter_type = $request->filter_type;
         $userId = $request->userId;
@@ -1951,7 +2003,7 @@ public function tableop()
         $filter_end = $request->filter_end;
         $historyType = $request->historyType;
 
-        $history = History::query();
+        $history = new History();
 
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
 
@@ -1982,7 +2034,9 @@ public function tableop()
             $history->where('account_id', $game);
         }
 
-        $history->with('account')->with('form')->with('formGames')->whereHas('formGames')
+        $history->with('account')->with('form')->with('formGames')->whereHas('formGames') ->with('created_by')->orderBy('id', 'desc');
+        
+       
         
         // ->with(['formGames' => function ($query) use ($game) {
         //     return $query->where('id', 'relation_id');
@@ -1994,8 +2048,6 @@ public function tableop()
         //     if($category && $category != 'all')
         //     return $query->where('name', 'like', $category);
         // })
-            ->with('created_by')
-            ->orderBy('id', 'desc');
         // if($filter_end != ''){
         //     $history->where('type',$request->filter_type);
         // }
@@ -2008,6 +2060,7 @@ public function tableop()
         //     $history->where('type',$request->filter_type);
         // }
         $final = [];
+            // return Response::json($history->get());
         $historys = $history->get()
             ->toArray();
         //         ->orderBy('id','desc')
