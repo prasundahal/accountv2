@@ -221,7 +221,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "POST";
-        var ajaxurl = '/accountv2/filter-undo-history';
+        var ajaxurl = '/filter-undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,
@@ -820,7 +820,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "GET";
-        var ajaxurl = '/accountv2/undo-history';
+        var ajaxurl = '/undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,
