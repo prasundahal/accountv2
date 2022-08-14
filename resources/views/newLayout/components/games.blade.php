@@ -14,7 +14,7 @@
                                 $query_result = http_build_query($query);
                             @endphp
                             <input type="hidden" class="activeGameId" value="{{isset($activeGame) ? $activeGame['id'] : '1' }}">
-                            <div class="col-xl-3 col-sm-3 mb-3 {{(isset($activeGame) && $activeGame['id'] == $game['id'])?'active-game-btn':''}}">
+                            <div class="col-xl-3 col-sm-3 mb-3 game-card-{{$game['id']}} {{(isset($activeGame) && $activeGame['id'] == $game['id'])?'active-game-btn':''}}">
                                 <div class="card game-btn-card">
                                     <div class="card-body p-3">
                                         <div class="row">
@@ -33,7 +33,7 @@
                                                     </a>
                                                     <div class="d-flex flex-column">
                                                         <h6 class="mb-1 text-dark text-sm">{{$game['title']}}</h6>
-                                                        <span class="text-xs span-{{(str_replace(' ','-',$game['title']))}}-{{($game['id'])}} {{(isset($activeGame) && $activeGame['id'] == $game['id'])?'active-game-btn':''}}">$ {{($game['balance'])}}</span>
+                                                        <span class="text-xs game-span-item span-{{(str_replace(' ','-',$game['title']))}}-{{($game['id'])}} {{(isset($activeGame) && $activeGame['id'] == $game['id'])?'active-game-btn':''}}">$ {{($game['balance'])}}</span>
                                                     </div>
                                                     <div class="d-flex flex-column">
                                                         <a href="#popup8" class="edit-game-table" data-id="{{$game['id']}}"><i class="fa fa-pencil"></i> </a>
