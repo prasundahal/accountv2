@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\ColabUpdate::class,
-        // Commands\DailyReport::class,
-        // Commands\SpinnerResetForm::class,
+        Commands\ColabUpdate::class,
+        Commands\DailyReport::class,
+        Commands\SpinnerResetForm::class,
         Commands\MonthlyTasks::class
     ];
 
