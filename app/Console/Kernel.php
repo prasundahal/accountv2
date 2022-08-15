@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         //  $schedule->command('colabUpdate:cron')->everyMinute();
          $schedule->command('colabUpdate:cron')
-         ->daily();
+         ->everyMinute();
         //  $schedule->command('DailyReport:cron')
         //  ->daily();
         //  $schedule->command('SpinnerResetForm:cron')
