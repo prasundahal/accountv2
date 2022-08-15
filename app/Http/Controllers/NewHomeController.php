@@ -1237,7 +1237,7 @@ public function tableop()
                     $details = [
                         'name' => $form->full_name,
                         'token_id' => $token_id.'---'.$form->id,
-                        'message' => 'Congratulations !! You have won this months spinner contest. Please verify yourself by filling a short form.',
+                        'message' => 'Congratulations !! You have won this months spinner contest.',
                         'theme' => ($settings->theme)
                     ];
                     try
