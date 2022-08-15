@@ -845,6 +845,8 @@ public function tableop()
                                 ->with('form')
                                 ->whereHas('form')
                                 ->get();
+      $winners_list = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->count();
+
             $final = [
                 'players_list' => [],
                 'winner_info' => []
@@ -869,10 +871,25 @@ public function tableop()
                 if(!empty($final['players_list'])){
                     
                     $shuffle = array_rand($final['players_list']);
+                    if($winners_list <= 0){
+                        $f1 = Form::where('id',$final['players_list'][$shuffle]['player_id'])->first();
+                        $winner = SpinnerWinner::create([
+                            'form_id' => $final['players_list'][$shuffle]['player_id'],
+                            'full_name' => $f1->full_name
+                        ]);
+                    }
+                    else{
+                        $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->first();
+                    }
                     $final['winner_info'] =[
-                        'player_name' => $final['players_list'][$shuffle]['player_name'],
-                        'player_id' =>  $final['players_list'][$shuffle]['player_id']
+                        'player_name' => $winner->full_name,
+                        'player_id' =>  $winner->form_id
                     ];
+
+                    // $final['winner_info'] =[
+                    //     'player_name' => $final['players_list'][$shuffle]['player_name'],
+                    //     'player_id' =>  $final['players_list'][$shuffle]['player_id']
+                    // ];
                 }
                 
                 // dd($final['players_list']);
