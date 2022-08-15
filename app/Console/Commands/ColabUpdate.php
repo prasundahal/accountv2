@@ -58,7 +58,7 @@ class ColabUpdate extends Command
     {        
         Log::channel('cronLog')->info('Reached command ColabUpdate');
         // whereDate('intervals', Carbon::today())->
-        $forms = Form::limit('5')->get();
+        $forms = Form::whereDate('intervals', Carbon::today())->get();
         $formData = $forms;
         $settings = GeneralSetting::first();
         if(count($forms)>0){
