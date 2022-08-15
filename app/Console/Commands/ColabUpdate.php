@@ -58,25 +58,26 @@ class ColabUpdate extends Command
     {        
         Log::channel('cronLog')->info('Reached command ColabUpdate');
         // whereDate('intervals', Carbon::today())->
-        $forms = Form::whereDate('intervals', Carbon::today())->get();
+        $forms = Form::whereDate('intervals', '2022-09-13 00:00:00')->get();
+        // $forms = Form::whereDate('intervals', Carbon::today())->get();
         $formData = $forms;
         $settings = GeneralSetting::first();
         if(count($forms)>0){
             foreach($forms as $a => $form){                
-                $interval = Carbon::today();
-                $daysToAdd = 30;
-                $interval = $interval->addDays($daysToAdd);
-                $final = date($interval);
+                // $interval = Carbon::today();
+                // $daysToAdd = 30;
+                // $interval = $interval->addDays($daysToAdd);
+                // $final = date($interval);
                 
-                $form = Form::find($form->id);
+                // $form = Form::find($form->id);
                 
-                $count = $form->count;
-                $count = $count + '1';
+                // $count = $form->count;
+                // $count = $count + '1';
                 
-                $form->count = $count;
-                $form->intervals = $interval;
-                $form->save();
-                Log::channel('cronLog')->info('Month increased for :'.$form['full_name'].' to '.$interval);
+                // $form->count = $count;
+                // $form->intervals = $interval;
+                // $form->save();
+                // Log::channel('cronLog')->info('Month increased for :'.$form['full_name'].' to '.$interval);
             }
             $data = [
                 'forms' => $formData,
