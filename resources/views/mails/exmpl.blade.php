@@ -3,7 +3,7 @@
 $details = json_decode($details,'true');
 @endphp
           @if(isset($details) && !empty($details['forms']))
-        Hello Admin, These are the list of users who will get bonous yesterday -- <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>.
+        Hello Admin, These are the list of users who will get bonous today -- <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>.
         <table  width="800px!important;" border="0" cellspacing="0" cellpadding="0">
           <tr style="background: #001fff;color: #ffff;">
              <td  style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="5%" height="32" align="center">SN</td>
