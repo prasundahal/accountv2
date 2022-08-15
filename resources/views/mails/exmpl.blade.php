@@ -3,7 +3,7 @@
 $details = json_decode($details,'true');
 @endphp
           @if(isset($details) && !empty($details['forms']))
-          Hello Admin, These are the list of users who will got bonous on -- <?php '2022-09-13 00:00:00   ('.config('app.timezone').')' ?>.
+          Hello Admin, These are the list of users who will got bonous yesterday -- <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>.
 
         {{-- Hello Admin, These are the list of users who will get bonous today -- <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>. --}}
         <table  width="800px!important;" border="0" cellspacing="0" cellpadding="0">
