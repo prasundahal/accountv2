@@ -1213,6 +1213,9 @@ public function tableop()
         try
         {
             $month = date('m');
+            if($month != 1){
+                $month = $month - 1;
+            }
             if($month >10){
                 $month = '0'.$month;
             }
@@ -1222,7 +1225,8 @@ public function tableop()
                                 ->count();
             if($winner > 0){
                 $winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->first();
-                if($winner->mail == 0){
+                // dd($winner);
+                // if($winner->mail == 0){
                     
                     
                     $settings = GeneralSetting::first();
@@ -1249,7 +1253,7 @@ public function tableop()
                             $bug = $e->getMessage();
                             Log::channel('spinnerBulk')->info($bug);
                         }
-                }
+                // }
             }
         }
         catch(\Exception $e)

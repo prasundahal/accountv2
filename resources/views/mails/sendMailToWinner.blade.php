@@ -11,7 +11,7 @@
             </tr>
             <tr>
             <td style="color: black;font-size: 15px;padding: 0 50px 0 50px;text-align:center;">
-                    <?php echo  $details['text'] ?>
+                    <?php echo  $details['message'] ?>
                     <hr>
                     [<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')'  ?>]
                     <br>
