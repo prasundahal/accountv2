@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\ColabUpdate::class,
-        // Commands\DailyReport::class,
-        // Commands\SpinnerResetForm::class,
+        Commands\ColabUpdate::class,
+        Commands\DailyReport::class,
+        Commands\SpinnerResetForm::class,
         Commands\MonthlyTasks::class
     ];
 
@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         //  $schedule->command('colabUpdate:cron')->everyMinute();
          $schedule->command('colabUpdate:cron')
-         ->everyMinute();
+         ->daily();
          $schedule->command('DailyReport:cron')
          ->daily();
          $schedule->command('SpinnerResetForm:cron')

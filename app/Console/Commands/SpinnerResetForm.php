@@ -41,9 +41,9 @@ class SpinnerResetForm extends Command
     public function handle()
     {
         try {
-            Form::where('deleted_at',null)->update([
-                'balance' => 0
-            ]);
+            // Form::where('deleted_at',null)->update([
+            //     'balance' => 0
+            // ]);
             Log::channel('cronLog')->info('Spinner Reset Successfull');
         } catch (Exception $ex) {
             Log::channel('cronLog')->info('Spinner Reset Error : Reason Below');

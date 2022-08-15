@@ -34,7 +34,8 @@ if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_na
     
     <link rel="stylesheet" href="../../assets/main.css" type="text/css" />
     <script type="text/javascript" src="../../assets/winwheel.js"></script>
-    <script src="assets/tweenmax.js"></script>
+    <script src="../../assets/tweenmax.js"></script>
+    {{-- <script src="{{asset('assets/tweenmax.js')}}"></script> --}}
 
     <!-- Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -1064,7 +1065,7 @@ function convertTZ(date, tzString) {
 
     <!-- Jquery JS-->
     
-    <script src="js/jquery.min.js"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
     <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->

@@ -33,6 +33,9 @@ use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\sendMailToWinner;
+use Exception;
+use PhpParser\Node\Expr;
+
 class NewHomeController extends Controller
 {
     public $color = 'purple';
@@ -1942,7 +1945,59 @@ public function tableop()
         // return Response::json($data);
         return Response::json($data);
     }
-     public function filterUndoHistory(Request $request)
+    public function filterUndoHistory(Request $request)
+   {
+       $filter_type = $request->filter_type;
+       $userId = $request->userId;
+       $game = $request->game;
+       $filter_start = $request->filter_start;
+       $filter_end = $request->filter_end;
+       $historyType = $request->historyType;
+
+       $history = History::query();
+
+       $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+
+       if ($filter_type != 'all')
+       {
+           $history->where('type', $request->filter_type);
+       }
+       if ($userId != 'all')
+       {
+           $history->where('form_id', $userId);
+       }
+       if ($filter_start != '')
+       {
+           $history->whereDate('created_at', '>=', $filter_start);
+       }
+       if ($filter_end != '')
+       {
+           $history->whereDate('created_at', '<=', $filter_end);
+       }
+       if ($game != 'all')
+       {
+           $history->where('account_id', $game);
+       }
+
+       $history->with('account')
+                ->with('form')
+                ->whereHas('form') 
+                ->with('formGames')
+                ->whereHas('formGames') 
+                ->with('created_by')
+                ->orderBy('id', 'desc');
+       
+       $final = [];
+
+       $historys = $history->get();
+
+       $return_array = [
+           'status' => (count($historys) > 0)?1:0,
+           'data' => $historys
+       ];
+       return Response::json($return_array);
+   }
+     public function filterUndoHistory2(Request $request)
     {
         $filter_type = $request->filter_type;
         $userId = $request->userId;
@@ -1951,7 +2006,7 @@ public function tableop()
         $filter_end = $request->filter_end;
         $historyType = $request->historyType;
 
-        $history = History::query();
+        $history = new History();
 
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
 
@@ -1982,7 +2037,9 @@ public function tableop()
             $history->where('account_id', $game);
         }
 
-        $history->with('account')->with('form')->with('formGames')->whereHas('formGames')
+        $history->with('account')->with('form')->with('formGames')->whereHas('formGames') ->with('created_by')->orderBy('id', 'desc');
+        
+       
         
         // ->with(['formGames' => function ($query) use ($game) {
         //     return $query->where('id', 'relation_id');
@@ -1994,8 +2051,6 @@ public function tableop()
         //     if($category && $category != 'all')
         //     return $query->where('name', 'like', $category);
         // })
-            ->with('created_by')
-            ->orderBy('id', 'desc');
         // if($filter_end != ''){
         //     $history->where('type',$request->filter_type);
         // }
@@ -2008,6 +2063,7 @@ public function tableop()
         //     $history->where('type',$request->filter_type);
         // }
         $final = [];
+            // return Response::json($history->get());
         $historys = $history->get()
             ->toArray();
         //         ->orderBy('id','desc')
@@ -2461,6 +2517,94 @@ public function tableop()
             
         }
         return Response::json($final);
+    }
+    
+    public function undoItemHistory($id)
+    {
+        try
+        {
+            $history = History::findOrFail($id);
+
+            $related_id = $history->relation_id;
+            $type = $history->type;
+            $account_id = $history->account_id;
+            $cash_apps_id = $history->cash_apps_id;
+            $amount = $history->amount_loaded;
+            // $related = FormRedeem::where('id',$related_id)->get();
+            //  dd($related);
+                $newAmount = 0;
+            if ($type == 'tip')
+            {
+                $related = FormTip::find($related_id)->delete();
+            }
+            elseif ($type == 'redeem')
+            {
+                $related = FormRedeem::where('id',$related_id)->count();
+                if($related >0){
+                    $related = FormRedeem::find($related_id)->delete();
+                }
+                $account = Account::findOrFail($account_id);
+                $cashApp = CashApp::findOrFail($cash_apps_id);
+                $account = Account::where('id', $account_id)->update(['balance' => ($account->balance - $amount) ]);
+                $cashApp = CashApp::where('id', $cash_apps_id)->update(['balance' => ($cashApp->balance + $amount) ]);
+                $account = Account::findOrFail($account_id);
+                $newAmount = $account->balance;
+            }
+            elseif ($type == 'refer')
+            {
+                $related = FormRefer::where('id',$related_id)->count();
+                if($related >0){
+                    $related = FormRefer::find($related_id)->delete();
+                }
+                $account = Account::findOrFail($account_id);
+                $accountBalance = $account->balance;
+                $account = Account::where('id', $account_id)->update(['balance' => ($accountBalance + $amount) ]);
+                $account = Account::findOrFail($account_id);
+                $newAmount = $account->balance;
+            }
+            elseif ($type == 'load')
+            {
+                $related = FormBalance::where('id',$related_id)->count();
+                if($related >0){
+                    $related = FormBalance::find($related_id)->delete();
+                }
+                
+                $account = Account::findOrFail($account_id);
+                $accountBalance = $account->balance;
+                $account = Account::where('id', $account_id)->update(['balance' => ($accountBalance + $amount) ]);
+                $account = Account::findOrFail($account_id);
+                $newAmount = $account->balance;
+            }
+            elseif ($type == 'cashAppLoad')
+            {
+                $related = CashAppForm::find($related_id)->delete();
+                $cashApp = CashApp::findOrFail($cash_apps_id);
+                $cashAppBalance = $cashApp->balance;
+                $updateCashApp = CashApp::where('id', $cash_apps_id)->update(['balance' => ($cashAppBalance - $amount) ]);
+            }
+            try{
+                $history->delete();
+                $data = [
+                    'type' => $type,
+                    'amount' => $amount,
+                    'newAmount' => $newAmount
+                ];
+                return Response::json(['success' => $data], 200);
+            }catch(Exception $e){
+                $bug = $e->getMessage();
+                return Response::json(['error' => $bug], 404);
+            }
+            
+            // return back()->with('success', "Transaction undo successful");
+        }
+        catch(\Exception $e)
+        {
+            $bug = $e->getMessage();
+            // dd($bug);
+            return Response::json(['error' => $bug], 404);
+        }
+        Response::json('asdfasdf');
+        // return redirect(route('table'))->with('success', "Transaction undo successful");
     }
     public function undoTable($id)
     {

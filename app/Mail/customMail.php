@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\GeneralSetting;
+use Illuminate\Support\Facades\Log;
 
 class customMail extends Mailable {
     use Queueable, SerializesModels;
@@ -27,11 +28,11 @@ class customMail extends Mailable {
      * @return $this
      */
     public function build() {
+        // Log::channel('cronLog')->info($this->details);
         $details = json_decode($this->details, true);
         $subject = 'Users Updated List';
-        
-        $settings = GeneralSetting::first();
 
+        $settings = GeneralSetting::first();
         $title = ($settings->theme == 'default')?'Noor':ucwords($settings->theme);
 
         return $this->from('noorgames@gmail.com', $title.' Games')

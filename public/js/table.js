@@ -202,7 +202,7 @@ $(document).ready(function() {
     
     $('.filter-undo').on('click', function(e) {
         e.stopImmediatePropagation();
-        console.log('a');
+        // console.log('a');
         var historyType = '';
         
         var filter_type = $('.filter-type12').val();
@@ -238,11 +238,10 @@ $(document).ready(function() {
                 $(".undo-history-body123").html('Loading...');
             },
             success: function(data) {
-                if(data.status == 0){
-                    
+                if(data.status == 0){                    
                     optionLoop = '<tr><td>No Transaction</td></tr>';
-
                 }else{
+                    // console.log('here');
                     (data.data).forEach(function(index) {
                         var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                         
@@ -250,16 +249,17 @@ $(document).ready(function() {
                         // FB NAME	GAME	GAME ID	AMOOUNT	TYPE	CREATED BY	ACTION BY
                         var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
                         optionLoop +=
-                            '<tr><td class="text-center">' + a + 
+                            '<tr class="item-'+index.id+'"><td class="text-center">' + a + 
                             '</td><td class="text-center">' + index.form.facebook_name + 
                             '</td><td class="text-center">' + index.account.name + 
                             '</td><td class="text-center">' + index.form_games.game_id + 
                             '</td><td class="text-center">' + index.amount_loaded + 
                             '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + 
                             '</td><td class="text-center">' + index.created_by.name + 
-                            '</td><td class="text-center"><a href="/undo-table/' + index.id + 
-                            '" class="btn btn-primary">Undo</a></td></tr>';
+                            '</td><td class="text-center"><button class="btn btn-primary undo-this" data-id="'+index.id+'" data-gameid="'+index.account.id+'">Undo</button></td></tr>';
                     });
+                    undoFunction();
+                    // console.log(optionLoop);
                 }
                 // if (typeof data !== 'undefined' && data.length > 0) {
                     
@@ -272,9 +272,9 @@ $(document).ready(function() {
                 toastr.error('Error', data.responseText);
             }
         });
-        console.log(filter_type);
-        console.log(filter_start);
-        console.log(filter_end);
+        // console.log(filter_type);
+        // console.log(filter_start);
+        // console.log(filter_end);
     });
     $('.filter-history').on('click', function(e) {
         e.stopImmediatePropagation();
@@ -811,6 +811,49 @@ $(document).ready(function() {
             }
         });
     });
+    function undoFunction(){
+        $(document).off().on('click', '.undo-this', function(event) {
+            var cid = $(this).data('id');
+            var gid = $(this).data('gameid');
+            $(this).attr('disabled','disabled');
+            console.log(cid);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var actionType = "GET";
+            var ajaxurl = '/undo-item-history/'+cid;
+            $.ajax({
+                type: actionType,
+                url: ajaxurl,
+                data: {},
+                dataType: 'json',
+                beforeSend: function() {
+                    // $(".undo-history-body123").html('Loading...');
+                },
+                success: function(data) {
+                    if (!(data.success === undefined || data.success === null)) {                        
+                        if(data.success.type != 'tip'){
+                            
+                            $('.game-card-'+gid+' .game-btn').removeAttr('data-balance');
+                            $('.game-card-'+gid+' .game-btn').attr('data-balance',data.success.newAmount);
+                            $('.game-card-'+gid+' .game-span-item').html('$ '+data.success.newAmount);
+                        }
+                        toastr.success('Success','Undo Successful');
+                        $('.item-'+cid).remove();
+                    }
+                    console.log(data.success);
+    
+                },
+                error: function(data) {
+                    $(this).removeAttr('disabled');
+                    toastr.error('Error', data.responseText);
+                }
+            });
+        })
+    }
+    
     $('.undo-transaction').on('click', function(e) {
         // $('#exampleModalCenter8').modal('show');
 
@@ -841,9 +884,11 @@ $(document).ready(function() {
                         } else {
                             var facebook_name = index.form.facebook_name;
                         }
-
                         optionLoop +=
-                            '<tr><td class="text-center">' + a + '</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><a href="/undo-table/' + index.id + '" class="btn btn-primary">Undo</a></td></tr>';
+                        '<tr class="item-'+index.id+'"><td class="text-center">' + a +'</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><button class="btn btn-primary undo-this" data-id="'+index.id+'" data-gameid="'+index.account.id+'">Undo</button></td></tr>';
+
+                        // optionLoop +=
+                        //     '<tr><td class="text-center">' + a + '</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><a href="/undo-table/' + index.id + '" class="btn btn-primary">Undo</a></td></tr>';
                     });
                 } else {
                     optionLoop = '<tr><td>No History</td></tr>';
@@ -855,6 +900,7 @@ $(document).ready(function() {
                 toastr.error('Error', data.responseText);
             }
         });
+        undoFunction();
     });
     function clearBtns(){
         $('.thisBtn').each(function( index ){

@@ -1,5 +1,8 @@
 @component('mail::message')
-          @if(isset($details) && !empty($details))
+@php
+$details = json_decode($details,'true');
+@endphp
+          @if(isset($details) && !empty($details['forms']))
         Hello Admin, These are the list of users who will get bonous today -- <?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>.
         <table  width="800px!important;" border="0" cellspacing="0" cellpadding="0">
           <tr style="background: #001fff;color: #ffff;">
@@ -10,10 +13,7 @@
                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="5%" align="center">Facebook Name</td>
                <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Game Id</td>
           </tr>
-          @php
-          $details = json_decode($details,'true');
-          @endphp
-          @foreach ($details as $key => $orderDetail)
+          @foreach ($details['forms'] as $key => $orderDetail)
           <tbody>
           <tr>
              <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" align="center">
@@ -45,5 +45,5 @@
        
         
         Sincerely,
-        Noor Games.
-@endcomponent
+        <?php echo ($details['theme'] == 'default')?'Noor':ucfirst($details['theme']) ?> Games.
+        @endcomponent

@@ -46,7 +46,7 @@
                         <button  class="btn  btn-primary mb-0 undo-transaction" style="background-color:#1100ff;">
                             <a href="#popup7" style="color:white;">Undo</a>
                         </button>
-                        <div id="popup7" class="overlay" style="max-width:100%; width:100%;">
+                        <div id="popup7" class="overlay" style="max-widtzh:100%; width:100%;">
                             <div class="popup">
                                 <h2>Undo Transaction</h2>
                                 <a class="close" href="#">&times;</a>
