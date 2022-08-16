@@ -34,6 +34,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\sendMailToWinner;
 use Exception;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use PhpParser\Node\Expr;
 
 class NewHomeController extends Controller
@@ -1400,6 +1401,10 @@ public function tableop()
     
     public function tableUpdate(Request $request)
     {
+        // $name = FacadesRequest::input('name');
+        $created_at = isset($_GET['date'])?$_GET['date']:Carbon::now();
+        $url = $request->fullUrl();
+        // return [$url,$created_at];
         try
         {
             $gameId = $request->gameId;
@@ -1422,11 +1427,11 @@ public function tableop()
         // return $amount;
         $cashAppBalance = $cashApp->balance;
         $updateCashApp = CashApp::where('id', $cashAppId)->update(['balance' => ($cashAppBalance + $amount) ]);
-        if(session()->has('tableDate')){
-            $created_at = session()->get('tableDate');
-        }else{
-            $created_at = Carbon::now();
-        }
+        // if(session()->has('tableDate')){
+        //     $created_at = session()->get('tableDate');
+        // }else{
+        //     $created_at = Carbon::now();
+        // }
         $cash_app_form = CashAppForm::create(['created_at' => $created_at,'form_id' => $userId, 'cash_app_id' => $cashAppId, 'account_id' => $gameId, 'amount' => $amount, 'created_by' => Auth::user()->id]);
 
         $account = Account::where('id', $gameId)->update(['balance' => ($accountBalance - $amount) ]);

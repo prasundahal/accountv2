@@ -964,7 +964,7 @@ $(document).ready(function() {
                         }
                     });
                     var type = "POST";
-                    var ajaxurl = '/table-referBalance';
+                    var ajaxurl = '/table-referBalance?date='+dateCustom;
                     var interval = null;
                     $.ajax({
                         type: type,
@@ -1508,7 +1508,7 @@ $(document).ready(function() {
                 
                 //  console.log(cashAppId + ',' + cashAppTitle + ',' + cashAppBalance + ',');
                 // console.log(user + ','  + currentCashAppBalance + ',' + ', '+ gameId + ',' + amount);
-        
+        // console.log(dateCustom);
                 if (amount > currentGameBalance) {
                     $(this).removeAttr('disabled');
                     toastr.error('Balance to load is greater than the game balance.');
@@ -1520,7 +1520,7 @@ $(document).ready(function() {
                         }
                     });
                     var type = "POST";
-                    var ajaxurl = '/table-loadBalance';
+                    var ajaxurl = '/table-loadBalance?date='+dateCustom;
                     var interval = null;
                     $.ajax({
                         type: type,
@@ -1777,7 +1777,7 @@ $(document).ready(function() {
                     }
                 });
                 var type = "POST";
-                var ajaxurl = '/table-redeemBalance';
+                var ajaxurl = '/table-redeemBalance?date='+dateCustom;
                 var interval = null;
                 $.ajax({
                     type: type,
@@ -2011,7 +2011,7 @@ $(document).ready(function() {
                     }
                 });
                 var type = "POST";
-                var ajaxurl = '/table-tipBalance';
+                var ajaxurl = '/table-tipBalance?date='+dateCustom;
                 var interval = null;
                 $.ajax({
                     type: type,
@@ -2377,111 +2377,106 @@ $(document).ready(function() {
             });
         });
 
-
-        $('.this-day-history').on('click', function(e) {
-            console.log('aew');
-            var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
-            var year = $(this).attr("data-year");
-            var month = $(this).attr("data-month");
-            var day = $(this).attr("data-day");
-            console.log(month_symbols);
-            console.log(month);
-            console.log(month.replace(/^0+/, ''));
-            console.log(month_symbols[month.replace(/^0+/, '')]);
-            var category = $(this).attr("data-category");
-            $('h2.popup-title').html('History of '+month_symbols[month.replace(/^0+/, '')]+' '+day+', '+year);
-            $('.history-type-change-btn-allDate').attr('data-day',day);
-            $('.history-type-change-btn-allDate.game-category').removeClass('active-game-btn');
-            $('.history-type-change-btn-allDate.game-type').removeClass('active-game-btn');
-            $('.history-type-change-btn-allDate.game-category').attr('data-type','all');
-            $('.history-type-change-btn-allDate.game-category[data-category="'+category+'"]').addClass('active-game-btn');
-            $('.history-type-change-btn-allDate.game-type').attr('data-category',category);
-            $('.history-type-change-btn-allDate.game-type[data-type="all"]').addClass('active-game-btn');
-            $('.game-category-info.reset-to-blank').html('');
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var actionType = "POST";
-            var ajaxurl = '/accountv2/this-day-history';
-            $.ajax({
-                type: actionType,
-                url: ajaxurl,
-                data: {
-                    "year": year,
-                    "month": month,
-                    "day": day,
-                    "category": category,
-                },
-                dataType: 'json',
-                beforeSend: function() {
-    
-                },
-                success: function(data) {
-                    var accounts = data.accounts;
-                    var default_accounts = data.default_accounts;
-                    $.each($('.history-type-change-btn-allDate.game-category'), function() {
-                        var that = $(this);
-                        $.each(accounts, function(index,value){
-                            if(value.game_name == that.attr('data-category')) {
-                                that.siblings('.game-category-info.reset-to-blank').html('\
-                                Game Title: '+value.game_title+'\
-                                <br>Game Balance: '+value.game_balance+'\
-                                <br>Tip: '+value.totals.tip+'\
-                                <br>Load: '+value.totals.load+'\
-                                <br>Redeem: '+value.totals.redeem+'\
-                                <br>Bonus: '+value.totals.refer+'\
-                                ');
-                            } else if(that.siblings('.game-category-info.reset-to-blank').html() == '') {
-                                $.each(default_accounts, function(index,value){
-                                    if(value.name == that.attr('data-category')) {
-                                        that.siblings('.game-category-info.reset-to-blank').html('\
-                                        Game Title: '+value.title+'\
-                                        <br>Game Balance: '+value.balance+'\
-                                        <br>Tip: 0\
-                                        <br>Load: 0\
-                                        <br>Redeem: 0\
-                                        <br>Bonus: 0\
-                                        ');
-                                    }
-                                });
-                            }
-                        });
-                    });
-                    if (data.grouped != '') {
-                        var optionLoop = '',
-                        options = data.grouped;
-                        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                        options.forEach(function(index) {
-                            var date_format = new Date(index.created_at),
-                                load = index.type == 'load' ? parseInt(index.amount_loaded) : 0,
-                                redeem = index.type == 'redeem' ? parseInt(index.amount_loaded) : 0;
-                                profitLoss = load - redeem;
-                            // var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                            var a =  date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                            optionLoop +=
-                                '<tr><td class="text-center">' + a + '</td>\
-                                <td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td>\
-                                <td class="text-center">' + index.form.facebook_name + '</td>\
-                                <td class="text-center">' + (profitLoss < 0 ? '<span class="badge bg-gradient-warning">'+profitLoss+'$</span>' : '<span class="badge bg-gradient-success">'+profitLoss+'$</span>') + '</td>\
-                                <td class="text-center">' + index.account.name + '</td>\
-                                <td class="text-center">' + index.form_game.game_id + '</td>\
-                                <td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td>\
-                                <td class="text-center">' + index.created_by.name + '</td></tr>';
-                        });
-    
-                    } else {
-                        optionLoop = '<tr><td>No History</td></tr>';
-                    }
-                    $(".user-history-body").html(optionLoop);
-    
-                },
-                error: function(data) {
-                    toastr.error('Error', data.responseText);
-                }
-            });
+    $('.this-day-history').on('click', function(e) {
+        var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        var year = $(this).attr("data-year");
+        var month = $(this).attr("data-month");
+        var day = $(this).attr("data-day");
+        var category = $(this).attr("data-category");
+        $('h2.popup-title').html('History of '+month_symbols[month.replace(/^0+/, '')]+' '+day+', '+year);
+        $('.history-type-change-btn-allDate').attr('data-day',day);
+        $('.history-type-change-btn-allDate.game-category').removeClass('active-game-btn');
+        $('.history-type-change-btn-allDate.game-type').removeClass('active-game-btn');
+        $('.history-type-change-btn-allDate.game-category').attr('data-type','all');
+        $('.history-type-change-btn-allDate.game-category[data-category="'+category+'"]').addClass('active-game-btn');
+        $('.history-type-change-btn-allDate.game-type').attr('data-category',category);
+        $('.history-type-change-btn-allDate.game-type[data-type="all"]').addClass('active-game-btn');
+        $('.game-category-info.reset-to-blank').html('');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
         });
+        var actionType = "POST";
+        var ajaxurl = '/this-day-history';
+        $.ajax({
+            type: actionType,
+            url: ajaxurl,
+            data: {
+                "year": year,
+                "month": month,
+                "day": day,
+                "category": category,
+            },
+            dataType: 'json',
+            beforeSend: function() {
+
+            },
+            success: function(data) {
+                var accounts = data.accounts;
+                var default_accounts = data.default_accounts;
+                $.each($('.history-type-change-btn-allDate.game-category'), function() {
+                    var that = $(this);
+                    $.each(accounts, function(index,value){
+                        if(value.game_name == that.attr('data-category')) {
+                            that.siblings('.game-category-info.reset-to-blank').html('\
+                            Game Title: '+value.game_title+'\
+                            <br>Game Balance: '+value.game_balance+'\
+                            <br>Tip: '+value.totals.tip+'\
+                            <br>Load: '+value.totals.load+'\
+                            <br>Redeem: '+value.totals.redeem+'\
+                            <br>Bonus: '+value.totals.refer+'\
+                            ');
+                        } else if(that.siblings('.game-category-info.reset-to-blank').html() == '') {
+                            $.each(default_accounts, function(index,value){
+                                if(value.name == that.attr('data-category')) {
+                                    that.siblings('.game-category-info.reset-to-blank').html('\
+                                    Game Title: '+value.title+'\
+                                    <br>Game Balance: '+value.balance+'\
+                                    <br>Tip: 0\
+                                    <br>Load: 0\
+                                    <br>Redeem: 0\
+                                    <br>Bonus: 0\
+                                    ');
+                                }
+                            });
+                        }
+                    });
+                });
+                if (data.grouped != '') {
+                    var optionLoop = '',
+                    options = data.grouped;
+                    var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    options.forEach(function(index) {
+                        var date_format = new Date(index.created_at),
+                            load = index.type == 'load' ? parseInt(index.amount_loaded) : 0,
+                            redeem = index.type == 'redeem' ? parseInt(index.amount_loaded) : 0;
+                            profitLoss = load - redeem;
+                        // var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                        var a =  date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                        optionLoop +=
+                            '<tr><td class="text-center">' + a + '</td>\
+                            <td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td>\
+                            <td class="text-center">' + index.form.facebook_name + '</td>\
+                            <td class="text-center">' + (profitLoss < 0 ? '<span class="badge bg-gradient-warning">'+profitLoss+'$</span>' : '<span class="badge bg-gradient-success">'+profitLoss+'$</span>') + '</td>\
+                            <td class="text-center">' + index.account.name + '</td>\
+                            <td class="text-center">' + index.form_game.game_id + '</td>\
+                            <td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td>\
+                            <td class="text-center">' + index.created_by.name + '</td></tr>';
+                    });
+
+                } else {
+                    optionLoop = '<tr><td>No History</td></tr>';
+                }
+                $(".user-history-body").html(optionLoop);
+
+            },
+            error: function(data) {
+                toastr.error('Error', data.responseText);
+            }
+        });
+    });
+
     $('.this-day-game-history').on('click', function(e) {
         var year = $(this).attr("data-year");
         var month = $(this).attr("data-month");
