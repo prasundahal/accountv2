@@ -1237,16 +1237,16 @@ public function tableop()
                     $details = [
                         'name' => $form->full_name,
                         'token_id' => $token_id.'---'.$form->id,
-                        'message' => 'Congratulations !! You have won this months spinner contest.',
+                        'message' => 'Congratulations!!! You have won the first monthly spinner.',
                         'theme' => ($settings->theme)
                     ];
                     try
                         {
-                            Mail::to($form->email)->send(new sendMailToWinner(($details)));
-                            $winner->mail = 1;
-                            $winner->save();
-                            Log::channel('spinnerBulk')->info("Mail sent successfully to ".$form->email);
-                            return Response::json(['success' => $winner], 200);
+                            // Mail::to($form->email)->send(new sendMailToWinner(($details)));
+                            // $winner->mail = 1;
+                            // $winner->save();
+                            // Log::channel('spinnerBulk')->info("Mail sent successfully to ".$form->email);
+                            // return Response::json(['success' => $winner], 200);
                         }
                     catch(\Exception $e)
                         {
@@ -1898,9 +1898,13 @@ public function tableop()
         $year = isset($request->year) ? $request->year : '';
         $month = isset($request->month) ? $request->month : '';
         $day = isset($request->day) ? $request->day : '';
+
         $category = isset($request->category) ? $request->category : '';
+
         $data = ['year' => $year, 'month' => $month, 'day' => $day];
+
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+        
         $account_totals = [];
         $history = History::with('form')
             ->with('created_by')

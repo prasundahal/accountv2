@@ -584,3 +584,9 @@ tr:nth-child(odd) {
 </div>
 @endsection
 
+@section('script')
+<script>
+   
+</script>
+@endsection
+
