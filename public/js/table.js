@@ -2378,7 +2378,7 @@ $(document).ready(function() {
         });
 
     $('.this-day-history').on('click', function(e) {
-        var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September', 'October', 'November', 'December'];
         var year = $(this).attr("data-year");
         var month = $(this).attr("data-month");
         var day = $(this).attr("data-day");
