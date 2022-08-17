@@ -41,6 +41,9 @@
        .mCSB_scrollTools .mCSB_draggerRail{
            display: none;
        }
+       .swal2-container{
+        z-index: 9999!important;
+       }
     </style>
  
 

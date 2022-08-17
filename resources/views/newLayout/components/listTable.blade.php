@@ -505,6 +505,7 @@
    }
 @endphp
 <script>
+
  var time = '{{$time}}';
        function resetData(){
         $(".resetThis").each(function( index ) {

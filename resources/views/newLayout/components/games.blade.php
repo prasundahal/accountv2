@@ -19,7 +19,7 @@
                                     <div class="card-body p-3">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="d-flex align-items-center" style="justify-content: space-between;">
+                                                <div class="d-flex align-items-center game-card123-{{$game['title']}}" style="justify-content: space-between;">
                                                     <a class="mb-1 game-btn {{(str_replace(' ','-',$game['title']))}}-{{($game['id'])}}" href="{{url('/table?').$query_result}}" data-title="{{($game['title'])}}" data-balance="{{($game['balance'])}}">
                                                         <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
                                                             {{-- <i class="ni ni-mobile-button text-white opacity-10"></i> --}}

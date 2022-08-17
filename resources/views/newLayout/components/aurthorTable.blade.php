@@ -5,7 +5,7 @@
     }
 @endphp
 <style>
-  position: fixed;
+  /* position: fixed;
   display: none;
   width: 100%;
   height: 100%;
@@ -16,7 +16,7 @@
   background-color: rgba(0,0,0,0.5);
   z-index: 1000;
   cursor: pointer;
-}
+} */
 </style>
 <div id="overlay" onclick="off()"></div>
 <div class="row">
@@ -93,10 +93,15 @@
                                             <div class="card mb-4">
                                                 <div class="card-body px-0 pt-0 pb-2">
                                                     <input type="text" class="search-undo" placeholder="Search Here..">
+                                                    <button class="btn btn-danger delete-bulk"><i class="fa fa-trash"></i> </button>
                                                     <div class="table-responsive p-0">
                                                         <table class="table table-responsive align-items-center mb-0">
                                                             <thead class="sticky" >
                                                                 <tr>
+                                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">                
+                                                                        <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                                                                        </button>
+                                                                    </th>
                                                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                                                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">FB Name</th>
                                                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Game</th>

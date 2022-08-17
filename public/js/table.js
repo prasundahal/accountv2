@@ -853,7 +853,91 @@ $(document).ready(function() {
             });
         })
     }
-    
+    $
+    function checkboxtoggle(){
+        $('.checkbox-toggle').click(function () {
+            var clicks = $(this).data('clicks');
+            if (clicks) {
+              //Uncheck all checkboxes
+              $('.undo-history-body td input[type=\'checkbox\']').prop('checked', false)
+              $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+            } else {
+              //Check all checkboxes
+              $('.undo-history-body td input[type=\'checkbox\']').prop('checked', true)
+              $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+            }
+            $(this).data('clicks', !clicks)
+          });
+        }
+        
+    $('.delete-bulk').on('click', function(e) {
+        var selected = [];
+        $('.undo-history-body td input:checked').each(function() {
+            selected.push($(this).attr('data-id'));
+        });
+        
+        if(selected.length == 0){
+            toastr.error('Please Select an item');
+            return;
+          }
+        Swal.fire({
+            title: 'Are you sure you want to delete this?',
+            showDenyButton: true,
+            showCancelButton: true,
+            showConfirmButton: false,
+            // confirmButtonText: 'Save',
+            denyButtonText: `Delete`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log('asd');
+                }
+                else if (result.isDenied) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var type = "POST";
+                    var ajaxurl = '/accountv2/undo-bulk';
+                    // var interval = null;
+                    $.ajax({
+                        type: type,
+                        url: ajaxurl,
+                        data: {
+                            "cids": selected,
+                        },
+                        dataType: 'json',
+                        beforeSend: function() {
+                            // i = 0;
+                            // $(".tip-btn").addClass("disabled");
+                            // interval = setInterval(function() {
+                            //     i = ++i % 4;
+                            //     $(".tip-btn").html("Tip" + Array(i + 1).join("."));
+                            // }, 300);
+                        },
+                        success: function(data) {
+                            var response = data.success;
+                            console.log(data.success);
+                            // formtr.remove();
+                            $.each(response, function(i, index) {
+                                $('.game-card123-'+index.account+' .game-btn').attr('data-balance',index.newAmount);
+                                $('.game-card123-'+index.account+' .game-span-item').text('$ '+index.newAmount);
+                            });
+                            $.each(selected, function(i, index) {
+                                $('.item-'+index).remove();
+                            });
+                            // toastr.success('Player Delete');
+                        },
+                        error: function(data) {
+                            console.log(data);
+                            toastr.error('Error', data.responseText);
+                            console.log('error in tipping balance');
+                        }
+                    });
+                }
+            });
+        console.log(selected);
+    });
     $('.undo-transaction').on('click', function(e) {
         // $('#exampleModalCenter8').modal('show');
 
@@ -863,7 +947,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "GET";
-        var ajaxurl = '/undo-history';
+        var ajaxurl = '/accountv2/undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,
@@ -885,7 +969,7 @@ $(document).ready(function() {
                             var facebook_name = index.form.facebook_name;
                         }
                         optionLoop +=
-                        '<tr class="item-'+index.id+'"><td class="text-center">' + a +'</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><button class="btn btn-primary undo-this" data-id="'+index.id+'" data-gameid="'+index.account.id+'">Undo</button></td></tr>';
+                        '<tr class="item-'+index.id+'"><td class="text-center"><input data-id="'+index.id+'" type="checkbox" value="" id="check-'+index.id+'" name="selectMessage[]"><label for="check-'+index.id+'"></label></td><td class="text-center">' + a +'</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><button class="btn btn-primary undo-this" data-id="'+index.id+'" data-gameid="'+index.account.id+'">Undo</button></td></tr>';
 
                         // optionLoop +=
                         //     '<tr><td class="text-center">' + a + '</td><td class="text-center">' + facebook_name + '</td><td class="text-center">' + index.account.name + '</td><td class="text-center">' + index.form_game.game_id + '</td><td class="text-center">$ ' + index.amount_loaded + '</td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + ((index.created_by.name != '')?index.created_by.name:'')  + '</td><td class="text-center"><a href="/undo-table/' + index.id + '" class="btn btn-primary">Undo</a></td></tr>';
@@ -894,6 +978,7 @@ $(document).ready(function() {
                     optionLoop = '<tr><td>No History</td></tr>';
                 }
                 $(".undo-history-body").html(optionLoop);
+                checkboxtoggle();
 
             },
             error: function(data) {

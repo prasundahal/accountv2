@@ -178,6 +178,8 @@ Route::get('/undo-table/{id}', [App\Http\Controllers\NewHomeController::class, '
 Route::post('/export', [App\Http\Controllers\NewHomeController::class, 'export'])->name('export');
 Route::post('/remove-form-game', [App\Http\Controllers\NewHomeController::class, 'removeFormGame'])->name('remove-form-game');
 
+Route::post('/undo-bulk', [App\Http\Controllers\NewHomeController::class, 'undoBulk'])->name('undoBulk');
+
 Route::get('/undo-item-history/{id}', [App\Http\Controllers\NewHomeController::class, 'undoItemHistory'])->name('undo-item-history');
 
 // Route::get('/all-history1', [App\Http\Controllers\NewHomeController::class, 'allHistory1'])->name('all-history1');

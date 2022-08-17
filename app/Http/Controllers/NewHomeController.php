@@ -65,6 +65,95 @@ class NewHomeController extends Controller
     {
         return view('newLayout.profile');
     }
+    public function undoBulk(Request $request){
+        // return $request->cids;
+        $data = [];
+        foreach($request->cids as $a => $messageId){
+            
+            try
+            {
+                $history = History::findOrFail($messageId);
+
+                $related_id = $history->relation_id;
+                $type = $history->type;
+                $account_id = $history->account_id;
+                $cash_apps_id = $history->cash_apps_id;
+                $amount = $history->amount_loaded;
+                // $related = FormRedeem::where('id',$related_id)->get();
+                //  dd($related);
+                    $newAmount = 0;
+                if ($type == 'tip')
+                {
+                    $related = FormTip::find($related_id)->delete();
+                }
+                elseif ($type == 'redeem')
+                {
+                    $related = FormRedeem::where('id',$related_id)->count();
+                    if($related >0){
+                        $related = FormRedeem::find($related_id)->delete();
+                    }
+                    $account = Account::findOrFail($account_id);
+                    $cashApp = CashApp::findOrFail($cash_apps_id);
+                    $account = Account::where('id', $account_id)->update(['balance' => ($account->balance - $amount) ]);
+                    $cashApp = CashApp::where('id', $cash_apps_id)->update(['balance' => ($cashApp->balance + $amount) ]);
+                    $account = Account::findOrFail($account_id);
+                    $newAmount = $account->balance;
+                }
+                elseif ($type == 'refer')
+                {
+                    $related = FormRefer::where('id',$related_id)->count();
+                    if($related >0){
+                        $related = FormRefer::find($related_id)->delete();
+                    }
+                    $account = Account::findOrFail($account_id);
+                    $accountBalance = $account->balance;
+                    $account = Account::where('id', $account_id)->update(['balance' => ($accountBalance + $amount) ]);
+                    $account = Account::findOrFail($account_id);
+                    $newAmount = $account->balance;
+                }
+                elseif ($type == 'load')
+                {
+                    $related = FormBalance::where('id',$related_id)->count();
+                    if($related >0){
+                        $related = FormBalance::find($related_id)->delete();
+                    }
+                    
+                    $account = Account::findOrFail($account_id);
+                    $accountBalance = $account->balance;
+                    $account = Account::where('id', $account_id)->update(['balance' => ($accountBalance + $amount) ]);
+                    $account = Account::findOrFail($account_id);
+                    $newAmount = $account->balance;
+                }
+                elseif ($type == 'cashAppLoad')
+                {
+                    $related = CashAppForm::find($related_id)->delete();
+                    $cashApp = CashApp::findOrFail($cash_apps_id);
+                    $cashAppBalance = $cashApp->balance;
+                    $updateCashApp = CashApp::where('id', $cash_apps_id)->update(['balance' => ($cashAppBalance - $amount) ]);
+                }
+                // try{
+                    $history->delete();
+                    if(isset($data[$account_id])){
+                        $data[$account_id]['newAmount'] = $newAmount;
+
+                    }else{
+                        $data[$account_id] = [
+                            'type' => $type,
+                            'amount' => $amount,
+                            'account' => $account->title,
+                            'newAmount' => $newAmount,
+                        ];
+                    }
+            }
+            catch(\Exception $e)
+            {
+                $bug = $e->getMessage();
+                // dd($bug);
+                return Response::json(['error' => $bug], 404);
+            }
+        }
+        return Response::json(['success' => $data], 200);
+    }
      public function loginLogs()
     {
         $alogs = LoginLog::with('user')->whereHas('user')
