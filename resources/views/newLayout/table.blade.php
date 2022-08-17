@@ -3,6 +3,12 @@
 Table
 @endsection
 @section('content')
+@php
+    $date = isset($_GET['date'])?$_GET['date']:Carbon\Carbon::now();
+@endphp
+<script>
+    var dateCustom = '{{$date}}';
+</script>
 <style>
     table {
         margin: 1em 0;
