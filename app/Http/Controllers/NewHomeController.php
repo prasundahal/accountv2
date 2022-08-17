@@ -2180,6 +2180,7 @@ public function tableop()
 
      public function allData()
     {
+        ini_set('max_execution_time', '300');
         // Form::query()->update(['balance' => 0]);
         //get
         $year = isset($_GET['year']) ? $_GET['year'] : '';
