@@ -898,7 +898,7 @@ $(document).ready(function() {
                         }
                     });
                     var type = "POST";
-                    var ajaxurl = '/accountv2/undo-bulk';
+                    var ajaxurl = '/undo-bulk';
                     // var interval = null;
                     $.ajax({
                         type: type,
@@ -947,7 +947,7 @@ $(document).ready(function() {
             }
         });
         var actionType = "GET";
-        var ajaxurl = '/accountv2/undo-history';
+        var ajaxurl = '/undo-history';
         $.ajax({
             type: actionType,
             url: ajaxurl,
