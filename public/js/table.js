@@ -2383,6 +2383,9 @@ $(document).ready(function() {
         var month = $(this).attr("data-month");
         var day = $(this).attr("data-day");
         var category = $(this).attr("data-category");
+        console.log(month);
+        console.log(month.replace(/^0+/, ''));
+        console.log(month_symbols[month.replace(/^0+/, '')]);
         $('h2.popup-title').html('History of '+month_symbols[month.replace(/^0+/, '')]+' '+day+', '+year);
         $('.history-type-change-btn-allDate').attr('data-day',day);
         $('.history-type-change-btn-allDate.game-category').removeClass('active-game-btn');
