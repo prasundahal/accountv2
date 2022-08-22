@@ -1605,7 +1605,7 @@ $(document).ready(function() {
                         }
                     });
                     var type = "POST";
-                    var ajaxurl = '/table-loadBalance?date='+dateCustom;
+                    var ajaxurl = '/accountv2/table-loadBalance?date='+dateCustom;
                     var interval = null;
                     $.ajax({
                         type: type,
