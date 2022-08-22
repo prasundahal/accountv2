@@ -108,6 +108,8 @@ Route::get('forms/edit/{id}', [FormController::class, 'edit'])->name('forms.edit
 Route::post('saveNoteForm', [FormController::class, 'saveNote'])->name('forms.saveNoteForm');
 Route::get('forms/destroy/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 
+Route::get('unsubscribe', [FormController::class, 'unsubscribe'])->name('forms.unsubscribe');
+Route::post('unsubStore', [FormController::class, 'unsubStore'])->name('forms.unsubStore');
 
 // Route::get('/new-home', [App\Http\Controllers\HomeController::class, 'new-index'])->name('new-home');
 Route::resource('/imageupload',ImageController::class);

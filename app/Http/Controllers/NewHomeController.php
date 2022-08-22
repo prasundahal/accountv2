@@ -3678,13 +3678,33 @@ public function tableop()
         // $limit_amount = 3000;
         $prev = isset($_GET['month'])?$_GET['month']:'';
         if($type == 'all'){
+            $year = date('Y');
+            $month = date('m');
+            $month_prev = $month - 1;
 
+            if($month  < 10){
+                $month = '0'.$month;
+            } 
+            
+            
+            $filter_start = $year.'-'.$month_prev.'-01';
+            $filter_end = Carbon::now();
+                
             $history = History::with('account')->with('form')
                 ->whereHas('form')
                 ->with('created_by')
+                ->whereBetween('created_at',[date($filter_start),date($filter_end)])
                 ->orderBy('id', 'desc')
                 ->get()
                 ->toArray();
+                
+            // $history = FormBalance::with('account')->with('form')
+            // ->whereHas('form')
+            // ->with('created_by')
+            // ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+            // ->orderBy('id', 'desc')
+            // ->get()
+            // ->toArray();
             $final = [];
             $forms = [];
 
@@ -3719,18 +3739,20 @@ public function tableop()
                         // $b['form_game'] = $form_game;
                         if (isset($final[$b['form_id']]['totals']))
                         {
-                            $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
+                            // $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
                             $totals['load'] = $final[$b['form_id']]['totals']['load'];
-                            $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
-                            $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
-                            $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
+                            // $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
+                            // $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
+                            // $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
                         }
 
-                        ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                        // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                        // $totals['load'] = $totals['load'] + $b['amount'];
                         ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-                        ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
-                        ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                        ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+                        // ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
+                        // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                        // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
                         $final[$b['form_id']]['totals'] = $totals;
                         // dd($totals);
                         // array_push($final,$b);

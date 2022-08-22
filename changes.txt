@@ -1,2 +1,5 @@
+ALTER TABLE `forms` ADD `unsub_token` LONGTEXT NULL AFTER `id`;
+
+
 send mail to winner
 monthly history ma august ma click garda card ko title ma septemnber aauney

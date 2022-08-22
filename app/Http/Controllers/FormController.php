@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 session_start();
 
+use App\Mail\customMail;
 use App\Mail\monthlyMail;
 use App\Models\Form;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use App\Mail\UserNoticMail as UserNoticMail;
 use App\Mail\NoticeUserMail as NoticeUserMail;
 
 use App\Models\FormGame;
+use Illuminate\Support\Str;
 use App\Models\Account;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeneralSetting;
@@ -25,7 +27,8 @@ class FormController extends Controller
 {
     public function __construct() {
         $this->middleware('auth', ['except' => [
-            'store','checkCaptcha','go'
+            'store','checkCaptcha','go','unsubStore',
+            'unsubscribe'
         ]]);
     }
     /**
@@ -144,7 +147,47 @@ class FormController extends Controller
                
 
     }
-    
+    public function unsubStore(Request $request){
+        $full_name = $request->full_name;
+        $number = $request->number;
+        $email = $request->email;
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        if(Form::where(['full_name' => $full_name,'number' => $number,'email' => $email])->count() > 0){
+            $token_id = Str::random(32);
+            $form = Form::where(['full_name' => $full_name,'number' => $number,'email' => $email])->update([
+                'unsub_token' => $token_id
+            ]);
+            $form = Form::where(['full_name' => $full_name,'number' => $number,'email' => $email])->get()->toArray();
+            // $message = "<h2>It's not the same without you !</h2><br><p>You've been successfully unsubscribed.</p>";
+            $message = "<h2>It's not the same without you !</h2><br><p>Click the link below to confirm.</p>";
+            try
+            {
+                Mail::to($form['email'])->send(new customMail(json_encode($form)));
+                Log::channel('spinnerBulk')->info("Unscubscribe mail sent successfully to ".$form['email']);
+                return redirect()->back()->withInput()->with('success', 'Mail Sent');
+            }
+            catch(\Exception $e)
+            {
+                $bug = $e->getMessage();
+                Log::channel('spinnerBulk')->info($bug);
+                return redirect()->back()->withInput()->with('error', $bug);
+            }
+            print_r('exists');
+        }else{
+            return redirect()->route('forms.unsubscribe')->withErrors(['error' => 'Sorry We could not identify you.']);
+
+            // return redirect(route('forms.unsubscribe'))->with('error', "Sorry We could not identify you.");
+            // return redirect()->back()->withInput()->with('error', 'Sorry We could not identify you.');            
+        }
+        dd($request->all());
+    }
+    public function unsubscribe()
+    {
+        return view('frontend.unsub');
+    }
+
     public function index()
     {
       //
