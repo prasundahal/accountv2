@@ -3673,6 +3673,7 @@ public function tableop()
     }
     public function gamerGames($id)
     {
+        ini_set('max_execution_time', '300');
         $limit_amount = $this->limit_amount;
         $type = $id;
         // $limit_amount = 3000;
@@ -3690,9 +3691,8 @@ public function tableop()
             $filter_start = $year.'-'.$month_prev.'-01';
             $filter_end = Carbon::now();
                 
-            $history = History::with('account')->with('form')
+            $history = History::with('form')
                 ->whereHas('form')
-                ->with('created_by')
                 ->whereBetween('created_at',[date($filter_start),date($filter_end)])
                 ->orderBy('id', 'desc')
                 ->get()
