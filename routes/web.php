@@ -110,7 +110,7 @@ Route::get('forms/destroy/{id}', [FormController::class, 'destroy'])->name('form
 
 Route::get('unsubscribe', [FormController::class, 'unsubscribe'])->name('forms.unsubscribe');
 Route::post('unsubStore', [FormController::class, 'unsubStore'])->name('forms.unsubStore');
-Route::get('unsubscribe-me/{token}', [FormController::class, 'finalunsub'])->name('forms.unsubStore');
+Route::get('unsubscribe-me/{token}', [FormController::class, 'finalunsub'])->name('forms.finalunsub');
 
 // Route::get('/new-home', [App\Http\Controllers\HomeController::class, 'new-index'])->name('new-home');
 Route::resource('/imageupload',ImageController::class);
