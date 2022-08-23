@@ -3673,10 +3673,24 @@ public function tableop()
     }
     public function gamerGames($id)
     {
-        ini_set('max_execution_time', '300');
+        
+        // $year = date('Y');
+        // $month = date('m');
+        // $month_prev = $month - 2;
+
+        // if($month  < 10){
+        //     $month = '0'.$month;
+        // } 
+        
+        
+        // $filter_start = date("Y-m-t", strtotime($year.'-'.$month_prev.'-01'));
+        // $history = History::where('created_at', '>=', date(($year.'-'.$month_prev.'-30')))->get();
+        // $history = History::where('created_at','<',date($filter_start))->get();
+        // dd($history);
+        // ini_set('max_execution_time', '300');
         $limit_amount = $this->limit_amount;
         $type = $id;
-        // $limit_amount = 3000;
+        // $limit_amount = 3000;    
         $prev = isset($_GET['month'])?$_GET['month']:'';
         if($type == 'all'){
             $year = date('Y');
@@ -3686,18 +3700,36 @@ public function tableop()
             if($month  < 10){
                 $month = '0'.$month;
             } 
+            if($month_prev  < 10){
+                $month_prev = '0'.$month_prev;
+            } 
             
             
-            $filter_start = $year.'-'.$month_prev.'-01';
+            $filter_start = $year.'-'.$month_prev.'-02';
             $filter_end = Carbon::now();
                 
-            $history = History::with('form')
-                ->whereHas('form')
-                ->whereBetween('created_at',[date($filter_start),date($filter_end)])
-                ->orderBy('id', 'desc')
-                ->get()
-                ->toArray();
-                
+            // $history = History::with('form')
+            //     ->whereHas('form')
+            //     ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+            //     ->orderBy('id', 'desc')
+            //     ->get()
+            //     ->toArray();
+            
+            $history = History::where('type', 'load')
+                                // ->where('created_at', '>', Carbon::now()
+                                // ->subDays(30))         
+                                ->orderBy('id','desc')                       
+                                // ->whereDate('created_at', '>=', date(($filter_start)))
+                                ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id',])
+                                ->groupBy('form_id')
+                                ->with('form')
+                                ->whereHas('form')
+                                ->get()->toArray();
+
+        // $history = History::with('form')
+        //                     ->whereHas('form')
+        //                     ->where('type','load')
+        //                     ->whereDate('created_at', '>=', date(($filter_start)))->get();
             // $history = FormBalance::with('account')->with('form')
             // ->whereHas('form')
             // ->with('created_by')
@@ -3705,64 +3737,44 @@ public function tableop()
             // ->orderBy('id', 'desc')
             // ->get()
             // ->toArray();
+            // dd($history);
             $final = [];
             $forms = [];
 
             // $data = [
             //     ['SN', 'Date', 'FB Name','Game','Game ID','Amount','Type','Creator']
-            // ];
+            // ];   
             if (!empty($history))
             {
                 foreach ($history as $a => $b)
                 {
-                    $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
-                    $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
-                    if (!empty($form_game))
+                    $totals = ['load' => 0];
+
+                    $form = Form::where('id', $b['form_id'])->first();
+                    if (!empty($form))
                     {
-                        $form = Form::where('id', $b['form_id'])->first();
-                        if (!empty($form))
+                        $form->toArray();
+                        if (!(isset($final[$b['form_id']])))
                         {
-                            $form_game->toArray();
-                            $form->toArray();
-                            if (!(isset($final[$b['form_id']])))
-                            {
-                                $final[$b['form_id']] = [];
-                            }
-                            $final[$b['form_id']]['spinner_key'] = $form['token'];
-                            $final[$b['form_id']]['form_id'] = $b['form_id'];
-                            $final[$b['form_id']]['full_name'] = $form['full_name'];
-                            $final[$b['form_id']]['number'] = $form['number'];
-                            $final[$b['form_id']]['email'] = $form['email'];
-                            $final[$b['form_id']]['facebook_name'] = $form['facebook_name'];
+                            $final[$b['form_id']] = [];
                         }
-
-                        // $b['form_game'] = $form_game;
-                        if (isset($final[$b['form_id']]['totals']))
-                        {
-                            // $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
-                            $totals['load'] = $final[$b['form_id']]['totals']['load'];
-                            // $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
-                            // $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
-                            // $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
-                        }
-
-                        // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
-                        // $totals['load'] = $totals['load'] + $b['amount'];
-                        ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-
-                        // ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
-                        // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                        // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
-                        $final[$b['form_id']]['totals'] = $totals;
-                        // dd($totals);
-                        // array_push($final,$b);
-                        // array_push($forms,$b['form']);
-                        
+                        $final[$b['form_id']]['spinner_key'] = $form['token'];
+                        $final[$b['form_id']]['form_id'] = $b['form_id'];
+                        $final[$b['form_id']]['full_name'] = $form['full_name'];
+                        $final[$b['form_id']]['number'] = $form['number'];
+                        $final[$b['form_id']]['email'] = $form['email'];
+                        $final[$b['form_id']]['facebook_name'] = $form['facebook_name'];
                     }
+                    // if (isset($final[$b['form_id']]['totals']))
+                    // {
+                    //     $totals['load'] = $final[$b['form_id']]['totals']['load'];
+                    // }
+                    // $totals['load'] = $totals['totals'];
+                    // $totals['load'] = $totals['load'] + $b['amount_loaded'];
+                    $final[$b['form_id']]['totals']['load'] = $b['total'];            
                 }
             }
             $forms = $final;
-            // dd($final);
             $limit_amount = $this->limit_amount;
             $filter_start = 'all';
             $filter_end = 'all';
