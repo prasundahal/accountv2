@@ -3800,12 +3800,24 @@ public function tableop()
             else{
                 $filter_end = Carbon::now();
             }
+            
+            // $history = History::where('type', 'load')
+            //                     // ->where('created_at', '>', Carbon::now()
+            //                     // ->subDays(30))         
+            //                     ->orderBy('id','desc')                       
+            //                     // ->whereDate('created_at', '>=', date(($filter_start)))
+            //                     ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id',])
+            //                     ->groupBy('form_id')
+            //                     ->with('form')
+            //                     ->whereHas('form')
+            //                     ->get()->toArray();
+
             $history = History::with('form')
-            ->whereHas('form')
-            ->whereBetween('created_at',[date($filter_start),date($filter_end)])
-            ->orderBy('id', 'desc')
-            ->get()
-            ->toArray();
+                        ->whereHas('form')
+                        ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+                        ->orderBy('id', 'desc')
+                        ->get()
+                        ->toArray();
 
             $final = [];
             $forms = [];
@@ -3818,15 +3830,7 @@ public function tableop()
             {
                 foreach ($history as $a => $b)
                 {
-                    $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
-                    // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
-                    // if (!empty($form_game))
-                    // {
-                        // $form = Form::where('id', $b['form_id'])->first();
-                        // if (!empty($form))
-                        // {
-                            // if(($form->token == '')){
-                                
+                    $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];                                
                             $token_id = $b['form']['token'];
                         
                             $form_update = Form::find($b['form_id']);
@@ -3834,16 +3838,8 @@ public function tableop()
                                 $token_id = Str::random(32);
                                 $form_update->token = $token_id;
                             }
-                            // $form_update->balance = 1;
                             $form_update->save();
-    
-                                // $form->token = $token_id;
-                                // $form->balance = 1;
-                                // $form->save();
-                            // $form = Form::where('id', $b['form_id'])->first();
-                            // }
-                            // $form_game->toArray();
-                            // $form->toArray();
+                            
                             if (!(isset($final[$b['form_id']])))
                             {
                                 $final[$b['form_id']] = [];
@@ -3854,29 +3850,14 @@ public function tableop()
                             $final[$b['form_id']]['number'] = $b['form']['number'];
                             $final[$b['form_id']]['email'] = $b['form']['email'];
                             $final[$b['form_id']]['facebook_name'] = $b['form']['facebook_name'];
-                        // }
-
-                        // $b['form_game'] = $form_game;
+                            
                         if (isset($final[$b['form_id']]['totals']))
                         {
-                            // $totals['tip'] = $final[$b['form_id']]['totals']['tip'];
                             $totals['load'] = $final[$b['form_id']]['totals']['load'];
-                            // $totals['redeem'] = $final[$b['form_id']]['totals']['redeem'];
-                            // $totals['refer'] = $final[$b['form_id']]['totals']['refer'];
-                            // $totals['cashAppLoad'] = $final[$b['form_id']]['totals']['cashAppLoad'];
                         }
 
-                        // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
                         ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-                        // ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
-                        // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                        // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
                         $final[$b['form_id']]['totals'] = $totals;
-                        // dd($totals);
-                        // array_push($final,$b);
-                        // array_push($forms,$b['form']);
-                        
-                    // }
                 }
             }
             $limit = 0;
@@ -3914,14 +3895,6 @@ public function tableop()
                 }
             }
             $forms = $final_2;
-            // dd($final_2);
-            
-            // foreach($forms as $a => $b){
-                
-            //                 $token_id = Str::random(32);
-            //                      Form::where('id', $b['form_id'])->update(['balance' => 1, 'token' => $token_id]);
-            // }
-            // dd('h',$forms);
             $limit_amount = $this->limit_amount;
 
         }
