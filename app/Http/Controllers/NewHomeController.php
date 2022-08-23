@@ -3467,7 +3467,7 @@ public function tableop()
                     $input2 = self::getHistory($request->id);
                     // $input = Form::where('id',$request->id)->first()->toArray();
                     
-        //  dd($request->id,$input2);
+                    //  dd($request->id,$input2);
                     foreach($input2 as $a => $input){
                         
                     // $token_id = Str::random(32);

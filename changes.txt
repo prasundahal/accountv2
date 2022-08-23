@@ -5,5 +5,9 @@ send mail to winner
 monthly history ma august ma click garda card ko title ma septemnber aauney
 
 gamers games page optimize
+unsubscribe
+
+
+
 ALTER TABLE `histories` ADD INDEX(`created_at`);
 ALTER TABLE `histories` ADD `search_item` INT NOT NULL DEFAULT '0' AFTER `created_by`;

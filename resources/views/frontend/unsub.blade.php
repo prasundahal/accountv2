@@ -113,6 +113,14 @@
                         </div>
                         </br>
                         @endif
+                        @if(session()->has('success'))
+                            <div class="alert alert-success neon-text-success mt-3">
+                                <ul>
+                                    <li><h3>
+                                        {{ session()->get('success') }}</h3></li>
+                                </ul>
+                            </div>
+                        @endif
 
                     <form id="regForm" action="{{ route('forms.unsubStore') }}" method="POST" >
                         @csrf
