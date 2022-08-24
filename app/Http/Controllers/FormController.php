@@ -292,7 +292,7 @@ class FormController extends Controller
         $details = $sendtext;
 
         if($settings->registration_email == 1){
-            Mail::to($request->email)->send(new NoticeUserMail(($sendtextuser)));
+            Mail::to($request->email)->send(new NoticeUserMail(($sendtext)));
         }
         if($settings->registration_sms == 1){
             $key = (string) $settings['api_key'];
@@ -304,7 +304,7 @@ class FormController extends Controller
                 // $request->number
                 'to' => $request->number,
                 'from' => '18337222376',
-                'text' => $sendtext
+                'text' => $sendtextuser
             ]);
         }
         try
