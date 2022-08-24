@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FormNumber;
+use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Validator;
 use Response;
 
@@ -84,7 +85,10 @@ class FormNumberConroller extends Controller
         $usernumber = preg_replace('/[^0-9]/','',$str);
         $usernumberint = (int) filter_var($usernumber, FILTER_SANITIZE_NUMBER_INT);
 //  dd($usernumberint);
-        $basic  = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
+        $settings = GeneralSetting::first();
+        $key = (string) $settings['api_key'];
+        $secret = (string) $settings['api_secret'];
+        $basic  = new \Vonage\Client\Credentials\Basic($key, $secret);
         $client = new \Vonage\Client($basic);
         $message = $client->message()->send([
         'to' => '1'.$usernumber,
@@ -95,7 +99,7 @@ class FormNumberConroller extends Controller
         
           $sendtexttoadmin =' Collab team      '.' '  . $request->name . ' is added to the family with ' . 'Phone ' . $request->phone_number . ' ' . 'Take your time to reach out to him.';
         // dd($sendtexttoadmin, $sendtexttouser);
-        $basic  = new \Vonage\Client\Credentials\Basic("e20bd554", "M5arJoXIrJ8Kat1r");
+        $basic  = new \Vonage\Client\Credentials\Basic($key, $secret);
         $client = new \Vonage\Client($basic);
         $message = $client->message()->send([
         'to' => '19292684435',
@@ -104,7 +108,8 @@ class FormNumberConroller extends Controller
         ]);
         
         
-        return redirect('formsuccess')->with('success', 'Thank You. ');
+        return redirect()->route('formsuccess')->with('success', 'Thank You.');
+        // return redirect('formsuccess')->with('success', 'Thank You. ');
     }
 
     /**
