@@ -79,19 +79,19 @@
                 <!--</div>-->
                 <div>
                     <h2 class="font-weight-bold text-center main-header-text">
-                        WELCOME TO THE NOOR GAMES
+                        NOOR GAMES
                     </h2>
                 </div>
                 <div class="mt-5 mx-5 text-center">
                     <h3 style="line-height:2rem;">
-                        <span class="neon-text font-weight-bold blink">Complete the registration process and start getting your bonus and rewards</span>. 
+                        <span class="neon-text font-weight-bold blink">Complete the form and you will receive a mail from us</span>. 
                     </h3>
                     <h4 class="mt-4">
-                        <span class="font-weight-bold neon-text neon-text-danger blink-danger">You are only a few steps away</span>. 
+                        <span class="font-weight-bold neon-text neon-text-danger blink-danger">It will never be the same without you!</span>. 
                     </h4>
-                    <h3 class="mt-4">    
+                    {{-- <h3 class="mt-4">    
                         <span class="font-weight-bold neon-text blink">Be the owner of your luck</span>.
-                    </h3>
+                    </h3> --}}
                    
                 </div> 
                 <div class = "text-center logo">

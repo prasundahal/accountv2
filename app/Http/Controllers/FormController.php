@@ -151,10 +151,12 @@ class FormController extends Controller
     public function finalunsub($token){
         $form = Form::where('unsub_token',$token);
         if($form->count() > 0){
+            $form2 = $form->first();
+        // dd($form->get());
             $form->update([
                 'unsub_token' => null
             ]);
-            Form::where('unsub_token',$token)->delete();
+            Form::where('id',$form2->id)->delete();
             return redirect()->route('homePage');
         }else{
             Log::channel('spinnerBulk')->info("Someone tried to unscubscribe with the token ".$token);
@@ -185,7 +187,7 @@ class FormController extends Controller
             ];
             try
             {
-                // Mail::to($form['email'])->send(new UnsubscribeMail(json_encode($data)));
+                Mail::to($form['email'])->send(new UnsubscribeMail(json_encode($data)));
                 Log::channel('spinnerBulk')->info("Unscubscribe mail sent successfully to ".$form['email']);
                 // return redirect()->route('forms.unsubscribe')->withSuccess(['success' => 'Please check your email for further process.']);   
                 return redirect()->back()->withInput()->with('success', 'Please check your email for further process.');
