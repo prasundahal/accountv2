@@ -2480,8 +2480,13 @@ public function tableop()
         dd($final);
         return view('newLayout.history', compact('final', 'total', 'games', 'forms'));
     }
-    public function redeems()
+    public function redeems(Request $request)
     {
+        // dd($request->all());
+        $filter_start= '';
+        $filter_end = '';
+        $filter_start = $request->start_date;
+        $filter_end = $request->end_date;
         if (Auth::user()->role != 'admin'){
             $history = FormRedeem::where('created_by',Auth::user()->id)->orderBy('id', 'desc')->count();
         }else{
@@ -2495,12 +2500,29 @@ public function tableop()
         if (($history > 0))
         {            
             if (Auth::user()->role != 'admin'){
-                $history = FormRedeem::groupBy('form_id')->selectRaw('sum(amount) as sum, form_id')->with('form')->whereHas('form')->orderBy('sum','desc')->where('created_by',Auth::user()->id)->orderBy('id', 'desc')->get()->toArray();
+                $history = FormRedeem::groupBy('form_id')
+                                        ->selectRaw('sum(amount) as sum, form_id')
+                                        ->with('form')
+                                        ->whereHas('form')
+                                        ->orderBy('sum','desc')
+                                        ->where('created_by',Auth::user()->id)
+                                        ->orderBy('id', 'desc');
             }else{  
-                $history = FormRedeem::groupBy('form_id')->selectRaw('sum(amount) as sum, form_id')->with('form')->whereHas('form')->orderBy('sum','desc')->get()->toArray();
+                $history = FormRedeem::groupBy('form_id')->selectRaw('sum(amount) as sum, form_id')->with('form')->whereHas('form')->orderBy('sum','desc');
             }
+            if ($filter_start != '')
+            {
+                $history->whereDate('created_at', '>=', $filter_start);
+            }
+            if ($filter_end != '')
+            {
+                $history->whereDate('created_at', '<=', $filter_end);
+            }  
+            
+           $history = $history->get()->toArray();
+        //    dd($filter_start,$filter_end,$history);
         }           
-        return view('newLayout.redeems-history', compact('history'));
+        return view('newLayout.redeems-history', compact('history','filter_start','filter_end'));
     }
     public function todaysHistory()
     {

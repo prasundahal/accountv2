@@ -23,6 +23,30 @@
 
 @endif
 <div class="row" style="padding-top:20px;">
+   <div class="col-12">
+      <div class="card mb-4">
+         <form action="{{route('redeems.filter')}}" method="post">
+         <div class="row card-body px-0pt-0 pb-2" style="margin: 20px 0 0 0;">
+            @csrf
+            <div class="col-4 form-group">
+               <input type="date" class="form-control" name="start_date">
+            </div>
+            <div class="col-4">
+               <input type="date" class="form-control" name="end_date">
+            </div>
+            <div class="col-4">
+               <button type="submit">Submit</button>
+            </div>
+         @if (isset($filter_start) && !empty($filter_start))
+             Data Start : {{$filter_start}}
+         @endif
+         @if (isset($filter_end) && !empty($filter_end))
+             Data End : {{$filter_end}}
+         @endif
+         </div>
+      </form>
+      </div>
+   </div>
   <div class="col-12">
      <div class="card mb-4">
         <div class="card-body px-0 pt-0 pb-2">

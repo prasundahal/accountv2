@@ -9,6 +9,7 @@ unsubscribe (encrypted)
 bulk undo
 test video of bulk undo
 test video of subscribe
+mail sent to between wala users
 cronjob for between wala lai mail send
 
 redeem ma date select

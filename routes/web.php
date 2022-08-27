@@ -161,6 +161,8 @@ Route::post('/table', [SearchTableController::class, 'table'])->name('table.sear
 Route::post('/table-search', [SearchTableController::class, 'tableSearch'])->name('tableSearch')->middleware('auth');
 
 Route::get('/redeems', [NewHomeController::class, 'redeems'])->name('redeems')->middleware('auth');
+Route::post('/redeems', [NewHomeController::class, 'redeems'])->name('redeems.filter')->middleware('auth');
+// Route::get('/redeem-filter', [NewHomeController::class, 'redeem-filter'])->name('redeems.filter')->middleware('auth');
 
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
 Route::post('/table-loadCashBalance', [App\Http\Controllers\NewHomeController::class, 'loadCashBalance'])->name('loadCashBalance');
