@@ -12,6 +12,7 @@ test video of subscribe
 mail sent to between wala users
 cronjob for between wala lai mail send
 redeem ma date select
+cronjob for above limit wala mail
 
 device ip tracking
 

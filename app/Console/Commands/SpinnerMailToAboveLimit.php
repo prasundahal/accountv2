@@ -6,6 +6,7 @@ use App\Mail\spinnerBulkMail;
 use App\Models\Form;
 use App\Models\GeneralSetting;
 use App\Models\History;
+use App\Models\SpinnerWinner;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -72,6 +73,10 @@ class SpinnerMailToAboveLimit extends Command
                             ->get()
                             ->toArray();
 
+        $spinner_winner = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)]);
+
+                    
+
         $final = [];
         $forms = [];
 
@@ -135,7 +140,7 @@ class SpinnerMailToAboveLimit extends Command
                         $form['subject'] = 'Noor Games - Eligible For Spinner';
                         try
                             {
-                                Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
+                                // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
                             }
                         catch(\Exception $e)
@@ -186,6 +191,20 @@ class SpinnerMailToAboveLimit extends Command
                         }
                     }
                 }
+                
+                
+        }
+        
+        if($spinner_winner->count() <= 0){
+            // $history->delete();
+            
+            $shuffle = array_rand($final);
+            $f1 = Form::where('id',$final[$shuffle]['form_id'])->first();
+            $winner = SpinnerWinner::create([
+                'form_id' => $final[$shuffle]['form_id'],
+                'full_name' => $final[$shuffle]['full_name'],
+                'created_at' => $year.'-'.$month.'-15'
+            ]); 
         }
         
     }
