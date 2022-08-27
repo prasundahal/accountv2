@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
         Commands\DailyReport::class,
         Commands\SpinnerResetForm::class,
         Commands\MonthlyTasks::class,
-        Commands\SendMailToBetween::class
+        Commands\SendMailToBetween::class,
+        Commands\SpinnerMailToAboveLimit::class
     ];
 
     /**
@@ -28,7 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //  $schedule->command('SendMailToBetween:cron')->everyMinute();
+        //  $schedule->command('SpinnerMailToAboveLimit:cron')->everyMinute();
          $schedule->command('colabUpdate:cron')
          ->daily();
          $schedule->command('DailyReport:cron')
@@ -37,6 +38,8 @@ class Kernel extends ConsoleKernel
          ->monthlyOn(26, '00:00');
          $schedule->command('sendMailToBetween:cron')
          ->monthlyOn(20, '00:00');
+         $schedule->command('SpinnerMailToAboveLimit:cron')
+         ->monthlyOn(3, '00:00');
          $schedule->command('MonthlyTasks:cron')
          ->monthlyOn(26, '00:00');
         
