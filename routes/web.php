@@ -160,6 +160,7 @@ Route::get('/table', [SearchTableController::class, 'table'])->name('table')->mi
 Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
 Route::post('/table-search', [SearchTableController::class, 'tableSearch'])->name('tableSearch')->middleware('auth');
 
+Route::get('/redeem-history', [NewHomeController::class, 'redeemHistory'])->name('redeemHistory')->middleware('auth');
 Route::get('/redeems', [NewHomeController::class, 'redeems'])->name('redeems')->middleware('auth');
 Route::post('/redeems', [NewHomeController::class, 'redeems'])->name('redeems.filter')->middleware('auth');
 // Route::get('/redeem-filter', [NewHomeController::class, 'redeem-filter'])->name('redeems.filter')->middleware('auth');
@@ -231,6 +232,8 @@ Route::get('/all-data1', [App\Http\Controllers\NewHomeController::class, 'allDat
 Route::get('/monthly-history', [App\Http\Controllers\NewHomeController::class, 'allData'])->name('monthlyHistory');
 Route::post('/this-day-history', [App\Http\Controllers\NewHomeController::class, 'thisDay'])->name('thisDay');
 Route::post('/filter-user-history-allData', [App\Http\Controllers\NewHomeController::class, 'filterUserHistoryAllData'])->name('filterUserHistoryAllData');
+
+Route::post('/this-day-redeem', [App\Http\Controllers\NewHomeController::class, 'thisDayRedeem'])->name('thisDayRedeem');
 
 Route::get('/login-logs', [App\Http\Controllers\NewHomeController::class, 'loginLogs'])->name('loginLogs');
 Route::post('/this-month-logs', [App\Http\Controllers\NewHomeController::class, 'thisMonthLogs'])->name('thisMonthLogs');

@@ -2495,7 +2495,7 @@ $(document).ready(function() {
             },
             dataType: 'json',
             beforeSend: function() {
-
+                $(".user-history-body").html('Loading..');
             },
             success: function(data) {
                 var accounts = data.accounts;

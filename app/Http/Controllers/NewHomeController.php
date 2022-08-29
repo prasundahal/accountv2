@@ -2064,6 +2064,95 @@ public function tableop()
         // return Response::json($data);
         return Response::json($data);
     }
+    public function thisDayRedeem(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : '';
+        $month = isset($request->month) ? $request->month : '';
+        $day = isset($request->day) ? $request->day : '';
+
+        $category = isset($request->category) ? $request->category : '';
+
+        $data = ['year' => $year, 'month' => $month, 'day' => $day];
+
+        $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+        
+        $account_totals = [];
+        if (empty($year))
+        {
+            $year = date('Y');
+        }
+        if (empty($month))
+        {
+            $month = date('m');
+        }
+        if (empty($day))
+        {
+            $day = date('d');
+        }
+
+        //                         
+        $history = FormRedeem::with('form')
+            ->with('created_by')
+            ->with('account')
+            ->whereDate('created_at', '=', date($year . '-' . $month . '-'. $day))
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->toArray();
+        $grouped = [];
+        $accounts = [];
+        foreach ($history as $a => $b)
+        {
+            $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+            $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
+            if (!empty($form_game))
+            {
+                // $account_totals[$b['account_id']]['tip'] = isset($account_totals[$b['account_id']]['tip']) ? $account_totals[$b['account_id']]['tip'] : 0;
+                // $account_totals[$b['account_id']]['load'] = isset($account_totals[$b['account_id']]['load']) ? $account_totals[$b['account_id']]['load'] : 0;
+                $account_totals[$b['account_id']]['redeem'] = isset($account_totals[$b['account_id']]['redeem']) ? $account_totals[$b['account_id']]['redeem'] : 0;
+                // $account_totals[$b['account_id']]['refer'] = isset($account_totals[$b['account_id']]['refer']) ? $account_totals[$b['account_id']]['refer'] : 0;
+                // $account_totals[$b['account_id']]['cashAppLoad'] = isset($account_totals[$b['account_id']]['cashAppLoad']) ? $account_totals[$b['account_id']]['cashAppLoad'] : 0;
+                // $form_game->toArray();
+
+                $b['form_game'] = $form_game;
+                array_push($grouped, $b);
+                // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                // ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                $totals['redeem'] = $totals['redeem'] + $b['amount'];
+                // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+                // ($b['type'] == 'tip') ? ($account_totals[$b['account_id']]['tip'] = $account_totals[$b['account_id']]['tip'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['tip'] = $account_totals[$b['account_id']]['tip']);
+                // ($b['type'] == 'load') ? ($account_totals[$b['account_id']]['load'] = $account_totals[$b['account_id']]['load'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['load'] = $account_totals[$b['account_id']]['load']);
+                $account_totals[$b['account_id']]['redeem'] = $account_totals[$b['account_id']]['redeem'] + $b['amount'];
+                // ($b['type'] == 'refer') ? ($account_totals[$b['account_id']]['refer'] = $account_totals[$b['account_id']]['refer'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['refer'] = $account_totals[$b['account_id']]['refer']);
+                // ($b['type'] == 'cashAppLoad') ? ($account_totals[$b['account_id']]['cashAppLoad'] = $account_totals[$b['account_id']]['cashAppLoad'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['cashAppLoad'] = $totals['cashAppLoad']);
+
+                if (!(isset($accounts[$b['account_id']])))
+                {
+                    $accounts[$b['account_id']] = 
+                    [
+                        'game_id' => $b['account']['id'], 
+                        'game_name' => $b['account']['name'], 
+                        'game_title' => $b['account']['title'], 
+                        'game_balance' => $b['account']['balance'], 
+                        'histories' => [],
+                        'totals' => $totals, 
+                        'total_transactions' => 0
+                    ];
+                }
+                if(isset($accounts[$b['account_id']])) {
+                    $accounts[$b['account_id']]['totals'] = $account_totals[$b['account_id']];
+                }
+            }
+        }
+        // return Response::json($grouped);
+        $default_accounts = Account::get()->toArray();
+        $data['accounts'] = $accounts;
+        $data['default_accounts'] = $default_accounts;
+        $data['grouped'] = $grouped;
+        // return Response::json($data);
+        return Response::json($data);
+    }
     public function filterUndoHistory(Request $request)
    {
        $filter_type = $request->filter_type;
@@ -2272,6 +2361,108 @@ public function tableop()
         return Response::json($grouped);
     }
 
+    public function redeemHistory()
+    {
+        ini_set('max_execution_time', '300');
+        // Form::query()->update(['balance' => 0]);
+        //get
+        $year = isset($_GET['year']) ? $_GET['year'] : '';
+        $month = isset($_GET['month']) ? $_GET['month'] : '';
+        $sel_cat = isset($_GET['category']) && $_GET['category'] ? $_GET['category'] : '';
+        $game_categories = Account::select('name')->distinct()->get();
+
+        if (empty($year))
+        {
+            $year = date('Y');
+        }
+        if (empty($month))
+        {
+            $month = date('m');
+        }
+        if (Auth::user()->role != 'admin'){
+            $history = FormRedeem::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']) && $_GET['category'])
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->where('created_by',Auth::user()->id)
+                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                                ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
+                                ->orderBy('id', 'desc');
+        }else{
+            $history = FormRedeem::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']) && $_GET['category'])
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                                ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
+                                ->orderBy('id', 'desc');
+        }
+        $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0, 'count' => 0];
+        $grouped = [];
+        if (($history->count() > 0))
+        {
+                if (Auth::user()->role != 'admin'){
+                    $history = $history->where('created_by',Auth::user()->id)->get()->toArray();
+                    // $history = FormRedeem::whereHas('account', function ($query) {
+                    //                 if(isset($_GET['category']) && $_GET['category'])
+                    //                 return $query->where('name', 'like', $_GET['category']);
+                    //             })
+                    //             ->where('created_by',Auth::user()->id)
+                    //                     ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                    //                     ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
+                    //                     ->orderBy('id', 'desc')
+                    //                     ->get()
+                    //                     ->toArray();
+                }else{
+                    $history = $history->get()->toArray();
+                    // $history = History::whereHas('account', function ($query) {
+                    //                 if(isset($_GET['category']) && $_GET['category'])
+                    //                 return $query->where('name', 'like', $_GET['category']);
+                    //             })
+                    //             ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                    //                     ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
+                    //                     ->orderBy('id', 'desc')
+                    //                     ->get()
+                    //                     ->toArray();
+                }
+            foreach ($history as $a => $b)
+            {
+                $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
+                if (!(isset($grouped[$created_at[2]])))
+                {
+                    $grouped[$created_at[2]] = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0, 'count' => 0];
+                }
+                // ($b['type'] == 'tip') ? ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip']);
+                // ($b['type'] == 'load') ? ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load']);
+                $grouped[$created_at[2]]['redeem'] = $grouped[$created_at[2]]['redeem'] + $b['amount'];
+                // ($b['type'] == 'refer') ? ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer']);
+                // ($b['type'] == 'cashAppLoad') ? ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad']);
+                $grouped[$created_at[2]]['count'] += 1;
+
+                // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                // ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                $totals['redeem'] = $totals['redeem'] + $b['amount'];
+                // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+            }
+
+            // return view('newLayout.alldata', compact('grouped', 'month', 'year','total'));
+            
+        }
+        $total = $totals;
+        $history = [];
+
+        $all_months = ['1' => 'January', '2' => 'February', '3' => 'March', '4' => 'April', '5' => 'May', '6' => 'June', '7' => 'July', '8' => 'August', '9' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'];
+        // dd($grouped,$year,$month,$history,$totals);
+        $forms = Form::orderBy('id', 'desc')->get()->toArray();
+        $games = Account::orderBy('id', 'desc')->get()->toArray();
+
+        
+        $form_games = FormGame::orderBy('id', 'desc')->with('form')->whereHas('form')->get()->toArray();
+        // dd($form_games);
+        return view('newLayout.redeem-history', compact('grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
+    }
      public function allData()
     {
         ini_set('max_execution_time', '300');
