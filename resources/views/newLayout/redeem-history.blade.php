@@ -1,7 +1,7 @@
 @extends('newLayout.layouts.newLayout')
 
 @section('title')
-     Monthly Data 
+     Redeem Data 
 @endsection
 @section('content')
 <style>
@@ -246,7 +246,7 @@ tr:nth-child(odd) {
                         $current_month = $i;
                      @endphp
                   @endif
-                        <a href="{{'/monthly-history?year='.$year.'&month='.$m.($sel_cat ? '&category='.$sel_cat : '')}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}"
+                        <a href="{{'/redeem-history?year='.$year.'&month='.$m.($sel_cat ? '&category='.$sel_cat : '')}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}"
                            >
                         {{$i}}
                         </a>
