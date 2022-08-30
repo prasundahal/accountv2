@@ -284,7 +284,7 @@ tr:nth-child(odd) {
               <table class="table align-items-center mb-0 datatable">
                  <thead class="sticky" >
                     <tr  >
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Day</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
@@ -296,13 +296,14 @@ tr:nth-child(odd) {
                   @foreach ($grouped as $key => $item)   
                     <tr >
                        <td class="align-middle text-center" style="text-align: center">
-                           {{$current_month.' ,'.$key}}
+                           {{-- {{$current_month.' ,'.$key}} --}}
+                           {{$item['form']['full_name']}}
                        </td>
                        <td class="align-middle text-center">
                            <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
                        </td>
                        <td class="align-middle text-center">
-                        <a href="#popup1" class="this-day-redeem btn btn-primary" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
+                        <a href="#popup1" class="this-day-redeem btn btn-primary" data-form="{{$item['form']['id']}}" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
                            View
                         </a>
                            <div id="popup1" class="overlay">
@@ -383,8 +384,8 @@ tr:nth-child(odd) {
         var year = $(this).attr("data-year");
         var month = $(this).attr("data-month");
         var day = $(this).attr("data-day");
+        var form = $(this).attr("data-form");
         var category = $(this).attr("data-category");
-        $('h2.popup-title').html('History of '+month_symbols[month.replace(/^0+/, '')]+' '+day+', '+year);
         $('.history-type-change-btn-allDate1').attr('data-day',day);
         $('.history-type-change-btn-allDate1.game-category').removeClass('active-game-btn');
         $('.history-type-change-btn-allDate1.game-type').removeClass('active-game-btn');
@@ -398,6 +399,7 @@ tr:nth-child(odd) {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
         });
+        console.log(form);
         var actionType = "POST";
         var ajaxurl = '/this-day-redeem';
         $.ajax({
@@ -408,6 +410,7 @@ tr:nth-child(odd) {
                 "month": month,
                 "day": day,
                 "category": category,
+                'form' : form
             },
             dataType: 'json',
             beforeSend: function() {
@@ -444,7 +447,10 @@ tr:nth-child(odd) {
                     var optionLoop = '',
                     options = data.grouped;
                     var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    options.forEach(function(index) {
+                    options.forEach(function(index,value) {
+                     if(value == 0){
+                        $('h2.popup-title').html('History of '+index.form.full_name);
+                     }
                         var date_format = new Date(index.created_at),
                             redeem = parseInt(index.amount);
                         // var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });

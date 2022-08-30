@@ -2069,6 +2069,7 @@ public function tableop()
         $year = isset($request->year) ? $request->year : '';
         $month = isset($request->month) ? $request->month : '';
         $day = isset($request->day) ? $request->day : '';
+        $form = isset($request->form) ? $request->form : '';
 
         $category = isset($request->category) ? $request->category : '';
 
@@ -2091,13 +2092,20 @@ public function tableop()
         }
 
         //                         
-        $history = FormRedeem::with('form')
+        
+        if(!empty($form)){
+            $history = FormRedeem::with('form')
             ->with('created_by')
             ->with('account')
-            ->whereDate('created_at', '=', date($year . '-' . $month . '-'. $day))
-            ->orderBy('created_at', 'asc')
-            ->get()
-            ->toArray();
+            ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+            ->where('form_id',$form)->orderBy('created_at', 'asc')->get()->toArray();
+        }else{
+            $history = FormRedeem::with('form')
+            ->with('created_by')
+            ->with('account')
+            ->whereDate('created_at', '>=', date($year . '-' . $month . '--01'))
+            ->orderBy('created_at', 'asc')->get()->toArray();
+        }
         $grouped = [];
         $accounts = [];
         foreach ($history as $a => $b)
@@ -2384,6 +2392,8 @@ public function tableop()
                                     if(isset($_GET['category']) && $_GET['category'])
                                     return $query->where('name', 'like', $_GET['category']);
                                 })
+                                ->with('form')
+                                ->whereHas('form')
                                 ->where('created_by',Auth::user()->id)
                                 ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                 ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
@@ -2393,6 +2403,8 @@ public function tableop()
                                     if(isset($_GET['category']) && $_GET['category'])
                                     return $query->where('name', 'like', $_GET['category']);
                                 })
+                                ->with('form')
+                                ->whereHas('form')
                                 ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                 ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                                 ->orderBy('id', 'desc');
@@ -2403,41 +2415,34 @@ public function tableop()
         {
                 if (Auth::user()->role != 'admin'){
                     $history = $history->where('created_by',Auth::user()->id)->get()->toArray();
-                    // $history = FormRedeem::whereHas('account', function ($query) {
-                    //                 if(isset($_GET['category']) && $_GET['category'])
-                    //                 return $query->where('name', 'like', $_GET['category']);
-                    //             })
-                    //             ->where('created_by',Auth::user()->id)
-                    //                     ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
-                    //                     ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
-                    //                     ->orderBy('id', 'desc')
-                    //                     ->get()
-                    //                     ->toArray();
                 }else{
                     $history = $history->get()->toArray();
-                    // $history = History::whereHas('account', function ($query) {
-                    //                 if(isset($_GET['category']) && $_GET['category'])
-                    //                 return $query->where('name', 'like', $_GET['category']);
-                    //             })
-                    //             ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
-                    //                     ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
-                    //                     ->orderBy('id', 'desc')
-                    //                     ->get()
-                    //                     ->toArray();
                 }
             foreach ($history as $a => $b)
             {
                 $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
-                if (!(isset($grouped[$created_at[2]])))
+                // if (!(isset($grouped[$b['form_id']]['form'])))
+                // {
+                //     $grouped[$b['form_id']]['form'] = $b['form'];
+                // }
+                if (!(isset($grouped[$b['form_id']])))
                 {
-                    $grouped[$created_at[2]] = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0, 'count' => 0];
+                    $grouped[$b['form_id']] = [
+                        'tip' => 0, 
+                        'load' => 0, 
+                        'redeem' => 0, 
+                        'refer' => 0, 
+                        'cashAppLoad' => 0, 
+                        'count' => 0,
+                        'form' => $b['form']
+                    ];
                 }
                 // ($b['type'] == 'tip') ? ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip']);
                 // ($b['type'] == 'load') ? ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load']);
-                $grouped[$created_at[2]]['redeem'] = $grouped[$created_at[2]]['redeem'] + $b['amount'];
+                $grouped[$b['form_id']]['redeem'] = $grouped[$b['form_id']]['redeem'] + $b['amount'];
                 // ($b['type'] == 'refer') ? ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer']);
                 // ($b['type'] == 'cashAppLoad') ? ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad']);
-                $grouped[$created_at[2]]['count'] += 1;
+                $grouped[$b['form_id']]['count'] += 1;
 
                 // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
                 // ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
@@ -2450,6 +2455,7 @@ public function tableop()
             // return view('newLayout.alldata', compact('grouped', 'month', 'year','total'));
             
         }
+        // dd($grouped,$history);
         $total = $totals;
         $history = [];
 
