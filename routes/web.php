@@ -108,6 +108,7 @@ Route::get('forms/edit/{id}', [FormController::class, 'edit'])->name('forms.edit
 Route::post('saveNoteForm', [FormController::class, 'saveNote'])->name('forms.saveNoteForm');
 Route::get('forms/destroy/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 
+Route::get('unsubscribed', [FormController::class, 'unsubSuccess'])->name('unsubSuccess');
 Route::get('unsubscribe', [FormController::class, 'unsubscribe'])->name('forms.unsubscribe');
 Route::post('unsubStore', [FormController::class, 'unsubStore'])->name('forms.unsubStore');
 Route::get('unsubscribe-me/{token}', [FormController::class, 'finalunsub'])->name('forms.finalunsub');

@@ -601,7 +601,6 @@ public function tableop()
         $message = $request->message;
 
         if($request->id > 0){
-            dd('asfd');
             try
                 {
                     $input2 = self::getHistory($request->id);
@@ -749,8 +748,14 @@ public function tableop()
     }
      public function removePlayer($id){
         $id = decrypt($id);
-        Form::where('id',$id)->delete();
-        return redirect(route('home-page'))->with('success', "Thank you for being with us");
+        $form = Form::where('id',$id)->count();
+        if($form > 0){
+            return view('frontend.unsubConfirm',compact('id'));
+        }else{
+            abort(404);
+        }
+
+        // return redirect(route('home-page'))->with('success', "Thank you for being with us");
     }
     public function getPlayersList(){
         $historys = Form::where('balance',1)->get();

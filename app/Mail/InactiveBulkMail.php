@@ -37,7 +37,8 @@ class InactiveBulkMail extends Mailable
             'message' => $data['message'],
             'name' => $data['name'],
             'form_id' => ($data['form_id']),
-            'theme' => ($settings->theme)
+            'theme' => ($settings->theme),
+            'form_email' => ($data['form_email']),
         ];
         $subject = isset($data['subject'])?$data['subject']:'Noor Games';
 

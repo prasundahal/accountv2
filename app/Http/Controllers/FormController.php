@@ -20,6 +20,8 @@ use App\Models\Account;
 use Illuminate\Support\Facades\DB;
 use App\Models\GeneralSetting;
 use App\Models\History;
+use App\Models\Unsubmail;
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 
@@ -163,7 +165,18 @@ class FormController extends Controller
             return redirect()->route('homePage');
         }
     }
+    public function unsubSuccess(){
+        return view('frontend.unsubSuccess');
+    }
     public function unsubStore(Request $request){
+        $id = $request->id;
+        Unsubmail::where('form_id',$id)->update([
+            'status' => 0
+        ]);
+        Form::where('id',$id)->delete();
+        return redirect(route('unsubSuccess'));
+    }
+    public function unsubStore1(Request $request){
         $full_name = $request->full_name;
         $number = $request->number;
         $email = $request->email;

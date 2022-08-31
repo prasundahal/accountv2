@@ -14,9 +14,21 @@ cronjob for between wala lai mail send
 redeem ma date select
 cronjob for above limit wala mail
 
+unsubscribe redo
+work on inactive page
+work on redeem history
 device ip tracking
 
 
 
-ALTER TABLE `histories` ADD INDEX(`created_at`);
-ALTER TABLE `histories` ADD `search_item` INT NOT NULL DEFAULT '0' AFTER `created_by`;
+//ALTER TABLE `histories` ADD INDEX(`created_at`);
+//ALTER TABLE `histories` ADD `search_item` INT NOT NULL DEFAULT '0' AFTER `created_by`;
+
+'id',
+'form_id',
+'full_name',
+'email',
+'days',
+'status',
+'created_at',
+'updated_at'
