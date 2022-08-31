@@ -51,7 +51,7 @@ class InactiveBulkMail implements ShouldQueue
         $differenceArray = self::multi_array_diff($users, $balance);
         $array = array_column($differenceArray, 'form_id');
         // Log::channel('cronLog')->info($differenceArray);
-        $forms = Form::whereIn('id', $array)->limit(1)->get();
+        $forms = Form::whereIn('id', $array)->get();
         
 
         if($forms->isEmpty()){
