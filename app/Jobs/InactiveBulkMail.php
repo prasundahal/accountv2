@@ -44,9 +44,9 @@ class InactiveBulkMail implements ShouldQueue
         $message = $this->details['message'];
         $subject = $this->details['subject'];
         
-        $users = FormGame::select('form_id')->distinct()->limit('5')->get()->toArray();
+        $users = FormGame::select('form_id')->distinct()->get()->toArray();
 
-        $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($days))->distinct()->limit('5')->get()->toArray();
+        $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($days))->distinct()->get()->toArray();
 
         $differenceArray = self::multi_array_diff($users, $balance);
         $array = array_column($differenceArray, 'form_id');
