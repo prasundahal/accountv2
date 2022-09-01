@@ -138,6 +138,7 @@ Route::get('/gamers/edit/{id}', [App\Http\Controllers\NewHomeController::class, 
 Route::post('/gamers/update/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerUpdate'])->name('gamerUpdate');
 Route::get('/gamers/destroy/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerDestroy'])->name('gamerDestroy');
 Route::get('/inactive-players/{id}', [App\Http\Controllers\NewHomeController::class, 'inactivePlayers'])->name('inactive-players');
+Route::get('/unsubmails', [App\Http\Controllers\NewHomeController::class, 'unsubMails'])->name('unsubMails');
 
 //updated by Ameer Bajracharya 2022-05-05
 Route::get('/activity-status',          [ActivityStatusController::class, 'index'])->name('activity.status.index');

@@ -33,6 +33,7 @@ use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\sendMailToWinner;
+use App\Models\Unsubmail;
 use Exception;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use PhpParser\Node\Expr;
@@ -746,7 +747,14 @@ public function tableop()
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }
-     public function removePlayer($id){
+    
+    public function unsubMails(){
+        $forms = Unsubmail::orderBy('id','desc')->get();
+        return view('newLayout.unsubs',compact('forms'));
+
+        // return redirect(route('home-page'))->with('success', "Thank you for being with us");
+    }
+    public function removePlayer($id){
         $id = decrypt($id);
         $form = Form::where('id',$id)->count();
         if($form > 0){
