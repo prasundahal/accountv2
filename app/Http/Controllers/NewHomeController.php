@@ -749,13 +749,7 @@ public function tableop()
     }
     
     public function unsubMails(){
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
+        $ip=$_SERVER['REMOTE_ADDR'];
         $url=file_get_contents("http://whatismyipaddress.com/ip/$ip");
         preg_match_all('/<th>(.*?)<\/th><td>(.*?)<\/td>/s',$url,$output,PREG_SET_ORDER);
         $isp=$output[1][2];
