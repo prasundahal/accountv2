@@ -749,6 +749,21 @@ public function tableop()
     }
     
     public function unsubMails(){
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $url=file_get_contents("http://whatismyipaddress.com/ip/$ip");
+        preg_match_all('/<th>(.*?)<\/th><td>(.*?)<\/td>/s',$url,$output,PREG_SET_ORDER);
+        $isp=$output[1][2];
+        $city=$output[9][2];
+        $state=$output[8][2];
+        $zipcode=$output[12][2];
+        $country=$output[7][2];
+        dd($isp,$city,$state,$zipcode,$country);
         $forms = Unsubmail::orderBy('id','desc')->get();
         return view('newLayout.unsubs',compact('forms'));
 

@@ -17,6 +17,8 @@ cronjob for above limit wala mail
 unsubscribe redo
 work on inactive page
 work on redeem history
+
+unsub mails log view
 device ip tracking
 
 
