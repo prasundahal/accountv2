@@ -111,6 +111,8 @@ class SpinnerMailToAboveLimit extends Command
         // print_r($final);
         // echo '</pre>';
         foreach ($final as $a => $b){
+            Log::channel('spinnerBulk')->info("Mail sent successfully to ".$b['email'].'for type above-'.$limit_amount);
+
                 $input['email'] = $b['email'];
                 $input['name'] = $b['full_name'];
                 $input['load'] = $b['totals']['load'];
@@ -141,7 +143,7 @@ class SpinnerMailToAboveLimit extends Command
                         try
                             {
                                 // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
+                                // Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
                             }
                         catch(\Exception $e)
                             {
