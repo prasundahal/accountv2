@@ -157,13 +157,13 @@ use Carbon\Carbon;
                             {{ucwords($num->full_name)}}
                         </td>
                         <td>
-                            {{($num->form->number)}}
+                            {{isset($num->form->number)?$num->form->number:''}}
                         </td>
                         <td>
-                            {{($num->form->email)}}
+                            {{isset($num->form->email)?$num->form->email:''}}
                         </td>
                         <td>
-                            {{($num->form->facebook_name)}}
+                            {{isset($num->form->facebook_name)?$num->form->facebook_name:''}}
                         </td>
                     </tr>
                     @endforeach
