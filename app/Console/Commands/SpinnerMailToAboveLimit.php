@@ -194,18 +194,18 @@ class SpinnerMailToAboveLimit extends Command
 
                 
         }
-        $form = [
-            'name' => 'Prasun Dahal',
-            'message' => 'Custom Text',
-            'message-end' => '',
-            'limit_amount' => $limit_amount,
-            'load' => 800,
-            'type' => $type,
-            'subject' => '',
-            'token_id' => 'asdfasdfasdfa',
-            'load-remaining' => 0
-        ];
-        Mail::to('prasundahal@gmail.com')->send(new spinnerBulkMail(json_encode($form)));
+        // $form = [
+        //     'name' => 'Prasun Dahal',
+        //     'message' => 'Custom Text',
+        //     'message-end' => '',
+        //     'limit_amount' => $limit_amount,
+        //     'load' => 800,
+        //     'type' => $type,
+        //     'subject' => '',
+        //     'token_id' => 'asdfasdfasdfa',
+        //     'load-remaining' => 0
+        // ];
+        // Mail::to('prasundahal@gmail.com')->send(new spinnerBulkMail(json_encode($form)));
         
         if($spinner_winner->count() <= 0){
             // $history->delete();
