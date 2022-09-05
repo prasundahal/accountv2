@@ -111,7 +111,6 @@ class SpinnerMailToAboveLimit extends Command
         // print_r($final);
         // echo '</pre>';
         foreach ($final as $a => $b){
-            Log::channel('spinnerBulk')->info("Mail sent successfully to ".$b['email'].'for type above-'.$limit_amount);
 
                 $input['email'] = $b['email'];
                 $input['name'] = $b['full_name'];
@@ -143,7 +142,7 @@ class SpinnerMailToAboveLimit extends Command
                         try
                             {
                                 // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                // Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
+                                Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
                             }
                         catch(\Exception $e)
                             {
@@ -152,45 +151,45 @@ class SpinnerMailToAboveLimit extends Command
                             }
                     }
                 }elseif($type == 'below-'.$limit_amount){
-                    if($b['totals']['load']  <  $limit_amount){
-                        $form['subject'] = 'Noor Games - Spinner';           
-                        $form['load-remaining'] = $limit_amount - $b['totals']['load'];
+                    // if($b['totals']['load']  <  $limit_amount){
+                    //     $form['subject'] = 'Noor Games - Spinner';           
+                    //     $form['load-remaining'] = $limit_amount - $b['totals']['load'];
 
-                        try
-                        {
-                            Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                            Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type below-'.$limit_amount);
-                        }
-                        catch(\Exception $e)
-                        {
-                            $bug = $e->getMessage();
-                            dd($bug);
-                            Log::channel('spinnerBulk')->info($bug);
-                        }
-                    }
+                    //     try
+                    //     {
+                    //         Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
+                    //         Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type below-'.$limit_amount);
+                    //     }
+                    //     catch(\Exception $e)
+                    //     {
+                    //         $bug = $e->getMessage();
+                    //         dd($bug);
+                    //         Log::channel('spinnerBulk')->info($bug);
+                    //     }
+                    // }
                 }else{
                     // echo '<pre>';
                     // print_r($b['email']);
                     // echo '</pre>';
-                    $limit_1 = $limit_amount - 200;
-                    $limit_2 = $limit_amount;
-                    if($b['totals']['load']  >= $limit_1){
-                        if($b['totals']['load']  < $limit_2){  
-                            $form['subject'] = 'Noor Games - Almost Eligible For Spinner';                    
-                            $form['load-remaining'] = $limit_amount - $b['totals']['load'];
+                    // $limit_1 = $limit_amount - 200;
+                    // $limit_2 = $limit_amount;
+                    // if($b['totals']['load']  >= $limit_1){
+                    //     if($b['totals']['load']  < $limit_2){  
+                    //         $form['subject'] = 'Noor Games - Almost Eligible For Spinner';                    
+                    //         $form['load-remaining'] = $limit_amount - $b['totals']['load'];
                             
-                            try
-                            {
-                                Mail::to($b['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                Log::channel('spinnerBulk')->info("Mail sent successfully to ".$b['email'].' for type between-'.$limit_amount);
-                            }
-                            catch(\Exception $e)
-                            {
-                                $bug = $e->getMessage();
-                                Log::channel('spinnerBulk')->info($bug);
-                            }
-                        }
-                    }
+                    //         try
+                    //         {
+                    //             Mail::to($b['email'])->send(new spinnerBulkMail(json_encode($form)));
+                    //             Log::channel('spinnerBulk')->info("Mail sent successfully to ".$b['email'].' for type between-'.$limit_amount);
+                    //         }
+                    //         catch(\Exception $e)
+                    //         {
+                    //             $bug = $e->getMessage();
+                    //             Log::channel('spinnerBulk')->info($bug);
+                    //         }
+                    //     }
+                    // }
                 }
                 
                 
