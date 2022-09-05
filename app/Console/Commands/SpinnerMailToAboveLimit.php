@@ -140,13 +140,12 @@ class SpinnerMailToAboveLimit extends Command
                         $form['subject'] = 'Noor Games - Eligible For Spinner';
                         try
                             {
-                                Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
+                                // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].'for type above-'.$limit_amount);
                             }
                         catch(\Exception $e)
                             {
                                 $bug = $e->getMessage();
-                                dd($bug);
                                 Log::channel('spinnerBulk')->info($bug);
                             }
                     }
