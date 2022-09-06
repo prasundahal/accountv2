@@ -49,7 +49,7 @@ class SpinnerMailToAboveLimit extends Command
        
         $settings = GeneralSetting::first()->toArray();
         $limit_amount = $settings['limit_amount'];
-        $message = $settings['between_limit_text'];        
+        $message = $settings['above_limit_text'];        
         $type = 'above-'.$limit_amount;
         
 
