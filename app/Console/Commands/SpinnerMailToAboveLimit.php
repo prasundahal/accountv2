@@ -143,7 +143,7 @@ class SpinnerMailToAboveLimit extends Command
                         try
                             {
                                 if(!(in_array($input['email'],$array))){
-                                    // Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
+                                    Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email'].' for type above-'.$limit_amount);
 
                                 }
