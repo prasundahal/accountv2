@@ -29,9 +29,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //  $schedule->command('SpinnerMailToAboveLimit:cron')->everyMinute();
-         $schedule->command('colabUpdate:cron')
-         ->daily();
+         $schedule->command('colabUpdate:cron')->everyMinute();
+        //  $schedule->command('colabUpdate:cron')
+        //  ->daily();
         //  $schedule->command('DailyReport:cron')
         //  ->daily();
         //  $schedule->command('SpinnerResetForm:cron')
