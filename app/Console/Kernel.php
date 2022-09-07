@@ -32,16 +32,16 @@ class Kernel extends ConsoleKernel
         //  $schedule->command('SpinnerMailToAboveLimit:cron')->everyMinute();
          $schedule->command('colabUpdate:cron')
          ->daily();
-         $schedule->command('DailyReport:cron')
-         ->daily();
-         $schedule->command('SpinnerResetForm:cron')
-         ->monthlyOn(26, '00:00');
-         $schedule->command('sendMailToBetween:cron')
-         ->monthlyOn(20, '00:00');
-         $schedule->command('SpinnerMailToAboveLimit:cron')
-         ->monthlyOn(5, '00:00');
-         $schedule->command('MonthlyTasks:cron')
-         ->monthlyOn(26, '00:00');
+        //  $schedule->command('DailyReport:cron')
+        //  ->daily();
+        //  $schedule->command('SpinnerResetForm:cron')
+        //  ->monthlyOn(26, '00:00');
+        //  $schedule->command('sendMailToBetween:cron')
+        //  ->monthlyOn(20, '00:00');
+        //  $schedule->command('SpinnerMailToAboveLimit:cron')
+        //  ->monthlyOn(5, '00:00');
+        //  $schedule->command('MonthlyTasks:cron')
+        //  ->monthlyOn(26, '00:00');
         
         // $schedule->command('MonthlyTasks:cron')
         // ->everyMinute();
