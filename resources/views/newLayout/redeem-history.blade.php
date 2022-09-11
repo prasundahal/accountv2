@@ -398,7 +398,7 @@ tr:nth-child(odd) {
             }
         });
         var actionType = "POST";
-        var ajaxurl = '/accountv2/redeem-status';
+        var ajaxurl = '/redeem-status';
         $.ajax({
             type: actionType,
             url: ajaxurl,
