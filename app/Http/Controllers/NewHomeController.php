@@ -2381,7 +2381,20 @@ public function tableop()
         }
         return Response::json($grouped);
     }
-
+    
+    public function redeemStatus(Request $request){
+        $id = $request->id;
+        $redeem_status = $request->redeem_status;
+        try{
+            Form::where('id',$id)->update([
+                'redeem_status' => $redeem_status
+            ]);
+            return Response::json(['success' => 1], 200);
+        }catch(Exception $e){
+            $bug = $e->getMessage();
+            return Response::json(['error' => $bug], 404);
+        }
+    }
     public function redeemHistory()
     {
         ini_set('max_execution_time', '300');
@@ -2480,7 +2493,17 @@ public function tableop()
         
         $form_games = FormGame::orderBy('id', 'desc')->with('form')->whereHas('form')->get()->toArray();
         // dd($form_games);
-        return view('newLayout.redeem-history', compact('grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
+        $status = [
+            [
+                'id' => 1,
+                'name' => 'verified'
+            ],
+            [
+                'id' => 2,
+                'name' => 'doubtful'
+            ],            
+        ];
+        return view('newLayout.redeem-history', compact('status','grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
     }
      public function allData()
     {

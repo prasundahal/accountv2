@@ -284,8 +284,10 @@ tr:nth-child(odd) {
               <table class="table align-items-center mb-0 datatable">
                  <thead class="sticky" >
                     <tr  >
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SN</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Status</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
                  </thead>
@@ -295,12 +297,20 @@ tr:nth-child(odd) {
                   @endphp
                   @foreach ($grouped as $key => $item)   
                     <tr >
+                     <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
                        <td class="align-middle text-center" style="text-align: center">
                            {{-- {{$current_month.' ,'.$key}} --}}
                            {{$item['form']['full_name']}}
                        </td>
                        <td class="align-middle text-center">
                            <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
+                       </td>
+                       <td class="align-middle text-center">
+                           <select class="form-control status-change" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+                              @foreach($status as $a => $b)
+                                 <option {{($item['form']['redeem_status'] == $b['id'])?'selected':''}} value="{{$b['id']}}">{{ucwords($b['name'])}}</option>
+                              @endforeach
+                           </select>
                        </td>
                        <td class="align-middle text-center">
                         <a href="#popup1" class="this-day-redeem btn btn-primary" data-form="{{$item['form']['id']}}" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
@@ -378,6 +388,36 @@ tr:nth-child(odd) {
 @section('script')
 <script>
    
+   $('.status-change').on('change', function(e) {
+      var cid = $(this).attr('data-id');
+      var newVal = $(this).val();
+      $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var actionType = "POST";
+        var ajaxurl = '/accountv2/redeem-status';
+        $.ajax({
+            type: actionType,
+            url: ajaxurl,
+            data: {
+                "id": cid,
+                "redeem_status": newVal
+            },
+            dataType: 'json',
+            beforeSend: function() {
+            },
+            success: function(data) {
+               
+               toastr.success('Status Changed', data.responseText);
+
+            },
+            error: function(data) {
+                toastr.error('Error', data.responseText);
+            }
+        });
+   });
    $('.this-day-redeem').on('click', function(e) {
         console.log('asdf');
         var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September', 'October', 'November', 'December'];

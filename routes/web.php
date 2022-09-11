@@ -162,6 +162,7 @@ Route::get('/table', [SearchTableController::class, 'table'])->name('table')->mi
 Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
 Route::post('/table-search', [SearchTableController::class, 'tableSearch'])->name('tableSearch')->middleware('auth');
 
+Route::post('/redeem-status', [NewHomeController::class, 'redeemStatus'])->name('redeemStatus')->middleware('auth');
 Route::get('/redeem-history', [NewHomeController::class, 'redeemHistory'])->name('redeemHistory')->middleware('auth');
 Route::get('/redeems', [NewHomeController::class, 'redeems'])->name('redeems')->middleware('auth');
 Route::post('/redeems', [NewHomeController::class, 'redeems'])->name('redeems.filter')->middleware('auth');
