@@ -307,6 +307,7 @@ tr:nth-child(odd) {
                        </td>
                        <td class="align-middle text-center">
                            <select class="form-control status-change" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+                              <option {{($item['form']['redeem_status'] == '')?'selected':''}} value="">Select Status</option>
                               @foreach($status as $a => $b)
                                  <option {{($item['form']['redeem_status'] == $b['id'])?'selected':''}} value="{{$b['id']}}">{{ucwords($b['name'])}}</option>
                               @endforeach
