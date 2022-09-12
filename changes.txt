@@ -51,6 +51,7 @@ cronjob test and make work
 data expert role ko naya user -> access only TABLE
 log files ko report herna pauna paryo
 redeem ma -> SN, status change
+sort redeem by redeem amount
 
 
 ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
