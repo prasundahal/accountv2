@@ -25,6 +25,7 @@ class Admin
         {
             return $next($request);
         }
+        abort(404);
         // if(Auth::user()->role=="cashier")
         // {
         //     return redirect()->route('cashier.index');

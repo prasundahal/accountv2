@@ -53,7 +53,7 @@ class NewHomeController extends Controller
         $this->spinner_message_monthly = $settings['spinner_message_monthly'];
         $this->spinner_message = $settings['spinner_message'];
         
-        $this->middleware('auth', ['except' => ['userSpinner','userSpinnerLatest']]);
+        $this->middleware(['auth','admin'], ['except' => ['dashboard','table','userSpinner','userSpinnerLatest']]);
         $color = DB::table('sidebar')->where('id', 1)
             ->first('color');
         view()->share('color', $color);
