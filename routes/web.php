@@ -275,7 +275,7 @@ Route::post('/admin/frontsetting',[FrontendSettingController::class,'storeGenera
 Route::get('admin/image',[FrontendSettingController::class,'image'])->name('image')->middleware('admin');
 Route::resource('/imageupload',ImageController::class);
 Route::post('/changestatus',[ImageController::class,'updateStatus'])->name('image.update_status')->middleware('admin');
-Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs')->middleware('admin');
 
 Route::get('/admin/colab', [App\Http\Controllers\HomeController::class, 'colab'])->name('colab')->middleware('admin');
 Route::get('colab/edit/{id}', [FormNumberConroller::class, 'edit'])->name('colab.edit')->middleware('admin');
