@@ -48,7 +48,7 @@ CREATE TABLE `unsubmails` (
 
 //dashboard optimized
 //cronjob test and make work
-//data expert role ko naya user
+//data expert role ko naya user (Dataexpert4@noorgames.net,password same as admin)
 //data expert can only access dashboard, table, logout (404 on other pages)
 //redeem ma -> SN, status change
 log files ko report herna pauna paryo
