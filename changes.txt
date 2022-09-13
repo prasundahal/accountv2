@@ -56,3 +56,14 @@ sort redeem by redeem amount
 
 
 ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
