@@ -47,7 +47,7 @@ CREATE TABLE `unsubmails` (
 
 
 
-cronjob test and make work
+//cronjob test and make work
 data expert role ko naya user -> access only TABLE
 log files ko report herna pauna paryo
 redeem ma -> SN, status change
