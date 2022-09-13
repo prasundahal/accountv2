@@ -288,6 +288,12 @@ class NewHomeController extends Controller
         // $form = Form::where('id',343)->first()->toArray();
         // dd(Mail::to('joshibipin2052@gmail.com')->send(new crossedPlayers(json_encode($form))));
         $total = self::totals();
+        // $total = [
+        //     'load' => 'Loading...',
+        //     'tip' => 'Loading...',
+        //     'redeem' => 'Loading...',
+        //     'refer' => 'Loading...',
+        // ];
         $formCount = Form::count();
         $games = Account::where('status', 'active')->get()
             ->toArray();
@@ -1847,6 +1853,15 @@ public function tableop()
     }
     function totals()
     {
+        // $history = FormBalance::sum('amount');
+        // dd($history);
+        $data = [            
+            'load' => FormBalance::get()->sum('amount'),
+            'tip' => FormTip::get()->sum('amount'),
+            'redeem' => FormRedeem::get()->sum('amount'),
+            'refer' => FormRefer::get()->sum('amount'),
+        ];
+        return $data;
         $history = History::orderBy('id', 'desc')
             ->get()
             ->toArray();
