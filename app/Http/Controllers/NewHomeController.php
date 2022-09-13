@@ -1855,13 +1855,13 @@ public function tableop()
     {
         // $history = FormBalance::sum('amount');
         // dd($history);
-        // $data = [            
-        //     'load' => FormBalance::get()->sum('amount'),
-        //     'tip' => FormTip::get()->sum('amount'),
-        //     'redeem' => FormRedeem::get()->sum('amount'),
-        //     'refer' => FormRefer::get()->sum('amount'),
-        // ];
-        // return $data;
+        $data = [            
+            'load' => FormBalance::get()->sum('amount'),
+            'tip' => FormTip::get()->sum('amount'),
+            'redeem' => FormRedeem::get()->sum('amount'),
+            'refer' => FormRefer::get()->sum('amount'),
+        ];
+        return $data;
         $history = History::orderBy('id', 'desc')
             ->get()
             ->toArray();
