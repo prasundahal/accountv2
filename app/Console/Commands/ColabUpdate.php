@@ -56,6 +56,8 @@ class ColabUpdate extends Command
      */
     public function handle()
     {        
+        Log::channel('cronLog')->info('Cron Test');
+return;
         Log::channel('cronLog')->info('Reached command ColabUpdate');
         // whereDate('intervals', Carbon::today())->
         $forms = Form::whereDate('intervals', Carbon::today())->get();
