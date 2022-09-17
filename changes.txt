@@ -51,19 +51,11 @@ CREATE TABLE `unsubmails` (
 //data expert role ko naya user (Dataexpert4@noorgames.net,password same as admin)
 //data expert can only access dashboard, table, logout (404 on other pages)
 //redeem ma -> SN, status change
-log files ko report herna pauna paryo
+//log files ko report herna pauna paryo (/logs)
 sort redeem by redeem amount
 
 
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
-ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+dashboard ma auth
+
+
 ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;

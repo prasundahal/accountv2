@@ -2496,6 +2496,15 @@ public function tableop()
             // return view('newLayout.alldata', compact('grouped', 'month', 'year','total'));
             
         }
+        $new = [];
+        foreach($grouped as $a => $b){
+            $new[$b['redeem']] = $b;
+            krsort($new);
+            array_reverse($new);
+        }
+        $grouped = $new;
+        // dd($grouped);
+        // dd($new);
         // dd($grouped,$history);
         $total = $totals;
         $history = [];
@@ -2518,6 +2527,7 @@ public function tableop()
                 'name' => 'doubtful'
             ],            
         ];
+        // dd($grouped);
         return view('newLayout.redeem-history', compact('status','grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
     }
      public function allData()

@@ -131,7 +131,7 @@ Route::get('/deleted-players',[App\Http\Controllers\HomeController::class, 'dele
 Route::get('players/restore/{id}', [FormController::class, 'restorePlayers'])->name('forms.restore');
 Route::get('players/fdestroy/{id}', [FormController::class, 'forceDeletePlayers'])->name('forms.fdestroy');
 
-Route::get('/dashboard', [App\Http\Controllers\NewHomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\NewHomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 Route::post('/change-color', [App\Http\Controllers\NewHomeController::class, 'changeColor'])->name('change-color');
 Route::get('/gamers', [App\Http\Controllers\NewHomeController::class, 'gamers'])->name('gamers');
 Route::get('/gamers/edit/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerEdit'])->name('gamerEdit');
