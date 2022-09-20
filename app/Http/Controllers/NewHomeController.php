@@ -2552,7 +2552,7 @@ public function tableop()
         // dd(($new),$doubt);
         array_reverse($new);
         $grouped = $new;
-        dd($new);
+        // dd($new);
         // dd($grouped);
         // dd($new);
         // dd($grouped,$history);
