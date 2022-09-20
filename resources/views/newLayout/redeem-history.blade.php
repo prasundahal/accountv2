@@ -201,29 +201,62 @@ tr:nth-child(odd) {
        background: #feb343 !important;
    }
 </style>
+
+<style>
+   .color-red{
+      color: red;
+   }
+   .color-green{
+      color: green;
+   }
+   .color-yellow{
+      color: yellow;
+   }
+</style>
 @if (Auth::user()->role == 'admin')
    <div class="row">
-   <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-      <div class="card">
-         <div class="card-body p-3">
-            <div class="row">
-               <div class="col-8">
-                  <div class="numbers">
-                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Redeem</p>
-                     <h5 class="font-weight-bolder total-redeem">
-                        +{{$total['redeem']}}
-                     </h5>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+         <div class="card">
+            <div class="card-body p-3">
+               <div class="row">
+                  <div class="col-8">
+                     <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Redeem</p>
+                        <h5 class="font-weight-bolder total-redeem">
+                           +{{$total['redeem']}}
+                        </h5>
+                     </div>
                   </div>
-               </div>
-               <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                     <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                     <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-   </div>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+         <div class="card">
+            <div class="card-body p-3">
+               <div class="row">
+                  <div class="col-8">
+                     <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Left</p>
+                        <h5 class="font-weight-bolder total-left">
+                           {{count($grouped)}}
+                        </h5>
+                     </div>
+                  </div>
+                  <div class="col-4 text-end">
+                     <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 @endif
 <div class="row justify-content-center mt-5">
@@ -285,97 +318,286 @@ tr:nth-child(odd) {
                  <thead class="sticky" >
                     <tr  >
                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SN</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Status</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
                  </thead>
-                 <tbody>                          
+                 <tbody class="verified-table">                          
                   @php
                     $count = 1;
                   @endphp
                   @foreach ($grouped as $key => $item)   
-                    <tr >
-                     <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
-                       <td class="align-middle text-center" style="text-align: center">
-                           {{-- {{$current_month.' ,'.$key}} --}}
-                           {{$item['form']['full_name']}}
-                       </td>
-                       <td class="align-middle text-center">
-                           <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
-                       </td>
-                       <td class="align-middle text-center">
-                           <select class="form-control status-change" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
-                              <option {{($item['form']['redeem_status'] == '')?'selected':''}} value="">Select Status</option>
-                              @foreach($status as $a => $b)
-                                 <option {{($item['form']['redeem_status'] == $b['id'])?'selected':''}} value="{{$b['id']}}">{{ucwords($b['name'])}}</option>
-                              @endforeach
-                           </select>
-                       </td>
-                       <td class="align-middle text-center">
-                        <a href="#popup1" class="this-day-redeem btn btn-primary" data-form="{{$item['form']['id']}}" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
-                           View
-                        </a>
-                           <div id="popup1" class="overlay">
-                              <div class="popup" style="width:95%">
-                                 <h2 class="popup-title">History</h2>
-                                 <a class="close" href="#">&times;</a>
-                                 <div class="content ">
-                                    <div class="row" style="padding-top:20px;">
-                                       <div class="col-12">
-                                          <div class="card mb-4">
-                                             <div class="card-header pb-0">
-                                                <div class="row w-100" style="justify-content: space-around;">
-                                                {{-- <h6>Authors table</h6> --}}
-                                                @foreach($game_categories as $gc => $c) 
-                                                <div class="col-lg-2 col-md-6 game-popup game-categories-wrapper">
-                                                    <button class="btn btn-success history-type-change-btn-allDate1 game-category {{$c->name == $sel_cat ? 'active-game-btn': ''}}" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$c->name}}">{{$c->name}}</button>
-                                                    <div class="game-category-info reset-to-blank"></div>
-                                                </div>
-                                                @endforeach
-                                                </div>
-                                                <input type="hidden" name="type" class="user-current-game-history-input">
-                                             </div> 
-                                             <div class="card-body px-0 pt-0 pb-2">
-                                              {{-- <div class="row display-inline-flex"> --}}
-                                                 {{-- <div class="col-4">   
-                                                    <input type="date" name="start" class="filter-start">
-                                                 </div>
-                                                 <div class="col-4">   
-                                                    <input type="date" name="end" class="filter-end">
-                                                 </div> --}}
-                                                 {{-- <div class="col-4">    --}}
-                                                    <button class="filter-history btn btn-primary hidden" data-userId="" data-game="">Go</button>
-                                                 {{-- </div> --}}
-                                              {{-- </div> --}}
-                                                <div class="table-responsive p-0">
-                                                   <table class="table align-items-center mb-0">
-                                                      <thead class="sticky" >
-                                                         <tr  >
-                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FB Name</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game ID</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creator</th>
-                                                         </tr>
-                                                      </thead>
-                                                      <tbody  class="user-history-body">
-                                                         
-                                                      </tbody>
-                                                   </table>
+                        <tr class="tr-{{$item['form']['id']}}">
+                        <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
+                           <td class="align-middle text-center" style="text-align: center">
+                              {{-- {{$current_month.' ,'.$key}} --}}
+                              @if (!empty($item['redeemstatus1']))
+                                 @if($item['redeemstatus1']['status'] == 1)
+                                    <i class="fa fa-circle color-green" style="margin-right: 5px;"></i>
+                                 @elseif($item['redeemstatus1']['status'] == 2)
+                                    <i class="fa fa-circle color-red" style="margin-right: 5px;"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>                               
+                              @endif
+   
+                              @if (!empty($item['redeemstatus2']))
+                                 @if($item['redeemstatus2']['status'] == 1)
+                                    <i class="fa fa-circle color-green" style="margin-right: 5px;"></i>
+                                 @elseif($item['redeemstatus2']['status'] == 2)
+                                    <i class="fa fa-circle color-red" style="margin-right: 5px;"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>                               
+                              @endif
+                              @if (!empty($item['redeemstatus3']))
+                                 @if($item['redeemstatus3']['status'] == 1)
+                                    <i class="fa fa-circle color-green"></i>
+                                 @elseif($item['redeemstatus3']['status'] == 2)
+                                    <i class="fa fa-circle color-red"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow"></i>                               
+                              @endif
+                              {{-- {{$item['form']['full_name']}} --}}
+                           </td>
+                           <td class="align-middle text-center" style="text-align: center">
+                              {{-- {{$current_month.' ,'.$key}} --}}
+                              {{$item['form']['full_name']}}
+                           </td>
+                           <td class="align-middle text-center">
+                              <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
+                           </td>
+                           <td class="align-middle text-center">
+                              <select class="form-control status-change" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+                                 <option value="0">Select Status</option>
+                                 @foreach($status as $a => $b)
+                                    <option {{(!empty($item['redeemstatus']['status']) && ($item['redeemstatus']['status'] == $b['id']))?'selected':''}} value="{{$b['id']}}">{{ucwords($b['name'])}}</option>
+                                 @endforeach
+                              </select>
+                           </td>
+                           <td class="align-middle text-center">
+                           <a href="#popup1" class="this-day-redeem btn btn-primary" data-form="{{$item['form']['id']}}" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
+                              View
+                           </a>
+                              <div id="popup1" class="overlay">
+                                 <div class="popup" style="width:95%">
+                                    <h2 class="popup-title">History</h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content ">
+                                       <div class="row" style="padding-top:20px;">
+                                          <div class="col-12">
+                                             <div class="card mb-4">
+                                                <div class="card-header pb-0">
+                                                   <div class="row w-100" style="justify-content: space-around;">
+                                                   {{-- <h6>Authors table</h6> --}}
+                                                   @foreach($game_categories as $gc => $c) 
+                                                   <div class="col-lg-2 col-md-6 game-popup game-categories-wrapper">
+                                                      <button class="btn btn-success history-type-change-btn-allDate1 game-category {{$c->name == $sel_cat ? 'active-game-btn': ''}}" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$c->name}}">{{$c->name}}</button>
+                                                      <div class="game-category-info reset-to-blank"></div>
+                                                   </div>
+                                                   @endforeach
+                                                   </div>
+                                                   <input type="hidden" name="type" class="user-current-game-history-input">
+                                                </div> 
+                                                <div class="card-body px-0 pt-0 pb-2">
+                                                {{-- <div class="row display-inline-flex"> --}}
+                                                   {{-- <div class="col-4">   
+                                                      <input type="date" name="start" class="filter-start">
+                                                   </div>
+                                                   <div class="col-4">   
+                                                      <input type="date" name="end" class="filter-end">
+                                                   </div> --}}
+                                                   {{-- <div class="col-4">    --}}
+                                                      <button class="filter-history btn btn-primary hidden" data-userId="" data-game="">Go</button>
+                                                   {{-- </div> --}}
+                                                {{-- </div> --}}
+                                                   <div class="table-responsive p-0">
+                                                      <table class="table align-items-center mb-0">
+                                                         <thead class="sticky" >
+                                                            <tr  >
+                                                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FB Name</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game ID</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creator</th>
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody  class="user-history-body">
+                                                            
+                                                         </tbody>
+                                                      </table>
+                                                   </div>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
-                                    </div>
+                                    </div >
                                  </div >
-                             </div >
-                              </div >
-                          {{-- <button class="btn btn-primary">View</button> --}}
-                       </td>
+                                 </div >
+                              {{-- <button class="btn btn-primary">View</button> --}}
+                           </td>
+                        </tr>
+                  @endforeach
+                  {{-- @php
+                      dd($doubt);
+                  @endphp --}}
+                 </tbody>
+              </table>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<div class="row" id="werqwerq" style="padding-top:20px;">
+  <div class="col-12">
+     <div class="card mb-4">
+        <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0 datatable">
+                 <thead class="sticky" >
+                    <tr  >
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SN</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Status</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
+                 </thead>
+                 <tbody class="doubful-table">                          
+                  @php
+                    $count = 1;
+                  @endphp
+                  @foreach ($doubt as $key => $item)   
+                        <tr  class="tr-{{$item['form']['id']}}">
+                        <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
+                           <td class="align-middle text-center" style="text-align: center">
+                              {{-- {{$current_month.' ,'.$key}} --}}
+                              @if (!empty($item['redeemstatus1']))
+                                 @if($item['redeemstatus1']['status'] == 1)
+                                    <i class="fa fa-circle color-green" style="margin-right: 5px;"></i>
+                                 @elseif($item['redeemstatus1']['status'] == 2)
+                                    <i class="fa fa-circle color-red" style="margin-right: 5px;"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>                               
+                              @endif
+   
+                              @if (!empty($item['redeemstatus2']))
+                                 @if($item['redeemstatus2']['status'] == 1)
+                                    <i class="fa fa-circle color-green" style="margin-right: 5px;"></i>
+                                 @elseif($item['redeemstatus2']['status'] == 2)
+                                    <i class="fa fa-circle color-red" style="margin-right: 5px;"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow" style="margin-right: 5px;"></i>                               
+                              @endif
+                              @if (!empty($item['redeemstatus3']))
+                                 @if($item['redeemstatus3']['status'] == 1)
+                                    <i class="fa fa-circle color-green"></i>
+                                 @elseif($item['redeemstatus3']['status'] == 2)
+                                    <i class="fa fa-circle color-red"></i>
+                                 @else
+                                    <i class="fa fa-circle color-yellow"></i>
+                                 @endif
+                              @else
+                                 <i class="fa fa-circle color-yellow"></i>                               
+                              @endif
+                              {{-- {{$item['form']['full_name']}} --}}
+                           </td>
+                           <td class="align-middle text-center" style="text-align: center">
+                              {{-- {{$current_month.' ,'.$key}} --}}
+                              {{$item['form']['full_name']}}
+                           </td>
+                           <td class="align-middle text-center">
+                              <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
+                           </td>
+                           <td class="align-middle text-center">
+                              <select class="form-control status-change" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+                                 <option value="0">Select Status</option>
+                                 @foreach($status as $a => $b)
+                                    <option {{(!empty($item['redeemstatus']['status']) && ($item['redeemstatus']['status'] == $b['id']))?'selected':''}} value="{{$b['id']}}">{{ucwords($b['name'])}}</option>
+                                 @endforeach
+                              </select>
+                           </td>
+                           <td class="align-middle text-center">
+                           <a href="#popup1" class="this-day-redeem btn btn-primary" data-form="{{$item['form']['id']}}" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
+                              View
+                           </a>
+                              <div id="popup1" class="overlay">
+                                 <div class="popup" style="width:95%">
+                                    <h2 class="popup-title">History</h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content ">
+                                       <div class="row" style="padding-top:20px;">
+                                          <div class="col-12">
+                                             <div class="card mb-4">
+                                                <div class="card-header pb-0">
+                                                   <div class="row w-100" style="justify-content: space-around;">
+                                                   {{-- <h6>Authors table</h6> --}}
+                                                   @foreach($game_categories as $gc => $c) 
+                                                   <div class="col-lg-2 col-md-6 game-popup game-categories-wrapper">
+                                                      <button class="btn btn-success history-type-change-btn-allDate1 game-category {{$c->name == $sel_cat ? 'active-game-btn': ''}}" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$c->name}}">{{$c->name}}</button>
+                                                      <div class="game-category-info reset-to-blank"></div>
+                                                   </div>
+                                                   @endforeach
+                                                   </div>
+                                                   <input type="hidden" name="type" class="user-current-game-history-input">
+                                                </div> 
+                                                <div class="card-body px-0 pt-0 pb-2">
+                                                {{-- <div class="row display-inline-flex"> --}}
+                                                   {{-- <div class="col-4">   
+                                                      <input type="date" name="start" class="filter-start">
+                                                   </div>
+                                                   <div class="col-4">   
+                                                      <input type="date" name="end" class="filter-end">
+                                                   </div> --}}
+                                                   {{-- <div class="col-4">    --}}
+                                                      <button class="filter-history btn btn-primary hidden" data-userId="" data-game="">Go</button>
+                                                   {{-- </div> --}}
+                                                {{-- </div> --}}
+                                                   <div class="table-responsive p-0">
+                                                      <table class="table align-items-center mb-0">
+                                                         <thead class="sticky" >
+                                                            <tr  >
+                                                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FB Name</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game ID</th>
+                                                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creator</th>
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody  class="doubful-table2">
+                                                            
+                                                         </tbody>
+                                                      </table>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div >
+                                 </div >
+                                 </div >
+                              {{-- <button class="btn btn-primary">View</button> --}}
+                           </td>
+                        </tr>
                   @endforeach
                  </tbody>
               </table>
@@ -387,11 +609,24 @@ tr:nth-child(odd) {
 @endsection
 
 @section('script')
+@php
+   $year = '';
+   $month = '';
+    if(isset($_GET['year'])){
+      $year = $_GET['year'];
+    }
+    if(isset($_GET['month'])){
+      $month = $_GET['month'];
+    }
+@endphp
 <script>
    
-   $('.status-change').on('change', function(e) {
+   $(document).on('change','.status-change',function(e) {
+      var itemParent = $(this).attr('data-parent');
       var cid = $(this).attr('data-id');
       var newVal = $(this).val();
+      var year = '{{$year}}';
+      var month = '{{$month}}';
       $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -404,13 +639,32 @@ tr:nth-child(odd) {
             url: ajaxurl,
             data: {
                 "id": cid,
+                "year": year,
+                "month": month,
                 "redeem_status": newVal
             },
             dataType: 'json',
             beforeSend: function() {
             },
             success: function(data) {
-               
+               var data2 = JSON.parse(JSON.stringify(data));
+                  // $($(this).attr('data-parent')).remove;'
+                  var oldCount = parseInt($('.total-left').text());
+               if(data2.status == "2"){
+                  var item = $('.'+itemParent);
+                  $('.'+itemParent).remove();
+                  $('.doubful-table').prepend(item);
+                  var newCount = oldCount - 1;
+               }else{
+                  var item = $('.'+itemParent);
+                  $('.'+itemParent).remove();
+                  $('.verified-table').prepend(item);
+                  var newCount = oldCount + 1;
+               }
+               if(newCount <= 0){
+                  newCount = 0;
+               }
+               $('.total-left').text(newCount);
                toastr.success('Status Changed', data.responseText);
 
             },
@@ -419,7 +673,8 @@ tr:nth-child(odd) {
             }
         });
    });
-   $('.this-day-redeem').on('click', function(e) {
+   
+   $(document).on('click','.this-day-redeem',function(e) {
         console.log('asdf');
         var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September', 'October', 'November', 'December'];
         var year = $(this).attr("data-year");
@@ -440,7 +695,8 @@ tr:nth-child(odd) {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
         });
-        console.log(form);
+      //   console.log(form);
+               // console.log('1');
         var actionType = "POST";
         var ajaxurl = '/this-day-redeem';
         $.ajax({
@@ -459,7 +715,6 @@ tr:nth-child(odd) {
 
             },
             success: function(data) {
-               console.log(data);
                 var accounts = data.accounts;
                 var default_accounts = data.default_accounts;
                 $.each($('.history-type-change-btn-allDate1.game-category'), function() {

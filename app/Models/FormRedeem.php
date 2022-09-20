@@ -33,4 +33,16 @@ class FormRedeem extends Model
     public function account(){
         return $this->hasOne(Account::class,'id','account_id');
     }
+    public function redeemstatus(){
+        return $this->hasOne(FormRedeemStatus::class,'form_id','form_id');
+    }
+    public function redeemstatus1(){
+        return $this->hasOne(FormRedeemStatus::class,'form_id','form_id');
+    }
+    public function redeemstatus2(){
+        return $this->hasOne(FormRedeemStatus::class,'form_id','form_id');
+    }
+    public function redeemstatus3(){
+        return $this->hasOne(FormRedeemStatus::class,'form_id','form_id');
+    }
 }

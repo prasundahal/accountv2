@@ -33,6 +33,7 @@ use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\sendMailToWinner;
+use App\Models\FormRedeemStatus;
 use App\Models\Unsubmail;
 use Exception;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -2400,11 +2401,20 @@ public function tableop()
     public function redeemStatus(Request $request){
         $id = $request->id;
         $redeem_status = $request->redeem_status;
+        $year = ($request->year == '')?date('Y'):$request->year;
+        $month = ($request->month == '')?date('m'):$request->month;;
+        $status_date = $year.'-'.$month.'-1';
+
         try{
-            Form::where('id',$id)->update([
-                'redeem_status' => $redeem_status
-            ]);
-            return Response::json(['success' => 1], 200);
+            // Form::where('id',$id)->update([
+            //     'redeem_status' => $redeem_status
+            // ]);
+            
+            FormRedeemStatus::updateOrCreate(
+                ['form_id' => $id,'status_date' => $status_date],
+                ['status' => $redeem_status]
+            );
+            return Response::json(['success' => 1,'status' => $redeem_status], 200);
         }catch(Exception $e){
             $bug = $e->getMessage();
             return Response::json(['error' => $bug], 404);
@@ -2419,7 +2429,6 @@ public function tableop()
         $month = isset($_GET['month']) ? $_GET['month'] : '';
         $sel_cat = isset($_GET['category']) && $_GET['category'] ? $_GET['category'] : '';
         $game_categories = Account::select('name')->distinct()->get();
-
         if (empty($year))
         {
             $year = date('Y');
@@ -2428,28 +2437,51 @@ public function tableop()
         {
             $month = date('m');
         }
+        // $month = 2;
+        if ($month < 10)
+        {
+            $month = '0'.$month;
+        }
+        $date = $year.'-'.$month.'-'.'01';
+        $date_1 = Carbon::parse($date)->submonth()->format('Y-m-d');
+        $date_2 = Carbon::parse($date_1)->submonth()->format('Y-m-d');
+        $date_3 = Carbon::parse($date_2)->submonth()->format('Y-m-d');
+        // dd($date_1,$date_2,$date_3);
         if (Auth::user()->role != 'admin'){
             $history = FormRedeem::whereHas('account', function ($query) {
                                     if(isset($_GET['category']) && $_GET['category'])
                                     return $query->where('name', 'like', $_GET['category']);
                                 })
-                                ->with('form')
-                                ->whereHas('form')
-                                ->where('created_by',Auth::user()->id)
-                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
-                                ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
-                                ->orderBy('id', 'desc');
+                                ->where('created_by',Auth::user()->id);
         }else{
             $history = FormRedeem::whereHas('account', function ($query) {
                                     if(isset($_GET['category']) && $_GET['category'])
                                     return $query->where('name', 'like', $_GET['category']);
-                                })
-                                ->with('form')
-                                ->whereHas('form')
-                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
-                                ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
-                                ->orderBy('id', 'desc');
+                                });
         }
+        $history = $history->with('form')
+                    ->whereHas('form')
+                    // ->where('form_id',488)
+                    ->with('redeemstatus',function($query) use ($date){
+                        return $query->whereDate('status_date', '=', date($date));
+                    })
+                    ->with('redeemstatus1',function($query) use ($date_1){
+                        return $query->whereDate('status_date', '=', date($date_1));
+                    })
+                    ->with('redeemstatus2',function($query) use ($date_2){
+                        return $query->where('status_date', date($date_2));
+                    })
+                    ->with('redeemstatus3',function($query) use ($date_3){
+                        return $query->whereDate('status_date', '=', date($date_3));
+                    })
+                    ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                    ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
+                    ->orderBy('id', 'desc');
+                    // whereDate('status_date',($date_2))->
+                    // dd(FormRedeemStatus::withTrashed()->where('form_id',644)->get()->toArray());
+// dd(FormRedeemStatus::get()->toArray(),FormRedeemStatus::whereDate('status_date',($date_2))->where('form_id',644)->get()->toArray(),$date_1,$date_2,$date_3);
+//                     echo date($date_2);
+                    // dd($history->get()->toArray(),$date);
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0, 'count' => 0];
         $grouped = [];
         if (($history->count() > 0))
@@ -2462,10 +2494,6 @@ public function tableop()
             foreach ($history as $a => $b)
             {
                 $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
-                // if (!(isset($grouped[$b['form_id']]['form'])))
-                // {
-                //     $grouped[$b['form_id']]['form'] = $b['form'];
-                // }
                 if (!(isset($grouped[$b['form_id']])))
                 {
                     $grouped[$b['form_id']] = [
@@ -2475,34 +2503,56 @@ public function tableop()
                         'refer' => 0, 
                         'cashAppLoad' => 0, 
                         'count' => 0,
-                        'form' => $b['form']
+                        'form' => $b['form'],
+                        'redeemstatus' => $b['redeemstatus'],
+                        'redeemstatus1' => $b['redeemstatus1'],
+                        'redeemstatus2' => $b['redeemstatus2'],
+                        'redeemstatus3' => $b['redeemstatus3']
                     ];
                 }
-                // ($b['type'] == 'tip') ? ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['tip'] = $grouped[$created_at[2]]['tip']);
-                // ($b['type'] == 'load') ? ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['load'] = $grouped[$created_at[2]]['load']);
                 $grouped[$b['form_id']]['redeem'] = $grouped[$b['form_id']]['redeem'] + $b['amount'];
-                // ($b['type'] == 'refer') ? ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['refer'] = $grouped[$created_at[2]]['refer']);
-                // ($b['type'] == 'cashAppLoad') ? ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad'] + $b['amount_loaded']) : ($grouped[$created_at[2]]['cashAppLoad'] = $grouped[$created_at[2]]['cashAppLoad']);
                 $grouped[$b['form_id']]['count'] += 1;
-
-                // ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
-                // ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
                 $totals['redeem'] = $totals['redeem'] + $b['amount'];
-                // ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
-                // ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
-
-            }
-
-            // return view('newLayout.alldata', compact('grouped', 'month', 'year','total'));
-            
+            }            
         }
         $new = [];
+        $doubt = [];
+        $countVerified = count($grouped);
+        $count = 0;
+        // dd($grouped);
         foreach($grouped as $a => $b){
-            $new[$b['redeem']] = $b;
-            krsort($new);
-            array_reverse($new);
+            $z = self::recursiveCheck($new,$b['redeem']);
+            // echo $z.'-';
+            // if(isset($b['redeemstatus']['status']) && $b['redeemstatus']['status'] == 2){
+            //     $doubt[$z] = $b;    
+            // }else{
+                $new[$z] = $b;
+            // }
+            // if((isset($new[$b['redeem']]))){
+            //     $z = $b['redeem'] + 1;
+            //     $new[$z] = $b;
+            // }else{
+            //     $new[$b['redeem']] = $b;
+            // }
+            // $new[$b['redeem']] = [];
+            // $redeem_status1 = FormRedeemStatus::where(['status_date' => date($date_2),'form_id' => $b['form']['id']])->get();
+            // echo $b['redeem'].'-';
+            // if (!empty($b['redeemstatus']) && isset($b['redeemstatus']['status']) && $b['redeemstatus']['status'] == 2) {
+            //     $countVerified -= 1;
+            // }
+            $count += 1;
+            // if(!($redeem_status1->isEmpty())){
+            //     $new[$b['redeem']]['redeem_status1'] = $redeem_status1;
+            // }else{
+            //     $new[$b['redeem']]['redeem_status1'] = null;
+            // }
+            // echo $count + 1;
         }
+        krsort($new);
+        // dd(($new),$doubt);
+        array_reverse($new);
         $grouped = $new;
+        dd($new);
         // dd($grouped);
         // dd($new);
         // dd($grouped,$history);
@@ -2528,7 +2578,23 @@ public function tableop()
             ],            
         ];
         // dd($grouped);
-        return view('newLayout.redeem-history', compact('status','grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
+        return view('newLayout.redeem-history', compact('doubt','countVerified','status','grouped', 'month', 'year', 'form_games','total', 'all_months','forms','games','game_categories','sel_cat'));
+    }
+    public function recursiveCheck($new,$redeem){
+        $newRedeem = 0;
+        // dd('asd');
+        if((key_exists($redeem,$new))){
+            // echo '<pre>';
+            // print_r($new);
+            // echo '</pre>';
+            $newRedeem = $redeem + 1;
+            self::recursiveCheck($new,$newRedeem);
+        }else{
+            // dd($new);
+            // echo 'no-';
+            return $redeem;
+        }
+        return $newRedeem;
     }
      public function allData()
     {

@@ -52,10 +52,14 @@ CREATE TABLE `unsubmails` (
 //data expert can only access dashboard, table, logout (404 on other pages)
 //redeem ma -> SN, status change
 //log files ko report herna pauna paryo (/logs)
-sort redeem by redeem amount
-
-
-dashboard ma auth
+//sort redeem by redeem amount
+//dashboard ma auth
 
 
 ALTER TABLE `forms` ADD `redeem_status` BIGINT NULL AFTER `balance`;
+ALTER TABLE `forms` CHANGE `redeem_status` `redeem_status` VARCHAR(200) NULL DEFAULT NULL;
+
+
+RENAME TABLE `noor_v2`.`form_redeem_status` TO `noor_v2`.`form_redeem_statuses`;
+
+ALTER TABLE `form_redeem_statuses` ADD `deleted_at` DATETIME NULL AFTER `status`;
