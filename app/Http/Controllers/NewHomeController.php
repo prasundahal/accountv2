@@ -1904,6 +1904,7 @@ public function tableop()
     public function allHistory1()
     {
 
+        ini_set('max_execution_time', '0');
         
         if (Auth::user()->role == 'admin'){
             $history = History::where('created_by',Auth::user()->id)->orderBy('id', 'desc')->count();
