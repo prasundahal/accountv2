@@ -633,7 +633,7 @@ tr:nth-child(odd) {
             }
         });
         var actionType = "POST";
-        var ajaxurl = '/redeem-status';
+        var ajaxurl = '/accountv2/redeem-status';
         $.ajax({
             type: actionType,
             url: ajaxurl,
@@ -698,7 +698,7 @@ tr:nth-child(odd) {
       //   console.log(form);
                // console.log('1');
         var actionType = "POST";
-        var ajaxurl = '/this-day-redeem';
+        var ajaxurl = '/accountv2/this-day-redeem';
         $.ajax({
             type: actionType,
             url: ajaxurl,

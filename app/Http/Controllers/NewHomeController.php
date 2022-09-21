@@ -2429,18 +2429,23 @@ public function tableop()
         $month = isset($_GET['month']) ? $_GET['month'] : '';
         $sel_cat = isset($_GET['category']) && $_GET['category'] ? $_GET['category'] : '';
         $game_categories = Account::select('name')->distinct()->get();
+        $emptyMonth = 0;
         if (empty($year))
         {
             $year = date('Y');
         }
         if (empty($month))
         {
+            $emptyMonth = 1;
             $month = date('m');
         }
         // $month = 2;
-        if ($month < 10)
-        {
-            $month = '0'.$month;
+        if($emptyMonth == 0){
+                if ($month < 10)
+                {
+                    $month = '0'.$month;
+                }
+
         }
         $date = $year.'-'.$month.'-'.'01';
         $date_1 = Carbon::parse($date)->submonth()->format('Y-m-d');
