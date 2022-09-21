@@ -1919,10 +1919,14 @@ public function tableop()
         if (($history > 0))
         {
             if (Auth::user()->role != 'admin'){
-                $history = History::with('account')->with('form')->whereHas('form')->where('created_by',Auth::user()->id)->orderBy('id', 'desc')->with('created_by')->get()->toArray();
+                $history = History::with('account')->with('form')->whereHas('form')->where('created_by',Auth::user()->id)->orderBy('id', 'desc')->with('created_by')->paginate(15);
             }else{
-                $history = History::with('account')->with('form')->whereHas('form')->with('created_by')->orderBy('id', 'desc')->get()->toArray();
+                $history = History::with('account')->with('form')->whereHas('form')->with('created_by')->orderBy('id', 'desc')->paginate(15);
             }
+            $old = $history;
+            $zzz = $history->toArray();
+            $history = $zzz['data'];
+            // dd($history->toArray());
             foreach ($history as $a => $b)
             {
                 $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
@@ -1978,7 +1982,7 @@ public function tableop()
         // exit;
         $total = $totals;
         $forms = Form::get()->toArray();
-        return view('newLayout.history', compact('final', 'total', 'games', 'forms'));
+        return view('newLayout.history', compact('old','final', 'total', 'games', 'forms'));
     }
     
     public function thisDayGame(Request $request)
