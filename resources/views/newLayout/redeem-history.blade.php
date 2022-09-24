@@ -333,7 +333,7 @@ tr:nth-child(odd) {
                     $count = 1;
                   @endphp
                   @foreach ($grouped as $key => $item)   
-                        <tr class="tr-{{$item['form']['id']}}">
+                        <tr class="tr-{{$item['form']['id']}}" data-all="0">
                         <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
                            <td class="align-middle text-center" style="text-align: center">
                               {{-- {{$current_month.' ,'.$key}} --}}
@@ -473,6 +473,13 @@ tr:nth-child(odd) {
   <div class="col-12">
      <div class="card mb-4">
         <div class="card-body px-0 pt-0 pb-2">
+         
+         <select class="form-control search-undo" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+            <option value="0">All</option>
+            <option value="1">Verified</option>
+            <option value="2">Doubtful</option>
+
+         </select>
            <div class="table-responsive p-0">
               <table class="table align-items-center mb-0 datatable">
                  <thead class="sticky" >
@@ -493,7 +500,7 @@ tr:nth-child(odd) {
                     $count = 1;
                   @endphp
                   @foreach ($doubt as $key => $item)   
-                        <tr  class="tr-{{$item['form']['id']}}">
+                        <tr  class="doubtful-tr tr-{{$item['form']['id']}}" data-all="0" data-status = "{{(!empty($item['redeemstatus']['status'])?$item['redeemstatus']['status']:'')}}">
                         <td  class="align-middle text-center" style="text-align: center">{{$count++}}</td>
                            <td class="align-middle text-center" style="text-align: center">
                               {{-- {{$current_month.' ,'.$key}} --}}
@@ -638,6 +645,21 @@ tr:nth-child(odd) {
     }
 @endphp
 <script>
+   $(function() {
+       $(".search-undo").on("change", function() {
+           var value = $(this).val().toLowerCase();
+           if(value != 0){
+               $(".doubful-table > tr").filter(function() {
+                     $(this).toggle($(this).attr('data-status').indexOf(value) > -1)
+               });
+           }else{
+               // value = 'all';
+               $(".doubful-table > tr").filter(function() {
+                     $(this).toggle($(this).attr('data-all').indexOf(value) > -1)
+               });
+           }
+       });
+   });
    
    $(document).on('change','.status-change',function(e) {
       var itemParent = $(this).attr('data-parent');
@@ -679,6 +701,9 @@ tr:nth-child(odd) {
                   $('.verified-table').prepend(item);
                   var newCount = oldCount + 1;
                }
+ 
+               $(item).addClass('doubtful-tr');
+               $(item).attr('data-status',data2.status);
                $('.creator-'+cid).text(data2.created_by);
                if(newCount <= 0){
                   newCount = 0;
