@@ -12,7 +12,7 @@ class FormRedeemStatus extends Model
     use SoftDeletes;
     protected $fillable = [
 
-        'form_id', 'status_date','status'
+        'form_id', 'status_date','status','created_by'
 
     ];
 }

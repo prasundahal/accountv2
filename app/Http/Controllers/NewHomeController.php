@@ -2417,7 +2417,10 @@ public function tableop()
             
             FormRedeemStatus::updateOrCreate(
                 ['form_id' => $id,'status_date' => $status_date],
-                ['status' => $redeem_status]
+                [
+                    'status' => $redeem_status,
+                    'created_by' => Auth::user()->id
+                ]
             );
             return Response::json(['success' => 1,'status' => $redeem_status], 200);
         }catch(Exception $e){
