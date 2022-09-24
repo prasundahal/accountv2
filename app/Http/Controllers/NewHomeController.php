@@ -2422,7 +2422,11 @@ public function tableop()
                     'created_by' => Auth::user()->id
                 ]
             );
-            return Response::json(['success' => 1,'status' => $redeem_status], 200);
+            return Response::json([
+                'success' => 1,
+                'created_by' => Auth::user()->name,
+                'status' => $redeem_status
+            ], 200);
         }catch(Exception $e){
             $bug = $e->getMessage();
             return Response::json(['error' => $bug], 404);
@@ -2487,6 +2491,8 @@ public function tableop()
                     ->with('redeemstatus3',function($query) use ($date_3){
                         return $query->whereDate('status_date', '=', date($date_3));
                     })
+                    // ->whereHas('redeemstatus')
+                    // ->limit(1)
                     ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                     ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                     ->orderBy('id', 'desc');
@@ -2497,6 +2503,7 @@ public function tableop()
                     // dd($history->get()->toArray(),$date);
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0, 'count' => 0];
         $grouped = [];
+        // dd($history->get()->toArray());
         if (($history->count() > 0))
         {
                 if (Auth::user()->role != 'admin'){
@@ -2523,6 +2530,14 @@ public function tableop()
                         'redeemstatus3' => $b['redeemstatus3']
                     ];
                 }
+                $creator = [];
+                if(isset($b['redeemstatus']['created_by']) && !empty($b['redeemstatus']['created_by'])){
+                    $creator = User::where('id',$b['redeemstatus']['created_by']);
+                    if($creator->count() > 0){
+                        $creator = $creator->first()->toArray();
+                    }
+                }
+                $grouped[$b['form_id']]['creator'] = $creator;
                 $grouped[$b['form_id']]['redeem'] = $grouped[$b['form_id']]['redeem'] + $b['amount'];
                 $grouped[$b['form_id']]['count'] += 1;
                 $totals['redeem'] = $totals['redeem'] + $b['amount'];
@@ -2532,15 +2547,17 @@ public function tableop()
         $doubt = [];
         $countVerified = count($grouped);
         $count = 0;
-        // dd($grouped);
         foreach($grouped as $a => $b){
             $z = self::recursiveCheck($new,$b['redeem']);
             // echo $z.'-';
-            // if(isset($b['redeemstatus']['status']) && $b['redeemstatus']['status'] == 2){
-            //     $doubt[$z] = $b;    
-            // }else{
+            if(isset($b['redeemstatus']['status']) && $b['redeemstatus']['status'] == 2){
+                $doubt[$z] = $b;    
+            }elseif(isset($b['redeemstatus']['status']) && $b['redeemstatus']['status'] == 1){
+                $doubt[$z] = $b;    
+            }
+            else{
                 $new[$z] = $b;
-            // }
+            }
             // if((isset($new[$b['redeem']]))){
             //     $z = $b['redeem'] + 1;
             //     $new[$z] = $b;
@@ -2562,9 +2579,9 @@ public function tableop()
             // echo $count + 1;
         }
         krsort($new);
-        // dd(($new),$doubt);
         array_reverse($new);
         $grouped = $new;
+        // dd($doubt);
         // dd($new);
         // dd($grouped);
         // dd($new);

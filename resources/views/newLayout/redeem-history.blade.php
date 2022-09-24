@@ -321,6 +321,9 @@ tr:nth-child(odd) {
                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      @if (Auth::user()->role == 'admin')
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Updated By</th>
+                      @endif
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Status</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
@@ -377,6 +380,13 @@ tr:nth-child(odd) {
                            <td class="align-middle text-center">
                               <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
                            </td>
+                           
+
+                           @if (Auth::user()->role == 'admin')
+                              <td class="align-middle text-center creator-{{$item['form']['id']}}">
+                                    {{(!empty($item['creator']))?$item['creator']['name']:''}}
+                              </td>                           
+                           @endif
                            <td class="align-middle text-center">
                               <select class="form-control status-change" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
                                  <option value="0">Select Status</option>
@@ -471,6 +481,9 @@ tr:nth-child(odd) {
                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      @if (Auth::user()->role == 'admin')
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Updated By</th>
+                      @endif
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Status</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Actions</th>
                     </tr>
@@ -527,6 +540,11 @@ tr:nth-child(odd) {
                            <td class="align-middle text-center">
                               <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
                            </td>
+                           @if (Auth::user()->role == 'admin')
+                           <td class="align-middle text-center creator-{{$item['form']['id']}}">
+                                 {{(!empty($item['creator']))?$item['creator']['name']:''}}
+                           </td>                           
+                           @endif
                            <td class="align-middle text-center">
                               <select class="form-control status-change" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
                                  <option value="0">Select Status</option>
@@ -650,7 +668,7 @@ tr:nth-child(odd) {
                var data2 = JSON.parse(JSON.stringify(data));
                   // $($(this).attr('data-parent')).remove;'
                   var oldCount = parseInt($('.total-left').text());
-               if(data2.status == "2"){
+               if(data2.status == "2" || data2.status == "1"){
                   var item = $('.'+itemParent);
                   $('.'+itemParent).remove();
                   $('.doubful-table').prepend(item);
@@ -661,6 +679,7 @@ tr:nth-child(odd) {
                   $('.verified-table').prepend(item);
                   var newCount = oldCount + 1;
                }
+               $('.creator-'+cid).text(data2.created_by);
                if(newCount <= 0){
                   newCount = 0;
                }
