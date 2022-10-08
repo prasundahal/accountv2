@@ -458,7 +458,7 @@ const start = () => {
       <span class="close">&times;</span>
       <div id="modal_main_content" style="font-size:18px">
         <center>
-            <img src="https://noorgames.net/images/dragonnn.gif" style="width:100px"> <br><br>ðŸŽ‰ Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text>, you have won the first monthly spinner of noor games ðŸŽ‰<br><br>
+            <img src="https://noorgames.net/images/dragonnn.gif" style="width:100px"> <br><br> Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text>, you have won the first monthly spinner of noor games<br><br>
 Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.  <br><br>Sincerely,<br>Noor Games<br>
         </center>
       </div>

@@ -19,8 +19,8 @@
     <!-- Icons font CSS-->
     <!-- Font special for pages-->
     <!-- Vendor CSS-->
-    <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+    {{-- <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet" media="all"> --}}
+    {{-- <link href="{{ asset('vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all"> --}}
     <!-- Main CSS-->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all">
