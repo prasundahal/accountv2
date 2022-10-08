@@ -1302,7 +1302,7 @@ public function tableop()
                 $month = intval(date('m'));
                 foreach($old_winners as $a => $b){
                     $date = explode('-',date('Y-m-d',strtotime($b['created_at'])));
-                    if(intval($date[1]) != $month){
+                    if(intval($date[1]) != $month && intval($date[1]) != ($month-1)){
                         array_push($final_old,$b);
                     }else{
                     }
