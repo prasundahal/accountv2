@@ -1312,6 +1312,8 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
+            
+        // dd($old_list);
             return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer'));
         }
         else{
