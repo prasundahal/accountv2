@@ -63,3 +63,7 @@ ALTER TABLE `forms` CHANGE `redeem_status` `redeem_status` VARCHAR(200) NULL DEF
 RENAME TABLE `noor_v2`.`form_redeem_status` TO `noor_v2`.`form_redeem_statuses`;
 
 ALTER TABLE `form_redeem_statuses` ADD `deleted_at` DATETIME NULL AFTER `status`;
+
+
+//past winner
+//spinner ko congrats modal ma characters removed

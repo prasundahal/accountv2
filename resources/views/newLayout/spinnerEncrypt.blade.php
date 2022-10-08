@@ -449,17 +449,87 @@ const start = () => {
         // start();
         // stop();
         </script>
+        <style>
+            
+         .rainbow {
+         left: -35px;
+         /* width: 280px; */
+         }
+         @keyframes rotate {
+         100% {
+         transform: rotate(1turn);
+         }
+         }
+         .rainbow {
+         position: relative;
+         z-index: 0;
+         border-radius: 10px;
+         overflow: hidden;
+         }
+         .rainbow::before {
+         content: '';
+         position: absolute;
+         z-index: -2;
+         left: -50%;
+         top: -50%;
+         width: 200%;
+         height: 200%;
+         /*background-color: #399953;*/
+         background-repeat: no-repeat;
+         background-size: 50% 50%, 50% 50%;
+         background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+         background-image: 
+         linear-gradient(#f11b7e, #f11b7e), 
+         linear-gradient(#0032fb, #0032fb), 
+         linear-gradient(#0032fb, #0032fb),
+         linear-gradient(#f11b7e, #f11b7e), 
+         linear-gradient(#0032fb, #0032fb),
+         linear-gradient(#f11b7e, #f11b7e), 
+         linear-gradient(#0032fb, #0032fb),
+         linear-gradient(#f11b7e, #f11b7e);             
+         animation: rotate 4s linear infinite;
+         }
+         .rainbow::after {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         left: 6px;
+         top: 6px;
+         width: calc(100% - 12px);
+         height: calc(100% - 12px);
+         border-radius: 5px;
+         background:black;
+         }
+         .neon-text {
+                font-family: 'neon_planetdisplay', Arial, sans-serif;
+                color: #fff;
+                letter-spacing: 2px;
+                text-shadow: 0 0 2px #006aff, 0 0 4px #006aff, 0 0 6px #006aff, 0 0 8px #006aff, 0 0 10px #006aff, 0 0 12px #006aff, 0 0 14px #006aff, 0 0 16px #006aff;
+            }
+        </style>
     
 <!-- The Modal -->
+{{--   --}}
 <div id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content rainbow">
       <span class="close">&times;</span>
       <div id="modal_main_content" style="font-size:18px">
         <center>
-            <img src="https://noorgames.net/images/dragonnn.gif" style="width:100px"> <br><br> Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text>, you have won the first monthly spinner of noor games<br><br>
-Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.  <br><br>Sincerely,<br>Noor Games<br>
+            <img src="https://noorgames.net/images/dragonnn.gif" style="width:100px"> <br><br> 
+           {{-- <p class="neon-text neon_planetdisplay"></p> Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text>, you have won the first monthly spinner of noor games<br><br>
+Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.  <br><br>Sincerely,<br>Noor Games<br> --}}
+
+
+<p class="neon-text neon_planetdisplay">
+    Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text> you have won the first monthly spinner of noor games
+</p>
+<p class="neon-text neon_planetdisplay">
+Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win 
+</p>
+<p class="neon-text neon_planetdisplay">Sincerely
+</p><p class="neon-text neon_planetdisplay">Noor Games</p><br>
         </center>
       </div>
     </div>
@@ -522,7 +592,7 @@ Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.
     border: none;
     max-width: 400px;
     font-size:14px;
-    color:black;
+    /* color:black; */
     margin-bottom: 100px;
       padding-bottom: 30px;
       border-radius: 0px;
