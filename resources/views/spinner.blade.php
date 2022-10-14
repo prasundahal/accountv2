@@ -521,7 +521,7 @@ Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win.
 
 
 <p class="neon-text neon_planetdisplay">
-    Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text> you have won the first monthly spinner of noor games
+    Congratulations <text id='winnerinfolaters' style="font-weight:bold"></text> you have won the monthly spinner of noor games
 </p>
 <p class="neon-text neon_planetdisplay">
 Please reach out to <b>Sasha</b> at messenger for payout with screenshot of win 
