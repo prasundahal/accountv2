@@ -961,7 +961,7 @@ public function tableop()
                 'players_list' => [],
                 'winner_info' => []
             ];
-            if (($historys->count()) > 1)
+            if (($historys->count()) > 0)
             {
                 $historys = $historys->toArray();
                 foreach ($historys as $a => $b)
@@ -1028,8 +1028,24 @@ public function tableop()
                 //prasun dahal
             }
 
-            // dd($shuffle,$final);
-            return view('spinner', compact('final'));
+            $old_winners = SpinnerWinner::count();
+            if($old_winners > 0){
+                $old_winners = SpinnerWinner::limit(5)->get()->toArray();
+                $final_old = [];
+                $month = intval(date('m'));
+                foreach($old_winners as $a => $b){
+                    $date = explode('-',date('Y-m-d',strtotime($b['created_at'])));
+                    if(intval($date[1]) != $month && intval($date[1]) != ($month-1)){
+                        array_push($final_old,$b);
+                    }else{
+                    }
+                }
+                // $old_winners = $final_old;
+                $old_list = $final_old;
+            }else{
+                $old_winners = [];
+            }
+            return view('spinner', compact('final','old_list'));
         }
         catch(\Exception $e)
         {

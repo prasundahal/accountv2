@@ -67,3 +67,4 @@ ALTER TABLE `form_redeem_statuses` ADD `deleted_at` DATETIME NULL AFTER `status`
 
 //past winner
 //spinner ko congrats modal ma characters removed
+//font change of spinner winner text
