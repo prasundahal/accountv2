@@ -51,6 +51,11 @@ return [
             'path' => storage_path('logs/cronLog.log'),
             'level' => 'info',
         ],
+        'spinnerWinnerCron' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/spinnerWinnerCron.log'),
+            'level' => 'info',
+        ],
         'spinnerBulk' => [
             'driver' => 'single',
             'path' => storage_path('logs/spinnerBulk.log'),

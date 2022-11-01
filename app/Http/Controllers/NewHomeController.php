@@ -1056,7 +1056,7 @@ public function tableop()
     }
     public function userSpinnerLatest($token)
     {
-        dd('asdf');
+        // dd('asdf');
         $form_token = Form::where('token',$token)->count();
 
         if($form_token > 0 ){
@@ -1198,9 +1198,10 @@ public function tableop()
             if($month != 1){
                 $month = $month - 1;
             }
-        if($month >10){
-            $month = '0'.$month;
-        }
+            if($month <10){
+                $month = '0'.$month;
+            }
+            // dd($month);
             $filter_start = $year.'-'.$month.'-01';
             $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
             // $filter_end = date("Y-m-t", strtotime(Carbon::now()));
@@ -4299,7 +4300,7 @@ public function tableop()
         return view('newLayout.settings',compact('settings'));
     }
    public function settingStore(Request $request){
-        // dd($request->emails);
+        // dd($request->all());
         try
         {
             $settings = GeneralSetting::where('id',1)->update([
@@ -4322,7 +4323,10 @@ public function tableop()
                 'mail_text' => $request->mail_text,
                 'spinner_date' => $request->spinner_date,
                 'spinner_time' => $request->spinner_time,
-                'sms_text' => $request->sms_text
+                'sms_text' => $request->sms_text,
+                'spinner_winner_day' => $request->spinner_winner_day,
+                'spinner_time_cron' => $request->spinner_time_cron,                
+
             ]);
             $settings = GeneralSetting::first();
             // $path = asset('public/images/'.$settings->theme.'/logo.jpg');

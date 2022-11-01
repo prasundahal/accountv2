@@ -31,6 +31,9 @@ class GeneralSetting extends Model
         'mail_text',
         'spinner_date',
         'spinner_time',
-        'sms_text'
+        'sms_text',
+        'spinner_winner_day',
+        'spinner_time_cron'
+
     ];
 }

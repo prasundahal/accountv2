@@ -1,13 +1,10 @@
 @extends('newLayout.layouts.newLayout')
 
 @section('title')
-    Settings
+    Settings [ {{date('Y-m-d H:i:s');}} ]
 @endsection
 
 @section('content')
-@php
-echo date('Y-m-d H:i:s');
-@endphp
 <style>
     .example-text{
         padding: 5px;
@@ -25,6 +22,27 @@ echo date('Y-m-d H:i:s');
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <form action="{{ route('settingStore') }}" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h3>Spinner Winner Setting</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12">
+                                    <span>Day</span>
+                                    <input class="form-control" type="number" name="spinner_winner_day" placeholder="Day" value="{{$settings['spinner_winner_day']}}">
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <span>Time</span>
+                                    <input type="time" name="spinner_time_cron" class="form-control" id="spinner-time" value="{{$settings['spinner_time_cron']}}">                      
+                                </div>
+                                <div class="col-lg-12 col-sm-12">
+                                    <button type="submit" class="btn btn-primary mt-2">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         {{-- <div class="card-header">{{ __('Edit Noorgamers') }}</div> --}}
                         <div class="card-body">

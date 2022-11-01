@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Models\GeneralSetting;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,8 +31,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $setting = GeneralSetting::first();      
+        
         //  $schedule->command('colabUpdate:cron')->everyMinute();
         //  $schedule->command('DailyReport:cron')->everyMinute();
+        // Log::channel('cronLog')->info(date('H:i'));
+         $schedule->command('SpinnerWinnerCron:cron')
+         ->monthlyOn($setting->spinner_winner_day,date('H:i',strtotime($setting->spinner_time_cron)));
          $schedule->command('colabUpdate:cron')
          ->daily();
          $schedule->command('DailyReport:cron')
