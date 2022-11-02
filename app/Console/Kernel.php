@@ -33,23 +33,23 @@ class Kernel extends ConsoleKernel
     {
         $setting = GeneralSetting::first();      
         
-        //  $schedule->command('colabUpdate:cron')->everyMinute();
+         $schedule->command('colabUpdate:cron')->everyMinute();
         //  $schedule->command('DailyReport:cron')->everyMinute();
         // Log::channel('cronLog')->info(date('H:i'));
-         $schedule->command('SpinnerWinnerCron:cron')
-         ->monthlyOn($setting->spinner_winner_day,date('H:i',strtotime($setting->spinner_time_cron)));
-         $schedule->command('colabUpdate:cron')
-         ->daily();
-         $schedule->command('DailyReport:cron')
-         ->daily();
-         $schedule->command('SpinnerResetForm:cron')
-         ->monthlyOn(26, '00:00');
-         $schedule->command('sendMailToBetween:cron')
-         ->monthlyOn(20, '00:00');
-         $schedule->command('SpinnerMailToAboveLimit:cron')
-         ->monthlyOn(5, '00:00');
-         $schedule->command('MonthlyTasks:cron')
-         ->monthlyOn(26, '00:00');
+        //  $schedule->command('colabUpdate:cron')
+        //  ->daily();
+        //  $schedule->command('DailyReport:cron')
+        //  ->daily();
+        //  $schedule->command('SpinnerResetForm:cron')
+        //  ->monthlyOn(26, '00:00');
+        //  $schedule->command('sendMailToBetween:cron')
+        //  ->monthlyOn(20, '00:00');
+        //  $schedule->command('SpinnerMailToAboveLimit:cron')
+        //  ->monthlyOn(5, '00:00');
+        //  $schedule->command('MonthlyTasks:cron')
+        //  ->monthlyOn(26, '00:00');
+        //  $schedule->command('SpinnerWinnerCron:cron')
+        //  ->monthlyOn($setting->spinner_winner_day,date('H:i',strtotime($setting->spinner_time_cron)));
         
         // $schedule->command('MonthlyTasks:cron')
         // ->everyMinute();
