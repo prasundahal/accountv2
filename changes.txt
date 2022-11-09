@@ -70,3 +70,5 @@ ALTER TABLE `form_redeem_statuses` ADD `deleted_at` DATETIME NULL AFTER `status`
 //font change of spinner winner text
 
 ALTER TABLE `general_setting` ADD `spinner_winner_day` INT NULL AFTER `spinner_time`, ADD `spinner_time_cron` TIME NULL AFTER `spinner_winner_day`;
+
+spinner winner set cronjob
