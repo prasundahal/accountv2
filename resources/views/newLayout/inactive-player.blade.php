@@ -266,5 +266,38 @@
                 }
             });
         });
+       $('table').editableTableWidget();
+       
+       $('.class').on('change', function(evt, newValue) {
+        var type = "POST";
+        
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+             $.ajax({
+                type: type,
+                url: '/saveInactiveNote',
+                data: {
+                    "cid": $(this).data('id'),
+                    "note" : newValue
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    toastr.success('Success',"Note Saved");
+                    
+                },
+                error: function (data) {
+                    console.log(data);
+                    toastr.error('Error',data.responseText);
+                }
+            });
+           console.log(newValue);
+           console.log($(this).data('id'));
+           });
     </script>
 @endsection

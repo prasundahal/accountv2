@@ -314,6 +314,18 @@ class NewHomeController extends Controller
         $total = FormNumber::count();
         return view('newLayout.colab', compact('number', 'total', 'title'));
     }
+    public function saveInactiveNote(Request $request)
+    {
+        $formdata = array(
+            'note'       =>   isset($request->note)?($request->note):null,
+        );
+        $sql = Form::find($request->cid); 
+        $sql->note = isset($request->note)?($request->note):null;
+        if(!$sql->save()){
+            return Response::json(['error' => $sql],404);
+        }
+        return Response::json('Note Saved');        
+    }
 
 public function tableop()
 {

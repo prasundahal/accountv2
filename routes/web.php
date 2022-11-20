@@ -140,6 +140,7 @@ Route::get('/gamers/destroy/{id}', [App\Http\Controllers\NewHomeController::clas
 Route::get('/inactive-players/{id}', [App\Http\Controllers\NewHomeController::class, 'inactivePlayers'])->name('inactive-players');
 Route::get('/unsubmails', [App\Http\Controllers\NewHomeController::class, 'unsubMails'])->name('unsubMails');
 
+Route::post('saveInactiveNote', [NewHomeController::class, 'saveInactiveNote'])->name('forms.saveInactiveNote');
 //updated by Ameer Bajracharya 2022-05-05
 Route::get('/activity-status',          [ActivityStatusController::class, 'index'])->name('activity.status.index');
 Route::post('/activity-status-store',   [ActivityStatusController::class, 'store'])->name('activity.status.store');

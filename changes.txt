@@ -74,3 +74,8 @@ ALTER TABLE `general_setting` ADD `spinner_winner_day` INT NULL AFTER `spinner_t
 spinner winner set cronjob
 new template in caandv
 email send to user and admin
+
+inactive players
+  status change
+  save note
+  
