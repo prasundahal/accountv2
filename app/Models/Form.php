@@ -23,4 +23,7 @@ class Form extends Model
     public function activityStatus(){
         return $this->belongsTo(ActivityStatus::class, 'status_id');
     }
+    public function unsubmail(){
+        return $this->hasOne(Unsubmail::class, 'form_id','id')->orderBy('id','desc');
+    }
 }

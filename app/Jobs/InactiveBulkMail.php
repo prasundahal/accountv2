@@ -59,27 +59,27 @@ class InactiveBulkMail implements ShouldQueue
         }else{
             foreach($forms as $a => $form){
                 try
-                {
-                    $data = [
-                        'days' => $days,
-                        'message' => $message,
-                        'subject' => $subject,
-                        'name' => $form->full_name,
-                        'form_id' => $form->id,
-                        'form_email' => $form->email,
-                    ];
-                    // $data['name'] = $form->full_name;
-                    // $data['form_id'] = ($form->id);
-                    Mail::to($form->email)->send(new MailInactiveBulkMail(json_encode($data)));
+                    {
+                        $data = [
+                            'days' => $days,
+                            'message' => $message,
+                            'subject' => $subject,
+                            'name' => $form->full_name,
+                            'form_id' => $form->id,
+                            'form_email' => $form->email,
+                        ];
+                        // $data['name'] = $form->full_name;
+                        // $data['form_id'] = ($form->id);
+                        Mail::to($form->email)->send(new MailInactiveBulkMail(json_encode($data)));
 
-                    //save log
-                    Unsubmail::create([
-                        'form_id' => $form->id,
-                        'full_name' => $form->full_name,
-                        'email' => $form->email,
-                        'days' => $days
-                    ]);
-                    Log::channel('cronLog')->info("Mail sent successfully to ".$form->email);
+                        //save log
+                        Unsubmail::create([
+                            'form_id' => $form->id,
+                            'full_name' => $form->full_name,
+                            'email' => $form->email,
+                            'days' => $days
+                        ]);
+                        Log::channel('cronLog')->info("Mail sent successfully to ".$form->email);
                 }
                 catch(\Exception $e)
                 {

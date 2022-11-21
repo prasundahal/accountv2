@@ -37,6 +37,7 @@ use App\Models\FormRedeemStatus;
 use App\Models\Unsubmail;
 use Exception;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use App\Mail\InactiveBulkMail as MailInactiveBulkMail;
 use PhpParser\Node\Expr;
 
 class NewHomeController extends Controller
@@ -619,99 +620,40 @@ public function tableop()
     public function sendMessageInactive(Request $request){
         $days = $request->days;
         $message = $request->message;
+        $limit_amount = $this->limit_amount;
 
         if($request->id > 0){
             try
                 {
-                    $input2 = self::getHistory($request->id);
-                    // $input = Form::where('id',$request->id)->first()->toArray();
-                    
-                    foreach($input2 as $a => $input){
-                        
-                    // $token_id = Str::random(32);
-                    // $form = Form::where('id', $input['form_id'])
-                    //     ->update(['balance' => 1, 'token' => $token_id]);
-                    $form = Form::where('id', $input['form_id'])->first()->toArray();
-                    $token_id = $form['token'];
-                    $form = [
-                        'name' => $input['full_name'],
+                    // dd($request->id);
+                    $form = Form::where('id', $request->id)->first();
+                   
+                    $data = [
+                        'days' => $days,
                         'message' => $message,
-                        'message-end' => '',
-                        'limit_amount' => $limit_amount,
-                        'load' => $input['totals']['load'],
-                        'type' => $type,
-                        'subject' => '',
-                        'token_id' => $token_id,
-                        'load-remaining' => 0
+                        'subject' => 'Inactive Notification',
+                        'name' => $form->full_name,
+                        'form_id' => $form->id,
+                        'form_email' => $form->email,
                     ];
-                    if($type == 'above-'.$limit_amount){
-                        if($form['load']  >= $limit_amount){
-                             $form['subject'] = 'Noor Games - Eligible For Spinner';
-                             try
-                                 {
-                                     Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
-                                     return redirect()->back()->withInput()->with('success', 'Mail Sent');
-                                 }
-                             catch(\Exception $e)
-                                 {
-                                     $bug = $e->getMessage();
-                                     Log::channel('spinnerBulk')->info($bug);
-                                     return redirect()->back()->withInput()->with('error', $bug);
-                                 }
-                         }
-                     }elseif($type == 'below-'.$limit_amount){
-                         if($form['load']  <  $limit_amount){
-                             $form['subject'] = 'Noor Games - Spinner';
-                             // $form['message-end'] = 'Noor Games - Eligible For Spinner';              
-                             $form['load-remaining'] = $limit_amount - $form['load'];
-         
-                             try
-                             {
-                                 Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                 Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
-                                 return redirect()->back()->withInput()->with('success', 'Mail Sent');
-                             }
-                             catch(\Exception $e)
-                             {
-                                 $bug = $e->getMessage();
-                                 Log::channel('spinnerBulk')->info($bug);
-                                 return redirect()->back()->withInput()->with('error', $bug);
-                             }
-                         }
-                     }else{
-                         $limit_1 = $limit_amount - 50;
-                         $limit_2 = $limit_amount;
-                         if($form['load']  >= $limit_1){
-                             if($form['load']  < $limit_2){  
-                                 $form['subject'] = 'Noor Games - Almost Eligible For Spinner';                    
-                                 $form['load-remaining'] = $limit_amount - $form['load'];
-                                 
-                                 try
-                                 {
-                                     Mail::to($input['email'])->send(new spinnerBulkMail(json_encode($form)));
-                                     Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
-                                     return redirect()->back()->withInput()->with('success', 'Mail Sent');
-                                 }
-                                 catch(\Exception $e)
-                                 {
-                                     $bug = $e->getMessage();
-                                     Log::channel('spinnerBulk')->info($bug);
-                                     return redirect()->back()->withInput()->with('error', $bug);
-                                 }
-                             }
-                         }
-                     }
+                    // $data['name'] = $form->full_name;
+                    // $data['form_id'] = ($form->id);MailInactiveBulkMail
+                    Mail::to($form->email)->send(new MailInactiveBulkMail(json_encode($data)));
 
-                    }
-                    
-                    // Mail::to($form['email'])->send(new spinnerBulkMail(json_encode($form)));
-                    // Log::channel('spinnerBulk')->info("Mail sent successfully to ".$input['email']);
+                    //save log
+                    Unsubmail::create([
+                        'form_id' => $form->id,
+                        'full_name' => $form->full_name,
+                        'email' => $form->email,
+                        'days' => $days
+                    ]);
+                    Log::channel('cronLog')->info("Inactive Mail sent successfully to ".$form->email);
+                    return redirect()->back()->withInput()->with('success', 'Mail Sent');
                 }
             catch(\Exception $e)
                 {
                     $bug = $e->getMessage();
-                    Log::channel('spinnerBulk')->info($bug);
+                    Log::channel('cronLog')->info($bug);
                     return redirect()->back()->withInput()->with('error', $bug);
                 }
         }
@@ -762,7 +704,8 @@ public function tableop()
         $array = array_column($differenceArray, 'form_id');
         // print_r(array(implode(',',$array)));
         // $models = Form::findMany([225,232,233]);
-        $forms = Form::with('activityStatus')->whereIn('id', $array)->get();
+        $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
+        // dd($forms[0]);
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }

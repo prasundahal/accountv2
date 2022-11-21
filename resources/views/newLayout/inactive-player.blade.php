@@ -100,32 +100,32 @@
             </div>
             <button class="btn  btn-primary mb-0" style="background-color:#FF9800;">
                 <a href="#popup3" style="color:white;">Send Mail</a></button>
-            <div id="popup3" class="overlay" style="z-index: 9;">
-                <div class="popup">
-                    <h2>Send Mail</h2>
-                    <a class="close" href="#">&times;</a>
-                    <div class="content ">
-                        <form action="{{ route('send-message-inactive') }}" method="post">
-                            @csrf
-                            <input name="id" type="hidden" value="0" class="form-id">
-                            <input name="days" type="hidden" value="{{ $days }}">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="cars">Message</label>
-                                    <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>
+                <div id="popup3" class="overlay" style="z-index: 9;">
+                    <div class="popup">
+                        <h2>Send Mail</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content ">
+                            <form action="{{ route('send-message-inactive') }}" method="post">
+                                @csrf
+                                <input name="id" type="hidden" value="0" class="form-id">
+                                <input name="days" type="hidden" value="{{ $days }}">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="cars">Message</label>
+                                        <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>
+
+                                    </div>
+                                    <button type="submit" class="btn  btn-primary mb-0"
+                                        style="background-color:#FF9800;">Send</button>
 
                                 </div>
-                                <button type="submit" class="btn  btn-primary mb-0"
-                                    style="background-color:#FF9800;">Send</button>
-
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <p>
-                This Data is of {{ $days }} days prior.
-            </p>
+                <p>
+                    This Data is of {{ $days }} days prior.
+                </p>
         </div>
         <div class="col-md-12 card">
             <div class="card-body">
@@ -141,6 +141,9 @@
                             <tr>
                                 <th style="width: 26.328100000000006px!important;">No</th>
                                 {{-- <th class="big-col">Action</th> --}}
+                                <th class="cus-width">Action</th>
+                                <th class="cus-width">Mail Sent</th>
+                                <th class="cus-width">Mail Seen</th>
                                 <th class="cus-width">Full Name</th>
                                 <th class="cus-width">Status</th>
                                 <th class="cus-width">Note</th>
@@ -164,6 +167,39 @@
                             @foreach ($forms as $num)
                                 <tr class="tr-{{ $num->id }}">
                                     <td class="count-row">{{ $count++ }}</td>
+                                    <td class="td-message-{{ $num->id }}">
+                                        <a href="#popup{{ $num->id }}" class="btn btn-secondary send-sms-single"
+                                            data-id="{{ $num->id }}">Send Mail</a>
+                                            <div id="popup{{ $num->id }}" class="overlay" style="z-index: 9;">
+                                                <div class="popup">
+                                                    <h2>Send Mail</h2>
+                                                    <a class="close" href="#">&times;</a>
+                                                    <div class="content ">
+                                                        <form action="{{ route('send-message-inactive') }}" method="post">
+                                                            @csrf
+                                                            <input name="id" type="hidden" value="{{ $num->id }}" class="form-id">
+                                                            <input name="days" type="hidden" value="{{ $days }}">
+                                                            <div class="row">
+                                                                <div class="form-group">
+                                                                    <label for="cars">Message</label>
+                                                                    <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>
+                            
+                                                                </div>
+                                                                <button type="submit" class="btn  btn-primary mb-0"
+                                                                    style="background-color:#FF9800;">Send</button>
+                            
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </td>
+                                    <td>
+                                        {{(isset($num->unsubmail) && !empty($num->unsubmail))?'Yes':'No'}}
+                                    </td>
+                                    <td>
+                                        {{(isset($num->unsubmail) && !empty($num->unsubmail) && $num->unsubmail->is_seen == 1)?'Seen':'Not Seen'}}
+                                    </td>
                                     <td class="td-full_name-{{ $num->id }}">{{ ucwords($num->full_name) }}</td>
                                     <td class="td-full_name-{{ $num->id }}">
                                         {{-- select2 form-control--}}
