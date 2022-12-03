@@ -684,28 +684,44 @@ public function tableop()
     }
     public function inactivePlayers($id)
     {
-        // [Carbon::today(),Carbon::today()->subWeek()]
         $days = $id;
         $users = FormGame::select('form_id')->distinct()
-            ->get()
-            ->toArray();
+                            ->get()
+                            ->toArray();
+        // $z = [];
+        // // dd($users);
+        // $count = 0;
+        //                 foreach($users as $av => $a){
+        //                     if(isset($z[$a['form_id']])){
+        //                         $count++;
+        //                     }else{
+        //                         $z[$a] = $a;
+        //                     }
+        //                 }
+        // [Carbon::today(),Carbon::today()->subWeek()]
         // $balance = FormBalance::select('form_id')
         //                         ->where( 'created_at', '>', Carbon::now()->subDays($days))
         //                         ->get()
         //                         ->toArray();
         // dd(Carbon::now()->subDays($days),$users,$balance);
-        $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()
-            ->subDays($days))
+        $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($days))
         // ->whereBetween('created_at',['2022-02-9','2022-02-11'])
-        ->distinct()
+            ->distinct()
             ->get()
             ->toArray();
+            // dd(array_column($balance,'form_id'));
         $differenceArray = self::multi_array_diff($users, $balance);
         $array = array_column($differenceArray, 'form_id');
+        // dd(count($array));
         // print_r(array(implode(',',$array)));
         // $models = Form::findMany([225,232,233]);
-        $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
-        // dd($forms[0]);
+        $temp = [];
+        foreach($array as $a){
+            $temp[] = Form::with('activityStatus','unsubmail')->where('id',$a)->first();
+        }
+        // dd(count($temp));
+        // $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
+        
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }
