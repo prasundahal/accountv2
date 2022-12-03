@@ -682,6 +682,14 @@ public function tableop()
             return redirect()->back()->withInput()->with('error',$bug);
         }
     }
+    
+    public function getUnsubs(Request $request){
+        $id = $request->cid;
+        $unsubs = Unsubmail::where('form_id',$id)->get();
+        $html = view('new.unsubMailList', compact('unsubs'))->render();
+        return Response::json($html);
+
+    }
     public function inactivePlayers($id)
     {
         $days = $id;
@@ -720,7 +728,7 @@ public function tableop()
         //     $temp[] = Form::with('activityStatus','unsubmail')->where('id',$a)->first();
         // }
         // dd(count($temp));
-        $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
+        $forms = Form::with('activityStatus')->whereIn('id', $array)->get();
         // $forms = $temp;
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));

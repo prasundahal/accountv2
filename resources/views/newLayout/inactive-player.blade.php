@@ -142,8 +142,6 @@
                                 <th style="width: 26.328100000000006px!important;">No</th>
                                 {{-- <th class="big-col">Action</th> --}}
                                 <th class="cus-width">Action</th>
-                                <th class="cus-width">Mail Sent</th>
-                                <th class="cus-width">Mail Seen</th>
                                 <th class="cus-width">Full Name</th>
                                 <th class="cus-width">Status</th>
                                 <th class="cus-width">Note</th>
@@ -193,12 +191,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </td>
-                                    <td>
-                                        {{(isset($num['unsubmail']) && !empty($num['unsubmail']))?'Yes':'No'}}
-                                    </td>
-                                    <td>
-                                        {{(isset($num['unsubmail']) && !empty($num['unsubmail']) && $num['unsubmail']->is_seen == 1)?'Seen':'Not Seen'}}
+                                        {{-- <button type="button" class="btn btn-primary view-unsubs" data-id="{{ $num['id'] }}">View Mails</button> --}}
+
+                                        <a href="#popupx" class="btn btn-secondary view-unsubs" data-id="{{ $num['id'] }}">View Mails</a>
                                     </td>
                                     <td class="td-full_name-{{ $num['id'] }}">{{ ucwords($num['full_name']) }}</td>
                                     <td class="td-full_name-{{ $num['id'] }}">
@@ -264,6 +259,29 @@
             </div>
         </div>
     </div>
+    <div id="popupx" class="overlay" style="z-index: 9;">
+        <div class="popup">
+            <h2>View Mails</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content unsubAppend">
+            </div>
+        </div>
+    </div>
+    
+        {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sent Mails</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body unsubAppend">
+                </div>
+            </div>
+            </div>
+        </div> --}}
 @endsection
 
 @section('script')
@@ -303,16 +321,46 @@
             });
         });
        $('table').editableTableWidget();
+       $('.view-unsubs').on('click', function(evt, newValue) {
+        // $('.bd-example-modal-lg').modal('show');
+        var type = "POST";
+        
+        
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+             $.ajax({
+                type: type,
+                url: '/accountv2/getUnsubs',
+                data: {
+                    "cid": $(this).data('id'),
+                },
+                dataType: 'json',
+                success: function (data) {
+                    // console.log(data);
+                    $('.unsubAppend').html(data);
+                    // toastr.success('Success',"Note Saved");
+                    
+                },
+                error: function (data) {
+                    // console.log(data);
+                    toastr.error('Error',data.responseText);
+                }
+            });
+       });
        
        $('.class').on('change', function(evt, newValue) {
         var type = "POST";
         
         
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
         
              $.ajax({
                 type: type,
@@ -323,17 +371,17 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     toastr.success('Success',"Note Saved");
                     
                 },
                 error: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     toastr.error('Error',data.responseText);
                 }
             });
-           console.log(newValue);
-           console.log($(this).data('id'));
+        //    console.log(newValue);
+        //    console.log($(this).data('id'));
            });
     </script>
 @endsection

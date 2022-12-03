@@ -139,6 +139,7 @@ Route::post('/gamers/update/{id}', [App\Http\Controllers\NewHomeController::clas
 Route::get('/gamers/destroy/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerDestroy'])->name('gamerDestroy');
 Route::get('/inactive-players/{id}', [App\Http\Controllers\NewHomeController::class, 'inactivePlayers'])->name('inactive-players');
 Route::get('/unsubmails', [App\Http\Controllers\NewHomeController::class, 'unsubMails'])->name('unsubMails');
+Route::post('/getUnsubs', [App\Http\Controllers\NewHomeController::class, 'getUnsubs'])->name('getUnsubs');
 
 Route::post('saveInactiveNote', [NewHomeController::class, 'saveInactiveNote'])->name('forms.saveInactiveNote');
 //updated by Ameer Bajracharya 2022-05-05
