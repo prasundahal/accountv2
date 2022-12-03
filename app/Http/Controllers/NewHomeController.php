@@ -715,13 +715,13 @@ public function tableop()
         // dd(count($array));
         // print_r(array(implode(',',$array)));
         // $models = Form::findMany([225,232,233]);
-        $temp = [];
-        foreach($array as $a){
-            $temp[] = Form::with('activityStatus','unsubmail')->where('id',$a)->first();
-        }
+        // $temp = [];
+        // foreach($array as $a){
+        //     $temp[] = Form::with('activityStatus','unsubmail')->where('id',$a)->first();
+        // }
         // dd(count($temp));
-        // $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
-        
+        $forms = Form::with('activityStatus','unsubmail')->whereIn('id', $array)->get();
+        // $forms = $temp;
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
         return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }

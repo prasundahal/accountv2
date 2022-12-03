@@ -165,19 +165,19 @@
                                 $count = 1;
                             @endphp
                             @foreach ($forms as $num)
-                                <tr class="tr-{{ $num->id }}">
+                                <tr class="tr-{{ $num['id'] }}">
                                     <td class="count-row">{{ $count++ }}</td>
-                                    <td class="td-message-{{ $num->id }}">
-                                        <a href="#popup{{ $num->id }}" class="btn btn-secondary send-sms-single"
-                                            data-id="{{ $num->id }}">Send Mail</a>
-                                            <div id="popup{{ $num->id }}" class="overlay" style="z-index: 9;">
+                                    <td class="td-message-{{ $num['id'] }}">
+                                        <a href="#popup{{ $num['id'] }}" class="btn btn-secondary send-sms-single"
+                                            data-id="{{ $num['id'] }}">Send Mail</a>
+                                            <div id="popup{{ $num['id'] }}" class="overlay" style="z-index: 9;">
                                                 <div class="popup">
                                                     <h2>Send Mail</h2>
                                                     <a class="close" href="#">&times;</a>
                                                     <div class="content ">
                                                         <form action="{{ route('send-message-inactive') }}" method="post">
                                                             @csrf
-                                                            <input name="id" type="hidden" value="{{ $num->id }}" class="form-id">
+                                                            <input name="id" type="hidden" value="{{ $num['id'] }}" class="form-id">
                                                             <input name="days" type="hidden" value="{{ $days }}">
                                                             <div class="row">
                                                                 <div class="form-group">
@@ -195,41 +195,41 @@
                                             </div>
                                     </td>
                                     <td>
-                                        {{(isset($num->unsubmail) && !empty($num->unsubmail))?'Yes':'No'}}
+                                        {{(isset($num['unsubmail']) && !empty($num['unsubmail']))?'Yes':'No'}}
                                     </td>
                                     <td>
-                                        {{(isset($num->unsubmail) && !empty($num->unsubmail) && $num->unsubmail->is_seen == 1)?'Seen':'Not Seen'}}
+                                        {{(isset($num['unsubmail']) && !empty($num['unsubmail']) && $num['unsubmail']->is_seen == 1)?'Seen':'Not Seen'}}
                                     </td>
-                                    <td class="td-full_name-{{ $num->id }}">{{ ucwords($num->full_name) }}</td>
-                                    <td class="td-full_name-{{ $num->id }}">
+                                    <td class="td-full_name-{{ $num['id'] }}">{{ ucwords($num['full_name']) }}</td>
+                                    <td class="td-full_name-{{ $num['id'] }}">
                                         {{-- select2 form-control--}}
-                                        <select id="status-select-{{ $num->id }}" class="activity-status" data-id="{{ $num->id }}">
+                                        <select id="status-select-{{ $num['id'] }}" class="activity-status" data-id="{{ $num['id'] }}">
                                             <option>Select Status</option>
                                             @forelse ($activity_status as $status)
                                                 <option class="w-100" value="{{ $status->id }}"
-                                                    @if ($num->status_id == $status->id) selected @endif>
+                                                    @if ($num['status_id'] == $status->id) selected @endif>
                                                     {{ ucfirst($status->status) }}</option>
                                             @empty
                                             @endforelse
                                         </select>
                                     </td>
-                                    <td class="class td-note-{{ $num->id }}" data-id="{{ $num->id }}">
+                                    <td class="class td-note-{{ $num['id'] }}" data-id="{{ $num['id'] }}">
                                         {{ $num->note }}</td>
                                     @if (Auth::user()->role == 'admin')
-                                        <td class="td-game_id-{{ $num->id }}">{{ $num->number }}</td>
-                                        <td class="td-game_id-{{ $num->id }}">{{ $num->email }}</td>
+                                        <td class="td-game_id-{{ $num['id'] }}">{{ $num->number }}</td>
+                                        <td class="td-game_id-{{ $num['id'] }}">{{ $num->email }}</td>
                                     @endif
-                                    <td class="td-facebook_name-{{ $num->id }}">{{ $num->facebook_name }}</td>
-                                    {{-- <td class="td-game_id-{{$num->id}}">{{($num->game_id)}}</td> --}}
-                                    <td class="td-mail-{{ $num->id }}"
+                                    <td class="td-facebook_name-{{ $num['id'] }}">{{ $num->facebook_name }}</td>
+                                    {{-- <td class="td-game_id-{{$num['id']}}">{{($num->game_id)}}</td> --}}
+                                    <td class="td-mail-{{ $num['id'] }}"
                                         style="width: 56.3125px!important;text-align:center;!important">
                                         {{ ucwords($num->mail) }}</td>
-                                    {{-- <td class="td-r_id-{{$num->id}}">{{($num->r_id)}}</td> --}}
-                                    <td class="td-count-{{ $num->id }}"
+                                    {{-- <td class="td-r_id-{{$num['id']}}">{{($num->r_id)}}</td> --}}
+                                    <td class="td-count-{{ $num['id'] }}"
                                         style="width: 56.3125px!important;text-align:center;!important">{{ $num->count }}
                                     </td>
 
-                                    <td class="td-intervals-{{ $num->id }}">
+                                    <td class="td-intervals-{{ $num['id'] }}">
                                         {{-- {{(date_format(date($num->intervals), 'M d,Y H:i:s'))}} --}}
                                         {{ date('d M,Y', strtotime($num->intervals)) }}
                                         {{-- {{Carbon::parse('Y-m-d', $num->intervals)->format('M d Y H:i:s')}} --}}
