@@ -334,7 +334,7 @@
         
              $.ajax({
                 type: type,
-                url: '/accountv2/getUnsubs',
+                url: '/getUnsubs',
                 data: {
                     "cid": $(this).data('id'),
                 },
