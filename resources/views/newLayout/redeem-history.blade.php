@@ -473,8 +473,8 @@ tr:nth-child(odd) {
   <div class="col-12">
      <div class="card mb-4">
         <div class="card-body px-0 pt-0 pb-2">
-         
-         <select class="form-control search-undo" data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" name="" id="status-{{$count}}">
+         {{-- data-parent="tr-{{$item['form']['id']}}" data-id="{{$item['form']['id']}}" --}}
+         <select class="form-control search-undo"  name="" id="status-{{$count}}">
             <option value="0">All</option>
             <option value="1">Verified</option>
             <option value="2">Doubtful</option>

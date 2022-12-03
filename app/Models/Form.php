@@ -24,6 +24,6 @@ class Form extends Model
         return $this->belongsTo(ActivityStatus::class, 'status_id');
     }
     public function unsubmail(){
-        return $this->hasOne(Unsubmail::class, 'form_id','id')->orderBy('id','desc');
+        return $this->hasMany(Unsubmail::class, 'form_id','id')->orderBy('id','desc');
     }
 }
