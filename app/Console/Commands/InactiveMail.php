@@ -56,8 +56,8 @@ class InactiveMail extends Command
                                 ->toArray();
         $differenceArray = self::multi_array_diff($users, $balance);
         $array = array_column($differenceArray, 'form_id');
-        $forms = Form::whereIn('id', [5,7])->get();
-        // $forms = Form::whereIn('id', $array)->get();
+        // $forms = Form::whereIn('id', [5,7])->get();
+        $forms = Form::whereIn('id', $array)->get();
         foreach($forms as $form){            
             $data = [
                 'days' => $days,
