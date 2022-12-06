@@ -67,15 +67,15 @@ class InactiveMail extends Command
                 'form_id' => $form->id,
                 'form_email' => $form->email,
             ];
-            Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
+            // Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
 
             //save log
-            Unsubmail::create([
-                'form_id' => $form->id,
-                'full_name' => $form->full_name,
-                'email' => $form->email,
-                'days' => $days
-            ]);
+            // Unsubmail::create([
+            //     'form_id' => $form->id,
+            //     'full_name' => $form->full_name,
+            //     'email' => $form->email,
+            //     'days' => $days
+            // ]);
             // Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ");
             Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
         }
