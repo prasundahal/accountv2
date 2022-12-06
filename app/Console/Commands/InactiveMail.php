@@ -58,7 +58,7 @@ class InactiveMail extends Command
         $array = array_column($differenceArray, 'form_id');
         $forms = Form::whereIn('id', [5,7])->get();
         // $forms = Form::whereIn('id', $array)->get();
-        foreach($forms as $form){            
+        foreach($forms as $key => $form){            
             $data = [
                 'days' => $days,
                 'message' => $setting->inactive_mail_message,
