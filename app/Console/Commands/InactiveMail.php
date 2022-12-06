@@ -48,36 +48,36 @@ class InactiveMail extends Command
     { 
         $setting = GeneralSetting::first();     
         
-        // $days = 7;
-        // $users = FormGame::select('form_id')->distinct()->get()->toArray();
-        // $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($days))
-        //                         ->distinct()
-        //                         ->get()
-        //                         ->toArray();
-        // $differenceArray = self::multi_array_diff($users, $balance);
-        // $array = array_column($differenceArray, 'form_id');
-        // $forms = Form::whereIn('id', [5])->get();
-        // // $forms = Form::whereIn('id', $array)->get();
-        // foreach($forms as $form){            
-        //     $data = [
-        //         'days' => $days,
-        //         'message' => $setting->inactive_mail_message,
-        //         'subject' => 'Inactive Notification',
-        //         'name' => $form->full_name,
-        //         'form_id' => $form->id,
-        //         'form_email' => $form->email,
-        //     ];
-        //     Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
+        $days = 7;
+        $users = FormGame::select('form_id')->distinct()->get()->toArray();
+        $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($days))
+                                ->distinct()
+                                ->get()
+                                ->toArray();
+        $differenceArray = self::multi_array_diff($users, $balance);
+        $array = array_column($differenceArray, 'form_id');
+        $forms = Form::whereIn('id', [5,7])->get();
+        // $forms = Form::whereIn('id', $array)->get();
+        foreach($forms as $form){            
+            $data = [
+                'days' => $days,
+                'message' => $setting->inactive_mail_message,
+                'subject' => 'Inactive Notification',
+                'name' => $form->full_name,
+                'form_id' => $form->id,
+                'form_email' => $form->email,
+            ];
+            Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
 
-        //     //save log
-        //     Unsubmail::create([
-        //         'form_id' => $form->id,
-        //         'full_name' => $form->full_name,
-        //         'email' => $form->email,
-        //         'days' => $days
-        //     ]);
-            Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ");
-            // Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
+            //save log
+            Unsubmail::create([
+                'form_id' => $form->id,
+                'full_name' => $form->full_name,
+                'email' => $form->email,
+                'days' => $days
+            ]);
+            // Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ");
+            Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
         }
     
     function multi_array_diff($arraya, $arrayb)
