@@ -51,7 +51,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-sm-12">
                                     <span>Type</span>
-                                    <select name="inactive_mail_type" class="form-control">
+                                    <select name="inactive_mail_type" class="form-control">                                        
+                                        <option {{($settings['inactive_mail_type'] == 'everyMinute') ? 'selected': ''}} value="everyMinute">Every Minute</option>
                                         <option {{($settings['inactive_mail_type'] == 'dailyAt') ? 'selected': ''}} value="dailyAt">Daily</option>
                                         <option {{($settings['inactive_mail_type'] == 'weeklyOn') ? 'selected': ''}} value="weeklyOn">Weekly</option>
                                         <option {{($settings['inactive_mail_type'] == 'monthlyOn') ? 'selected': ''}} value="monthlyOn">Monthly</option>
