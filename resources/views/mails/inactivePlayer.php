@@ -32,17 +32,8 @@
        </tr>
      <tr style="background: #585050;color: white;display: grid;text-align: center;padding-top:10px;padding-bottom:10px;">
         <td>
-            <a href="#" style="text-decoration:none;">           
-                <img style="max-width: 20%;max-height: 20px;" src="https://i.imgur.com/OWdUupI.png" alt="Game"> 
-            </a>
             <a href="#" style="text-decoration:none;">
                 <img style="max-width: 20%;max-height: 20px;" src="https://i.imgur.com/nIiaG46.png" alt="Game"> 
-            </a>
-            <a href="#" style="text-decoration:none;">
-                <img style="max-width: 20%;max-height: 20px;" src="https://i.imgur.com/JLLlB5S.png" alt="Game"> 
-            </a>
-            <a href="#" style="text-decoration:none;">
-                <img style="max-width: 20%;max-height: 20px;" src="https://i.imgur.com/iOsvNOx.png" alt="Game"> 
             </a>
         </td>
         <td>

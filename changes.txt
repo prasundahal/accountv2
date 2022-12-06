@@ -85,7 +85,7 @@ inactive players
 gamers page ma edit ko modal ma text area too big
 mail template ma fb ko logo matra
 mail template ma noor games ko header
-cronjob ma inactive 7 days wala lai pathauni mail
+cronjob ma inactive 7 days wala lai pathauni mail //
 
 mahina ma 2 choti chalney -- balance between 400-600 and below 600
 
