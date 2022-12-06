@@ -67,8 +67,12 @@ class InactiveMail extends Command
                 'form_id' => $form->id,
                 'form_email' => $form->email,
             ];
-            // Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
-
+            try {
+                Mail::to($form->email)->send(new InactiveBulkMail(json_encode($data)));
+                Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
+            } catch (\Exception $ex) {
+                Log::channel('inactiveMail')->info($ex->getMessage());
+            }
             //save log
             // Unsubmail::create([
             //     'form_id' => $form->id,
@@ -77,7 +81,6 @@ class InactiveMail extends Command
             //     'days' => $days
             // ]);
             // Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ");
-            Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
         }
     }
     function multi_array_diff($arraya, $arrayb)
