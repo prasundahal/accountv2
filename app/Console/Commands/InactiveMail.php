@@ -79,7 +79,7 @@ class InactiveMail extends Command
             Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ");
             // Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
         }
-    }
+    
     function multi_array_diff($arraya, $arrayb)
     {
         foreach ($arraya as $keya => $valuea)
