@@ -46,6 +46,11 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'inactiveMail' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/inactiveMail.log'),
+            'level' => 'info',
+        ],
         'cronLog' => [
             'driver' => 'single',
             'path' => storage_path('logs/cronLog.log'),

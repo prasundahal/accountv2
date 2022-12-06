@@ -112,7 +112,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label for="cars">Message</label>
-                                        <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>
+                                        <textarea name="message" id="cars" class="form-control" placeholder="write your message">{{$message}}</textarea>
 
                                     </div>
                                     <button type="submit" class="btn  btn-primary mb-0"
@@ -180,7 +180,7 @@
                                                             <div class="row">
                                                                 <div class="form-group">
                                                                     <label for="cars">Message</label>
-                                                                    <textarea name="message" id="cars" class="form-control" placeholder="write your message"></textarea>
+                                                                    <textarea name="message" id="cars" class="form-control" placeholder="write your message">{{$message}}</textarea>
                             
                                                                 </div>
                                                                 <button type="submit" class="btn  btn-primary mb-0"

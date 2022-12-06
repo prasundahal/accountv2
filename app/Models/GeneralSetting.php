@@ -33,7 +33,11 @@ class GeneralSetting extends Model
         'spinner_time',
         'sms_text',
         'spinner_winner_day',
-        'spinner_time_cron'
+        'spinner_time_cron',
+        'inactive_mail_type',
+        'inactive_mail_time',
+        'inactive_mail_day',
+        'inactive_mail_message',
 
     ];
 }

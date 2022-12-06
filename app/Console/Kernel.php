@@ -51,6 +51,12 @@ class Kernel extends ConsoleKernel
          $schedule->command('SpinnerWinnerCron:cron')
          ->monthlyOn($setting->spinner_winner_day,date('H:i',strtotime($setting->spinner_time_cron)));
         
+         $type = $setting->inactive_mail_type;
+         if($setting->inactive_mail_type == 'dailyAt' || $setting->inactive_mail_type == 'lastDayOfMonth'){
+            $schedule->command('InactiveMail:cron')->$type($setting->inactive_mail_time);            
+         }else{
+            $schedule->command('InactiveMail:cron')->$type($setting->inactive_mail_day,date('H:i',strtotime($setting->inactive_mail_time)));
+         }
         // $schedule->command('MonthlyTasks:cron')
         // ->everyMinute();
         //  daily

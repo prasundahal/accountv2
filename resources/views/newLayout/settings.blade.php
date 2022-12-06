@@ -24,8 +24,8 @@
                 <form action="{{ route('settingStore') }}" method="POST" enctype="multipart/form-data">
                     
                     <div class="card mt-5">
-                        <div class="card-header">
-                            <h3>Spinner Winner Setting</h3>
+                        <div class="card-header" style="padding-bottom:0">
+                            <h5>Spinner Winner Setting</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -43,7 +43,47 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card mt-5">
+                        <div class="card-header" style="padding-bottom:0">
+                            <h5>Inactive Mail Setting</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <span>Type</span>
+                                    <select name="inactive_mail_type" class="form-control">
+                                        <option {{($settings['inactive_mail_type'] == 'dailyAt') ? 'selected': ''}} value="dailyAt">Daily</option>
+                                        <option {{($settings['inactive_mail_type'] == 'weeklyOn') ? 'selected': ''}} value="weeklyOn">Weekly</option>
+                                        <option {{($settings['inactive_mail_type'] == 'monthlyOn') ? 'selected': ''}} value="monthlyOn">Monthly</option>
+                                        <option {{($settings['inactive_mail_type'] == 'lastDayOfMonth') ? 'selected': ''}} value="lastDayOfMonth">Last Day Of Month</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-sm-12">
+                                    <span>Day</span>
+                                    <input class="form-control" type="number" name="inactive_mail_day" placeholder="Day" value="{{$settings['inactive_mail_day']}}">
+                                </div>
+                                <div class="col-lg-4 col-sm-12">
+                                    <span>Time</span>
+                                    <input type="time" name="inactive_mail_time" class="form-control" id="inactive_mail_time" value="{{$settings['inactive_mail_time']}}">                      
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    <span>Inactive Mail Message</span>
+                                    <textarea name="inactive_mail_message" id="" class="form-control inactive_mail_message">{{$settings['inactive_mail_message']}}</textarea>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                                    <span>Inactive Mail Message Example</span>
+                                    <div class="example-text">
+                                        <p class="mb-0">Hello {Name}</p>
+                                        <p class="mb-0 inactive-example-text">{{$settings['inactive_mail_message']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12">
+                                    <button type="submit" class="btn btn-primary mt-2">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-5">
                         {{-- <div class="card-header">{{ __('Edit Noorgamers') }}</div> --}}
                         <div class="card-body">
                                 {{ csrf_field() }}
@@ -243,6 +283,12 @@
 
                     @section('script')
                         <script>
+                            
+
+                            $('.inactive_mail_message').on('keyup',function(){
+                                var val = $(this).val();
+                                $('.inactive-example-text').text(val);
+                            });
                             $('.above-limit-text').on('keyup',function(){
                                 var val = $(this).val();
                                 $('.above-example-text').text(val);

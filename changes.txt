@@ -81,10 +81,16 @@ inactive players
   
 
 7 days ra 10 days garda less aairako xa
-7 days wala mail pathako ho vanera tha huna paryo
+7 days wala mail pathako ho vanera tha huna paryo //
 gamers page ma edit ko modal ma text area too big
 mail template ma fb ko logo matra
 mail template ma noor games ko header
 cronjob ma inactive 7 days wala lai pathauni mail
 
 mahina ma 2 choti chalney -- balance between 400-600 and below 600
+
+ALTER TABLE `general_setting` ADD `inactive_mail_type` VARCHAR(200) NULL AFTER `spinner_time_cron`, ADD `inactive_mail_time` TIME NULL AFTER `inactive_mail_type`;
+ALTER TABLE `general_setting` ADD `inactive_mail_day` INT NOT NULL DEFAULT '1' AFTER `inactive_mail_time`;
+ALTER TABLE `general_setting` ADD `inactive_mail_message` TEXT NULL AFTER `inactive_mail_day`;
+
+

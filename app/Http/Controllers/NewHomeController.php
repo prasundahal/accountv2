@@ -647,7 +647,7 @@ public function tableop()
                         'email' => $form->email,
                         'days' => $days
                     ]);
-                    Log::channel('cronLog')->info("Inactive Mail sent successfully to ".$form->email);
+                    Log::channel('inactiveMail')->info("Inactive Mail sent successfully to ".$form->email);
                     return redirect()->back()->withInput()->with('success', 'Mail Sent');
                 }
             catch(\Exception $e)
@@ -731,7 +731,9 @@ public function tableop()
         $forms = Form::with('activityStatus')->whereIn('id', $array)->get();
         // $forms = $temp;
         $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
-        return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
+        $setting = GeneralSetting::first();    
+        $message = $setting->inactive_mail_message;
+        return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status','message'));
     }
     
     public function unsubMails(){
@@ -4304,8 +4306,12 @@ public function tableop()
                 'spinner_time' => $request->spinner_time,
                 'sms_text' => $request->sms_text,
                 'spinner_winner_day' => $request->spinner_winner_day,
-                'spinner_time_cron' => $request->spinner_time_cron,                
-
+                'spinner_time_cron' => $request->spinner_time_cron,   
+                'inactive_mail_type' => $request->inactive_mail_type,
+                'inactive_mail_time' => $request->inactive_mail_time,   
+                'inactive_mail_day' => $request->inactive_mail_day,     
+                'inactive_mail_message' => $request->inactive_mail_message,                
+                
             ]);
             $settings = GeneralSetting::first();
             // $path = asset('public/images/'.$settings->theme.'/logo.jpg');
