@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col" style="display: inline-grid;">
-                                        <span>Send 24 hour Report Emails To</span>
+                                        <span>Send 24 hour Report Emails  & Inactive Emails  To</span>
                                         <input type="text" class="form-control emails" name="emails[]" value="{{$settings['emails']}}" >
                                     </div>
                                 </div>
