@@ -161,63 +161,64 @@ class NewHomeController extends Controller
     {
         $alogs = LoginLog::with('user')->whereHas('user')
             ->orderBy('login_time', 'desc')
-            ->get();
-        $logs = array();
-        $interval = $intervaly = $intervalm = $intervald = $intervalh = $intervali = $intervals = 0;
-        $all_months = ['1' => 'January', '2' => 'February', '3' => 'March', '4' => 'April', '5' => 'May', '6' => 'June', '7' => 'July', '8' => 'August', '9' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'];
-        foreach($alogs as $log) {
-            $date = \Carbon\Carbon::parse($log->login_time);
-            $logdate = $date->format('m');
-            if(!isset($logs[$log->user_id][$logdate])){
-                $logs[$log->user_id][$logdate] = [
-                    'id' => $log->id,
-                    'date' => $date->format('Y-m-d'),
-                    'user_name' => $log->user->name,
-                    'last_login_time' => $log->login_time,
-                    'total_login_time' => [
-                        'd' => 0,
-                        'h' => 0,
-                        'i' => 0,
-                        's' => 0,
-                    ],
-                    'interval' => 0
-                ];
-            }else{
-                $logs[$log->user_id][$logdate]['first_login_time'] = $log->login_time;
-            }
-            if($log->logout_time){
-                $datetime1 = strtotime($log->logout_time);
-                $datetime2 = strtotime($log->login_time);
-                $logs[$log->user_id][$logdate]['interval'] += $datetime1 - $datetime2;
-                $interval = $logs[$log->user_id][$logdate]['interval'];
-                $secondsInAMinute = 60;
-                $secondsInAnHour  = 60 * $secondsInAMinute;
-                $secondsInADay    = 24 * $secondsInAnHour;
+            ->get()->toArray();
+            // dd($alogs);
+        // $logs = array();
+        // $interval = $intervaly = $intervalm = $intervald = $intervalh = $intervali = $intervals = 0;
+        // $all_months = ['1' => 'January', '2' => 'February', '3' => 'March', '4' => 'April', '5' => 'May', '6' => 'June', '7' => 'July', '8' => 'August', '9' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'];
+        // foreach($alogs as $log) {
+        //     $date = \Carbon\Carbon::parse($log->login_time);
+        //     $logdate = $date->format('m');
+        //     if(!isset($logs[$log->user_id][$logdate])){
+        //         $logs[$log->user_id][$logdate] = [
+        //             'id' => $log->id,
+        //             'date' => $date->format('Y-m-d'),
+        //             'user_name' => $log->user->name,
+        //             'last_login_time' => $log->login_time,
+        //             'total_login_time' => [
+        //                 'd' => 0,
+        //                 'h' => 0,
+        //                 'i' => 0,
+        //                 's' => 0,
+        //             ],
+        //             'interval' => 0
+        //         ];
+        //     }else{
+        //         $logs[$log->user_id][$logdate]['first_login_time'] = $log->login_time;
+        //     }
+        //     if($log->logout_time){
+        //         $datetime1 = strtotime($log->logout_time);
+        //         $datetime2 = strtotime($log->login_time);
+        //         $logs[$log->user_id][$logdate]['interval'] += $datetime1 - $datetime2;
+        //         $interval = $logs[$log->user_id][$logdate]['interval'];
+        //         $secondsInAMinute = 60;
+        //         $secondsInAnHour  = 60 * $secondsInAMinute;
+        //         $secondsInADay    = 24 * $secondsInAnHour;
 
-                // extract days
-                $days = floor($interval / $secondsInADay);
+        //         // extract days
+        //         $days = floor($interval / $secondsInADay);
 
-                // extract hours
-                $hourSeconds = $interval % $secondsInADay;
-                $hours = floor($hourSeconds / $secondsInAnHour);
+        //         // extract hours
+        //         $hourSeconds = $interval % $secondsInADay;
+        //         $hours = floor($hourSeconds / $secondsInAnHour);
 
-                // extract minutes
-                $minuteSeconds = $hourSeconds % $secondsInAnHour;
-                $minutes = floor($minuteSeconds / $secondsInAMinute);
+        //         // extract minutes
+        //         $minuteSeconds = $hourSeconds % $secondsInAnHour;
+        //         $minutes = floor($minuteSeconds / $secondsInAMinute);
 
-                // extract the remaining seconds
-                $remainingSeconds = $minuteSeconds % $secondsInAMinute;
-                $seconds = ceil($remainingSeconds);
+        //         // extract the remaining seconds
+        //         $remainingSeconds = $minuteSeconds % $secondsInAMinute;
+        //         $seconds = ceil($remainingSeconds);
 
-                $logs[$log->user_id][$logdate]['total_login_time']['d'] = $days;
-                $logs[$log->user_id][$logdate]['total_login_time']['h'] = $hours;
-                $logs[$log->user_id][$logdate]['total_login_time']['i'] = $minutes;
-                $logs[$log->user_id][$logdate]['total_login_time']['s'] = $seconds;
-            }
-        }
-
+        //         $logs[$log->user_id][$logdate]['total_login_time']['d'] = $days;
+        //         $logs[$log->user_id][$logdate]['total_login_time']['h'] = $hours;
+        //         $logs[$log->user_id][$logdate]['total_login_time']['i'] = $minutes;
+        //         $logs[$log->user_id][$logdate]['total_login_time']['s'] = $seconds;
+        //     }
+        // }
+        $logs = $alogs;
         // dd($logs);
-        return view('newLayout.loginLogs', compact('logs', 'all_months'));
+        return view('newLayout.loginLogs', compact('logs'));
     }
      public function thisMonthLogs(Request $request) {
         $alogs = LoginLog::with('user')->whereHas('user')

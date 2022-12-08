@@ -93,18 +93,18 @@
                     <tr  >
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">SN</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Month</th>
+                      {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Month</th> --}}
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Last Login Time</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Total Time</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Action</th>
+                      {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Total Time</th> --}}
+                      {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Action</th> --}}
                     </tr>
                  </thead>
                  <tbody class="user-history-body">                          
                   @php
                     $count = 1;
                   @endphp
-                  @foreach($logs as $user_id=>$log)
-                    @foreach($log as $key=>$num)
+                  @foreach($logs as $user_id=>$num)
+                    {{-- @foreach($log as $key=>$num) --}}
                     <tr class="tr-{{$num['id']}}" style="text-align: center">
                        <td class="count-row align-middle text-center ">
                           <div class="d-flex px-2 py-1">
@@ -116,21 +116,21 @@
                        <td class="count-row align-middle text-center ">
                           <div class="d-flex px-2 py-1">
                              <div class="d-flex flex-column justify-content-center">
-                                <h6 class=" mb-0 text-sm">{{$num['user_name']}}</h6>
+                                <h6 class=" mb-0 text-sm">{{$num['user']['name']}}</h6>
                              </div>
                           </div>
                        </td>
-                       <td class="count-row align-middle text-center ">
+                       {{-- <td class="count-row align-middle text-center ">
                           <div class="d-flex px-2 py-1">
                              <div class="d-flex flex-column justify-content-center">
                                 <h6 class=" mb-0 text-sm">{{$all_months[ltrim($key, "0")]}}</h6>
                              </div>
                           </div>
-                       </td>
+                       </td> --}}
                        <td class="count-row align-middle text-center ">
                           <div class="d-flex px-2 py-1">
                              <div class="d-flex flex-column justify-content-center">
-                              <h6 class=" mb-0 text-sm">{{$num['last_login_time']}}</h6>
+                              <h6 class=" mb-0 text-sm">{{$num['login_time']}}</h6>
                              </div>
                           </div>
                        </td>
@@ -138,12 +138,12 @@
                           <div class="d-flex px-2 py-1">
                              <div class="d-flex flex-column justify-content-center">
                               <h6 class=" mb-0 text-sm">
-                                 {{ $num['total_login_time']['d'] .'days '. $num['total_login_time']['h'] .'hrs '.  $num['total_login_time']['i'] .'mins '. $num['total_login_time']['s'] .'secs' }}
+                                 {{-- {{ $num['total_login_time']['d'] .'days '. $num['total_login_time']['h'] .'hrs '.  $num['total_login_time']['i'] .'mins '. $num['total_login_time']['s'] .'secs' }} --}}
                               </h6>
                              </div>
                           </div>
                        </td>
-                       <td class="count-row align-middle text-center ">
+                       {{-- <td class="count-row align-middle text-center ">
 
                             <a href="#popup1" href="javascript:void(0);" class="btn this-month-logs btn-primary mb-0" style="background-color:#FF9800;" data-month="{{ltrim($key, "0")}}" data-userId="{{$user_id}}">View
                             </a>
@@ -158,7 +158,7 @@
                                           <div class="card mb-4">
                                              <div class="card-header pb-0">
                                                 <div class="row w-100" style="justify-content: space-around;">
-                                                {{-- <h6>Authors table</h6> --}}
+                                                <h6>Authors table</h6>
                                                 </div>
                                              </div> 
                                              <div class="card-body px-0 pt-0 pb-2">
@@ -185,9 +185,9 @@
                                  </div >
                              </div >
                              </div>
-                       </td>
+                       </td> --}}
                     </tr>
-                    @endforeach
+                    {{-- @endforeach --}}
                   @endforeach
                  </tbody>
               </table>
