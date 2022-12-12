@@ -921,7 +921,7 @@ public function tableop()
                 if($month != 1){
                     $month = $month - 1;
                 }
-            if($month >10){
+            if($month < 10){
                 $month = '0'.$month;
             }
             $filter_start = $year.'-'.$month.'-01';
@@ -1027,6 +1027,7 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
+            dd($final);
             return view('spinner', compact('final','old_list'));
         }
         catch(\Exception $e)
