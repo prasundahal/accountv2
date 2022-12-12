@@ -1027,7 +1027,7 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
-            dd($final);
+            // dd($final);
             return view('spinner', compact('final','old_list'));
         }
         catch(\Exception $e)
