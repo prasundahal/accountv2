@@ -82,7 +82,7 @@ inactive players
 
 7 days ra 10 days garda less aairako xa
 7 days wala mail pathako ho vanera tha huna paryo //
-gamers page ma edit ko modal ma text area too big
+players page ma edit ko modal ma text area too big //
 mail template ma fb ko logo matra //
 mail template ma noor games ko header
 cronjob ma inactive 7 days wala lai pathauni mail //

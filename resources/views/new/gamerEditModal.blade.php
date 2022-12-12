@@ -69,7 +69,7 @@
        <div class="row mt-3">
         <div class="col">
             <span>Note </span>
-            <textarea class="form-control"  cols="30" rows="50" name="note">{{ $form->note }}</textarea>
+            <textarea class="form-control"  cols="30" rows="5" name="note">{{ $form->note }}</textarea>
             {{-- <input type="text" class="form-control" value="{{ $form->note }}" name="note"
                 placeholder="Note" > --}}
         </div>
