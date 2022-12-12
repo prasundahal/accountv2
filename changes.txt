@@ -87,7 +87,7 @@ mail template ma fb ko logo matra //
 mail template ma noor games ko header
 cronjob ma inactive 7 days wala lai pathauni mail //
 sabai inactive wala ko mail jani admin lai //
-login logs
+login logs //
 
 mahina ma 2 choti chalney -- balance between 400-600 and below 600
 

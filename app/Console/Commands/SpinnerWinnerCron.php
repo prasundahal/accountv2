@@ -75,7 +75,7 @@ class SpinnerWinnerCron extends Command
                 $month = '0'.$month;
             }
             $filter_start = $year.'-'.$month.'-01';
-            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
+            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-30'));
             $compare_amount = $settings->limit_amount;
             $historys = History::where('type', 'load')
                                 ->whereBetween('created_at',[date($filter_start),date($filter_end)])

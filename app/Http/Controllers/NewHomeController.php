@@ -926,7 +926,7 @@ public function tableop()
             }
             $filter_start = $year.'-'.$month.'-01';
             // $filter_end = Carbon::now();
-            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
+            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-30'));
 
             $historys = History::where('type', 'load')
                                 // ->where('created_at', '>', Carbon::now()
@@ -1185,7 +1185,7 @@ public function tableop()
             }
             // dd($month);
             $filter_start = $year.'-'.$month.'-01';
-            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
+            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-30'));
             // $filter_end = date("Y-m-t", strtotime(Carbon::now()));
             $compare_amount = $this->limit_amount;
             $historys = History::where('type', 'load')
