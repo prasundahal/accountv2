@@ -4,8 +4,7 @@ $final_encoded = json_encode($final);
 $settings = \App\Models\GeneralSetting::first();
 $spinner_date_new = $settings->spinner_date;
 $spinner_time_new =$settings->spinner_time;
-                        
-dd($final);
+     
 if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
     die("Players list empty. Send data to see the spinner. ");
 }

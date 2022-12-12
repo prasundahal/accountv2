@@ -8,10 +8,11 @@ $spinner_time_new =$settings->spinner_time;
 
 // if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
 //     die("Players list empty. Send data to see the spinner. ");
+// }                   
+// dd($final);
+// if(!isset($final['players_list']) || empty($final['player_list'])) {
+//     die("Players list empty. Send data to see the spinner. ");
 // }
-if(!isset($final['players_list']) || empty($final['player_list'])) {
-    die("Players list empty. Send data to see the spinner. ");
-}
 
 ?>
 <!DOCTYPE html>
