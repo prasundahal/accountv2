@@ -2550,7 +2550,7 @@ public function tableop()
                 $totals['redeem'] = $totals['redeem'] + $b['amount'];
             }            
         }
-        dd($grouped);
+        // dd($grouped);
         $new = [];
         $doubt = [];
         $countVerified = count($grouped);
