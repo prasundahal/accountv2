@@ -2466,21 +2466,24 @@ public function tableop()
         $date_2 = Carbon::parse($date_1)->submonth()->format('Y-m-d');
         $date_3 = Carbon::parse($date_2)->submonth()->format('Y-m-d');
         // dd($date_1,$date_2,$date_3);
-        if (Auth::user()->role != 'admin'){
-            $history = FormRedeem::whereHas('account', function ($query) {
-                                    if(isset($_GET['category']) && $_GET['category'])
-                                    return $query->where('name', 'like', $_GET['category']);
-                                })
-                                ->where('created_by',Auth::user()->id);
-        }else{
+        // if (Auth::user()->role != 'admin'){
+        //     $history = FormRedeem::whereHas('account', function ($query) {
+        //                             if(isset($_GET['category']) && $_GET['category'])
+        //                             return $query->where('name', 'like', $_GET['category']);
+        //                         })
+        //                         ->where('created_by',Auth::user()->id);
+        // }else{
             $history = FormRedeem::whereHas('account', function ($query) {
                                     if(isset($_GET['category']) && $_GET['category'])
                                     return $query->where('name', 'like', $_GET['category']);
                                 });
-        }
+        // }
         $history = $history->with('form')
                     ->whereHas('form')
                     // ->where('form_id',488)
+                    ->with('balance',function($query) use ($date,$year,$month){
+                        $query->whereBetween('created_at', [$date, $year . '-' . $month . '-31']);
+                    })
                     ->with('redeemstatus',function($query) use ($date){
                         return $query->whereDate('status_date', '=', date($date));
                     })
@@ -2508,11 +2511,11 @@ public function tableop()
         // dd($history->get()->toArray());
         if (($history->count() > 0))
         {
-                if (Auth::user()->role != 'admin'){
-                    $history = $history->where('created_by',Auth::user()->id)->get()->toArray();
-                }else{
+                // if (Auth::user()->role != 'admin'){
+                //     $history = $history->where('created_by',Auth::user()->id)->get()->toArray();
+                // }else{
                     $history = $history->get()->toArray();
-                }
+                // }
             foreach ($history as $a => $b)
             {
                 $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
@@ -2524,6 +2527,7 @@ public function tableop()
                         'redeem' => 0, 
                         'refer' => 0, 
                         'cashAppLoad' => 0, 
+                        'totalLoad' => 0, 
                         'count' => 0,
                         'form' => $b['form'],
                         'redeemstatus' => $b['redeemstatus'],
@@ -2539,12 +2543,14 @@ public function tableop()
                         $creator = $creator->first()->toArray();
                     }
                 }
+                $grouped[$b['form_id']]['totalLoad'] = array_sum(array_column($b['balance'], 'amount'));
                 $grouped[$b['form_id']]['creator'] = $creator;
                 $grouped[$b['form_id']]['redeem'] = $grouped[$b['form_id']]['redeem'] + $b['amount'];
                 $grouped[$b['form_id']]['count'] += 1;
                 $totals['redeem'] = $totals['redeem'] + $b['amount'];
             }            
         }
+        dd($grouped);
         $new = [];
         $doubt = [];
         $countVerified = count($grouped);

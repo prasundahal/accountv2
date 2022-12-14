@@ -321,6 +321,7 @@ tr:nth-child(odd) {
                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Balance</th>
                       @if (Auth::user()->role == 'admin')
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Updated By</th>
                       @endif
@@ -379,6 +380,9 @@ tr:nth-child(odd) {
                            </td>
                            <td class="align-middle text-center">
                               <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
+                           </td>
+                           <td class="align-middle text-center">
+                              <span class="badge  bg-gradient-success">{{$item['totalLoad']}}</span>
                            </td>
                            
 
@@ -488,6 +492,7 @@ tr:nth-child(odd) {
                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Previous</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Amount</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Balance</th>
                       @if (Auth::user()->role == 'admin')
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Updated By</th>
                       @endif
@@ -546,6 +551,9 @@ tr:nth-child(odd) {
                            </td>
                            <td class="align-middle text-center">
                               <span class="badge  bg-gradient-success">{{$item['redeem']}}</span>
+                           </td>
+                           <td class="align-middle text-center">
+                              <span class="badge  bg-gradient-success">{{$item['totalLoad']}}</span>
                            </td>
                            @if (Auth::user()->role == 'admin')
                            <td class="align-middle text-center creator-{{$item['form']['id']}}">
