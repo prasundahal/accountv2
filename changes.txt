@@ -71,30 +71,38 @@ ALTER TABLE `form_redeem_statuses` ADD `deleted_at` DATETIME NULL AFTER `status`
 
 ALTER TABLE `general_setting` ADD `spinner_winner_day` INT NULL AFTER `spinner_time`, ADD `spinner_time_cron` TIME NULL AFTER `spinner_winner_day`;
 
-spinner winner set cronjob
-new template in caandv
-email send to user and admin
+spinner winner set cronjob // 
+new template in caandv //
+email send to user and admin //
 
-inactive players
-  status change
-  save note
+inactive players -> status change //
+inactive players -> save note //
   
 
-7 days ra 10 days garda less aairako xa
+7 days ra 10 days garda less aairako xa // checked
 7 days wala mail pathako ho vanera tha huna paryo //
 players page ma edit ko modal ma text area too big //
 mail template ma fb ko logo matra //
-mail template ma noor games ko header
 cronjob ma inactive 7 days wala lai pathauni mail //
 sabai inactive wala ko mail jani admin lai //
 login logs //
-redeem ma tyo month ko total load gareko amount ni dekhauni
 redeem page cashier le ni herni //
+redeem ko page ma amount lai redeem amount banauni //
 
 mahina ma 2 choti chalney -- balance between 400-600 and below 600
+mail template ma noor games ko header
 
 ALTER TABLE `general_setting` ADD `inactive_mail_type` VARCHAR(200) NULL AFTER `spinner_time_cron`, ADD `inactive_mail_time` TIME NULL AFTER `inactive_mail_type`;
 ALTER TABLE `general_setting` ADD `inactive_mail_day` INT NOT NULL DEFAULT '1' AFTER `inactive_mail_time`;
 ALTER TABLE `general_setting` ADD `inactive_mail_message` TEXT NULL AFTER `inactive_mail_day`;
 
+
+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
+
+
+redeem ma tyo month ko total load gareko amount ni dekhauni //
+redeem page ma -- october click garda january ma selected aairako xa //
+redeem page -- remove print options
+
+cashier cant see page -- spinner winner, unsub mails, log viewer, activity status, players page -- name and number
 

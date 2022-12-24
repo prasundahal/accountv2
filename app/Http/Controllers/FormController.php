@@ -305,9 +305,13 @@ class FormController extends Controller
         $sendtextuser = 'Congratulations, '.$boyname . '!!! ' . 'Welcome to '.$game_name.' Games Club. '.$sms_text;
         
         $details = $sendtext;
+        $details1 = [
+           'text' => $details,
+           'theme' => ($settings->theme)
+       ];
 
         if($settings->registration_email == 1){
-            Mail::to($request->email)->send(new NoticeUserMail(($sendtext)));
+            Mail::to($request->email)->send(new NoticeUserMail(($sendtextuser)));
         }
         if($settings->registration_sms == 1){
             $key = (string) $settings['api_key'];
@@ -324,11 +328,16 @@ class FormController extends Controller
         }
         try
         {
-             $details1 = [
-                'text' => $details,
-                'theme' => ($settings->theme)
-            ];
-            Mail::to('riteshnoor69@gmail.com')->send(new UserNoticMail(($details1)));
+            if(!empty($settings['new_register_mail'])){
+                $emails = explode(',',$settings['new_register_mail']);
+                // Mail::to('joshibipin2052@gmail.com')->send(new customMail(json_encode($data)));
+
+                foreach($emails as $a){
+                    Mail::to($a)->send(new UserNoticMail(json_encode($details1)));
+                    Log::channel('cronLog')->info("Colab Report Mail sent successfully to ".$a);
+                }
+            }
+            // Mail::to('riteshnoor69@gmail.com')->send(new UserNoticMail(($details1)));
             // $job = (new \App\Jobs\NewRegistrationAlert($details))
             //     ->delay(now()->addSeconds(2)); 
             // dispatch($job);
@@ -336,6 +345,7 @@ class FormController extends Controller
         catch(\Exception $e)
         {
             $bug = $e->getMessage();
+            Log::channel('cronLog')->info($e);
             Log::channel('cronLog')->info('Error sending new registration mail to admin '.$bug);
         }
 

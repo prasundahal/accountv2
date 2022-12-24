@@ -1933,10 +1933,10 @@ Winwheel.prototype.getRandomForSegment = function(segmentNumber)
         if (typeof this.segments[segmentNumber] !== 'undefined') {
             let startAngle = this.segments[segmentNumber].startAngle;
             let endAngle = this.segments[segmentNumber].endAngle;
-            let range = (endAngle - startAngle) - 2;
+            let range = (endAngle - startAngle) - 1; //2
 
-            if (range > 0) {
-                stopAngle = (startAngle + 1 + Math.floor((Math.random() * range)));
+            if (range >= 0) {
+                stopAngle = (startAngle - 0.2);
             } else {
                console.log('Segment size is too small to safely get random angle inside it');
             }
@@ -1949,6 +1949,7 @@ Winwheel.prototype.getRandomForSegment = function(segmentNumber)
 
     return stopAngle;
 }
+
 
 // ====================================================================================================================
 // Class for the wheel pins.

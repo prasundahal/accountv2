@@ -1,18 +1,18 @@
 <?php
 $final_encoded = json_encode($final);
 
-$settings = \App\Models\GeneralSetting::first();
+$settings = ¥App¥Models¥GeneralSetting::first();
 $spinner_date_new = $settings->spinner_date;
 $spinner_time_new =$settings->spinner_time;
-                        
 
-// if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
-//     die("Players list empty. Send data to see the spinner. ");
-// }                   
-// dd($final);
-// if(!isset($final['players_list']) || empty($final['player_list'])) {
-//     die("Players list empty. Send data to see the spinner. ");
-// }
+
+if(!isset($final['players_list']) OR !isset($final['players_list'][0]['player_name'])) {
+    die("Players list empty. Send data to see the spinner. ");
+}                   
+
+if(!isset($final['players_list']) || empty($final['players_list'])) {
+    die("Players list empty. Send data to see the spinner. ");
+}
 
 ?>
 <!DOCTYPE html>
@@ -739,6 +739,7 @@ function convertTZ(date, tzString) {
             timeleft--;
             document.getElementById("countdown").textContent = secondsToDhms(timeleft);
             
+            
             if(timeleft == 10 && raised_curtains==false){
                raised_curtains=true;
                 setTimeout(function() {
@@ -771,11 +772,13 @@ function convertTZ(date, tzString) {
     
     TweenMax.to("#timer", 0.5, {top:"50px"});
             }
-            
+            // console.log("Time left : "+timeleft);
             if(timeleft == 0){
                 document.getElementById("welcome_container").innerHTML='';
                 document.getElementById("background_static").style.animation = 'none';
                 calculatePrize();
+                
+               // winAnimation();
             }
             
           },1000);
@@ -1000,7 +1003,7 @@ function convertTZ(date, tzString) {
             </div></div>
              
                     @php
-                        $settings = \App\Models\GeneralSetting::first();
+                        $settings = ¥App¥Models¥GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;
                         $spinner_time = $settings->spinner_time;
     
@@ -1046,15 +1049,15 @@ function convertTZ(date, tzString) {
     
                                 @if($spinner_time_count < $actual_time_count)  
                                     <!--<p id="countdown" class="neon-text2"></p>               -->
-                                    <button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                        Spin the Wheel
-                                    </button>
+                                    <!--<button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                    <!--    Spin the Wheel-->
+                                    <!--</button>-->
                                 @else                       
                                     <!--<p id="countdown" class="neon-text2"></p>-->
                                     {{-- hidden --}}
-                                    <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                        Spin the Wheel
-                                    </button>
+                                    <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                    <!--    Spin the Wheel-->
+                                    <!--</button>-->
                                 @endif
                             @else
                             
@@ -1066,14 +1069,14 @@ function convertTZ(date, tzString) {
                                             countDownDate = '{{$full_date}}';
                                         </script>
                                         <!--<p id="countdown" class="neon-text2"></p>-->
-                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                            Spin the Wheel
-                                        </button>
+                                        <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                        <!--    Spin the Wheel-->
+                                        <!--</button>-->
                                     @else
                                         <!--<p id="countdown" class="neon-text2"></p>-->
-                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                            Spin the Wheel
-                                        </button>
+                                        <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                        <!--    Spin the Wheel-->
+                                        <!--</button>-->
                                     @endif
                             @endif  
 
@@ -1091,7 +1094,7 @@ function convertTZ(date, tzString) {
                                 <h6>
                                     <b>
                                         <span class="neon-text font-weight-bold">Copyright Noorgames</span>
-                                        <span class="just-neon">Â© 2022</span><br> <span class="neon-text"> All Rights Reserved</span>
+                                        <span class="just-neon">ﾃつｩ 2022</span><br> <span class="neon-text"> All Rights Reserved</span>
                                     </b>
                                 </h6>
                             </div>
@@ -1227,7 +1230,7 @@ function convertTZ(date, tzString) {
         if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
         return i;
     }
-    var today=new Date('<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>');
+    var today=new Date('<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>');
     var time = '';
     $(document).ready( function () {
         // Set the date we're counting down to
@@ -1516,7 +1519,7 @@ function convertTZ(date, tzString) {
     //get the index of winner info id
     var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
 
-    //console.log(jsonData.winner_info);
+    //console.log("Winner info index : "+winner_info_index);
 
 
     // //convert the player array into a json string
@@ -1534,7 +1537,7 @@ function convertTZ(date, tzString) {
     if(player_info_length<10) textFontSize= 50;
     else if(player_info_length<30) textFontSize=10;
     else if(player_info_length<80) textFontSize=10;
-    else textFontSize=10;
+    else textFontSize=6;
 
     spin_duration=randomIntFromInterval(10,20); //make spin time random
     spin_times=randomIntFromInterval(3,6);
@@ -1657,8 +1660,9 @@ function convertTZ(date, tzString) {
     function calculatePrize(winner_info=winner_info_index) {
         // console.log("Winner is"+winner_info);
         // Get random angle inside specified segment of the wheel.
+        console.log("Winner info : "+winner_info_index);
         let stopAt = theWheel.getRandomForSegment(winner_info_index+1);
-
+        console.log("Stop at : "+stopAt);
         // Important thing is to set the stopAngle of the animation before stating the spin.
         theWheel.animation.stopAngle = stopAt;
         
@@ -1836,7 +1840,7 @@ function convertTZ(date, tzString) {
         });
     });
 
-    x = '<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>';
+    x = '<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>';
     console.log(x);
     //   var dateTime = new Date();
     var weekday=new Array(7);
@@ -1955,7 +1959,7 @@ if($current_date==$sample_date)
 {
     ?>
     <script>
-        calculatePrize();
+        //calculatePrize();
     </script>
     <?php
 }

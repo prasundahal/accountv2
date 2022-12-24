@@ -381,7 +381,7 @@ tr:nth-child(odd) {
                         <div class="row">
                            <div class="form-group col-md-6">
                              <label for="cars">User: Full Name [ Game Id ]</label>
-                              <select name="id" id="form-game-change" class="select2 form-control" required>
+                              <select name="id" id="form-game-change" class="select2Custom form-control" required>
                                  @if (isset($form_games) && !empty($form_games))
                                     @foreach($form_games as $a => $num)
                                        <option value="{{$num['form_id']}}" data-id="{{$num['account_id']}}">{{$num['form']['full_name']}}  [{{!empty($num['game_id'])?$num['game_id']:''}}]</option>
@@ -586,6 +586,11 @@ tr:nth-child(odd) {
 
 @section('script')
 <script>
+   setTimeout(() => {
+       $('.select2Custom').select2({            
+           dropdownParent: $('#popup3')
+       });
+   }, 1000);
    
 </script>
 @endsection

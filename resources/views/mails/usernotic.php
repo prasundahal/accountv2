@@ -4,6 +4,7 @@
             <tr style="text-align: center;">
                 <td>
                 <?php 
+                  $details = json_decode($details,true);
                      $active_theme = \App\Models\Theme::where('name',$details['theme'])->first();
                  //    if($details1['theme'] == 'default'){
                  //        $image = 'dragonnn.gif';

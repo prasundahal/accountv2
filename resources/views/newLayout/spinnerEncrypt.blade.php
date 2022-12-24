@@ -1,7 +1,7 @@
 <?php
 $final_encoded = json_encode($final);
 
-$settings = \App\Models\GeneralSetting::first();
+$settings = ¥App¥Models¥GeneralSetting::first();
 $spinner_date_new = $settings->spinner_date;
 $spinner_time_new =$settings->spinner_time;
      
@@ -1016,7 +1016,7 @@ function convertTZ(date, tzString) {
             </div></div>
              
                     @php
-                        $settings = \App\Models\GeneralSetting::first();
+                        $settings = ¥App¥Models¥GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;
                         $spinner_time = $settings->spinner_time;
     
@@ -1062,15 +1062,15 @@ function convertTZ(date, tzString) {
     
                                 @if($spinner_time_count < $actual_time_count)  
                                     <!--<p id="countdown" class="neon-text2"></p>               -->
-                                    <button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                        Spin the Wheel
-                                    </button>
+                                    <!--<button id="bigButton" class="hidden bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                    <!--    Spin the Wheel-->
+                                    <!--</button>-->
                                 @else                       
                                     <!--<p id="countdown" class="neon-text2"></p>-->
                                     {{-- hidden --}}
-                                    <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                        Spin the Wheel
-                                    </button>
+                                    <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                    <!--    Spin the Wheel-->
+                                    <!--</button>-->
                                 @endif
                             @else
                             
@@ -1082,14 +1082,14 @@ function convertTZ(date, tzString) {
                                             countDownDate = '{{$full_date}}';
                                         </script>
                                         <!--<p id="countdown" class="neon-text2"></p>-->
-                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                            Spin the Wheel
-                                        </button>
+                                        <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                        <!--    Spin the Wheel-->
+                                        <!--</button>-->
                                     @else
                                         <!--<p id="countdown" class="neon-text2"></p>-->
-                                        <button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">
-                                            Spin the Wheel
-                                        </button>
+                                        <!--<button class="hidden bigButton spinnerClickBtn" onclick="calculatePrize(); this.disabled=true;" style="color:red;border: 2px solid red; border-radius:5px; padding: 10px;">-->
+                                        <!--    Spin the Wheel-->
+                                        <!--</button>-->
                                     @endif
                             @endif  
 
@@ -1107,7 +1107,7 @@ function convertTZ(date, tzString) {
                                 <h6>
                                     <b>
                                         <span class="neon-text font-weight-bold">Copyright Noorgames</span>
-                                        <span class="just-neon">Â© 2022</span><br> <span class="neon-text"> All Rights Reserved</span>
+                                        <span class="just-neon">ﾃつｩ 2022</span><br> <span class="neon-text"> All Rights Reserved</span>
                                     </b>
                                 </h6>
                             </div>
@@ -1246,7 +1246,7 @@ function convertTZ(date, tzString) {
         if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
         return i;
     }
-    var today=new Date('<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>');
+    var today=new Date('<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>');
     var time = '';
     $(document).ready( function () {
         // Set the date we're counting down to
@@ -1855,7 +1855,7 @@ function convertTZ(date, tzString) {
         });
     });
 
-    x = '<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>';
+    x = '<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>';
     console.log(x);
     //   var dateTime = new Date();
     var weekday=new Array(7);
@@ -1974,7 +1974,7 @@ if($current_date==$sample_date)
 {
     ?>
     <script>
-        calculatePrize();
+        //calculatePrize();
     </script>
     <?php
 }

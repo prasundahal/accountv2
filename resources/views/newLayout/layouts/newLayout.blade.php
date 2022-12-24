@@ -123,16 +123,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->segment(1) == 'unsubmails' ? 'active' : '' }}"
-                        href="{{ route('unsubMails') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-history text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Unsub Mails</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->segment(1) == 'monthly-history' ? 'active' : '' }}"
                         href="{{ route('monthlyHistory') }}">
                         <div
@@ -164,16 +154,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->segment(1) == 'activity-status' ? 'active' : '' }}"
-                        href="{{ route('activity.status.index') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa fa-gamepad text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Activity Status</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->segment(1) == 'inactive-players' ? 'active' : '' }}"
                         href="{{ route('inactive-players', ['id' => 7]) }}">
                         <div
@@ -194,6 +174,26 @@
                     </a>
                 </li>
                 @if (Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(1) == 'unsubmails' ? 'active' : '' }}"
+                            href="{{ route('unsubMails') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-history text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Unsub Mails</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(1) == 'activity-status' ? 'active' : '' }}"
+                            href="{{ route('activity.status.index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-gamepad text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Activity Status</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->segment(2) == 'colab' ? 'active' : '' }}"
                             href="{{ route('dashboard.colab') }}">
@@ -264,16 +264,28 @@
                         <span class="nav-link-text ms-1">Spinner</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->segment(2) == 'spinner-winner' ? 'active' : '' }}"
-                        href="{{ route('spinner-winner') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Spinner Winner</span>
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(2) == 'spinner-winner' ? 'active' : '' }}"
+                            href="{{ route('spinner-winner') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Spinner Winner</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(1) == 'logs' ? 'active' : '' }}"
+                            href="{{ route('logs') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Log Viewer</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
                 </li>
@@ -285,16 +297,6 @@
                             <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Profile</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->segment(1) == 'logs' ? 'active' : '' }}"
-                        href="{{ route('logs') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Log Viewer</span>
                     </a>
                 </li>
                 @endif
