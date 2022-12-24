@@ -63,7 +63,30 @@ class NewHomeController extends Controller
         view()->share('spinner_message_monthly', $this->spinner_message_monthly);
         view()->share('spinner_message', $this->spinner_message);
     }
+    public function profileSave(Request $request){
+        $data = [
+            'name' => $request->name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'country' => $request->country,
+            'postal' => $request->postal,
+            'bank_name' => $request->bank_name,
+            'bank_num' => $request->bank_num,
+            'payment_number' => $request->payment_number,
+            'about' => $request->about,
+        ];
+        if(!empty($request->password)){
+            $data['password'] = bcrypt($request->password);
+        }
+        try{
+            $user = User::where('id',Auth::user()->id)->update($data);
 
+        }catch(Exception $e){
+
+            dd($e);
+        }
+        return redirect()->back()->withInput()->with('sucess', 'Updated');
+    }
     public function profile()
     {
         return view('newLayout.profile');
@@ -793,8 +816,74 @@ public function tableop()
     
     public function spinnerWinner(){
         $winners = SpinnerWinner::with('form')->orderBy('id','desc')->get();
-        // dd($winners);
-        return view('newLayout.spinner-winner',compact('winners'));
+
+        $limit_amount = $this->limit_amount;
+        $type = 'above-600';
+        $prev = 'previous';
+        $year = date('Y');
+        $month = date('m');
+
+        if(!empty($prev) && $prev == 'previous'){
+            if($month != 1){
+                $month = $month - 1;
+            }
+        }
+        if($month  < 10){
+            $month = '0'.$month;
+        } 
+        
+        
+        $filter_start = $year.'-'.$month.'-01';
+        if(!empty($prev) && $prev == 'previous'){
+            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
+        }
+        else{
+            $filter_end = Carbon::now();
+        }
+        $history = History::with('form')
+                    ->whereHas('form')
+                    // ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+                    ->orderBy('id', 'desc')
+                    ->get()
+                    ->toArray();
+
+        $final = [];
+        $forms = [];
+        if (!empty($history))
+        {
+            foreach ($history as $a => $b)
+            {
+                $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];  
+                
+                if (!(isset($final[$b['form_id']])))
+                {
+                    $final[$b['form_id']] = [];
+                }
+                $final[$b['form_id']]['form_id'] = $b['form_id'];
+                $final[$b['form_id']]['full_name'] = $b['form']['full_name'];
+
+                ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                $final[$b['form_id']]['totals'] = $totals;
+            }
+        }
+        $limit = 0;
+        $final_2 = [];
+        if(!empty($final)){
+            $count = 0;
+            foreach ($final as $a => $b){
+                $count++;
+                    // if($type == 'above-'.$limit_amount){
+                        
+                    //     if($b['totals']['load']  >= $limit_amount){
+                            array_push($final_2,$b);
+                    //     }
+                    // }
+            }
+        }
+        $forms = $final_2;
+        $limit_amount = $this->limit_amount;
+        // dd($forms);
+        return view('newLayout.spinner-winner',compact('winners','forms'));
     }
     public function generateSpinnerKey()
     {

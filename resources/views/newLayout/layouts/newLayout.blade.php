@@ -394,8 +394,8 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script>
-                                made with by
-                                <a class="font-weight-bold"></a>
+                                made with by Noor Games
+                                <a class="font-weight-bold" href="https://noorgames.net/">Noor Games</a>
                             </div>
                         </div>
                     </div>

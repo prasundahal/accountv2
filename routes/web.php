@@ -238,6 +238,8 @@ Route::get('/monthly-history', [App\Http\Controllers\NewHomeController::class, '
 Route::post('/this-day-history', [App\Http\Controllers\NewHomeController::class, 'thisDay'])->name('thisDay');
 Route::post('/filter-user-history-allData', [App\Http\Controllers\NewHomeController::class, 'filterUserHistoryAllData'])->name('filterUserHistoryAllData');
 
+Route::post('/profile/save', [App\Http\Controllers\NewHomeController::class, 'profileSave'])->name('profile.save');
+
 Route::post('/this-day-redeem', [App\Http\Controllers\NewHomeController::class, 'thisDayRedeem'])->name('thisDayRedeem');
 
 Route::get('/login-logs', [App\Http\Controllers\NewHomeController::class, 'loginLogs'])->name('loginLogs');

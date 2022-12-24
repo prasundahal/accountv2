@@ -108,6 +108,13 @@
                                 <div class="form-group">
 
                                     <select class="form-control " name="id" id="player-list">
+                                        @if (isset($forms) && !empty($forms))
+                                           @foreach($forms as $a => $num)
+                                              <option value="{{$num['form_id']}}" >{{$num['full_name']}} </option>
+                                           @endforeach
+                                        @else
+                                           <option disabled>No Users</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <button type="submit" class="btn  btn-primary mb-0"
@@ -198,17 +205,17 @@
         }
 
 
-        $('.choose-winner').on('click', function() {
-            $.ajax({
-                url: window.location.origin + '/accountv2/get-players-list',
-                method: 'get',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    $('#player-list').html(data);
-                }
-            })
-        });
+        // $('.choose-winner').on('click', function() {
+        //     $.ajax({
+        //         url: window.location.origin + '/accountv2/get-players-list',
+        //         method: 'get',
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         success: function(data) {
+        //             $('#player-list').html(data);
+        //         }
+        //     })
+        // });
     </script>
 @endsection
