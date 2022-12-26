@@ -68,7 +68,10 @@
                                 <i class="fa fa-trash"></i>
                             </a>
                          </td>
-                    <td data-editable="false">{{date_format($num->created_at, 'M d,Y H:i:s')}}</td>
+                    <td data-editable="false">
+                {{$num->created_at}}
+                    {{-- {{date_format($num->created_at, 'M d,Y H:i:s')}} --}}
+                </td>
                     <td data-editable="false">{{ucwords($num->extra_2)}}</td>
                     <td class="class" data-id="{{$num->id}}">
                                 {{($num->note)}}

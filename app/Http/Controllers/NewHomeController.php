@@ -49,6 +49,68 @@ class NewHomeController extends Controller
 
     public function __construct()
     {
+
+        // $setting = GeneralSetting::first();
+
+        // $days = [7, 10, 20];
+        // $seven = [];
+        // $ten = [];
+        // $twenty = [];
+        // $seven_count = [];
+        // $ten_count = [];
+        // $twenty_count = [];
+        // $users = FormGame::select('form_id')->distinct()->get()->toArray();
+        // foreach ($days as $a => $day) {
+        //     $balance = FormBalance::select('form_id')->where('created_at', '>', Carbon::now()->subDays($day))
+        //         ->distinct()
+        //         ->get()
+        //         ->toArray();
+        //     $differenceArray = self::multi_array_diff($users, $balance);
+        //     $array = array_column($differenceArray, 'form_id');
+            
+        //     // $query = "SELECT * FROM forms WHERE id IN $array";
+        //     // $forms = Form::whereIn('id', $array)->get()->toArray();
+        // // Execute the query
+        // $array = implode(',',$array);
+            
+        //     if($day == 7){
+        //         $forms = DB::select("SELECT * FROM forms WHERE id IN ($array)");
+        //         // $forms = $forms->get()->result();
+        //     }elseif($day == 10){
+        //         if(empty($seven)){
+        //             $forms = DB::select("SELECT * FROM forms WHERE id IN ($array)");
+        //         }else{
+        //             $seven = implode(',',$seven);
+        //             $forms = DB::select("SELECT * FROM forms WHERE id IN ($array) AND id NOT IN ($seven)");
+        //         }
+        //         // $forms = $forms->whereNotIn('id',$seven)->get()->toArray();
+        //     }elseif($day == 20){        
+        //         if(empty($ten)){
+        //             $forms = DB::select("SELECT * FROM forms WHERE id IN ($array)");
+        //         }else{
+        //             $ten = implode(',',$ten);  
+        //             $forms = DB::select("SELECT * FROM forms WHERE id IN ($array) AND id NOT IN ($seven) AND id NOT IN ($ten)");
+        //         }    
+        //         // $forms = $forms->whereNotIn('id',$seven)->whereNotIn('id',$ten)->get()->toArray();
+        //     }
+
+        //     if($day == 7){
+        //         $seven_count = count($forms);
+        //         $seven = array_column($forms,'id');
+        //     }elseif($day == 10){
+        //         $ten_count = count($forms);
+        //         $ten = array_column($forms,'id');
+        //     }else{
+        //         $twenty_count = count($forms);
+        //         $twenty = array_column($forms,'id');                
+        //     }
+        //     $details = [
+        //         'forms' => $forms,
+        //         'subject' => 'Inactive Players since '.$day.' days',
+        //         'theme' => $setting->theme
+        //     ];
+        // }
+        // dd($seven,$ten,$twenty);
         $settings = GeneralSetting::first()->toArray();
         // $this->limit_amount = $settings['limit_amount'];
         $this->limit_amount = $settings['limit_amount'];
@@ -335,7 +397,7 @@ class NewHomeController extends Controller
     public function colab()
     {
         $title = 'All Collabration';
-        $number = FormNumber::orderBy('id', 'asc')->get();
+        $number = FormNumber::orderBy('id', 'desc')->get();
         $total = FormNumber::count();
         return view('newLayout.colab', compact('number', 'total', 'title'));
     }
