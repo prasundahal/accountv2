@@ -1856,7 +1856,7 @@ function convertTZ(date, tzString) {
     });
 
     x = '<?php echo $carbon_now.'   ('.config('app.timezone').')' ?>';
-    console.log(x);
+    // console.log(x);
     //   var dateTime = new Date();
     var weekday=new Array(7);
     weekday[0]="Sunday";
