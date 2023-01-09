@@ -1184,8 +1184,9 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
+            $settings = \App\Models\GeneralSetting::first();
             // dd($final);
-            return view('spinner', compact('final','old_list'));
+            return view('spinner', compact('final','old_list','settings'));
         }
         catch(\Exception $e)
         {
@@ -1472,9 +1473,10 @@ public function tableop()
             }else{
                 $old_winners = [];
             }
+            $settings = \App\Models\GeneralSetting::first();
             
         // dd($old_list);
-            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer'));
+            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer','settings'));
         }
         else{
             abort(404);
