@@ -344,7 +344,7 @@
             var cid = $(this).data('id');
                     $.ajax({
                         type: 'get',
-                        url: "/gamers/edit/"+cid,
+                        url: "/accountv2/gamers/edit/"+cid,
                         data: {
                             "cid": $(this).data('id'),
                         },

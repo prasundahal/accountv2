@@ -645,11 +645,14 @@ public function tableop()
             //     'full_name' => 'required',
             //     'number' => 'required',
             // ]);
+
             $form->full_name = isset($request['full_name']) ? $request['full_name'] : null;
             $form->email = isset($request['email']) ? $request['email'] : null;
             $form->intervals = isset($request['intervals']) ? $request['intervals'] : null;
 
-            $form->number = isset($request['number']) ? $request['number'] : null;
+            if(!($form->number == $request['number'])){
+                $form->number = isset($request['number']) ? $request['number'] : null;
+            }
             $form->count = isset($request['count']) ? $request['count'] : null;
             $form->note = isset($request['note']) ? $request['note'] : null;
             $form->facebook_name = isset($request['facebook_name']) ? $request['facebook_name'] : null;
@@ -4261,10 +4264,10 @@ public function tableop()
                                 ->whereHas('form')
                                 ->get()->toArray();
 
-        // $history = History::with('form')
-        //                     ->whereHas('form')
-        //                     ->where('type','load')
-        //                     ->whereDate('created_at', '>=', date(($filter_start)))->get();
+            // $history = History::with('form')
+            //                     ->whereHas('form')
+            //                     ->where('type','load')
+            //                     ->whereDate('created_at', '>=', date(($filter_start)))->get();
             // $history = FormBalance::with('account')->with('form')
             // ->whereHas('form')
             // ->with('created_by')
@@ -4320,6 +4323,9 @@ public function tableop()
             if(!empty($prev) && $prev == 'previous'){
                 if($month != 1){
                     $month = $month - 1;
+                }else{
+                    $month = 12;
+                    $year = $year - 1;
                 }
                 
             }
