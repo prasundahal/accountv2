@@ -1016,7 +1016,7 @@ function convertTZ(date, tzString) {
             </div></div>
              
                     @php
-                        $settings = ¥App¥Models¥GeneralSetting::first();
+                        // $settings = ¥App¥Models¥GeneralSetting::first();
                         $spinner_date = $settings->spinner_date;
                         $spinner_time = $settings->spinner_time;
     
