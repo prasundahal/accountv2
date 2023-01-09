@@ -1246,7 +1246,7 @@ function convertTZ(date, tzString) {
         if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
         return i;
     }
-    var today=new Date('<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>');
+    var today=new Date('<?php echo $carbon_now.'   ('.config('app.timezone').')' ?>');
     var time = '';
     $(document).ready( function () {
         // Set the date we're counting down to
@@ -1855,7 +1855,7 @@ function convertTZ(date, tzString) {
         });
     });
 
-    x = '<?php echo Carbon¥Carbon::now().'   ('.config('app.timezone').')' ?>';
+    x = '<?php echo $carbon_now.'   ('.config('app.timezone').')' ?>';
     console.log(x);
     //   var dateTime = new Date();
     var weekday=new Array(7);

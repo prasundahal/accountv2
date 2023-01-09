@@ -1185,8 +1185,9 @@ public function tableop()
                 $old_winners = [];
             }
             $settings = \App\Models\GeneralSetting::first();
+            $carbon_now = Carbon::now();
             // dd($final);
-            return view('spinner', compact('final','old_list','settings'));
+            return view('spinner', compact('final','old_list','settings','carbon_now'));
         }
         catch(\Exception $e)
         {
@@ -1474,9 +1475,10 @@ public function tableop()
                 $old_winners = [];
             }
             $settings = \App\Models\GeneralSetting::first();
+            $carbon_now = Carbon::now();
             
         // dd($old_list);
-            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer','settings'));
+            return view('newLayout.spinnerEncrypt', compact('final','form_token','old_list','currentPlayer','settings','carbon_now'));
         }
         else{
             abort(404);
