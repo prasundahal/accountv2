@@ -1074,6 +1074,9 @@ public function tableop()
             $month = date('m');
                 if($month != 1){
                     $month = $month - 1;
+                }else{
+                    $month = 12;
+                    $year = $year - 1;
                 }
             if($month < 10){
                 $month = '0'.$month;
@@ -1334,6 +1337,9 @@ public function tableop()
             $month = date('m');
             if($month != 1){
                 $month = $month - 1;
+            }else{
+                $month = 12;
+                $year = $year - 1;
             }
             if($month <10){
                 $month = '0'.$month;
