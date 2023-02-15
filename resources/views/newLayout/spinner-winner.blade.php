@@ -200,7 +200,7 @@
 
         $('.choose-winner').on('click', function() {
             $.ajax({
-                url: window.location.origin + '/accountv2/get-players-list',
+                url: window.location.origin + '/get-players-list',
                 method: 'get',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
