@@ -843,15 +843,83 @@ public function tableop()
         // return redirect(route('home-page'))->with('success', "Thank you for being with us");
     }
     public function getPlayersList(){
-        $historys = Form::where('balance',1)->get();
-        
-        $options = '';
-        foreach($historys as $a => $b){
-            if((date('Y') == date('Y',strtotime($b->created_at))) && (date('m') == date('m',strtotime($b->created_at)))){
-                $options .= '<option selected value="'.$b->id.'">'.$b->name.'</option>';
-            }else{
-                $options .= '<option value="'.$b->id.'">'.$b->full_name.'</option>';
+        // $historys = Form::where('balance',1)->get();
+        $limit_amount = $this->limit_amount;
+        $type = 'above-600';
+        $prev = 'previous';
+        $year = date('Y');
+        $month = date('m');
+
+        if(!empty($prev) && $prev == 'previous'){
+            if($month != 1){
+                $month = $month - 1;
             }
+        }
+        if($month  < 10){
+            $month = '0'.$month;
+        } 
+        
+        
+        $filter_start = $year.'-'.$month.'-01';
+        if(!empty($prev) && $prev == 'previous'){
+            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-30'));
+        }
+        else{
+            $filter_end = Carbon::now();
+        }
+        $history = History::with('form')
+                    ->whereHas('form')
+                    // ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+                    ->select([DB::raw("SUM(amount_loaded) as total") , 'form_id as form_id'])
+                    // ->whereBetween('created_at',[date($filter_start),date($filter_end)])
+                    ->groupBy('form_id')
+                    ->orderBy('id', 'desc')
+                    ->get()
+                    ->toArray();
+        $final = [];
+        $forms = [];
+
+        if (!empty($history))
+        {
+            foreach ($history as $a => $b)
+            {
+                    if ($b['total'] >= $limit_amount)
+                    {
+                        array_push($final, $b['form']);
+                    }
+                // $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];  
+                
+                // if (!(isset($final[$b['form_id']])))
+                // {
+                //     $final[$b['form_id']] = [];
+                // }
+                // $final[$b['form_id']]['form_id'] = $b['form_id'];
+                // $final[$b['form_id']]['full_name'] = $b['form']['full_name'];
+
+                // ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                // $final[$b['form_id']]['totals'] = $totals;
+            }
+        }
+        // dd($final);
+        $limit = 0;
+        $final_2 = [];
+        // if(!empty($final)){
+        //     $count = 0;
+        //     foreach ($final as $a => $b){
+        //         $count++;
+        //         array_push($final_2,$b);
+        //     }
+        // }
+        $forms = $final;
+        $limit_amount = $this->limit_amount;
+        // dd($forms);
+        $options = '';
+        foreach($forms as $a => $b){
+            // if((date('Y') == date('Y',strtotime($b['created_at']))) && (date('m') == date('m',strtotime($b['created_at'])))){
+                // $options .= '<option selected value="'.$b['form_id'].'">'.$b['full_name'].'</option>';
+            // }else{
+                $options .= '<option value="'.$b['id'].'">'.$b['full_name'].'</option>';
+            // }
         }
         return $options;
         // $winners_list = SpinnerWinner::whereBetween('created_at',[date($filter_start),date($filter_end)])->count();
@@ -882,73 +950,7 @@ public function tableop()
     public function spinnerWinner(){
         $winners = SpinnerWinner::with('form')->orderBy('id','desc')->get();
 
-        $limit_amount = $this->limit_amount;
-        $type = 'above-600';
-        $prev = 'previous';
-        $year = date('Y');
-        $month = date('m');
-
-        if(!empty($prev) && $prev == 'previous'){
-            if($month != 1){
-                $month = $month - 1;
-            }
-        }
-        if($month  < 10){
-            $month = '0'.$month;
-        } 
-        
-        
-        $filter_start = $year.'-'.$month.'-01';
-        if(!empty($prev) && $prev == 'previous'){
-            $filter_end = date("Y-m-t", strtotime($year.'-'.$month.'-01'));
-        }
-        else{
-            $filter_end = Carbon::now();
-        }
-        $history = History::with('form')
-                    ->whereHas('form')
-                    // ->whereBetween('created_at',[date($filter_start),date($filter_end)])
-                    ->orderBy('id', 'desc')
-                    ->get()
-                    ->toArray();
-
-        $final = [];
-        $forms = [];
-        if (!empty($history))
-        {
-            foreach ($history as $a => $b)
-            {
-                $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];  
-                
-                if (!(isset($final[$b['form_id']])))
-                {
-                    $final[$b['form_id']] = [];
-                }
-                $final[$b['form_id']]['form_id'] = $b['form_id'];
-                $final[$b['form_id']]['full_name'] = $b['form']['full_name'];
-
-                ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
-                $final[$b['form_id']]['totals'] = $totals;
-            }
-        }
-        $limit = 0;
-        $final_2 = [];
-        if(!empty($final)){
-            $count = 0;
-            foreach ($final as $a => $b){
-                $count++;
-                    // if($type == 'above-'.$limit_amount){
-                        
-                    //     if($b['totals']['load']  >= $limit_amount){
-                            array_push($final_2,$b);
-                    //     }
-                    // }
-            }
-        }
-        $forms = $final_2;
-        $limit_amount = $this->limit_amount;
-        // dd($forms);
-        return view('newLayout.spinner-winner',compact('winners','forms'));
+        return view('newLayout.spinner-winner',compact('winners'));
     }
     public function generateSpinnerKey()
     {
